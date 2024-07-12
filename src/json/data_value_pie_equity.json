@@ -1,0 +1,10 @@
+[
+	{ "key": "Automotive", "value": 14580129, "exploded": true, "key_translation": "Automotive" },
+	{ "key": "Aviation", "value": 675003.295748993, "exploded": true, "key_translation": "Aviation" },
+	{ "key": "Cement", "value": 1948921.31793117, "exploded": true, "key_translation": "Cement" },
+	{ "key": "Coal", "value": 2901239.45987702, "exploded": true, "key_translation": "Coal" },
+	{ "key": "Oil&Gas", "value": 6864860.5456574, "exploded": true, "key_translation": "Oil & Gas" },
+	{ "key": "Power", "value": 7825171.39014172, "exploded": true, "key_translation": "Power" },
+	{ "key": "Steel", "value": 3440221.50568159, "exploded": true, "key_translation": "Steel" },
+	{ "key": "Other", "value": 8881630.44014327, "exploded": false, "key_translation": "Other" }
+]

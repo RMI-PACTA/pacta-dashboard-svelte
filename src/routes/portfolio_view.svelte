@@ -1,4 +1,8 @@
 <!-- src/routes/portfolio_view.svelte -->
+<script>
+	import tableData from '../json/data_included_table.json';
+</script>
+
 <div class="gap-x-4 p-4">
 	<h2 class="h2">Overview of the current state of the portfolio</h2>
 	<div class="h-screen flex gap-x-4">
@@ -25,12 +29,25 @@
 							<th>Portfolio value invested (M USD)</th>
 							<th>Portfolio value invested (%)</th>
 							<th>Included in the analysis</th>
+							<th>Value breakout per means of investment</th>
+							<th></th>
 						</tr>
 					</thead>
-					<tbody> </tbody>
+					<tbody>
+						{#each tableData as row, i}
+							<tr>
+								<td>{row['Asset Class']}</td>
+								<td>{row['Portfolio value invested (M USD)']}</td>
+								<td>{row['Portfolio value invested (%)']}</td>
+								<td>{row['Included in the analysis']}</td>
+								<td>{row['Value breakout per means of investment']}</td>
+								<td>{row['_']}</td>
+							</tr>
+						{/each}
+					</tbody>
 					<tfoot>
 						<tr>
-							<th colspan="3">Test</th>
+							<th colspan="3">This is where we could write a footer.</th>
 						</tr>
 					</tfoot>
 				</table>

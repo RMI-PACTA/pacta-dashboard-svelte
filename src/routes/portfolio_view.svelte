@@ -1,6 +1,23 @@
 <!-- src/routes/portfolio_view.svelte -->
 <script>
+	import { onMount } from 'svelte';
 	import tableData from '../json/data_included_table.json';
+	import bondsPie from '../json/data_value_pie_bonds.json';
+	import equityPie from '../json/data_value_pie_equity.json';
+	import { PieExploded } from '../js/PieExploded2.js';
+
+	onMount(() => {
+		function fetchCompanyBubble() {
+			new PieExploded(document.querySelector('#bubbleBonds'), bondsPie, undefined, {
+				default_class: 'Corporate Bonds'
+			});
+			new PieExploded(document.querySelector('#bubbleEquity'), equityPie, undefined, {
+				default_class: 'Listed Equity'
+			});
+		}
+
+		fetchCompanyBubble();
+	});
 </script>
 
 <div class="gap-x-4 p-4">
@@ -65,6 +82,14 @@
 				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
 				gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 			</p>
+			<div class="card p-4 w-full h-1/2 justify-top">
+				Coverage of listed equity portion of the portfolio
+				<div id="bubbleBonds"></div>
+			</div>
+			<div class="card p-4 w-full h-1/2 justify-bottom">
+				Coverage of corporate bonds' portion of the portfolio
+				<div id="bubbleEquity"></div>
+			</div>
 		</div>
 	</div>
 </div>

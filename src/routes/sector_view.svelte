@@ -19,9 +19,38 @@
 				default_tech: 'Gas Power'
 			});
 		}
+		function addEventListeners() {
+			const asset_class_selector = document.querySelector('#asset_class_selector');
+			asset_class_selector.addEventListener('change', function () {
+				const selects = document.querySelectorAll('.techexposure_class_selector');
+				selects.forEach((d) => {
+					d.value = this.value;
+					d.dispatchEvent(new Event('change'));
+				});
+			});
+			const benchmark_selector = document.querySelector('#benchmark_selector');
+			benchmark_selector.addEventListener('change', function () {
+				const selects = document.querySelectorAll(
+					'.trajectory_alignment_benchmark_selector, .techexposure_benchmark_selector'
+				);
+				selects.forEach((d) => {
+					d.value = this.value;
+					d.dispatchEvent(new Event('change'));
+				});
+			});
+			const scenario_selector = document.querySelector('#scenario_selector');
+			scenario_selector.addEventListener('change', function () {
+				const selects = document.querySelectorAll('.trajectory_alignment_source_selector');
+				selects.forEach((d) => {
+					d.value = this.value;
+					d.dispatchEvent(new Event('change'));
+				});
+			});
+		}
 
 		fetchTechmixData();
 		fetchTrajectoryAlignmentData();
+		addEventListeners();
 	});
 </script>
 

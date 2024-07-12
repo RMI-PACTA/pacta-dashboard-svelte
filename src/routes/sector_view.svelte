@@ -1,3 +1,30 @@
+<!-- src/routes/sector_view.svelte -->
+<script>
+	import { onMount } from 'svelte';
+	import techmix_data from '../json/data_techmix.json';
+	import traj_data from '../json/data_trajectory_alignment.json';
+	import { techexposure } from '../js/techexposure.js';
+	import { trajectory_alignment } from '../js/trajectory_alignment.js';
+
+	onMount(() => {
+		function fetchTechmixData() {
+			new techexposure(document.querySelector('#techmixplot1'), techmix_data);
+		}
+
+		function fetchTrajectoryAlignmentData() {
+			new trajectory_alignment(document.querySelector('#trajplot1'), traj_data, undefined, {
+				default_tech: 'Coal Power'
+			});
+			new trajectory_alignment(document.querySelector('#trajplot2'), traj_data, undefined, {
+				default_tech: 'Gas Power'
+			});
+		}
+
+		fetchTechmixData();
+		fetchTrajectoryAlignmentData();
+	});
+</script>
+
 <div class="gap-x-4 p-4">
 	<h2 class="h2">Current state and future predictions for a sector</h2>
 	<p>

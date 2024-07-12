@@ -65,6 +65,12 @@
 				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
 				gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 			</p>
+			<div class="card p-4 w-full h-1/2 justify-top">
+				Coverage of listed equity portion of the portfolio
+			</div>
+			<div class="card p-4 w-full h-1/2 justify-bottom">
+				Coverage of corporate bonds' portion of the portfolio
+			</div>
 		</div>
 	</div>
 </div>

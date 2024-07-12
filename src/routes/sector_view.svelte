@@ -3,8 +3,10 @@
 	import { onMount } from 'svelte';
 	import techmix_data from '../json/data_techmix.json';
 	import traj_data from '../json/data_trajectory_alignment.json';
+	import emissions_data from '../json/data_emissions.json';
 	import { techexposure } from '../js/techexposure.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
+	import { time_line } from '../js/time_line.js';
 
 	onMount(() => {
 		function fetchTechmixData() {
@@ -19,10 +21,17 @@
 				default_tech: 'Gas Power'
 			});
 		}
+
+		function fetchEmissionsData() {
+			new time_line(document.querySelector('#emissionsplot'), emissions_data);
+		}
+
 		function addEventListeners() {
 			const asset_class_selector = document.querySelector('#asset_class_selector');
 			asset_class_selector.addEventListener('change', function () {
-				const selects = document.querySelectorAll('.techexposure_class_selector');
+				const selects = document.querySelectorAll(
+					'.techexposure_class_selector, .time_line_class_selector'
+				);
 				selects.forEach((d) => {
 					d.value = this.value;
 					d.dispatchEvent(new Event('change'));
@@ -50,6 +59,7 @@
 
 		fetchTechmixData();
 		fetchTrajectoryAlignmentData();
+		fetchEmissionsData();
 		addEventListeners();
 	});
 </script>
@@ -111,6 +121,7 @@
 			</div>
 			<div class="emission_intensity card p-4">
 				<h3 class="h3">Emission Intensity</h3>
+				<div id="emissionsplot"></div>
 			</div>
 			<div class="volume_trajectory card p-4">
 				<h3 class="h3">

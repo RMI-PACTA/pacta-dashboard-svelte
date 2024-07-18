@@ -12,7 +12,14 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application code to the working directory
-COPY . .
+COPY postcss.config.cjs ./
+COPY svelte.config.js ./
+COPY tailwind.config.ts ./
+COPY tsconfig.json ./
+COPY vite.config.ts ./
+COPY src ./src
+COPY static ./static
+COPY .svelte-kit ./.svelte-kit
 
 EXPOSE 3000
 

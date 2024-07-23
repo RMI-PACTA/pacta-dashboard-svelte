@@ -1,7 +1,7 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import techmix_data from '../json/data_techmix.json';
+	import techmix_data from '../json/data_techexposure.json';
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
 	import { techexposure } from '../js/techexposure.js';

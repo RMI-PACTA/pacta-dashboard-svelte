@@ -21,7 +21,7 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: '/rmi-pacta.github.io/pacta-dashboard-svelte/'
+          BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           npm run build
 

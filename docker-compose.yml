@@ -1,0 +1,13 @@
+---
+services:
+  svelte-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - type: bind
+        source: ${JSON_ASSETS_PATH}
+        target: /app/src/json
+        read_only: true

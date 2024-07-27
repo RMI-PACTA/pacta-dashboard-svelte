@@ -1,6 +1,5 @@
-# Build the Svelte application
-# Use the official Node.js image as the base image
-FROM node:18-alpine
+# Build Stage
+FROM node:18-alpine AS build
 
 # Set the working directory
 WORKDIR /app
@@ -21,8 +20,22 @@ COPY vite.config.ts ./
 # Copy the source code to the working directory
 COPY src ./src
 COPY static ./static
-COPY .svelte-kit ./.svelte-kit
+# COPY .svelte-kit ./.svelte-kit
 
-EXPOSE 3000
+# Build the application
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+# Production Stage
+FROM nginx:alpine
+
+# Copy the built files from the build stage
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Copy the nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose the port on which the application will run
+EXPOSE 8080
+
+# Start nginx server
+CMD ["nginx", "-g", "daemon off;"]

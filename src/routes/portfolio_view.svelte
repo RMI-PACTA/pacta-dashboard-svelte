@@ -104,27 +104,31 @@
 			</div>
 		</div>
 	</div>
-	<div >
+	<div class="h-screen flex flex-row gap-x-4">
 		<div class="card p-4 w-full h-full items-center">
-			<h3 class="h3">Regional exposure per sector or technology within sector</h3>
-			<h4 class="h4">For equity and bond portions of the portfolio</h4>
-			<br />
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-				invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-				et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-				Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-				gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-			</p>
-			<div class="card p-4 basis-1/2 h-full justify-left">
-				Coverage of listed equity portion of the portfolio
-				<div id="mapBonds"></div>
+			<div class="flex-row">
+				<h3 class="h3">Regional exposure per sector or technology within sector</h3>
+				<h4 class="h4">For equity and bond portions of the portfolio</h4>
+				<br />
+				<p>
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+					invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+					et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+					Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+					voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
 			</div>
-			<div class="card p-4 basis-1/2 h-full justify-right">
-				Coverage of corporate bonds' portion of the portfolio
-				<div id="mapEquity"></div>
+			<div class="flex flex-row">
+				<div class="card p-4 basis-1/2 h-full justify-left">
+					Coverage of listed equity portion of the portfolio
+					<div id="mapBonds"></div>
+				</div>
+				<div class="card p-4 basis-1/2 h-full justify-right">
+					Coverage of corporate bonds' portion of the portfolio
+					<div id="mapEquity"></div>
+				</div>
 			</div>
 		</div>
 	</div>

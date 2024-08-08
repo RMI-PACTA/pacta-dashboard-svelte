@@ -6,9 +6,11 @@
 	import equityValuePieData from '../json/data_value_pie_equity.json';
 	import bondsEmissionsPieData from '../json/data_emissions_pie_bonds.json';
 	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
+	import techmixData from '../json/data_techexposure.json';
 	import mapData from '../json/data_map.json';
 	import { PieExploded } from '../js/PieExploded2.js';
-	import { choropleth } from '../js/map.js'
+	import { techexposure } from '../js/techexposure';
+	import { choropleth } from '../js/map.js';
 
 	onMount(() => {
 		function fetchValuePie() {
@@ -29,6 +31,15 @@
 			});
 		}
 
+		function fetchTechmix() {
+			new techexposure(document.querySelector('#techMixAllBonds'), techmixData, {
+				default_class: 'Corporate Bonds'
+			});
+			new techexposure(document.querySelector('#techMixAllEquity'), techmixData, {
+				default_class: 'Listed Equity'
+			});
+		}
+
 		function fetchMap() {
 			new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
 				default_class: 'Corporate Bonds'
@@ -40,6 +51,7 @@
 
 		fetchValuePie();
 		fetchEmissionsPie();
+		fetchTechmix();
 		fetchMap();
 	});
 </script>
@@ -126,6 +138,27 @@
 				<div class="card p-4 basis-1/2 h-full justify-right">
 					Emissions coverage of corporate bonds' portion of the portfolio
 					<div id="emissionsPieEquity"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="h-screen flex flex-row gap-x-4">
+		<div class="card p-4 w-full h-full items-center">
+			<div class="flex-row">
+				<h3 class="h3">Exposure to climate-relevant sectors and technologies</h3>
+				<h4 class="h4">For equity and bond portions of the portfolio</h4>
+				<br />
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum.
+					Nullam vel malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan sagittis. Ut varius feugiat volutpat.
+				</p>
+			</div>
+			<div class="flex flex-row">
+				<div class="card p-4 basis-1/2 h-full justify-left">
+					<div id="techMixAllBonds"></div>
+				</div>
+				<div class="card p-4 basis-1/2 h-full justify-right">
+					<div id="techMixAllEquity"></div>
 				</div>
 			</div>
 		</div>

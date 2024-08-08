@@ -2,18 +2,29 @@
 <script>
 	import { onMount } from 'svelte';
 	import tableData from '../json/data_included_table.json';
-	import bondsPie from '../json/data_value_pie_bonds.json';
-	import equityPie from '../json/data_value_pie_equity.json';
+	import bondsValuePieData from '../json/data_value_pie_bonds.json';
+	import equityValuePieData from '../json/data_value_pie_equity.json';
+	import bondsEmissionsPieData from '../json/data_emissions_pie_bonds.json';
+	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
 	import mapData from '../json/data_map.json';
 	import { PieExploded } from '../js/PieExploded2.js';
 	import { choropleth } from '../js/map.js'
 
 	onMount(() => {
-		function fetchCompanyBubble() {
-			new PieExploded(document.querySelector('#bubbleBonds'), bondsPie, undefined, {
+		function fetchValuePie() {
+			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData, undefined, {
 				default_class: 'Corporate Bonds'
 			});
-			new PieExploded(document.querySelector('#bubbleEquity'), equityPie, undefined, {
+			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData, undefined, {
+				default_class: 'Listed Equity'
+			});
+		}
+
+		function fetchEmissionsPie() {
+			new PieExploded(document.querySelector('#emissionsPieBonds'), bondsEmissionsPieData, undefined, {
+				default_class: 'Corporate Bonds'
+			});
+			new PieExploded(document.querySelector('#emissionsPieEquity'), equityEmissionsPieData, undefined, {
 				default_class: 'Listed Equity'
 			});
 		}
@@ -27,7 +38,8 @@
 			});
 		}
 
-		fetchCompanyBubble();
+		fetchValuePie();
+		fetchEmissionsPie();
 		fetchMap();
 	});
 </script>
@@ -95,12 +107,26 @@
 				gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 			</p>
 			<div class="card p-4 w-full h-1/2 justify-top">
-				Coverage of listed equity portion of the portfolio
-				<div id="bubbleBonds"></div>
+				Value coverage of listed equity portion of the portfolio
+				<div id="valuePieBonds"></div>
 			</div>
 			<div class="card p-4 w-full h-1/2 justify-bottom">
-				Coverage of corporate bonds' portion of the portfolio
-				<div id="bubbleEquity"></div>
+				Value coverage of corporate bonds' portion of the portfolio
+				<div id="valuePieEquity"></div>
+			</div>
+		</div>
+	</div>
+	<div class="h-screen flex flex-row gap-x-4">
+		<div class="card p-4 w-full h-full">
+			<div class="flex flex-row">
+				<div class="card p-4 basis-1/2 h-full justify-left">
+					Emissions coverage of listed equity portion of the portfolio
+					<div id="emissionsPieBonds"></div>
+				</div>
+				<div class="card p-4 basis-1/2 h-full justify-right">
+					Emissions coverage of corporate bonds' portion of the portfolio
+					<div id="emissionsPieEquity"></div>
+				</div>
 			</div>
 		</div>
 	</div>

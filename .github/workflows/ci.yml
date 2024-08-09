@@ -47,7 +47,7 @@ jobs:
       - run: npm install
         env:
           SKIP_PREPARE: true
-      - run: npm playwright install
+      - run: npx playwright install
       - run: npm run test:integration
         env:
           CI: true

@@ -30,6 +30,8 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Run Unit Tests
         run: npm run test:unit
 
@@ -38,6 +40,8 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Download Browser
         run: npx playwright install
       - name: Run Integration Tests
@@ -48,6 +52,8 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Run Linting
         run: npm run lint
 
@@ -56,5 +62,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Run Type Checking
         run: npm run check

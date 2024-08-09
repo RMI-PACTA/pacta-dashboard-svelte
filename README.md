@@ -7,11 +7,12 @@ This is a demonstration of a dashboard for the Pacta project using Svelte, Svelt
 You will need to have Node.js installed on your machine. You can download it from [nodejs.org](https://nodejs.org/).
 
 First, install the dependencies:
-``` bash
+
+```bash
 npm install # or pnpm install or yarn
 ```
 
-Then start a development server: 
+Then start a development server:
 
 ```bash
 npm run dev

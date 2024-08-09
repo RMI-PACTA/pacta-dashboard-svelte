@@ -1,1 +1,124 @@
-[{"key":"Automotive","value":58188.6818096151,"exploded":true,"key_translation":"Automotive"},{"key":"Aviation","value":2517.93265754763,"exploded":true,"key_translation":"Aviation"},{"key":"Cement","value":23184.4440558877,"exploded":true,"key_translation":"Cement"},{"key":"Coal","value":131901.481868615,"exploded":true,"key_translation":"Coal"},{"key":"Oil&Gas","value":29755.9108737074,"exploded":true,"key_translation":"Oil&Gas"},{"key":"Power","value":83778.4606796421,"exploded":true,"key_translation":"Power"},{"key":"Steel","value":14601.1782469639,"exploded":true,"key_translation":"Steel"},{"key":"Commercial Services","value":12.8408766088981,"exploded":false,"key_translation":"Commercial Services"},{"key":"Communications","value":7.01709450176636,"exploded":false,"key_translation":"Communications"},{"key":"Consumer Durables","value":4.47741673685176,"exploded":false,"key_translation":"Consumer Durables"},{"key":"Consumer Non-Durables","value":206.22283747492,"exploded":false,"key_translation":"Consumer Non-Durables"},{"key":"Consumer Services","value":398.380651524164,"exploded":false,"key_translation":"Consumer Services"},{"key":"Distribution Services","value":278.591991162377,"exploded":false,"key_translation":"Distribution Services"},{"key":"Electronic Technology","value":9.23637154915783,"exploded":false,"key_translation":"Electronic Technology"},{"key":"Energy Minerals","value":2622.29535811187,"exploded":false,"key_translation":"Energy Minerals"},{"key":"Finance","value":1422.95817812435,"exploded":false,"key_translation":"Finance"},{"key":"HDV","value":2530.47599027769,"exploded":false,"key_translation":"HDV"},{"key":"Health Services","value":3.3590250177838,"exploded":false,"key_translation":"Health Services"},{"key":"Health Technology","value":9.54966262278655,"exploded":false,"key_translation":"Health Technology"},{"key":"Industrial Services","value":2417.31268828854,"exploded":false,"key_translation":"Industrial Services"},{"key":"Non-Energy Minerals","value":5.97043409585789,"exploded":false,"key_translation":"Non-Energy Minerals"},{"key":"Process Industries","value":4719.37230802991,"exploded":false,"key_translation":"Process Industries"},{"key":"Producer Manufacturing","value":1387.2542935833,"exploded":false,"key_translation":"Producer Manufacturing"},{"key":"Retail Trade","value":319.59588712392,"exploded":false,"key_translation":"Retail Trade"},{"key":"Shipping","value":550.692465936229,"exploded":false,"key_translation":"Shipping"},{"key":"Technology Services","value":9.51164394263711,"exploded":false,"key_translation":"Technology Services"},{"key":"Transportation","value":0.732543504746695,"exploded":false,"key_translation":"Transportation"}]
+[
+	{
+		"key": "Automotive",
+		"value": 58188.6818096151,
+		"exploded": true,
+		"key_translation": "Automotive"
+	},
+	{ "key": "Aviation", "value": 2517.93265754763, "exploded": true, "key_translation": "Aviation" },
+	{ "key": "Cement", "value": 23184.4440558877, "exploded": true, "key_translation": "Cement" },
+	{ "key": "Coal", "value": 131901.481868615, "exploded": true, "key_translation": "Coal" },
+	{ "key": "Oil&Gas", "value": 29755.9108737074, "exploded": true, "key_translation": "Oil&Gas" },
+	{ "key": "Power", "value": 83778.4606796421, "exploded": true, "key_translation": "Power" },
+	{ "key": "Steel", "value": 14601.1782469639, "exploded": true, "key_translation": "Steel" },
+	{
+		"key": "Commercial Services",
+		"value": 12.8408766088981,
+		"exploded": false,
+		"key_translation": "Commercial Services"
+	},
+	{
+		"key": "Communications",
+		"value": 7.01709450176636,
+		"exploded": false,
+		"key_translation": "Communications"
+	},
+	{
+		"key": "Consumer Durables",
+		"value": 4.47741673685176,
+		"exploded": false,
+		"key_translation": "Consumer Durables"
+	},
+	{
+		"key": "Consumer Non-Durables",
+		"value": 206.22283747492,
+		"exploded": false,
+		"key_translation": "Consumer Non-Durables"
+	},
+	{
+		"key": "Consumer Services",
+		"value": 398.380651524164,
+		"exploded": false,
+		"key_translation": "Consumer Services"
+	},
+	{
+		"key": "Distribution Services",
+		"value": 278.591991162377,
+		"exploded": false,
+		"key_translation": "Distribution Services"
+	},
+	{
+		"key": "Electronic Technology",
+		"value": 9.23637154915783,
+		"exploded": false,
+		"key_translation": "Electronic Technology"
+	},
+	{
+		"key": "Energy Minerals",
+		"value": 2622.29535811187,
+		"exploded": false,
+		"key_translation": "Energy Minerals"
+	},
+	{ "key": "Finance", "value": 1422.95817812435, "exploded": false, "key_translation": "Finance" },
+	{ "key": "HDV", "value": 2530.47599027769, "exploded": false, "key_translation": "HDV" },
+	{
+		"key": "Health Services",
+		"value": 3.3590250177838,
+		"exploded": false,
+		"key_translation": "Health Services"
+	},
+	{
+		"key": "Health Technology",
+		"value": 9.54966262278655,
+		"exploded": false,
+		"key_translation": "Health Technology"
+	},
+	{
+		"key": "Industrial Services",
+		"value": 2417.31268828854,
+		"exploded": false,
+		"key_translation": "Industrial Services"
+	},
+	{
+		"key": "Non-Energy Minerals",
+		"value": 5.97043409585789,
+		"exploded": false,
+		"key_translation": "Non-Energy Minerals"
+	},
+	{
+		"key": "Process Industries",
+		"value": 4719.37230802991,
+		"exploded": false,
+		"key_translation": "Process Industries"
+	},
+	{
+		"key": "Producer Manufacturing",
+		"value": 1387.2542935833,
+		"exploded": false,
+		"key_translation": "Producer Manufacturing"
+	},
+	{
+		"key": "Retail Trade",
+		"value": 319.59588712392,
+		"exploded": false,
+		"key_translation": "Retail Trade"
+	},
+	{
+		"key": "Shipping",
+		"value": 550.692465936229,
+		"exploded": false,
+		"key_translation": "Shipping"
+	},
+	{
+		"key": "Technology Services",
+		"value": 9.51164394263711,
+		"exploded": false,
+		"key_translation": "Technology Services"
+	},
+	{
+		"key": "Transportation",
+		"value": 0.732543504746695,
+		"exploded": false,
+		"key_translation": "Transportation"
+	}
+]

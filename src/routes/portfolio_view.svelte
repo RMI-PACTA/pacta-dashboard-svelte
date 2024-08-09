@@ -23,12 +23,22 @@
 		}
 
 		function fetchEmissionsPie() {
-			new PieExploded(document.querySelector('#emissionsPieBonds'), bondsEmissionsPieData, undefined, {
-				default_class: 'Corporate Bonds'
-			});
-			new PieExploded(document.querySelector('#emissionsPieEquity'), equityEmissionsPieData, undefined, {
-				default_class: 'Listed Equity'
-			});
+			new PieExploded(
+				document.querySelector('#emissionsPieBonds'),
+				bondsEmissionsPieData,
+				undefined,
+				{
+					default_class: 'Corporate Bonds'
+				}
+			);
+			new PieExploded(
+				document.querySelector('#emissionsPieEquity'),
+				equityEmissionsPieData,
+				undefined,
+				{
+					default_class: 'Listed Equity'
+				}
+			);
 		}
 
 		function fetchTechmix() {
@@ -149,8 +159,19 @@
 				<h4 class="h4">For equity and bond portions of the portfolio</h4>
 				<br />
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum.
-					Nullam vel malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan sagittis. Ut varius feugiat volutpat.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
+					scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
+					cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
+					felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
+					tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
+					et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero.
+					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem
+					ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor
+					malesuada, quam ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula
+					libero in bibendum. Nullam vel malesuada urna. Quisque volutpat sapien a consequat
+					maximus. Morbi nisi dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam
+					ultricies condimentum nulla quis mollis. Sed consectetur vel lectus in vulputate. Cras vel
+					pretium ex. In vehicula neque et eros accumsan sagittis. Ut varius feugiat volutpat.
 				</p>
 			</div>
 			<div class="flex flex-row">
@@ -171,11 +192,11 @@
 				<br />
 				<p>
 					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-					invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-					et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-					Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-					voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+					sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+					elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+					diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
 					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 				</p>
 			</div>

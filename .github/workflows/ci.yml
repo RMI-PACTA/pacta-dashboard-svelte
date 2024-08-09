@@ -12,44 +12,44 @@ jobs:
     outputs:
       node_version: ${{ steps.node_version.outputs.node-version }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        id: node_version
+      - uses: actions/checkout@v3
+      - id: node_version
         uses: actions/setup-node@v3
         with:
           node-version: '18.18.2'
           cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
   unit_tests:
-    name: Run Unit Tests
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
+          cache: npm
           node-version: '18.18.2'
-      - name: Run Unit Tests
-        run: npm run test:unit
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
+      - run: npm run test:unit
 
   integration_tests:
     name: Run Integration Tests
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Download Browser
-        run: npx playwright install
-      - name: Run Integration Tests
-        run: npm run test:integration
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
+      - run: npm run test:integration
+        env:
+          CI: true
 
   lint:
     name: Run Linting

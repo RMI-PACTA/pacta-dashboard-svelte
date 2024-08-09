@@ -45,8 +45,6 @@ jobs:
           cache: npm
           node-version: '18.18.2'
       - run: npm install
-        env:
-          SKIP_PREPARE: true
       - run: npx playwright install
       - run: npm run test:integration
         env:

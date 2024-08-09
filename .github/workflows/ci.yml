@@ -59,6 +59,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
       - name: Run Linting
         run: npm run lint
 
@@ -69,5 +76,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
       - name: Run Type Checking
         run: npm run check

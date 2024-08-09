@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup:
+    name: Install Node and Dependencies
+    runs-on: ubuntu-latest
+    outputs:
+      node_version: ${{ steps.node_version.outputs.node-version }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: node_version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.18.2'
+          cache: 'npm'
+      - run: npm install
+
+  unit_tests:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
+      - run: npm run test:unit
+
+  integration_tests:
+    name: Run Integration Tests
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+      - run: npx playwright install
+      - run: npm run test:integration
+        env:
+          CI: true
+
+  lint:
+    name: Run Linting
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
+      - name: Run Linting
+        run: npm run lint
+
+  type_check:
+    name: Run Type Checking
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: '18.18.2'
+      - run: npm install
+        env:
+          SKIP_PREPARE: true
+      - name: Run Type Checking
+        run: npm run check

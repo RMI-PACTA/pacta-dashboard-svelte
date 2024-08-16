@@ -271,8 +271,7 @@ export class techexposure {
 
 			// filter out unselected benchmarks
 			subdata = subdata.filter(
-				(d) =>
-					(d.this_portfolio == true) | (d.portfolio_name == benchmark_selector.value)
+				(d) => (d.this_portfolio == true) | (d.portfolio_name == benchmark_selector.value)
 			);
 
 			// filter out sectors from the benchmark that do not exist in the portfolio
@@ -650,54 +649,54 @@ export class techexposure {
 		}
 
 		function tech_id2name(tech_id) {
-			switch(tech_id) {
-			  case "Electric":
-				return "Electric";
-			  case "Hybrid":
-				return "Hybrid";
-			  case "ICE":
-				return "ICE";
-			  case "FuelCell":
-				return "Fuel Cell";
-			  case "Freight":
-				return "Freight";
-			  case "Mix":
-				return "Mix";
-			  case "Passenger":
-				return "Passenger";
-			  case "Grinding":
-				return "Grinding";
-			  case "Integrated facility":
-				return "Integrated facility";
-			  case "Coal":
-				return "Coal";
-			  case "Gas":
-				return "Gas";
-			  case "Oil":
-				return "Oil";
-			  case "CoalCap":
-				return "Coal Power";
-			  case "GasCap":
-				return "Gas Power";
-			  case "HydroCap":
-				return "Hydro Power";
-			  case "NuclearCap":
-				return "Nuclear Power";
-			  case "OilCap":
-				return "Oil Power";
-			  case "RenewablesCap":
-				return "Renewables Power";
-			  case "Ac-Electric Arc Furnace":
-				return "Ac-Electric Arc Furnace";
-			  case "Bof Shop":
-				return "Bof Shop";
-			  case "Dc-Electric Arc Furnace":
-				return "Dc-Electric Arc Furnace";
-			  case "Open Hearth Meltshop":
-				return "Open Hearth Meltshop";
-			  default:
-				return tech_id;
+			switch (tech_id) {
+				case 'Electric':
+					return 'Electric';
+				case 'Hybrid':
+					return 'Hybrid';
+				case 'ICE':
+					return 'ICE';
+				case 'FuelCell':
+					return 'Fuel Cell';
+				case 'Freight':
+					return 'Freight';
+				case 'Mix':
+					return 'Mix';
+				case 'Passenger':
+					return 'Passenger';
+				case 'Grinding':
+					return 'Grinding';
+				case 'Integrated facility':
+					return 'Integrated facility';
+				case 'Coal':
+					return 'Coal';
+				case 'Gas':
+					return 'Gas';
+				case 'Oil':
+					return 'Oil';
+				case 'CoalCap':
+					return 'Coal Power';
+				case 'GasCap':
+					return 'Gas Power';
+				case 'HydroCap':
+					return 'Hydro Power';
+				case 'NuclearCap':
+					return 'Nuclear Power';
+				case 'OilCap':
+					return 'Oil Power';
+				case 'RenewablesCap':
+					return 'Renewables Power';
+				case 'Ac-Electric Arc Furnace':
+					return 'Ac-Electric Arc Furnace';
+				case 'Bof Shop':
+					return 'Bof Shop';
+				case 'Dc-Electric Arc Furnace':
+					return 'Dc-Electric Arc Furnace';
+				case 'Open Hearth Meltshop':
+					return 'Open Hearth Meltshop';
+				default:
+					return tech_id;
 			}
-		  }
+		}
 	}
 }

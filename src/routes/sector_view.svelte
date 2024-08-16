@@ -107,10 +107,9 @@
 				<label class="label">
 					<span>Scenario</span>
 					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="ETP2017">ETP2017</option>
-						<option value="GECO2019">GECO2019</option>
-						<option value="WEO2019">WEO2019</option>
-						<option value="WEO2020">WEO2020</option>
+						<option value="GECO2023">GECO2023</option>
+						<option value="WEO2023">WEO2023</option>
+						<option value="ISF2023">ISF2023</option>
 					</select>
 				</label>
 			</div>

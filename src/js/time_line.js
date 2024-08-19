@@ -65,7 +65,7 @@ export class time_line {
 			.keys()
 			.sort();
 		let class_selector = document.createElement('select');
-		class_selector.classList = 'time_line_class_selector inline_text_dropdown';
+		class_selector.classList = 'peercomparison_class_selector inline_text_dropdown';
 		class_selector.addEventListener('change', change_class);
 		class_names.forEach((class_name) => class_selector.add(new Option(class_name, class_name)));
 		class_selector.options[Math.max(class_names.indexOf(default_class), 0)].selected = 'selected';
@@ -76,7 +76,7 @@ export class time_line {
 			.keys()
 			.sort();
 		let sector_selector = document.createElement('select');
-		sector_selector.classList = 'time_line_group_selector inline_text_dropdown';
+		sector_selector.classList = 'peercomparison_group_selector inline_text_dropdown';
 		sector_selector.addEventListener('change', change_class);
 		sector_names.forEach((sector_name) =>
 			sector_selector.add(new Option(sector_name, sector_name))
@@ -251,7 +251,7 @@ export class time_line {
 			allocation_selector.options[
 				Math.max(0, allocation_names.indexOf(selected_allocation))
 			].selected = 'selected';
-			// resize_inline_text_dropdown(null, allocation_selector);
+			//resize_inline_text_dropdown(null, allocation_selector);
 
 			subdata = subdata.filter((d) => d.allocation_translation == allocation_selector.value);
 
@@ -272,7 +272,7 @@ export class time_line {
 			sector_selector.options[
 				Math.max(sector_names.indexOf(selected_sector), disabled.indexOf(false))
 			].selected = 'selected';
-			// resize_inline_text_dropdown(null, sector_selector);
+			//resize_inline_text_dropdown(null, sector_selector);
 
 			subdata = subdata.filter((d) => d.sector_translation == sector_selector.value);
 
@@ -285,7 +285,7 @@ export class time_line {
 			);
 			market_selector.options[Math.max(0, market_names.indexOf(selected_market))].selected =
 				'selected';
-			// resize_inline_text_dropdown(null, market_selector);
+			//resize_inline_text_dropdown(null, market_selector);
 
 			update();
 		}

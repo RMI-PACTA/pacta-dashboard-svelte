@@ -54,17 +54,22 @@ export class techexposure {
 					: labels.hover_over_sec,
 			hover_over_low_carbon =
 				typeof labels.hover_over_low_carbon === 'undefined'
-					? { before_sec: 'Low-carbon ', after_sec: ' technologies<br>' }
-					: labels.hover_over_low_carbon;
+					? { before_sec: 'Low-carbon ', after_sec: ' technologies' }
+					: labels.hover_over_low_carbon,
+			lowCarbonLabel =
+				typeof labels.green_legend_label === 'undefined'
+					? { top: 'Low-carbon technologies', bottom: 'within a sector' }
+					: labels.green_legend_label;
 
 		// settings
 		const ttl_width = 700;
-		let margin = { top: 40, right: 140, bottom: 40, left: 10 };
+		let margin = { top: 40, right: 20, bottom: 40, left: 20 };
 
 		const bar_width = 30;
 		const bar_gap = 12;
 		const sector_gap = 10;
 		const portfolio_label_offset = 25;
+		const legend_labels_offset = 50;
 
 		// determine left margin based on portfolio name
 		//const portfolio_name = data.filter(d => d.this_portfolio)[0].portfolio_name;
@@ -80,6 +85,19 @@ export class techexposure {
 			});
 		test_svg.remove();
 		margin.left += label_width + portfolio_label_offset;
+
+		label_width = 0;
+		test_svg = d3.select(chart_div).append('svg');
+		test_svg
+			.append('text')
+			.text(lowCarbonLabel.top)
+			.attr('font-size', '10')
+			.each(function () {
+				label_width = this.getBBox().width;
+			});
+		test_svg.remove();
+		margin.right += label_width + legend_labels_offset;
+
 		let width = ttl_width - margin.left - margin.right;
 
 		// asset class selector
@@ -152,6 +170,7 @@ export class techexposure {
 		svg.append('rect').attr('width', '100%').attr('height', '100%').attr('fill', 'white');
 
 		let legend_group = svg.append('g').attr('class', 'legend_group');
+		let green_legend_group = svg.append('g').attr('class', 'legend_group');
 
 		svg = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
@@ -218,7 +237,7 @@ export class techexposure {
 			);
 			market_selector.options[Math.max(0, market_names.indexOf(selected_market))].selected =
 				'selected';
-			// resize_inline_text_dropdown(null, market_selector);
+			//resize_inline_text_dropdown(null, market_selector);
 
 			subdata = subdata.filter((d) => d.equity_market_translation == market_selector.value);
 
@@ -272,7 +291,10 @@ export class techexposure {
 
 			//increase right margin if labels too long
 			let label_width = 0;
-			let long_label = findLongestName(subdata);
+			let dataLegendLabels = [...subdata];
+			dataLegendLabels.push({ technology_translation: lowCarbonLabel.top });
+			dataLegendLabels.push({ technology_translation: lowCarbonLabel.bottom });
+			let long_label = findLongestName(dataLegendLabels);
 
 			let test_svg = d3.select(chart_div).append('svg');
 			test_svg
@@ -284,28 +306,23 @@ export class techexposure {
 				});
 			test_svg.remove();
 
-			if (margin.right < label_width + 30) {
-				margin.right_new = label_width + 30;
+			if (margin.right < label_width + 35) {
+				margin.right_new = label_width + 35;
 				width = ttl_width - margin.right_new - margin.left;
 			}
+
+			let max_techshare_perc_aum = d3.max(subdata.map((d) => d.cumsum + d.plan_carsten));
 
 			y_sector.range([0, height]).domain(port_sectors);
 			y_port.range([0, (bar_width + bar_gap) * 2]).domain([true, false]);
 			x.range([0, width])
-				.domain([
-					0,
-					+percent_selector.value == 1 ? 1 : d3.max(subdata.map((d) => d.cumsum + d.plan_carsten))
-				])
+				.domain([0, +percent_selector.value == 1 ? 1 : max_techshare_perc_aum])
 				.nice();
 
-			// let t = d3.transition().duration(500);
+			let t = d3.transition().duration(500);
 
 			let bars = bars_group.selectAll('rect').data(subdata);
-			bars
-				.exit()
-				// .transition(t)
-				.attr('width', 0)
-				.remove();
+			bars.exit().transition(t).attr('width', 0).remove();
 			bars
 				.enter()
 				.append('rect')
@@ -319,13 +336,13 @@ export class techexposure {
 				.on('mouseover', mouseover)
 				.on('mouseout', mouseout)
 				.on('mousemove', mousemove)
-				// .transition(t)
+				.transition(t)
 				.attr('x', (d) => (+percent_selector.value == 1 ? x(d.sector_cumprcnt) : x(d.cumsum)))
 				.attr('width', (d) =>
 					+percent_selector.value == 1 ? x(d.sector_prcnt) : x(d.plan_carsten)
 				);
 			bars
-				// .transition(t)
+				.transition(t)
 				.attr('class', (d) => d.ald_sector + ' ' + d.technology)
 				.attr('transform', (d) => 'translate(0,' + y_sector(d.ald_sector_translation) + ')')
 				.attr('y', (d) => y_port(d.this_portfolio))
@@ -335,11 +352,7 @@ export class techexposure {
 				);
 
 			let green_bars = green_group.selectAll('rect').data(subdata);
-			green_bars
-				.exit()
-				// .transition(t)
-				.attr('width', 0)
-				.remove();
+			green_bars.exit().transition(t).attr('width', 0).remove();
 			green_bars
 				.enter()
 				.append('rect')
@@ -354,13 +367,13 @@ export class techexposure {
 				.attr('y', (d) => y_port(d.this_portfolio) + bar_width + 2)
 				.attr('x', 0)
 				.attr('width', 0)
-				// .transition(t)
+				.transition(t)
 				.attr('x', (d) => (+percent_selector.value == 1 ? x(d.sector_cumprcnt) : x(d.cumsum)))
 				.attr('width', (d) =>
 					+percent_selector.value == 1 ? x(d.sector_prcnt) : x(d.plan_carsten)
 				);
 			green_bars
-				// .transition(t)
+				.transition(t)
 				.attr('visibility', (d) => (d.green ? 'visible' : 'hidden'))
 				.attr('transform', (d) => 'translate(0,' + y_sector(d.ald_sector_translation) + ')')
 				.attr('y', (d) => y_port(d.this_portfolio) + bar_width + 2)
@@ -391,7 +404,7 @@ export class techexposure {
 				)
 				.text((d) => d);
 			sector_labels
-				// .transition(t)
+				.transition(t)
 				.attr(
 					'transform',
 					(d) =>
@@ -431,7 +444,7 @@ export class techexposure {
 				)
 				.attr('y', (d) => y_port(d.this_portfolio) + bar_width / 2);
 			port_labels
-				// .transition(t)
+				.transition(t)
 				.text((d) => (d.this_portfolio ? port_label : comp_label))
 				.attr(
 					'transform',
@@ -442,9 +455,14 @@ export class techexposure {
 
 			xaxis_group
 				.attr('class', 'axis')
-				// .transition(t)
-				.attr('transform', 'translate(' + 0 + ',' + (height - 20) + ')')
-				.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
+				.transition(t)
+				.attr('transform', 'translate(' + 0 + ',' + (height - 20) + ')');
+
+			if (max_techshare_perc_aum >= 0.04) {
+				xaxis_group.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
+			} else {
+				xaxis_group.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.2%')));
+			}
 
 			legend_group.attr('transform', 'translate(' + (width + margin.left + 20) + ',5)');
 
@@ -464,6 +482,9 @@ export class techexposure {
 				);
 
 			let legend_data = orderLegendDataIfPossible(legend_data_unordered, legend_order);
+
+			window.subdata = subdata;
+			window.legend_data = legend_data;
 
 			let legend_rects = legend_group.selectAll('rect').data([]);
 			legend_rects.exit().remove();
@@ -525,6 +546,66 @@ export class techexposure {
 				.attr('font-size', '0.7em')
 				.attr('x', 0)
 				.attr('y', (d, i) => tech_in_prev_sectors[i] * 17 + 6 + i * sector_gap_legend);
+
+			let green_legend_rects = green_legend_group.selectAll('rect').data([]);
+			green_legend_rects.exit().remove();
+
+			let green_legend_text = green_legend_group.selectAll('text').data([]);
+			green_legend_text.exit().remove();
+
+			// if there are any green bars, add green bar explanation to legend
+			if (subdata.find((datapoint) => datapoint.green == true) != undefined) {
+				let legend_green_rect = [
+					{
+						class: 'green',
+						sector_shift: legend_data[legend_data.length - 1].sector_shift + 1
+					}
+				];
+				let legend_green_text = [
+					{
+						text: lowCarbonLabel.top,
+						sector_shift: legend_data[legend_data.length - 1].sector_shift + 1
+					},
+					{
+						text: lowCarbonLabel.bottom,
+						sector_shift: legend_data[legend_data.length - 1].sector_shift + 1
+					}
+				];
+
+				// calculate how many rectangles are already in the legend
+				let number_rectangles_tech =
+					tech_in_prev_sectors[tech_in_prev_sectors.length - 1] +
+					legend_data.filter(
+						(obj) => obj.ald_sector_translation === unique_sectors[unique_sectors.length - 1]
+					).length;
+				green_legend_group.attr(
+					'transform',
+					'translate(' + (width + margin.left + 20) + ',' + (5 + number_rectangles_tech * 17) + ')'
+				);
+
+				green_legend_group
+					.selectAll('rect')
+					.data(legend_green_rect)
+					.enter()
+					.append('rect')
+					.attr('width', 12)
+					.attr('height', 12)
+					.attr('class', (d) => d.class)
+					.attr('x', 0)
+					.attr('y', (d, i) => i * 17 + d.sector_shift * sector_gap_legend + 20);
+
+				green_legend_group
+					.selectAll('text')
+					.data(legend_green_text)
+					.enter()
+					.append('text')
+					.text((d) => d.text)
+					.style('alignment-baseline', 'top')
+					.style('text-anchor', 'start')
+					.attr('font-size', '0.7em')
+					.attr('x', 25)
+					.attr('y', (d, i) => i * 14 + 5 + d.sector_shift * sector_gap_legend + 20);
+			}
 		}
 
 		function mouseover(d) {
@@ -548,6 +629,7 @@ export class techexposure {
 					hover_over_low_carbon.before_sec +
 						tech_id2name(d.ald_sector) +
 						hover_over_low_carbon.after_sec +
+						'<br>' +
 						num_format(d.green_sum) +
 						hover_over_asset +
 						num_format(d.green_prcnt) +
@@ -564,6 +646,57 @@ export class techexposure {
 
 		function mouseout(d) {
 			tooltip.style('display', 'none');
+		}
+
+		function tech_id2name(tech_id) {
+			switch (tech_id) {
+				case 'Electric':
+					return 'Electric';
+				case 'Hybrid':
+					return 'Hybrid';
+				case 'ICE':
+					return 'ICE';
+				case 'FuelCell':
+					return 'Fuel Cell';
+				case 'Freight':
+					return 'Freight';
+				case 'Mix':
+					return 'Mix';
+				case 'Passenger':
+					return 'Passenger';
+				case 'Grinding':
+					return 'Grinding';
+				case 'Integrated facility':
+					return 'Integrated facility';
+				case 'Coal':
+					return 'Coal';
+				case 'Gas':
+					return 'Gas';
+				case 'Oil':
+					return 'Oil';
+				case 'CoalCap':
+					return 'Coal Power';
+				case 'GasCap':
+					return 'Gas Power';
+				case 'HydroCap':
+					return 'Hydro Power';
+				case 'NuclearCap':
+					return 'Nuclear Power';
+				case 'OilCap':
+					return 'Oil Power';
+				case 'RenewablesCap':
+					return 'Renewables Power';
+				case 'Ac-Electric Arc Furnace':
+					return 'Ac-Electric Arc Furnace';
+				case 'Bof Shop':
+					return 'Bof Shop';
+				case 'Dc-Electric Arc Furnace':
+					return 'Dc-Electric Arc Furnace';
+				case 'Open Hearth Meltshop':
+					return 'Open Hearth Meltshop';
+				default:
+					return tech_id;
+			}
 		}
 	}
 }

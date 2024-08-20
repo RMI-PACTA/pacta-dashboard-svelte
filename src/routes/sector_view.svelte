@@ -1,16 +1,18 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import techmix_data from '../json/data_techexposure.json';
+	import techmix_future_data from '../json/data_techexposure_future.json';
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
-	import { techexposure } from '../js/techexposure.js';
+	import { techexposure_future } from '../js/techexposure_future.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
 	import { time_line } from '../js/time_line.js';
 
 	onMount(() => {
-		function fetchTechmixData() {
-			new techexposure(document.querySelector('#techmixplot1'), techmix_data);
+		function fetchFutureTechmix() {
+			new techexposure_future(document.querySelector('#techmixplot1'), techmix_future_data, undefined, {
+				default_class: 'Corporate Bonds'
+			});
 		}
 
 		function fetchTrajectoryAlignmentData() {
@@ -47,9 +49,17 @@
 					d.dispatchEvent(new Event('change'));
 				});
 			});
+			const scenario_source_selector = document.querySelector('#scenario_source_selector');
+			scenario_source_selector.addEventListener('change', function () {
+				const selects = document.querySelectorAll('.trajectory_alignment_source_selector');
+				selects.forEach((d) => {
+					d.value = this.value;
+					d.dispatchEvent(new Event('change'));
+				});
+			});
 			const scenario_selector = document.querySelector('#scenario_selector');
 			scenario_selector.addEventListener('change', function () {
-				const selects = document.querySelectorAll('.trajectory_alignment_source_selector');
+				const selects = document.querySelectorAll('.techexposure_scenario_selector');
 				selects.forEach((d) => {
 					d.value = this.value;
 					d.dispatchEvent(new Event('change'));
@@ -57,7 +67,7 @@
 			});
 		}
 
-		fetchTechmixData();
+		fetchFutureTechmix();
 		fetchTrajectoryAlignmentData();
 		fetchEmissionsData();
 		addEventListeners();
@@ -105,16 +115,29 @@
 				</label>
 
 				<label class="label">
-					<span>Scenario</span>
-					<select class="select variant-outline-surface" id="scenario_selector">
+					<span>Scenario source</span>
+					<select class="select variant-outline-surface" id="scenario_source_selector">
 						<option value="GECO2023">GECO2023</option>
 						<option value="WEO2023">WEO2023</option>
 						<option value="ISF2023">ISF2023</option>
 					</select>
 				</label>
+
+				<label class="label">
+					<span>Scenario</span>
+					<select class="select variant-outline-surface" id="scenario_selector">
+						<option value="GECO2023: 1.5C">GECO2023: 1.5C</option>
+						<option value="GECO2023: NDC-LTS">GECO2023: NDC-LTS</option>
+						<option value="GECO2023: Reference">GECO2023: Reference</option>
+						<option value="WEO2023: APS">WEO2023: APS</option>
+						<option value="WEO2023: NZE: 2050">WEO2023: NZE: 2050</option>
+						<option value="WEO2023: STEPS">WEO2023: STEPS</option>
+						<option value="ISF2023: 1.5°C">ISF2023: 1.5°C</option>
+					</select>
+				</label>
 			</div>
 			<div class="tech_mix card p-4">
-				<h3 class="h3">Technology Mix</h3>
+				<h3 class="h3">Future Technology Mix</h3>
 				<div id="techmixplot1"></div>
 				<div id="techmixplot2"></div>
 			</div>

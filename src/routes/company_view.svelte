@@ -7,26 +7,49 @@
 	onMount(() => {
 		function fetchCompanyBubble() {
 			new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData, undefined, {
-				default_class: 'Listed Equity',
 				bkg_fill: false
 			});
 		}
+		function addEventListeners() {
+			const go_button = document.querySelector('#go_button');
+			// TODO: wire these up correctly. Doesn't make sense to spend too much time on this
+			// now since we'll remove the selectors from inside the plot anyway.
+			go_button.addEventListener('click', function() {
+				const sector_selector = document.querySelector('#sector_selector');
+				const asset_class_selector = document.querySelector('#asset_class_selector');
+				const selects_asset = document.querySelectorAll(
+					'companybubble_class_selector'
+				);
+				const selects_sector = document.querySelectorAll(
+						'.companybubble_group_selector'
+				);
+				selects_asset.forEach((d) => {
+					d.value = asset_class_selector.value;
+					d.dispatchEvent(new Event('change'));
+				});
+				selects_sector.forEach((d) => {
+					d.value = sector_selector.value;
+					d.dispatchEvent(new Event('change'));
+				});
+			})
+		};
 
 		fetchCompanyBubble();
+		addEventListeners();
 	});
  </script>
 
 <div class="content p-8 bg-amber-300">
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
-		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector">
-			<option value="Corporate Bonds">Corporate Bonds</option>
-			<option value="Listed Equity">Listed Equity</option>
-		</select>
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
 			<option value="Automotive">Automotive</option>
 			<option value="Power">Power</option>
 		</select>
-		<button class = "btn variant-outline-surface">Go!</button>
+		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector">
+			<option value="Corporate Bonds">Corporate Bonds</option>
+			<option value="Listed Equity">Listed Equity</option>
+		</select>
+		<button class = "btn variant-outline-surface" id="go_button">Go!</button>
 	</div>
 	<div class="analysis p-4 bg-cyan-300 grid">
 		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">

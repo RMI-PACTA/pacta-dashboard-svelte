@@ -1,9 +1,18 @@
 <!-- src/routes/company_view.svelte -->
  <script>
 	import { onMount } from 'svelte';
+	import companyBubbleData from '../json/data_company_bubble.json';
+	import { company_bubble } from '../js/company_bubble.js'
 
 	onMount(() => {
+		function fetchCompanyBubble() {
+			new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData, undefined, {
+				default_class: 'Listed Equity',
+				bkg_fill: false
+			});
+		}
 
+		fetchCompanyBubble();
 	});
  </script>
 
@@ -43,7 +52,7 @@
 							dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
 							sit amet.</p>
 					</div>
-					<div class="bubble-plot sm:col-span-4 bg-teal-300">Bubble plot</div>
+					<div class="bubble-plot sm:col-span-4 bg-teal-300" id="bubble-plot"></div>
 				</div>
 				<div class="plot-techmix grid sm:grid-cols-6 p-4 bg-orange-300">
 					<div class="techmix-explanation sm:col-span-2 bg-cyan-300">Techmix explanation</div>

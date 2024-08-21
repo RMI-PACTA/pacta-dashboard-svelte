@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import { cumsum } from 'd3-array';
 
 export class company_bubble {
 
@@ -343,8 +344,8 @@ export class company_bubble {
       
       let ticks = chart.z.ticks(3);
       let tick_size = ticks.map(d => chart.z(d));
-      let cumsum = d3.cumsum(tick_size.map(d => d * 2));
-      let legend_data = d3.zip(ticks, cumsum);
+      let cumsum_ticks = cumsum(tick_size.map(d => d * 2));
+      let legend_data = d3.zip(ticks, cumsum_ticks);
 
       legend.selectAll("circle").remove();
       legend.selectAll("text").remove();

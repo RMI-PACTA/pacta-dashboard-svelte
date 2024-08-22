@@ -2,13 +2,19 @@
 <script>
 	import { onMount } from 'svelte';
 	import companyBubbleData from '../json/data_company_bubble.json';
+	import companyTechmixData from '../json/data_techexposure_company_companies.json';
+	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json'
 	import { company_bubble } from '../js/company_bubble.js';
+	import { techexposure_company } from '../js/techexposure_company.js';
 
 	onMount(() => {
 		function fetchCompanyBubble() {
 			new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData, undefined, {
 				bkg_fill: false
 			});
+		}
+		function fetchCompanyTechmix() {
+			new techexposure_company(document.querySelector('#techmix-plot'), companyTechmixData, undefined, {}, portfolioTechmixData);
 		}
 		function addEventListeners() {
 			const go_button = document.querySelector('#go_button');
@@ -31,6 +37,7 @@
 		}
 
 		fetchCompanyBubble();
+		fetchCompanyTechmix();
 		addEventListeners();
 	});
 </script>
@@ -80,8 +87,18 @@
 					<div class="bubble-plot sm:col-span-4 bg-teal-300" id="bubble-plot"></div>
 				</div>
 				<div class="plot-techmix grid sm:grid-cols-6 p-4 bg-orange-300">
-					<div class="techmix-explanation sm:col-span-2 bg-cyan-300">Techmix explanation</div>
-					<div class="techmix-plot sm:col-span-4 bg-teal-300">Techmix plot</div>
+					<div class="techmix-explanation sm:col-span-2 bg-cyan-300">
+						<h4 class="h4">
+							Expected Technology Mix in 5 years for portfolio, scneario and selected companies
+						</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+							invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+							accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+							sanctus est Lorem ipsum dolor sit amet.
+						</p>
+					</div>
+					<div class="techmix-plot sm:col-span-4 bg-teal-300" id="techmix-plot"></div>
 				</div>
 			</div>
 			<div class="analysis-parameters sm:col-span-3 bg-red-300 p-4">

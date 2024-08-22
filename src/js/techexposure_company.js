@@ -84,7 +84,7 @@ export class techexposure_company {
 			.keys()
 			.sort();
 		let sector_selector = document.createElement('select');
-		sector_selector.classList = 'portfoliobubble_group_selector inline_text_dropdown';
+		sector_selector.classList = 'techexposure_group_selector inline_text_dropdown';
 		sector_selector.addEventListener('change', update);
 		sector_names.forEach((sector_name) =>
 			sector_selector.add(new Option(sector_name, sector_name))

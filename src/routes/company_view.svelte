@@ -23,8 +23,12 @@
 			go_button.addEventListener('click', function () {
 				const sector_selector = document.querySelector('#sector_selector');
 				const asset_class_selector = document.querySelector('#asset_class_selector');
-				const selects_asset = document.querySelectorAll('companybubble_class_selector');
-				const selects_sector = document.querySelectorAll('.companybubble_group_selector');
+				const selects_asset = document.querySelectorAll(
+					'companybubble_class_selector, .techexposure_class_selector'
+				);
+				const selects_sector = document.querySelectorAll(
+					'.companybubble_group_selector, .techexposure_group_selector'
+				);
 				selects_asset.forEach((d) => {
 					d.value = asset_class_selector.value;
 					d.dispatchEvent(new Event('change'));

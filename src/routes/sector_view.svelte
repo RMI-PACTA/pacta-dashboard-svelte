@@ -37,7 +37,7 @@
 			const asset_class_selector = document.querySelector('#asset_class_selector');
 			asset_class_selector.addEventListener('change', function () {
 				const selects = document.querySelectorAll(
-					'.techexposure_class_selector, .time_line_class_selector'
+					'.techexposure_class_selector, .time_line_class_selector, .trajectory_class_selector'
 				);
 				selects.forEach((d) => {
 					d.value = this.value;

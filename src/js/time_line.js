@@ -65,7 +65,7 @@ export class time_line {
 			.keys()
 			.sort();
 		let class_selector = document.createElement('select');
-		class_selector.classList = 'peercomparison_class_selector inline_text_dropdown';
+		class_selector.classList = 'time_line_class_selector inline_text_dropdown';
 		class_selector.addEventListener('change', change_class);
 		class_names.forEach((class_name) => class_selector.add(new Option(class_name, class_name)));
 		class_selector.options[Math.max(class_names.indexOf(default_class), 0)].selected = 'selected';

@@ -11,7 +11,7 @@
 	onMount(() => {
 		function fetchFutureTechmix() {
 			new techexposure_future(
-				document.querySelector('#techmixplot1'),
+				document.querySelector('#techmix-plot'),
 				techmix_future_data,
 				undefined,
 				{
@@ -21,16 +21,16 @@
 		}
 
 		function fetchTrajectoryAlignmentData() {
-			new trajectory_alignment(document.querySelector('#trajplot1'), traj_data, undefined, {
+			new trajectory_alignment(document.querySelector('#trajectory-plot1'), traj_data, undefined, {
 				default_tech: 'Coal Power'
 			});
-			new trajectory_alignment(document.querySelector('#trajplot2'), traj_data, undefined, {
+			new trajectory_alignment(document.querySelector('#trajectory-plot2'), traj_data, undefined, {
 				default_tech: 'Gas Power'
 			});
 		}
 
 		function fetchEmissionsData() {
-			new time_line(document.querySelector('#emissionsplot'), emissions_data);
+			new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
 		}
 
 		function addEventListeners() {
@@ -120,12 +120,8 @@
 						</p>
 					</div>
 					<div class="trajectory-plots-box grid sm:grid-cols-6 bg-teal-300">
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot1">
-							First traj plot
-						</div>
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot2">
-							Second traj plot
-						</div>
+						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot1"></div>
+						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot2"></div>
 						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot3"></div>
 						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot4"></div>
 						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot5"></div>
@@ -143,7 +139,7 @@
 								takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 						</div>
-						<div class="techmix-plot" id="techmix-plot">Techmix plot</div>
+						<div class="techmix-plot" id="techmix-plot"></div>
 					</div>
 					<div class="emission-intensity-plot-box sm:col-span-3 bg-teal-300">
 						<div class="techmix-explanation">
@@ -155,7 +151,7 @@
 									takimata sanctus est Lorem ipsum dolor sit amet.
 								</p>
 						</div>
-						<div class="techmix-plot" id="emission-intensity-plot">Emission intensity plot</div>
+						<div class="techmix-plot" id="emission-intensity-plot"></div>
 					</div>
 				</div>
 			</div>

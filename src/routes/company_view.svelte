@@ -75,7 +75,7 @@
 			<div class="analysis-intro-stats sm:col-span-3 bg-green-300">Intro stats</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300">
-			<div class="analysis-plots sm:col-span-9 p-4 bg-yellow-300">
+			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">
 				<div class="plot-bubble-box grid sm:grid-cols-6 p-4 bg-orange-300">
 					<div class="bubble-explanation sm:col-span-2 bg-cyan-300">
 						<h4 class="h4">
@@ -105,7 +105,7 @@
 					<div class="techmix-plot sm:col-span-4 bg-teal-300" id="techmix-plot"></div>
 				</div>
 			</div>
-			<div class="analysis-parameters sm:col-span-3 bg-red-300 p-4">
+			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
 				<h4 class="h4">Parameters (not working now)</h4>
 				<br />
 				<label class="label">

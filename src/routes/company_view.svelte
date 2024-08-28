@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import companyBubbleData from '../json/data_company_bubble.json';
 	import companyTechmixData from '../json/data_techexposure_company_companies.json';
-	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json'
+	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json';
 	import { company_bubble } from '../js/company_bubble.js';
 	import { techexposure_company } from '../js/techexposure_company.js';
 
@@ -14,10 +14,24 @@
 			});
 		}
 		function fetchCompanyTechmix() {
-			new techexposure_company(document.querySelector('#techmix-plot'), companyTechmixData, undefined, {}, portfolioTechmixData);
+			new techexposure_company(
+				document.querySelector('#techmix-plot'),
+				companyTechmixData,
+				undefined,
+				{},
+				portfolioTechmixData
+			);
 		}
 		function addEventListeners() {
+			const go_button_landing = document.querySelector('#go_button_landing');
+
+			go_button_landing.addEventListener('click', function () {
+				document.querySelector('#content-landing-page').classList.toggle('hidden');
+				document.querySelector('#content-company-view').classList.toggle('hidden');
+			});
+
 			const go_button = document.querySelector('#go_button');
+
 			// TODO: wire these up correctly. Doesn't make sense to spend too much time on this
 			// now since we'll remove the selectors from inside the plot anyway.
 			go_button.addEventListener('click', function () {
@@ -46,7 +60,40 @@
 	});
 </script>
 
-<div class="content p-8 bg-amber-300">
+<div class="content p-8 bg-amber-300" id="content-landing-page">
+	<div class="intro-text p-4 bg-teal-300">
+		<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
+		<br />
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
+			scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus
+			auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam
+			eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec
+			eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate
+			mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt
+			erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet,
+			consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex,
+			vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum. Nullam vel
+			malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac
+			tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed
+			consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan
+			sagittis. Ut varius feugiat volutpat.
+		</p>
+	</div>
+	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
+		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
+			<option value="Automotive">Automotive</option>
+			<option value="Power">Power</option>
+		</select>
+		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
+			<option value="Corporate Bonds">Corporate Bonds</option>
+			<option value="Listed Equity">Listed Equity</option>
+		</select>
+		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
+	</div>
+</div>
+
+<div class="content p-8 bg-amber-300 hidden" id="content-company-view">
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
 			<option value="Automotive">Automotive</option>

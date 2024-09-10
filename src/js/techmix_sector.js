@@ -55,7 +55,7 @@ export class techmix_sector {
         const height = 600; // TODO: make variable based on container
         const marginTop = 50; // TODO: make variable based on container - step-wise
         const marginRight = 40; // TODO: make variable based on container - step-wise 
-        const marginBottom = 100; // TODO: make variable based on container - step-wise (will contain a legend)
+        const marginBottom = 130; // TODO: make variable based on container - step-wise (will contain a legend)
         const marginLeft = 140; // TODO: make variable based on container - step-wise
 
         // Declare the x scale
@@ -135,11 +135,28 @@ export class techmix_sector {
 
         // Add year labels on the right
 
-        // Add the legend holder (bottom margin)
-
         // Append legend rectangles
+        let legend = svg.append("g")
+            .attr("transform", `translate(${marginLeft},${height - marginBottom / 2})`)
+            .attr("class", "legend")
+            .selectAll("g")
+            .data(subgroups)
+            .enter()
+            .append("g")
+            .attr("transform", function(d, i) {return "translate(" + ((i % 3) * 230 ) + ", " + Math.floor(i/3) * 30 + ")"; });
+
+        legend.append("rect")
+			.attr("width", 22)
+			.attr("height", 22)
+			.attr("class", d => sector + " " + d)
 
         // Append legend labels
+        legend.append("text")
+            .attr("x", 30)
+            .attr("y", 20)
+			.text(d => d);
+
+        // Append legend for green bars
 
         // Add hover overs
 

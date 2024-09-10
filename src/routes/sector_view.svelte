@@ -1,14 +1,23 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import techmix_future_data from '../json/data_techexposure_future.json';
+	import techmix_data from '../json/data_techmix_sector.json';
+	import techmix_future_data from '../json/data_techexposure_future.json'
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
 	import { techexposure_future } from '../js/techexposure_future.js';
+	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
 	import { time_line } from '../js/time_line.js';
 
 	onMount(() => {
+		function fetchTechmix() {
+			new techmix_sector(
+				document.querySelector('#techmix-plot2'),
+				techmix_data
+			);
+		}
+
 		function fetchFutureTechmix() {
 			new techexposure_future(
 				document.querySelector('#techmix-plot'),
@@ -80,6 +89,7 @@
 		}
 
 		fetchFutureTechmix();
+		fetchTechmix();
 		fetchTrajectoryAlignmentData();
 		fetchEmissionsData();
 		addEventListeners();
@@ -192,7 +202,7 @@
 						<div class="techmix-plot" id="techmix-plot"></div>
 					</div>
 					<div class="emission-intensity-plot-box sm:col-span-3 bg-teal-300">
-						<div class="techmix-explanation">
+						<div class="emission-intensity-explanation">
 							<h4 class="h4">Emission intensity for a sector</h4>
 								<p>
 									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
@@ -201,7 +211,19 @@
 									takimata sanctus est Lorem ipsum dolor sit amet.
 								</p>
 						</div>
-						<div class="techmix-plot" id="emission-intensity-plot"></div>
+						<div class="emission-intensity-plot" id="emission-intensity-plot"></div>
+					</div>
+					<div class="techmix-box-2 sm:col-span-3 bg-teal-300">
+						<div class="techmix-explanation">
+							<h4 class="h4">techmix test</h4>
+								<p>
+									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+									eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+									takimata sanctus est Lorem ipsum dolor sit amet.
+								</p>
+						</div>
+						<div class="techmix-plot" id="techmix-plot2"></div>
 					</div>
 				</div>
 			</div>

@@ -170,8 +170,17 @@ div.d3chart.WaffleChart {
 	font-size: 1.4em;
 }
 
-div.d3chart.stacked_bars .axis .domain {
-	display: none;
+div.d3chart .axis {
+	font-size: 1.6em;
+}
+
+/* axis color */
+div.d3chart path.domain {
+	stroke: #C0C0C0;
+}
+
+div.d3chart .tick line {
+	stroke: #C0C0C0;
 }
 
 /* d3 data_table styling */

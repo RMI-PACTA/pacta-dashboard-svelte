@@ -51,12 +51,12 @@ export class techmix_sector {
         var stackedSubdata = d3.stack().keys(subgroups)(subdataTech);
 
         // Declare the chart dimensions and margins.
-        const width = 928; // TODO: make variable based on container
-        const height = 600; // TODO: make variable based on container
-        const marginTop = 50; // TODO: make variable based on container - step-wise
-        const marginRight = 40; // TODO: make variable based on container - step-wise 
-        const marginBottom = 130; // TODO: make variable based on container - step-wise (will contain a legend)
-        const marginLeft = 140; // TODO: make variable based on container - step-wise
+        const width = 928; 
+        const height = 650; 
+        const marginTop = 50; 
+        const marginRight = 40; 
+        const marginBottom = 180; 
+        const marginLeft = 140;
 
         // Declare the x scale
         const x = d3.scaleLinear()
@@ -137,7 +137,7 @@ export class techmix_sector {
 
         // Append legend rectangles
         let legend = svg.append("g")
-            .attr("transform", `translate(${marginLeft},${height - marginBottom / 2})`)
+            .attr("transform", `translate(${marginLeft},${height - 2 * marginBottom / 3})`)
             .attr("class", "legend")
             .selectAll("g")
             .data(subgroups)
@@ -157,6 +157,23 @@ export class techmix_sector {
 			.text(d => d);
 
         // Append legend for green bars
+        let legendGreen = svg.append("g")
+            .attr("transform", `translate(${marginLeft},${height - marginBottom / 4})`)
+            .attr("class", "legend")
+            .selectAll("g")
+            .data(["Low-carbon technologies within a sector"])
+            .enter()
+            .append("g")
+            
+        legendGreen.append("rect")
+        .attr("width", 22)
+        .attr("height", 22)
+        .attr("fill", "green")
+
+        legendGreen.append("text")
+        .attr("x", 30)
+        .attr("y", 20)
+        .text(d => d);
 
         // Add hover overs
 

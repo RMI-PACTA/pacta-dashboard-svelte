@@ -222,6 +222,11 @@ export class techmix_sector {
             .call(g => g.selectAll(".tick line").remove());
 
         // Add year labels on the right
+        svg.append("g")
+            .attr("class", "axis")
+            .call(d3.axisRight(y0).tickSizeOuter(0)) // not sure why axis right produces ticks on the left but leaving as is as it works
+            .call(g => g.selectAll(".domain").remove())
+            .call(g => g.selectAll(".tick line").remove());
 
         // Append legend rectangles
         let legend = svg.append("g")

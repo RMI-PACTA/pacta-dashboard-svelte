@@ -238,31 +238,19 @@ div.d3chart svg .Steel {
 
 /* technologies color palette */
 div.d3chart svg .Automotive[class*='Electric'] {
-	fill: #548995;
-}
-
-div.d3chart svg .Automotive[class*='Electric_HDV'] {
-	fill: #609cab;
-}
-
-div.d3chart svg .Automotive.FuelCell {
-	fill: #6cb0c0;
-}
-
-div.d3chart svg .Automotive.Hybrid {
-	fill: #78c4d6;
-}
-
-div.d3chart svg .Automotive.Hybrid_HDV {
-	fill: #93cfde;
-}
-
-div.d3chart svg .Automotive.ICE {
 	fill: #aedbe6;
 }
 
-div.d3chart svg .Automotive.ICE_HDV {
-	fill: #c9e7ee;
+div.d3chart svg .Automotive.FuelCell {
+	fill: #78c4d6;
+}
+
+div.d3chart svg .Automotive.Hybrid {
+	fill: #6cb0c0;
+}
+
+div.d3chart svg .Automotive.ICE {
+	fill: #548995;
 }
 
 div.d3chart svg .Power.CoalCap {

@@ -147,6 +147,9 @@ export class techmix_sector {
             .attr("y", D => yCurrent(D.data.val_type))
             .attr("height", barHeight)
             .attr("width", D => x(D[1]) - x(D[0]))
+            .on("mouseover", mouseover)
+			.on("mouseout", mouseout)
+			.on("mousemove", mousemove);
 
         svg.append("g")
             .attr("transform", function(d) { return "translate(0, " + y0(subdataTechPerYear[1].year) + ")"; })
@@ -157,13 +160,16 @@ export class techmix_sector {
             .attr("fill", D => color(D.key))
             .attr("class", D => sector + " " + D.key)
             .selectAll("rect")
-            .data(D => D)
+            .data(D => D.map(d => (d.key = D.key, d)))
             .enter()
             .append("rect")
             .attr("x", D => x(D[0]))
             .attr("y", D => yFuture(D.data.val_type))
             .attr("height", barHeight)
             .attr("width", D => x(D[1]) - x(D[0]))
+            .on("mouseover", mouseover)
+			.on("mouseout", mouseout)
+			.on("mousemove", mousemove);
 
 
         // Add bars for green technologies
@@ -180,6 +186,9 @@ export class techmix_sector {
             .attr("y", d => yCurrent(d.val_type) + (11 * barHeight)/10)
             .attr("height", barHeight/5)
             .attr("width", d => x(d.green_sum) - x(0))
+            .on("mouseover", mouseoverGreen)
+			.on("mouseout", mouseout)
+			.on("mousemove", mousemove);
 
         svg.append("g")
             .attr("transform", function(d) { return "translate(0, " + y0(subdataTechPerYear[1].year) + ")"; })
@@ -194,6 +203,9 @@ export class techmix_sector {
             .attr("y", d => yFuture(d.val_type) + (11 * barHeight)/10)
             .attr("height", barHeight/5)
             .attr("width", d => x(d.green_sum) - x(0))
+            .on("mouseover", mouseoverGreen)
+			.on("mouseout", mouseout)
+			.on("mousemove", mousemove);
 
         // Add the x axis (top and bottom) and tick labels
         svg.append("g")
@@ -269,6 +281,49 @@ export class techmix_sector {
         .text(d => d);
 
         // Add hover overs
+        const tooltip = d3
+			.select(container_div)
+			.append("div")
+			.attr("class", "d3tooltip")
+			.style("display", "none");
+
+        function num_format(num) {
+			num = Math.round((num + Number.EPSILON) * 1000) / 10;
+			if (num < 0.1) {
+				return '< 0.1%';
+			}
+			return num + '%';
+		}
+
+        function mouseover(d) {
+			tooltip
+				.html(
+					d.key + ":" +
+					"<br>" +
+					num_format(d[1] - d[0]) +
+					" of the " + sector + " sector."
+				)
+				.style("display", "inline-block");
+		}
+
+		function mouseoverGreen(d) {
+			tooltip
+				.html(
+					 "Low-carbon technologies:" +
+					    "<br>" +
+						num_format(d.green_sum) +
+                        " of the " + sector + " sector."
+				)
+				.style("display", "inline-block");
+		}
+
+		function mousemove(d) {
+			tooltip.style("left", d3.event.pageX + 10 + "px").style("top", d3.event.pageY - 20 + "px");
+		}
+
+		function mouseout(d) {
+			tooltip.style("display", "none");
+		}
 
     }
 }

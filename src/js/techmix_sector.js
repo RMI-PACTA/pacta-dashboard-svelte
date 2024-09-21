@@ -140,7 +140,7 @@ export class techmix_sector {
             .attr("fill", D => color(D.key))
             .attr("class", D => sector + " " + D.key)
             .selectAll("rect")
-            .data(D => D)
+            .data(D => D.map(d => (d.key = D.key, d)))
             .enter()
             .append("rect")
             .attr("x", D => x(D[0]))

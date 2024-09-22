@@ -54,6 +54,8 @@ export class techmix_sector {
 			container_div = container;
 		}
 
+        container_div.innerHTML = "";
+
         container_div.classList.add("stacked_bars");
 		container_div.classList.add("d3chart");
 		container_div.classList.add("chart_container");
@@ -86,7 +88,7 @@ export class techmix_sector {
         let subdata = data.filter(d => d.asset_class == asset_class)
             .filter(d => d.ald_sector == sector)
             .filter(d => d.scenario_source == scenario_source)
-            .filter(d => d.scenario == "APS")
+            .filter(d => d.scenario == scenario)
             .filter(d => d.equity_market == equity_market);
 
         if (subdata.length == 0) {

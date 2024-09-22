@@ -13,19 +13,8 @@
 	onMount(() => {
 		function fetchTechmix() {
 			new techmix_sector(
-				document.querySelector('#techmix-plot2'),
-				techmix_data
-			);
-		}
-
-		function fetchFutureTechmix() {
-			new techexposure_future(
 				document.querySelector('#techmix-plot'),
-				techmix_future_data,
-				undefined,
-				{
-					default_class: 'Corporate Bonds'
-				}
+				techmix_data
 			);
 		}
 
@@ -88,7 +77,6 @@
 			});
 		}
 
-		fetchFutureTechmix();
 		fetchTechmix();
 		fetchTrajectoryAlignmentData();
 		fetchEmissionsData();
@@ -118,8 +106,8 @@
 	</div>
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
-			<option value="Automotive">Automotive</option>
 			<option value="Power">Power</option>
+			<option value="Automotive">Automotive</option>
 			<option value="Oil&gas">Oil & gas</option>
 			<option value="Coal">Coal</option>
 			<option value="Steel">Steel</option>
@@ -137,8 +125,8 @@
 <div class="content p-8 bg-amber-300 hidden" id="content-sector-view">
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
-			<option value="Automotive">Automotive</option>
 			<option value="Power">Power</option>
+			<option value="Automotive">Automotive</option>
 			<option value="Oil&gas">Oil & gas</option>
 			<option value="Coal">Coal</option>
 			<option value="Steel">Steel</option>
@@ -213,18 +201,6 @@
 						</div>
 						<div class="emission-intensity-plot" id="emission-intensity-plot"></div>
 					</div>
-					<div class="techmix-box-2 sm:col-span-3 bg-teal-300">
-						<div class="techmix-explanation">
-							<h4 class="h4">techmix test</h4>
-								<p>
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-									eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-									takimata sanctus est Lorem ipsum dolor sit amet.
-								</p>
-						</div>
-						<div class="techmix-plot" id="techmix-plot2"></div>
-					</div>
 				</div>
 			</div>
 			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
@@ -233,33 +209,33 @@
 				<label class="label">
 					<span>Scenario source</span>
 					<select class="select variant-outline-surface" id="scenario_source_selector">
-						<option value="GECO2023">GECO2023</option>
 						<option value="WEO2023">WEO2023</option>
+						<option value="GECO2023">GECO2023</option>
 						<option value="ISF2023">ISF2023</option>
 					</select>
 				</label>
 				<label class="label">
 					<span>Scenario</span>
 					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="GECO2023: 1.5C">GECO2023: 1.5C</option>
-						<option value="GECO2023: NDC-LTS">GECO2023: NDC-LTS</option>
-						<option value="GECO2023: Reference">GECO2023: Reference</option>
-						<option value="WEO2023: APS">WEO2023: APS</option>
-						<option value="WEO2023: NZE: 2050">WEO2023: NZE: 2050</option>
-						<option value="WEO2023: STEPS">WEO2023: STEPS</option>
-						<option value="ISF2023: 1.5°C">ISF2023: 1.5°C</option>
+						<option value="APS">APS</option>
+						<option value="NZE: 2050">NZE: 2050</option>
+						<option value="STEPS">STEPS</option>
+						<option value="1.5C">1.5C</option>
+						<option value="NDC-LTS">NDC-LTS</option>
+						<option value="Reference">Reference</option>
+						<option value="1.5°C">1.5°C</option>
 					</select>
 				</label>
 				<label class="label">
 					<span>Allocation method</span>
-					<select class="select variant-outline-surface" id="asset_class_selector">
+					<select class="select variant-outline-surface" id="allocation_method_selector">
 						<option value="Portfolio weight">Portfolio weight</option>
 						<option value="Ownership weight">Ownership weight</option>
 					</select>
 				</label>
 				<label class="label">
 					<span>Equity market</span>
-					<select class="select variant-outline-surface" id="scenario_source_selector">
+					<select class="select variant-outline-surface" id="equity_market_selector">
 						<option value="Global Market">Global Market</option>
 						<option value="Developed Market">Developed Market</option>
 						<option value="Emerging Market">Emerging Market</option>

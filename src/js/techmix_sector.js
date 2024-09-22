@@ -60,13 +60,39 @@ export class techmix_sector {
 
         this.container = d3.select(container_div);
 
+        // Declare the chart dimensions and margins.
+        const width = 928; 
+        const height = 650; 
+        const marginTop = 50; 
+        const marginRight = 50; 
+        const marginBottom = 200; 
+        const marginLeft = 200;
+
+        // Create the svg container
+        const svg = this.container
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [0, 0, width, height])
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("style", "max-width: 100%; height: auto;");
+
         // Filter the data
-        let sector = "Power"
-        let subdata = data.filter(d => d.asset_class == "Listed Equity")
+        let sector = document.querySelector("#sector_selector").value,
+            asset_class = document.querySelector("#asset_class_selector").value,
+            scenario_source = document.querySelector("#scenario_source_selector").value,
+            scenario = document.querySelector("#scenario_selector").value,
+            equity_market = document.querySelector("#equity_market_selector").value;
+        let subdata = data.filter(d => d.asset_class == asset_class)
             .filter(d => d.ald_sector == sector)
-            .filter(d => d.scenario_source == "GECO2023")
-            .filter(d => d.scenario == "1.5C")
-            .filter(d => d.equity_market == "Global Market");
+            .filter(d => d.scenario_source == scenario_source)
+            .filter(d => d.scenario == "APS")
+            .filter(d => d.equity_market == equity_market);
+
+        if (subdata.length == 0) {
+            container_div.querySelector("svg").innerHTML = "";
+            return;
+        }
 
         // create the stacked data for plotting
         let uniqueYears = d3.map(subdata, d => d.year).keys();
@@ -83,14 +109,6 @@ export class techmix_sector {
         });
         // TODO: make sure that this captures all possible technologies
         let subgroups = d3.map(subdataTechPerYear[0].stackedData, d => d.key).keys()
-
-        // Declare the chart dimensions and margins.
-        const width = 928; 
-        const height = 650; 
-        const marginTop = 50; 
-        const marginRight = 50; 
-        const marginBottom = 200; 
-        const marginLeft = 200;
 
         // Declare the x scale
         const x = d3.scaleLinear()
@@ -120,15 +138,6 @@ export class techmix_sector {
             .domain(subgroups)
             .range(d3.schemeSpectral[subgroups.length])
             .unknown("#ccc");
-            
-        // Create the svg container
-        const svg = this.container
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("viewBox", [0, 0, width, height])
-            .attr("preserveAspectRatio", "xMinYMin meet")
-            .attr("style", "max-width: 100%; height: auto;");
 
         // Add rectangles for each stacked bar - TODO: rewrite into two
         svg.append("g")

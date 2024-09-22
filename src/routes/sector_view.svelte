@@ -39,20 +39,26 @@
 				document.querySelector('#content-sector-view').classList.toggle('hidden');
 			});
 
+			const sector_selector = document.querySelector('#sector_selector');
+			sector_selector.addEventListener('change', function() {
+				fetchTechmix();
+			});
+
 			const asset_class_selector = document.querySelector('#asset_class_selector');
 			asset_class_selector.addEventListener('change', function () {
 				const selects = document.querySelectorAll(
-					'.techexposure_class_selector, .time_line_class_selector, .trajectory_class_selector'
+					'.time_line_class_selector, .trajectory_class_selector'
 				);
 				selects.forEach((d) => {
 					d.value = this.value;
 					d.dispatchEvent(new Event('change'));
 				});
+				fetchTechmix();
 			});
 			const benchmark_selector = document.querySelector('#benchmark_selector');
 			benchmark_selector.addEventListener('change', function () {
 				const selects = document.querySelectorAll(
-					'.trajectory_alignment_benchmark_selector, .techexposure_benchmark_selector'
+					'.trajectory_alignment_benchmark_selector'
 				);
 				selects.forEach((d) => {
 					d.value = this.value;
@@ -66,6 +72,7 @@
 					d.value = this.value;
 					d.dispatchEvent(new Event('change'));
 				});
+				fetchTechmix();
 			});
 			const scenario_selector = document.querySelector('#scenario_selector');
 			scenario_selector.addEventListener('change', function () {
@@ -74,6 +81,7 @@
 					d.value = this.value;
 					d.dispatchEvent(new Event('change'));
 				});
+				fetchTechmix();
 			});
 		}
 

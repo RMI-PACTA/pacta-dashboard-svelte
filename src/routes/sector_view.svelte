@@ -83,6 +83,10 @@
 				});
 				fetchTechmix();
 			});
+			const equity_market_selector = document.querySelector('#equity_market_selector');
+			equity_market_selector.addEventListener('change', function () {
+				fetchTechmix();
+			});
 		}
 
 		fetchTechmix();

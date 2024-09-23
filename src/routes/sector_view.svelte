@@ -64,6 +64,7 @@
 					d.value = this.value;
 					d.dispatchEvent(new Event('change'));
 				});
+				fetchTechmix();
 			});
 			const scenario_source_selector = document.querySelector('#scenario_source_selector');
 			scenario_source_selector.addEventListener('change', function () {

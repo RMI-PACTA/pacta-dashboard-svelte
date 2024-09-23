@@ -84,12 +84,14 @@ export class techmix_sector {
             asset_class = document.querySelector("#asset_class_selector").value,
             scenario_source = document.querySelector("#scenario_source_selector").value,
             scenario = document.querySelector("#scenario_selector").value,
-            equity_market = document.querySelector("#equity_market_selector").value;
+            equity_market = document.querySelector("#equity_market_selector").value,
+            benchmark = document.querySelector("#benchmark_selector").value;
         let subdata = data.filter(d => d.asset_class == asset_class)
             .filter(d => d.ald_sector == sector)
             .filter(d => d.scenario_source == scenario_source)
             .filter(d => d.scenario == scenario)
-            .filter(d => d.equity_market == equity_market);
+            .filter(d => d.equity_market == equity_market)
+            .filter(d => (d.this_portfolio) | (d.portfolio_name == benchmark));
 
         if (subdata.length == 0) {
             container_div.querySelector("svg").innerHTML = "";

@@ -176,11 +176,11 @@ div.d3chart .axis {
 
 /* axis color */
 div.d3chart path.domain {
-	stroke: #C0C0C0;
+	stroke: #c0c0c0;
 }
 
 div.d3chart .tick line {
-	stroke: #C0C0C0;
+	stroke: #c0c0c0;
 }
 
 /* d3 data_table styling */

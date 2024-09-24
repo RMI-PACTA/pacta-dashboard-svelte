@@ -124,7 +124,10 @@ export class techmix_sector {
 			);
 		});
 		// TODO: make sure that this captures all possible technologies
-		let subgroups = d3.map(subdataTechPerYear[0].stackedData, (d) => d.key).keys();
+		let subgroups0 = new Set(d3.map(subdataTechPerYear[0].stackedData, (d) => d.key).keys());
+		let subgroups1 = new Set(d3.map(subdataTechPerYear[1].stackedData, (d) => d.key).keys()) 
+
+		let subgroups = Array.from(subgroups0.union(subgroups1));
 
 		// Declare the x scale
 		const x = d3

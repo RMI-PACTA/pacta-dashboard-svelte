@@ -5,7 +5,7 @@ import '../css/plot_styles.css';
 export class techmix_sector {
 	constructor(container, data) {
 		// Data needs to be ordered on year (increasing)
-		// Data needs to have two years in
+		// Data needs to contain two different years (current state and future)
 
 		function getTechnologyDataForStacking(data, uniqueValueTypes) {
 			var subdata_tech = [];

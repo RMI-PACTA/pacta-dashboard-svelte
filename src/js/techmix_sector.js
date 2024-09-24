@@ -123,7 +123,7 @@ export class techmix_sector {
 				item
 			);
 		});
-		// TODO: make sure that this captures all possible technologies
+		// subgroups contains all possible technologies for sector
 		let subgroups0 = new Set(d3.map(subdataTechPerYear[0].stackedData, (d) => d.key).keys());
 		let subgroups1 = new Set(d3.map(subdataTechPerYear[1].stackedData, (d) => d.key).keys()) 
 

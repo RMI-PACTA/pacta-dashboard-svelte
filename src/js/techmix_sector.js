@@ -166,7 +166,7 @@ export class techmix_sector {
 			.range(d3.schemeSpectral[subgroups.length])
 			.unknown('#ccc');
 
-		// Add rectangles for each stacked bar - TODO: rewrite into two
+		// Add rectangles for each stacked bar
 		svg
 			.append('g')
 			.attr('transform', function (d) {

@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import '../css/plot_styles.css';
 
 export class time_line {
-	constructor(container, data, labels) {
+	constructor(container, data) {
 		let container_div;
 		if (typeof container === 'string') {
 			container_div = document.querySelector(container);
@@ -42,12 +42,6 @@ export class time_line {
 		 sector = document.querySelector('#sector_selector').value,
 		 allocation_method = document.querySelector('#allocation_method_selector').value,
 		 equity_market = document.querySelector('#equity_market_selector').value;
-
-		//this.ttl_width = 750;
-		//this.ttl_height = 450;
-		//this.margin = { top: 70, right: 190, bottom: 70, left: 80 };
-		//this.width = this.ttl_width - this.margin.left - this.margin.right;
-		//this.height = this.ttl_height - this.margin.top - this.margin.bottom;
 
 		//filter data 
 		let subdata = data
@@ -188,6 +182,7 @@ export class time_line {
 			.style('font-size', '1.2em')
 			.text(footnote);
 
+		// Add legend
 		let legend_data = [port_label, subdata.map((d) => d.scenario)[0] + ' ' + scen_label];
 
 		let legend = svg

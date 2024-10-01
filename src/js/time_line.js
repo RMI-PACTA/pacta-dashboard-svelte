@@ -14,7 +14,7 @@ export class time_line {
 		d3.select(container_div).attr('chart_type', 'time_line');
 
 		container_div.innerHTML = '';
-	
+
 		container_div.classList.add('time_lineChart');
 		container_div.classList.add('d3chart');
 		container_div.classList.add('emissionstrajectory_chart');
@@ -39,11 +39,11 @@ export class time_line {
 			.attr('style', 'max-width: 100%; height: auto;');
 
 		let asset_class = document.querySelector('#asset_class_selector').value,
-		 sector = document.querySelector('#sector_selector').value,
-		 allocation_method = document.querySelector('#allocation_method_selector').value,
-		 equity_market = document.querySelector('#equity_market_selector').value;
+			sector = document.querySelector('#sector_selector').value,
+			allocation_method = document.querySelector('#allocation_method_selector').value,
+			equity_market = document.querySelector('#equity_market_selector').value;
 
-		//filter data 
+		//filter data
 		let subdata = data
 			.filter((d) => d.asset_class == asset_class)
 			.filter((d) => d.sector == sector)
@@ -64,25 +64,26 @@ export class time_line {
 
 		const y = d3
 			.scaleLinear()
-			.domain(d3.extent(subdata, (d) => d.value)).nice()
+			.domain(d3.extent(subdata, (d) => d.value))
+			.nice()
 			.range([marginTop, height - marginBottom]);
 
 		// Declare colours
 		let line_color = '#1b324f',
-		 scen_line_color = '#00c082';
+			scen_line_color = '#00c082';
 
 		// Declare text labels
 		let xtitle = '',
-		 scen_label = 'Scenario', 
-		 port_label = 'Portfolio', 
-		 hoverover_value = 'Value: ',
-		 footnote = '* start date of the analysis';
+			scen_label = 'Scenario',
+			port_label = 'Portfolio',
+			hoverover_value = 'Value: ',
+			footnote = '* start date of the analysis';
 
 		const line = d3
-		 	.line()
-		 	.x(d => x(parseYear(d.year)))
-		 	.y(d => y(d.value));
-		
+			.line()
+			.x((d) => x(parseYear(d.year)))
+			.y((d) => y(d.value));
+
 		let entries = d3.nest().key((d) => d.name);
 
 		let linedata = entries.entries(subdata);
@@ -126,12 +127,13 @@ export class time_line {
 			.style('display', 'none');
 
 		// Add x axis
-		const num_of_years = 1 + Math.abs(x.domain().reduce((a, b) => a.getFullYear() - b.getFullYear()));
+		const num_of_years =
+			1 + Math.abs(x.domain().reduce((a, b) => a.getFullYear() - b.getFullYear()));
 		let tick_labels = d3
-				.map(subdata, (d) => d.year)
-				.keys()
-				.slice(0, Math.min(num_of_years, 5) + 1);
-		tick_labels[0] = '31-Dec-' + tick_labels[0] + '*'; 
+			.map(subdata, (d) => d.year)
+			.keys()
+			.slice(0, Math.min(num_of_years, 5) + 1);
+		tick_labels[0] = '31-Dec-' + tick_labels[0] + '*';
 
 		svg
 			.append('g')
@@ -142,7 +144,7 @@ export class time_line {
 					.axisBottom(x)
 					.ticks(Math.min(num_of_years, 5))
 					.tickFormat((d, i) => tick_labels[i])
-			);	
+			);
 
 		// Add y axis
 		svg
@@ -150,12 +152,15 @@ export class time_line {
 			.attr('class', 'axis')
 			.attr('transform', 'translate(' + marginLeft + ',0)')
 			.call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('.3s')));
-		
+
 		// Add y axis title
 		svg
 			.append('text')
 			.attr('class', 'axis')
-			.attr('transform', `translate(${marginLeft /2},${(height - marginBottom)/2 + 15}) rotate(-90)`)
+			.attr(
+				'transform',
+				`translate(${marginLeft / 2},${(height - marginBottom) / 2 + 15}) rotate(-90)`
+			)
 			.attr('x', 0)
 			.attr('y', 0)
 			.attr('dy', '1em')
@@ -164,16 +169,16 @@ export class time_line {
 
 		// Add footnote
 		svg
-		 	.append('g')
-		 	.attr('class', 'footnote')
-		 	.attr(
-		 		'transform',
-		 		'translate(' +
-		 			(width - marginRight/2) +
-		 			',' +
-		 			(height - marginTop - 5 * marginBottom / 12) +
-		 			')'
-		 	)
+			.append('g')
+			.attr('class', 'footnote')
+			.attr(
+				'transform',
+				'translate(' +
+					(width - marginRight / 2) +
+					',' +
+					(height - marginTop - (5 * marginBottom) / 12) +
+					')'
+			)
 			.append('text')
 			.attr('x', 0)
 			.attr('y', 0)
@@ -190,10 +195,10 @@ export class time_line {
 			.attr('class', 'legend')
 			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginBottom / 3) + ')')
 			.selectAll('g')
-			.data(legend_data)
+			.data(legend_data);
 
 		legend
-		 	.enter()
+			.enter()
 			.append('line')
 			.attr('x1', (d) => (d == port_label ? 0 : 200))
 			.attr('x2', (d) => (d == port_label ? 60 : 260))
@@ -202,22 +207,22 @@ export class time_line {
 			.style('stroke-width', 2)
 			.style('stroke', (d) => (d == port_label ? line_color : scen_line_color));
 
-			legend
-				.enter()
-				.append('circle')
-				.attr('r', 5)
-				.attr('cx', (d) => (d == port_label ? 30 : 230))
-				.attr('cy', 0)
-				.style('stroke', '#fff')
-				.style('fill', (d) => (d == port_label ? line_color : scen_line_color));
+		legend
+			.enter()
+			.append('circle')
+			.attr('r', 5)
+			.attr('cx', (d) => (d == port_label ? 30 : 230))
+			.attr('cy', 0)
+			.style('stroke', '#fff')
+			.style('fill', (d) => (d == port_label ? line_color : scen_line_color));
 
-			legend
-				.enter()
-				.append('text')
-				.attr('x', (d) => (d == port_label ? 70 : 270))
-				.attr('y', 3)
-				.text((d) => d)
-				.attr('alignment-baseline', 'middle');
+		legend
+			.enter()
+			.append('text')
+			.attr('x', (d) => (d == port_label ? 70 : 270))
+			.attr('y', 3)
+			.text((d) => d)
+			.attr('alignment-baseline', 'middle');
 
 		function mouseover(d) {
 			tooltip
@@ -235,14 +240,11 @@ export class time_line {
 		}
 
 		function mousemove() {
-			tooltip
-				.style('left', d3.event.pageX + 10 + 'px')
-				.style('top', d3.event.pageY - 20 + 'px');
+			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
 		}
 
 		function mouseout() {
 			tooltip.style('display', 'none');
 		}
-
-		}
 	}
+}

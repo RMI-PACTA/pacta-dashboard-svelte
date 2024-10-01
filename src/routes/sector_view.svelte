@@ -237,8 +237,8 @@
 				<label class="label">
 					<span>Allocation method</span>
 					<select class="select variant-outline-surface" id="allocation_method_selector">
-						<option value="Portfolio weight">Portfolio weight</option>
-						<option value="Ownership weight">Ownership weight</option>
+						<option value="Portfolio Weight">Portfolio Weight</option>
+						<option value="Ownership Weight">Ownership Weight</option>
 					</select>
 				</label>
 				<label class="label">

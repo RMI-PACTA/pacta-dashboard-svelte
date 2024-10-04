@@ -21,7 +21,7 @@
 			});
 		}
 
-		function fetchEmissionsData() {
+		function fetchEmissionIntensityPlot() {
 			new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
 		}
 
@@ -36,6 +36,7 @@
 			const sector_selector = document.querySelector('#sector_selector');
 			sector_selector.addEventListener('change', function () {
 				fetchTechmix();
+				fetchEmissionIntensityPlot();
 			});
 
 			const asset_class_selector = document.querySelector('#asset_class_selector');
@@ -48,6 +49,7 @@
 					d.dispatchEvent(new Event('change'));
 				});
 				fetchTechmix();
+				fetchEmissionIntensityPlot();
 			});
 			const benchmark_selector = document.querySelector('#benchmark_selector');
 			benchmark_selector.addEventListener('change', function () {
@@ -79,12 +81,17 @@
 			const equity_market_selector = document.querySelector('#equity_market_selector');
 			equity_market_selector.addEventListener('change', function () {
 				fetchTechmix();
+				fetchEmissionIntensityPlot();
+			});
+			const allocation_method_selector = document.querySelector('#allocation_method_selector');
+			allocation_method_selector.addEventListener('change', function () {
+				fetchEmissionIntensityPlot();
 			});
 		}
 
 		fetchTechmix();
 		fetchTrajectoryAlignmentData();
-		fetchEmissionsData();
+		fetchEmissionIntensityPlot();
 		addEventListeners();
 	});
 </script>

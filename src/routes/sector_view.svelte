@@ -16,11 +16,8 @@
 		}
 
 		function fetchTrajectoryAlignmentData() {
-			new trajectory_alignment(document.querySelector('#trajectory-plot1'), traj_data, undefined, {
+			new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data, undefined, {
 				default_tech: 'Coal Power'
-			});
-			new trajectory_alignment(document.querySelector('#trajectory-plot2'), traj_data, undefined, {
-				default_tech: 'Gas Power'
 			});
 		}
 
@@ -182,14 +179,7 @@
 							sanctus est Lorem ipsum dolor sit amet.
 						</p>
 					</div>
-					<div class="trajectory-plots-box grid sm:grid-cols-6 bg-teal-300">
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot1"></div>
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot2"></div>
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot3"></div>
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot4"></div>
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot5"></div>
-						<div class="trajectory-plot sm:col-span-3 bg-teal-300" id="trajectory-plot6"></div>
-					</div>
+					<div class="trajectory-plot" id="trajectory-plot"></div>
 				</div>
 				<div class="other-sector-plots-box grid sm:grid-cols-6 p-4 bg-purple-300">
 					<div class="techmix-plot-box sm:col-span-3 bg-teal-300">

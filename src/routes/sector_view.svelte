@@ -15,10 +15,8 @@
 			new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
 		}
 
-		function fetchTrajectoryAlignmentData() {
-			new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data, undefined, {
-				default_tech: 'Coal Power'
-			});
+		function fetchTrajectoryAlignment() {
+			new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
 		}
 
 		function fetchEmissionIntensityPlot() {
@@ -35,62 +33,46 @@
 
 			const sector_selector = document.querySelector('#sector_selector');
 			sector_selector.addEventListener('change', function () {
+				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
 			const asset_class_selector = document.querySelector('#asset_class_selector');
 			asset_class_selector.addEventListener('change', function () {
-				const selects = document.querySelectorAll(
-					'.time_line_class_selector, .trajectory_class_selector'
-				);
-				selects.forEach((d) => {
-					d.value = this.value;
-					d.dispatchEvent(new Event('change'));
-				});
+				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 			const benchmark_selector = document.querySelector('#benchmark_selector');
 			benchmark_selector.addEventListener('change', function () {
-				const selects = document.querySelectorAll('.trajectory_alignment_benchmark_selector');
-				selects.forEach((d) => {
-					d.value = this.value;
-					d.dispatchEvent(new Event('change'));
-				});
+				fetchTrajectoryAlignment();
 				fetchTechmix();
 			});
 			const scenario_source_selector = document.querySelector('#scenario_source_selector');
 			scenario_source_selector.addEventListener('change', function () {
-				const selects = document.querySelectorAll('.trajectory_alignment_source_selector');
-				selects.forEach((d) => {
-					d.value = this.value;
-					d.dispatchEvent(new Event('change'));
-				});
+				fetchTrajectoryAlignment();
 				fetchTechmix();
 			});
 			const scenario_selector = document.querySelector('#scenario_selector');
 			scenario_selector.addEventListener('change', function () {
-				const selects = document.querySelectorAll('.techexposure_scenario_selector');
-				selects.forEach((d) => {
-					d.value = this.value;
-					d.dispatchEvent(new Event('change'));
-				});
 				fetchTechmix();
 			});
 			const equity_market_selector = document.querySelector('#equity_market_selector');
 			equity_market_selector.addEventListener('change', function () {
+				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 			const allocation_method_selector = document.querySelector('#allocation_method_selector');
 			allocation_method_selector.addEventListener('change', function () {
+				fetchTrajectoryAlignment();
 				fetchEmissionIntensityPlot();
 			});
 		}
 
 		fetchTechmix();
-		fetchTrajectoryAlignmentData();
+		fetchTrajectoryAlignment();
 		fetchEmissionIntensityPlot();
 		addEventListeners();
 	});
@@ -120,7 +102,7 @@
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
 			<option value="Power">Power</option>
 			<option value="Automotive">Automotive</option>
-			<option value="Oil&gas">Oil & gas</option>
+			<option value="Oil&Gas">Oil & gas</option>
 			<option value="Coal">Coal</option>
 			<option value="Steel">Steel</option>
 			<option value="Cement">Cement</option>
@@ -139,7 +121,7 @@
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
 			<option value="Power">Power</option>
 			<option value="Automotive">Automotive</option>
-			<option value="Oil&gas">Oil & gas</option>
+			<option value="Oil&Gas">Oil & gas</option>
 			<option value="Coal">Coal</option>
 			<option value="Steel">Steel</option>
 			<option value="Cement">Cement</option>

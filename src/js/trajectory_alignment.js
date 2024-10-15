@@ -69,10 +69,10 @@ export class trajectory_alignment {
  		data.forEach((d) => (d.date = d3.timeParse('%Y')(d.year)));
 	
 		// filter data
-		let selected_class = 'Listed Equity', // document.querySelector('#asset_class_selector').value,
+		let selected_class = document.querySelector('#asset_class_selector').value,
 			selected_sector = document.querySelector('#sector_selector').value,
 			selected_source = document.querySelector('#scenario_source_selector').value,
-			selected_benchmark = 'iShares Core S&P 500 ETF',// document.querySelector('#benchmark_selector').value,
+			selected_benchmark = document.querySelector('#benchmark_selector').value,
 			selected_allocation = document.querySelector('#allocation_method_selector').value,
  			selected_market = document.querySelector('#equity_market_selector').value;
 

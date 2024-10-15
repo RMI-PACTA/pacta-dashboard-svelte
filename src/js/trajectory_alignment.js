@@ -25,12 +25,39 @@ export class trajectory_alignment {
 
 		this.container = d3.select(container_div);
 
+		// filter data before declaring the chart so that you know how high it should be
+		let selected_class = document.querySelector('#asset_class_selector').value,
+			selected_sector = document.querySelector('#sector_selector').value,
+			selected_source = document.querySelector('#scenario_source_selector').value,
+			selected_benchmark = document.querySelector('#benchmark_selector').value,
+			selected_allocation = document.querySelector('#allocation_method_selector').value,
+ 			selected_market = document.querySelector('#equity_market_selector').value;
+
+ 		let subdata = data
+		.filter((d) => d.asset_class == selected_class)
+		.filter((d) => d.ald_sector == selected_sector)
+		.filter((d) => d.scenario_source == selected_source)
+		.filter((d) => !d.benchmark | (d.portfolio_name == selected_benchmark))
+		.filter((d) => d.allocation_translation == selected_allocation)
+		.filter((d) => d.equity_market_translation == selected_market)
+
+		let technologies = d3.map(subdata, d => d.technology).keys();
+
 		// Declare the chart dimensions and margins.
 		const width = 1000;
-		const height = 550;
+		let height, paddingBetweenPlotsVertical, nrRowsMiniPlots;
+		if (technologies.length > 3 & technologies.length <= 6) {
+			height = 550;
+			paddingBetweenPlotsVertical = 60;
+		} else if (technologies.length > 0 & technologies.length <= 3) {
+			height = 350;
+			paddingBetweenPlotsVertical = 0;
+		} else {
+			console.log('Too many or too few technologies to create a plot. Please check your data. Maximum number of technologies we support currently is 6.')
+		}
 		const marginTop = 50;
-		const marginRight = 150;
 		const marginBottom = 50;
+		const marginRight = 150;
 		const marginLeft = 50;
 
 		// Create the svg container
@@ -41,6 +68,25 @@ export class trajectory_alignment {
 			.attr('viewBox', [0, 0, width, height])
 			.attr('preserveAspectRatio', 'xMinYMin meet')
 			.attr('style', 'max-width: 100%; height: auto;');
+
+		// parse year to date
+		data.forEach((d) => (d.date = d3.timeParse('%Y')(d.year)));
+
+		let end_year = d3.max(
+			d3
+				.map(
+					subdata.filter((d) => d.scenario == 'production'),
+					(d) => d.year
+				)
+			.keys()
+		); // set the end_year to last year of production data
+
+		subdata = subdata.filter((d) => d.year <= end_year);
+
+ 		if (subdata.length == 0) {
+			container_div.querySelector('svg').innerHTML = '';
+			return;
+ 		}
 
  		const scenarios_to_include = [
 						'STEPS',
@@ -65,41 +111,6 @@ export class trajectory_alignment {
  			footnote = '* start date of the analysis',
  			hoverover_value_label = '(Planned) yearly production: ';
 
- 		// parse year to date
- 		data.forEach((d) => (d.date = d3.timeParse('%Y')(d.year)));
-	
-		// filter data
-		let selected_class = document.querySelector('#asset_class_selector').value,
-			selected_sector = document.querySelector('#sector_selector').value,
-			selected_source = document.querySelector('#scenario_source_selector').value,
-			selected_benchmark = document.querySelector('#benchmark_selector').value,
-			selected_allocation = document.querySelector('#allocation_method_selector').value,
- 			selected_market = document.querySelector('#equity_market_selector').value;
-
- 		let subdata = data
-		.filter((d) => d.asset_class == selected_class)
-		.filter((d) => d.ald_sector == selected_sector)
-		.filter((d) => d.scenario_source == selected_source)
-		.filter((d) => !d.benchmark | (d.portfolio_name == selected_benchmark))
-		.filter((d) => d.allocation_translation == selected_allocation)
-		.filter((d) => d.equity_market_translation == selected_market)
-
-		let end_year = d3.max(
-			d3
-				.map(
-					subdata.filter((d) => d.scenario == 'production'),
-					(d) => d.year
-				)
-			.keys()
-		); // set the end_year to last year of production data
-
-		subdata = subdata.filter((d) => d.year <= end_year);
-
- 		if (subdata.length == 0) {
-			container_div.querySelector('svg').innerHTML = '';
-			return;
- 		}
-
 		const tooltip = d3
 			.select(container_div)
 			.append('div')
@@ -112,9 +123,8 @@ export class trajectory_alignment {
 		// Miniature plot dimensions
 		let nrMiniPlotsInRow = 3;
 		let paddingBetweenPlotsHorizontal = 60,
-		paddingBetweenPlotsVertical = 60,
 		miniPlotWidth = (width - marginLeft - marginRight - (nrMiniPlotsInRow - 1) * paddingBetweenPlotsHorizontal) / nrMiniPlotsInRow,
-		miniPlotHeight = (height - marginTop - marginBottom - paddingBetweenPlotsVertical) / 2;
+		miniPlotHeight = 195;
 
 		// Declare the x scale
 		const x = d3
@@ -131,7 +141,6 @@ export class trajectory_alignment {
 		const num_of_years =
 			1 + Math.abs(x.domain().reduce((a, b) => a.getFullYear() - b.getFullYear()));
 
-		let technologies = d3.map(subdata, d => d.technology).keys();
 		let subdataTech, i, group, production_data, benchmark_data, areadata, sumstat, descending, benchmark_extent;
 		let scale_factor, production_extent, areadata_extent, area, area_paths_grp, area_paths, production_line_grp;
 		let production_line, dots_production, benchmark_line_grp, dots_benchmark, unit, tick_labels;

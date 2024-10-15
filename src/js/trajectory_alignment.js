@@ -26,11 +26,11 @@ export class trajectory_alignment {
 		this.container = d3.select(container_div);
 
 		// Declare the chart dimensions and margins.
-		const width = 928;
-		const height = 650;
+		const width = 1000;
+		const height = 550;
 		const marginTop = 50;
-		const marginRight = 50;
-		const marginBottom = 200;
+		const marginRight = 150;
+		const marginBottom = 50;
 		const marginLeft = 50;
 
 		// Create the svg container
@@ -110,10 +110,11 @@ export class trajectory_alignment {
 		let color = getColourScale(selected_source);
 
 		// Miniature plot dimensions
-		let nrMiniPlots = 3;
-		let paddingBetweenPlots = 50,
-		miniPlotWidth = (width - marginLeft - marginRight - (nrMiniPlots - 1) * paddingBetweenPlots) / nrMiniPlots,
-		miniPlotHeight = (height - marginTop - marginBottom - paddingBetweenPlots) / 2;
+		let nrMiniPlotsInRow = 3;
+		let paddingBetweenPlotsHorizontal = 60,
+		paddingBetweenPlotsVertical = 60,
+		miniPlotWidth = (width - marginLeft - marginRight - (nrMiniPlotsInRow - 1) * paddingBetweenPlotsHorizontal) / nrMiniPlotsInRow,
+		miniPlotHeight = (height - marginTop - marginBottom - paddingBetweenPlotsVertical) / 2;
 
 		// Declare the x scale
 		const x = d3
@@ -127,89 +128,93 @@ export class trajectory_alignment {
 		.range([miniPlotHeight, 0])
 		.clamp(true);
 
-		let technology = 'NuclearCap';
-		let subdataTech = subdata.filter(d => d.technology == technology);
+		const num_of_years =
+			1 + Math.abs(x.domain().reduce((a, b) => a.getFullYear() - b.getFullYear()));
 
-		let i = 0;
-		const group = svg
+		let technologies = d3.map(subdata, d => d.technology).keys();
+		let subdataTech, i, group, production_data, benchmark_data, areadata, sumstat, descending, benchmark_extent;
+		let scale_factor, production_extent, areadata_extent, area, area_paths_grp, area_paths, production_line_grp;
+		let production_line, dots_production, benchmark_line_grp, dots_benchmark, unit, tick_labels;
+
+		technologies.forEach( (item, index) => {
+			subdataTech = subdata.filter(d => d.technology == item);
+
+			group = svg
 			.append('g')
-			.attr('transform', `translate(${(i % 3) * miniPlotWidth + paddingBetweenPlots * Math.max(0, ((i % 3) - 1)) + marginLeft},${Math.floor(i / 3) * miniPlotHeight + paddingBetweenPlots * Math.max(0, (Math.floor(i / 3)) - 1) + marginTop})`);
+			.attr('transform', `translate(${(index % 3) * miniPlotWidth + paddingBetweenPlotsHorizontal * (index % 3) + marginLeft},${Math.floor(index / 3) * miniPlotHeight + paddingBetweenPlotsVertical * (Math.floor(index / 3)) + marginTop})`);
 
-		let production_data = subdataTech.filter((d) => !d.benchmark && d.scenario == 'production');
+			production_data = subdataTech.filter((d) => !d.benchmark && d.scenario == 'production');
 			if (production_data.length == 0) {
 				return;
 			}
 
-		let benchmark_data = subdataTech.filter(d => d.portfolio_name_translation == selected_benchmark);
-		if (benchmark_data.length == 0) {
-			console.log(
-				'No benchmark data available for selected combination of benchmark, allocation method, equity market and scenario source. Try changing the selection.'
+			benchmark_data = subdataTech.filter(d => d.portfolio_name_translation == selected_benchmark);
+			if (benchmark_data.length == 0) {
+				console.log(
+					'No benchmark data available for selected combination of benchmark, allocation method, equity market and scenario source. Try changing the selection.'
+				);
+			}
+
+			areadata = subdataTech.filter((d) => !d.benchmark);
+			subdataTech = subdataTech.filter(
+				(d) => !d.benchmark || d.portfolio_name_translation == selected_benchmark
 			);
-		}
+			if (subdataTech.length == 0) {
+				return;
+			}
 
-		let areadata = subdataTech.filter((d) => !d.benchmark);
-		subdataTech = subdataTech.filter(
-			(d) => !d.benchmark || d.portfolio_name_translation == selected_benchmark
-		);
-		if (subdataTech.length == 0) {
-			return;
-		}
+			sumstat = d3
+			.nest()
+			.key((d) => d.scenario)
+			.entries(areadata)
+			.sort((d) => d.key == 'production');
 
-		let sumstat = d3
-		.nest()
-		.key((d) => d.scenario)
-		.entries(areadata)
-		.sort((d) => d.key == 'production');
+			descending = direction(item);
 
-		let descending = direction(technology);
+			if (benchmark_data.length > 0) {
+				scale_factor = production_data[0].value / benchmark_data[0].value;
+				benchmark_extent = d3.extent(benchmark_data, (d) => d.value * scale_factor);
+			} else {
+				benchmark_extent = null;
+			}
 
-		let benchmark_extent;
-		let scale_factor;
-		if (benchmark_data.length > 0) {
-			scale_factor = production_data[0].value / benchmark_data[0].value;
-			benchmark_extent = d3.extent(benchmark_data, (d) => d.value * scale_factor);
-		} else {
-			benchmark_extent = null;
-		}
-		let production_extent = d3.extent(production_data, (d) => d.value);
-		let areadata_extent = d3.extent(areadata, (d) => d.value);
-		y.domain(d3.extent([benchmark_extent, production_extent, areadata_extent].flat())).nice();
+			production_extent = d3.extent(production_data, (d) => d.value);
+			areadata_extent = d3.extent(areadata, (d) => d.value);
 
-		const num_of_years =
-			1 + Math.abs(x.domain().reduce((a, b) => a.getFullYear() - b.getFullYear()));
+			y.domain(d3.extent([benchmark_extent, production_extent, areadata_extent].flat())).nice();
 
-		if (descending) {
-			sumstat.sort((a, b) =>
-				b.values.filter((d) => d.year == end_year)[0].value >
-				a.values.filter((d) => d.year == end_year)[0].value
-					? 1
-					: -1
-			);
-		} else {
-			sumstat.sort((a, b) =>
-				b.values.filter((d) => d.year == end_year)[0].value >
-				a.values.filter((d) => d.year == end_year)[0].value
-					? -1
-					: 1
-			);
-		}	
+			if (descending) {
+				sumstat.sort((a, b) =>
+					b.values.filter((d) => d.year == end_year)[0].value >
+					a.values.filter((d) => d.year == end_year)[0].value
+						? 1
+						: -1
+				);
+			} else {
+				sumstat.sort((a, b) =>
+					b.values.filter((d) => d.year == end_year)[0].value >
+					a.values.filter((d) => d.year == end_year)[0].value
+						? -1
+						: 1
+				);
+			}	
 
-		// Plot areas
-		var area = d3
+			// Plot areas
+			area = d3
 			.area()
 			.x((d) => x(d.date))
 			.y0(descending ? miniPlotHeight : 0)
 			.y1((d) => y(d.value));
 
-		let area_paths_grp = group
+			area_paths_grp = group
 			.append('g')
 			.attr('class', 'area_paths');
 
-		let area_paths = group
+			area_paths = group
 			.select('g.area_paths');
-		area_paths.selectAll('*').remove();	
+			area_paths.selectAll('*').remove();	
 
-		area_paths_grp
+			area_paths_grp
 			.append('rect')
 			.attr('class', 'worse')
 			.attr('x', 0)
@@ -218,23 +223,62 @@ export class trajectory_alignment {
 			.attr('height', miniPlotHeight)
 			.style('fill', color('worse'));
 
-		area_paths = area_paths_grp
-			.selectAll('.area')
-			.data(sumstat.filter((d) => d.key != 'production'));
+			area_paths = area_paths_grp
+				.selectAll('.area')
+				.data(sumstat.filter((d) => d.key != 'production'));
 
-		area_paths
-			.enter()
-			.append('path')
-			.attr('class', (d) => 'area ' + d.key)
-			.attr('d', (d) => area(d.values))
-			.style('fill', (d) => color(d.key));
+			area_paths
+				.enter()
+				.append('path')
+				.attr('class', (d) => 'area ' + d.key)
+				.attr('d', (d) => area(d.values))
+				.style('fill', (d) => color(d.key));
 
-		// Plot production
-		let production_line_grp = group
-		.append('g')
-		.attr('class', 'production_line_grp');
+				unit = d3.map(production_data, (d) => d.unit_translation).keys()[0];
 
-		let production_line = d3
+				// x axis
+				tick_labels = d3
+					.map(subdataTech, (d) => d.year)
+					.keys()
+					.slice(0, Math.min(num_of_years, 5) + 1);
+				tick_labels[0] = '31-Dec-' + tick_labels[0] + '*';
+			
+				group
+					.append('g')
+					.attr('class', 'xaxis')
+					.attr('transform', 'translate(0,' + miniPlotHeight + ')')
+					.call(
+						d3
+							.axisBottom(x)
+							.ticks(Math.min(num_of_years, 5))
+							.tickFormat((d, i) => tick_labels[i])
+					);
+	
+				// y-axis
+				group.append('g')
+				.attr('class', 'yaxis')
+				.call(d3.axisLeft(y).ticks(8).tickFormat(d3.format('.2s')));
+	
+				//	y-axis label
+				group
+				.append('g')
+				.attr('class', 'yaxislabel')	
+						.append('text')
+						.attr('class', 'yaxislabel')
+						.attr('transform', 'rotate(-90)')
+						.attr('y', 0 - marginLeft)
+						.attr('x', 0 - miniPlotHeight / 2)
+						.attr('dy', '1em')
+						.style('text-anchor', 'middle')
+						.style('alignment-baseline', 'bottom')
+						.text(ytitle + unit);
+
+			// Plot production
+			production_line_grp = group
+			.append('g')
+			.attr('class', 'production_line_grp');
+
+			production_line = d3
 			.line()
 				.x((d) => x(d.date))
 				.y((d) => y(+d.value));
@@ -249,7 +293,7 @@ export class trajectory_alignment {
 				.attr('stroke', 'black')
 				.attr('d', (d) => production_line(production_data));
 
-			let dots_production = production_line_grp
+			dots_production = production_line_grp
 				.selectAll('.dot')
 				.data(production_data)
 				.enter()
@@ -263,10 +307,10 @@ export class trajectory_alignment {
 				.on('mouseover', mouseover)
 				.on('mousemove', mousemove)
 				.on('mouseout', mouseout);
+			
+			benchmark_line_grp = group.append('g').attr('class', 'benchmark_line_grp');
 
-			let benchmark_line_grp = group.append('g').attr('class', 'benchmark_line_grp');
-
-		// 			benchmark line
+			// benchmark line
 			benchmark_line_grp.selectAll('path').remove();
 			benchmark_line_grp.selectAll('.dot').remove();
 
@@ -284,7 +328,7 @@ export class trajectory_alignment {
 					.style('stroke-dasharray', '2,2')
 					.attr('d', (d) => benchmark_line(benchmark_data));
 
-				let dots_benchmark = benchmark_line_grp
+				dots_benchmark = benchmark_line_grp
 					.selectAll('.dot')
 					.data(benchmark_data)
 					.enter()
@@ -297,82 +341,149 @@ export class trajectory_alignment {
 					.attr('cy', (d) => y(+d.value * scale_factor));
 			}
 
-		let unit = d3.map(production_data, (d) => d.unit_translation).keys()[0];
-
-		// x axis
-		let tick_labels = d3
-				.map(subdataTech, (d) => d.year)
-				.keys()
-				.slice(0, Math.min(num_of_years, 5) + 1);
-			tick_labels[0] = '31-Dec-' + tick_labels[0] + '*';
-			
-		group
+			// Title
+			group
 			.append('g')
-			.attr('class', 'xaxis')
-			.attr('transform', 'translate(0,' + miniPlotHeight + ')')
-			.call(
-				d3
-					.axisBottom(x)
-					.ticks(Math.min(num_of_years, 5))
-					.tickFormat((d, i) => tick_labels[i])
-			);
-		
-		// y-axis
-		group.append('g')
-		.attr('class', 'yaxis')
-		.call(d3.axisLeft(y).ticks(8).tickFormat(d3.format('.2s')));
+			.attr('class', 'mini-plot-title')	
+			.append('text')
+			.attr('y', - marginTop / 2 )
+			.attr('x', miniPlotWidth / 2)
+			.attr('dy', '1em')
+			.style('text-anchor', 'middle')
+			.style('alignment-baseline', 'bottom')
+			.text(item);
+		});
 
-		//	y-axis label
-		group
-		.append('g')
-		.attr('class', 'yaxislabel')	
+		let legend_grp = svg
+			.append('g')
+			.attr('transform', 'translate(' + (miniPlotWidth * nrMiniPlotsInRow + paddingBetweenPlotsHorizontal * (nrMiniPlotsInRow - 1) + marginLeft + 27) + ', ' + marginTop + ')')
+			.attr('class', 'legend_grp');
+
+		// legend
+		let box_height = 25;
+		let box_width = 50;
+
+		let legend_data = sumstat.filter((d) => d.key != 'production');
+		legend_data = [{ key: 'worse' }].concat(legend_data);
+
+		legend_data.sort((a, b) => legend_order.indexOf(a.key) - legend_order.indexOf(b.key));
+
+		legend_grp.selectAll('*').remove();
+
+		let legend_box = legend_grp.selectAll(null).data(legend_data);
+		legend_box
+			.enter()
+			.append('rect')
+			.attr('x', 0)
+			.attr('y', (d, i) => i * box_height)
+			.attr('width', box_width)
+			.attr('height', box_height)
+			.style('fill', (d) => color(d.key));
+
+		legend_box
+			.enter()
+			.append('text')
+			.attr('x', box_width + 8)
+			.attr('y', (d, i) => i * box_height)
+			.style('display', (d, i) => (i == 0 ? 'none' : 'inline'))
+			.style('text-anchor', 'start')
+			.style('alignment-baseline', 'central')				
+			.style('font-size', '0.8em')
+			.text((d) => d.key);
+
+		legend_box
+			.enter()
+			.append('line')
+			.attr('x1', 0)
+			.attr('y1', (d, i) => i * box_height)
+			.attr('x2', box_width + 3)
+			.attr('y2', (d, i) => i * box_height)
+			.attr('marker-end', 'url(#arrow)')
+			.style('stroke', 'black')
+			.style('stroke-width', 1)
+			.style('display', (d, i) => (i == 0 ? 'none' : 'inline'));
+
+		legend_box
+				.data([portfolio_label, benchmark_label])
+				.enter()
 				.append('text')
-				.attr('class', 'yaxislabel')
-				.attr('transform', 'rotate(-90)')
-				.attr('y', 0 - marginLeft)
-				.attr('x', 0 - miniPlotHeight / 2)
-				.attr('dy', '1em')
-				.style('text-anchor', 'middle')
-				.style('alignment-baseline', 'bottom')
-				.text(ytitle + unit);
+				.attr('transform', 'translate(0,' + legend_data.length * box_height + ')')
+				.attr('x', 31)
+				.attr('y', (d, i) => i * box_height + box_height / 2)
+				.style('text-anchor', 'start')
+				.style('alignment-baseline', 'central')
+				.style('font-size', '0.8em')
+				.text((d) => d);
 
-		// Title
-		group
-		.append('g')
-		.attr('class', 'mini-plot-title')	
-		.append('text')
-		.attr('y', - marginTop / 2 )
-		.attr('x', miniPlotWidth / 2)
-		.attr('dy', '1em')
-		.style('text-anchor', 'middle')
-		.style('alignment-baseline', 'bottom')
-		.text(technology);
+		legend_box
+				.data([portfolio_label, benchmark_label])
+				.enter()
+				.append('line')
+				.attr('transform', 'translate(0,' + legend_data.length * box_height + ')')
+				.attr('x1', 0)
+				.attr('y1', (d, i) => i * box_height + box_height / 2)
+				.attr('x2', 26)
+				.attr('y2', (d, i) => i * box_height + box_height / 2)
+				.style('stroke', 'black')
+				.style('stroke-width', 1.5)
+				.style('stroke-dasharray', (d, i) => (i == 0 ? 'none' : '2,2'));
 
-// 		let legend_grp = chart_group
-// 			.append('g')
-// 			.attr('transform', 'translate(' + (width + 10) + ',0)')
-// 			.attr('class', 'legend_grp');
+		legend_box
+				.data([portfolio_label, benchmark_label])
+				.enter()
+				.append('circle')
+				.attr('transform', 'translate(0,' + legend_data.length * box_height + ')')
+				.attr('r', 2.5)
+				.style('stroke', '#000')
+				.style('fill', '#000')
+				.attr('cx', 13)
+				.attr('cy', (d, i) => i * box_height + box_height / 2);
 
-// 		let footnote_group = chart_group
-// 			.append('g')
-// 			.attr('class', 'footnote')
-// 			.attr(
-// 				'transform',
-// 				'translate(' + (width + margin.left) + ',' + (height + margin.bottom / 2) + ')'
-// 			);
+			legend_box
+				.data([1])
+				.enter()
+				.append('circle')
+				.attr('transform', 'translate(0,' + (legend_data.length + 1) * box_height + ')')
+				.attr('r', 2.5)
+				.style('stroke', '#000')
+				.style('fill', '#000')
+				.attr('cx', 13)
+				.attr('cy', box_height + box_height / 2);
 
-// 		function filter_data_class_tech(data) {
-// 			let selected_class = class_selector.value;
-// 			let selected_tech = tech_selector.value;
+			let label_dots_legend_data = [label_dots_legend.top, label_dots_legend.bottom];
 
-// 			let subdata = data.filter((d) => d.asset_class_translation == selected_class);
-// 			subdata = subdata.filter(
-// 				(d) => scenarios_to_include.concat('production').indexOf(d.scenario) >= 0
-// 			);
-// 			subdata = subdata.filter((d) => d.technology_translation == selected_tech);
+			legend_box
+				.data(label_dots_legend_data)
+				.enter()
+				.append('text')
+				.attr('transform', 'translate(0,' + (legend_data.length + 1) * box_height + ')')
+				.attr('x', 31)
+				.attr('y', (d, i) => box_height + box_height / 2 + i * (box_height / 2))
+				.style('text-anchor', 'start')
+				.style('alignment-baseline', 'central')
+				.style('font-size', '0.8em')
+				.text((d) => d);
 
-// 			return subdata;
-// 		}
+		// Footnote
+		let footnote_group = svg
+			.append('g')
+			.attr('class', 'footnote')
+			.attr(
+				'transform',
+				'translate(' + (width - marginRight) + ',' + (height - marginBottom/3) + ')'
+			);
+
+		footnote_group
+				.selectAll(null)
+				.data([footnote])
+				.enter()
+				.append('text')
+				.attr('x', 0)
+				.attr('y', 0)
+				.style('text-anchor', 'end')
+				.style('alignment-baseline', 'central')
+				.style('font-size', '0.7em')
+				.text((d) => d);
 
 		function mouseover(d) {
 			tooltip
@@ -396,126 +507,6 @@ export class trajectory_alignment {
 		function mouseout() {
 			tooltip.style('display', 'none');
 		}
-
-// 		function update() {
-
-// 			legend
-// 			let box_height = 30;
-// 			let box_width = 75;
-
-// 			let legend_data = sumstat.filter((d) => d.key != 'production');
-// 			legend_data = [{ key: 'worse' }].concat(legend_data);
-
-// 			legend_data.sort((a, b) => legend_order.indexOf(a.key) - legend_order.indexOf(b.key));
-
-// 			legend_grp.selectAll('*').remove();
-
-// 			let legend_box = legend_grp.selectAll(null).data(legend_data);
-// 			legend_box
-// 				.enter()
-// 				.append('rect')
-// 				.attr('x', 0)
-// 				.attr('y', (d, i) => i * box_height)
-// 				.attr('width', box_width)
-// 				.attr('height', box_height)
-// 				.style('fill', (d) => color(d.key));
-
-// 			legend_box
-// 				.enter()
-// 				.append('text')
-// 				.attr('x', box_width + 8)
-// 				.attr('y', (d, i) => i * box_height)
-// 				.style('display', (d, i) => (i == 0 ? 'none' : 'inline'))
-// 				.style('text-anchor', 'start')
-// 				.style('alignment-baseline', 'central')
-// 				.style('font-size', '0.8em')
-// 				.text((d) => d.key);
-
-// 			legend_box
-// 				.enter()
-// 				.append('line')
-// 				.attr('x1', 0)
-// 				.attr('y1', (d, i) => i * box_height)
-// 				.attr('x2', box_width + 3)
-// 				.attr('y2', (d, i) => i * box_height)
-// 				.attr('marker-end', 'url(#arrow)')
-// 				.style('stroke', 'black')
-// 				.style('stroke-width', 1)
-// 				.style('display', (d, i) => (i == 0 ? 'none' : 'inline'));
-
-// 			legend_box
-// 				.data([portfolio_label, benchmark_label])
-// 				.enter()
-// 				.append('text')
-// 				.attr('transform', 'translate(0,' + legend_data.length * box_height + ')')
-// 				.attr('x', 31)
-// 				.attr('y', (d, i) => i * box_height + box_height / 2)
-// 				.style('text-anchor', 'start')
-// 				.style('alignment-baseline', 'central')
-// 				.style('font-size', '0.8em')
-// 				.text((d) => d);
-
-// 			legend_box
-// 				.data([portfolio_label, benchmark_label])
-// 				.enter()
-// 				.append('line')
-// 				.attr('transform', 'translate(0,' + legend_data.length * box_height + ')')
-// 				.attr('x1', 0)
-// 				.attr('y1', (d, i) => i * box_height + box_height / 2)
-// 				.attr('x2', 26)
-// 				.attr('y2', (d, i) => i * box_height + box_height / 2)
-// 				.style('stroke', 'black')
-// 				.style('stroke-width', 1.5)
-// 				.style('stroke-dasharray', (d, i) => (i == 0 ? 'none' : '2,2'));
-
-// 			legend_box
-// 				.data([portfolio_label, benchmark_label])
-// 				.enter()
-// 				.append('circle')
-// 				.attr('transform', 'translate(0,' + legend_data.length * box_height + ')')
-// 				.attr('r', 2.5)
-// 				.style('stroke', '#000')
-// 				.style('fill', '#000')
-// 				.attr('cx', 13)
-// 				.attr('cy', (d, i) => i * box_height + box_height / 2);
-
-// 			legend_box
-// 				.data([1])
-// 				.enter()
-// 				.append('circle')
-// 				.attr('transform', 'translate(0,' + (legend_data.length + 1) * box_height + ')')
-// 				.attr('r', 2.5)
-// 				.style('stroke', '#000')
-// 				.style('fill', '#000')
-// 				.attr('cx', 13)
-// 				.attr('cy', box_height + box_height / 2);
-
-// 			let label_dots_legend_data = [label_dots_legend.top, label_dots_legend.bottom];
-
-// 			legend_box
-// 				.data(label_dots_legend_data)
-// 				.enter()
-// 				.append('text')
-// 				.attr('transform', 'translate(0,' + (legend_data.length + 1) * box_height + ')')
-// 				.attr('x', 31)
-// 				.attr('y', (d, i) => box_height + box_height / 2 + i * (box_height / 2))
-// 				.style('text-anchor', 'start')
-// 				.style('alignment-baseline', 'central')
-// 				.style('font-size', '0.8em')
-// 				.text((d) => d);
-
-// 			footnote_group
-// 				.selectAll(null)
-// 				.data([footnote])
-// 				.enter()
-// 				.append('text')
-// 				.attr('x', 0)
-// 				.attr('y', 0)
-// 				.style('text-anchor', 'end')
-// 				.style('alignment-baseline', 'central')
-// 				.style('font-size', '0.7em')
-// 				.text((d) => d);
-//		}
 
 	function getColourScale(scenario_source) {
 		switch(scenario_source) {

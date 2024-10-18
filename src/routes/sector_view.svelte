@@ -220,7 +220,8 @@
 					</select>
 				</label>
 				<label class="label">
-					<span>Scenario</span>
+					<span id="scenario-label">Scenario &#9432</span>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">Applies to the technology mix plot.</div>
 					<select class="select variant-outline-surface" id="scenario_selector">
 						<option value="Not_selected">Please select</option>
 					</select>
@@ -260,32 +261,11 @@
 </div>
 
 <style>
-	.container {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr 1fr 1fr;
-		grid-auto-flow: row;
-		gap: 0.5rem;
-		grid-template-areas:
-			'selectors tech_mix tech_mix emission_intensity emission_intensity'
-			'selectors tech_mix tech_mix emission_intensity emission_intensity'
-			'selectors volume_trajectory volume_trajectory volume_trajectory volume_trajectory'
-			'selectors volume_trajectory volume_trajectory volume_trajectory volume_trajectory';
+	.hide {
+	display: none;
 	}
 
-	.selectors {
-		grid-area: selectors;
-	}
-
-	.tech_mix {
-		grid-area: tech_mix;
-	}
-
-	.emission_intensity {
-		grid-area: emission_intensity;
-	}
-
-	.volume_trajectory {
-		grid-area: volume_trajectory;
+	#scenario-label:hover + .hide {
+	display: inline-block;
 	}
 </style>

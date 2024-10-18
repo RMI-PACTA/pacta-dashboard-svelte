@@ -13,15 +13,15 @@
 	onMount(() => {
 		function fetchTechmix() {
 			new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
-		};
+		}
 
 		function fetchTrajectoryAlignment() {
 			new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
-		};
+		}
 
 		function fetchEmissionIntensityPlot() {
 			new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
-		};
+		}
 
 		function updateScenarioSelector() {
 			let selectedClass = document.querySelector('#asset_class_selector').value;
@@ -35,9 +35,10 @@
 			let scenarios = d3.map(filteredTechmixData, (d) => d.scenario).keys();
 			const scenarioSelector = document.querySelector('#scenario_selector');
 			scenarioSelector.length = 0;
-			scenarios.forEach(scenario => scenarioSelector.add(new Option(scenario, scenario)));
-			scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected = 'selected';
-		};
+			scenarios.forEach((scenario) => scenarioSelector.add(new Option(scenario, scenario)));
+			scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected =
+				'selected';
+		}
 
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');
@@ -86,7 +87,7 @@
 				fetchTrajectoryAlignment();
 				fetchEmissionIntensityPlot();
 			});
-		};
+		}
 
 		updateScenarioSelector();
 		fetchTechmix();
@@ -221,7 +222,9 @@
 				</label>
 				<label class="label">
 					<span id="scenario-label">Scenario &#9432</span>
-					<div class="hide dashboard-tooltip card p-4 shadow-xl">Applies to the technology mix plot.</div>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">
+						Applies to the technology mix plot.
+					</div>
 					<select class="select variant-outline-surface" id="scenario_selector">
 						<option value="Not_selected">Please select</option>
 					</select>
@@ -262,10 +265,10 @@
 
 <style>
 	.hide {
-	display: none;
+		display: none;
 	}
 
 	#scenario-label:hover + .hide {
-	display: inline-block;
+		display: inline-block;
 	}
 </style>

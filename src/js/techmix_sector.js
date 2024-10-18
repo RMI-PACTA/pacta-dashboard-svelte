@@ -125,7 +125,7 @@ export class techmix_sector {
 		});
 		// subgroups contains all possible technologies for sector
 		let subgroups0 = new Set(d3.map(subdataTechPerYear[0].stackedData, (d) => d.key).keys());
-		let subgroups1 = new Set(d3.map(subdataTechPerYear[1].stackedData, (d) => d.key).keys()) 
+		let subgroups1 = new Set(d3.map(subdataTechPerYear[1].stackedData, (d) => d.key).keys());
 
 		let subgroups = Array.from(subgroups0.union(subgroups1));
 
@@ -380,17 +380,9 @@ export class techmix_sector {
 
 		function mouseOverLabels() {
 			if (this.innerHTML == 'Scenario') {
-				tooltip
-				.html(
-					scenario
-				)
-				.style('display', 'inline-block');
+				tooltip.html(scenario).style('display', 'inline-block');
 			} else if (this.innerHTML == 'Benchmark') {
-				tooltip
-				.html(
-					benchmark
-				)
-				.style('display', 'inline-block');
+				tooltip.html(benchmark).style('display', 'inline-block');
 			}
 		}
 

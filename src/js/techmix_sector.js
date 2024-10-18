@@ -125,7 +125,7 @@ export class techmix_sector {
 		});
 		// subgroups contains all possible technologies for sector
 		let subgroups0 = new Set(d3.map(subdataTechPerYear[0].stackedData, (d) => d.key).keys());
-		let subgroups1 = new Set(d3.map(subdataTechPerYear[1].stackedData, (d) => d.key).keys()) 
+		let subgroups1 = new Set(d3.map(subdataTechPerYear[1].stackedData, (d) => d.key).keys());
 
 		let subgroups = Array.from(subgroups0.union(subgroups1));
 
@@ -268,13 +268,17 @@ export class techmix_sector {
 			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
 
 		// Add the y axis and tick labels
-		svg
+		let yaxisCurrent = svg
 			.append('g')
 			.attr('transform', `translate(${marginLeft},${y0(subdataTechPerYear[0].year)})`)
 			.attr('class', 'axis')
 			.call(d3.axisLeft(yCurrent).tickSizeOuter(0))
 			.call((g) => g.selectAll('.domain').remove())
-			.call((g) => g.selectAll('.tick line').remove());
+			.call((g) => g.selectAll('.tick line').remove())
+			.selectAll('text')
+			.on('mouseover', mouseOverLabels)
+			.on('mouseout', mouseout)
+			.on('mousemove', mousemove);
 
 		svg
 			.append('g')
@@ -282,7 +286,11 @@ export class techmix_sector {
 			.attr('class', 'axis')
 			.call(d3.axisLeft(yFuture).tickSizeOuter(0))
 			.call((g) => g.selectAll('.domain').remove())
-			.call((g) => g.selectAll('.tick line').remove());
+			.call((g) => g.selectAll('.tick line').remove())
+			.selectAll('text')
+			.on('mouseover', mouseOverLabels)
+			.on('mouseout', mouseout)
+			.on('mousemove', mousemove);
 
 		// Add year labels on the right
 		svg
@@ -368,6 +376,14 @@ export class techmix_sector {
 						' sector.'
 				)
 				.style('display', 'inline-block');
+		}
+
+		function mouseOverLabels() {
+			if (this.innerHTML == 'Scenario') {
+				tooltip.html(scenario).style('display', 'inline-block');
+			} else if (this.innerHTML == 'Benchmark') {
+				tooltip.html(benchmark).style('display', 'inline-block');
+			}
 		}
 
 		function mousemove(d) {

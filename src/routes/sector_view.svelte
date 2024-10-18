@@ -2,13 +2,13 @@
 <script>
 	import { onMount } from 'svelte';
 	import techmix_data from '../json/data_techmix_sector.json';
-	import techmix_future_data from '../json/data_techexposure_future.json';
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
 	import { techexposure_future } from '../js/techexposure_future.js';
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
 	import { time_line } from '../js/time_line.js';
+	import * as d3 from 'd3';
 
 	onMount(() => {
 		function fetchTechmix() {
@@ -21,6 +21,23 @@
 
 		function fetchEmissionIntensityPlot() {
 			new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
+		}
+
+		function updateScenarioSelector() {
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+			let selectedSource = document.querySelector('#scenario_source_selector').value;
+			let selectedScenario = document.querySelector('#scenario_selector').value;
+			let filteredTechmixData = techmix_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector)
+				.filter((d) => d.scenario_source == selectedSource);
+			let scenarios = d3.map(filteredTechmixData, (d) => d.scenario).keys();
+			const scenarioSelector = document.querySelector('#scenario_selector');
+			scenarioSelector.length = 0;
+			scenarios.forEach((scenario) => scenarioSelector.add(new Option(scenario, scenario)));
+			scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected =
+				'selected';
 		}
 
 		function addEventListeners() {
@@ -51,6 +68,7 @@
 			});
 			const scenario_source_selector = document.querySelector('#scenario_source_selector');
 			scenario_source_selector.addEventListener('change', function () {
+				updateScenarioSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 			});
@@ -71,6 +89,7 @@
 			});
 		}
 
+		updateScenarioSelector();
 		fetchTechmix();
 		fetchTrajectoryAlignment();
 		fetchEmissionIntensityPlot();
@@ -191,7 +210,7 @@
 				</div>
 			</div>
 			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
-				<h4 class="h4">Parameters (not working now)</h4>
+				<h4 class="h4">Parameters</h4>
 				<br />
 				<label class="label">
 					<span>Scenario source</span>
@@ -202,15 +221,12 @@
 					</select>
 				</label>
 				<label class="label">
-					<span>Scenario</span>
+					<span id="scenario-label">Scenario &#9432</span>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">
+						Applies to the technology mix plot.
+					</div>
 					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="APS">APS</option>
-						<option value="NZE: 2050">NZE: 2050</option>
-						<option value="STEPS">STEPS</option>
-						<option value="1.5C">1.5C</option>
-						<option value="NDC-LTS">NDC-LTS</option>
-						<option value="Reference">Reference</option>
-						<option value="1.5°C">1.5°C</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 				<label class="label">
@@ -248,32 +264,11 @@
 </div>
 
 <style>
-	.container {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: 1fr 1fr 1fr 1fr;
-		grid-auto-flow: row;
-		gap: 0.5rem;
-		grid-template-areas:
-			'selectors tech_mix tech_mix emission_intensity emission_intensity'
-			'selectors tech_mix tech_mix emission_intensity emission_intensity'
-			'selectors volume_trajectory volume_trajectory volume_trajectory volume_trajectory'
-			'selectors volume_trajectory volume_trajectory volume_trajectory volume_trajectory';
+	.hide {
+		display: none;
 	}
 
-	.selectors {
-		grid-area: selectors;
-	}
-
-	.tech_mix {
-		grid-area: tech_mix;
-	}
-
-	.emission_intensity {
-		grid-area: emission_intensity;
-	}
-
-	.volume_trajectory {
-		grid-area: volume_trajectory;
+	#scenario-label:hover + .hide {
+		display: inline-block;
 	}
 </style>

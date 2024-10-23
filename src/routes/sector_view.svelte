@@ -40,7 +40,18 @@
 		};
 
 		function setValuesAssetClassSelector() {
+			const assetClassSelectorLanding = document.querySelector('#asset_class_selector_landing');
+			const assetClassSelector = document.querySelector('#asset_class_selector');
 
+			let classesVolTraj = new Set(d3.map(traj_data, (d) => d.asset_class).keys());
+			let classesTechmix = new Set(d3.map(techmix_data, (d) => d.asset_class).keys());
+			let classesEmissions = new Set(d3.map(emissions_data, (d) => d.asset_class).keys());
+			let assetClasses = Array.from(classesVolTraj.union(classesTechmix).union(classesEmissions));
+
+			assetClassSelectorLanding.length = 0;
+			assetClassSelector.length = 0;
+			assetClasses.forEach((assetClass) => assetClassSelectorLanding.add(new Option(assetClass, assetClass)));
+			assetClasses.forEach((assetClass) => assetClassSelector.add(new Option(assetClass, assetClass)));
 		};
 
 		function updateScenarioSelector() {
@@ -116,6 +127,7 @@
 		}
 
 		setValuesSectorSelectors();
+		setValuesAssetClassSelector();
 		updateScenarioSelector();
 		addEventListeners();
 		fetchTechmix();
@@ -149,8 +161,7 @@
 			<option value="Not_selected">Please select</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
-			<option value="Corporate Bonds">Corporate Bonds</option>
-			<option value="Listed Equity">Listed Equity</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
 	</div>
@@ -162,8 +173,7 @@
 			<option value="Not_selected">Please select</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector">
-			<option value="Corporate Bonds">Corporate Bonds</option>
-			<option value="Listed Equity">Listed Equity</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 	</div>
 	<div class="analysis p-4 bg-cyan-300 grid">

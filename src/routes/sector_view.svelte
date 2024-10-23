@@ -9,6 +9,7 @@
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
 	import { time_line } from '../js/time_line.js';
 	import * as d3 from 'd3';
+	import { union } from 'd3-array';
 
 	onMount(() => {
 		function fetchTechmix() {
@@ -22,6 +23,36 @@
 		function fetchEmissionIntensityPlot() {
 			new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
 		}
+
+		function setValuesSectorSelectors() {
+			const sectorSelectorLanding = document.querySelector('#sector_selector_landing');
+			const sectorSelector = document.querySelector('#sector_selector');
+
+			let sectorsVolTraj = new Set(d3.map(traj_data, (d) => d.ald_sector).keys());
+			let sectorsTechmix = new Set(d3.map(techmix_data, (d) => d.ald_sector).keys());
+			let sectorsEmissions = new Set(d3.map(emissions_data, (d) => d.sector).keys());
+			let sectors = Array.from(sectorsVolTraj.union(sectorsTechmix).union(sectorsEmissions));
+
+			sectorSelectorLanding.length = 0;
+			sectorSelector.length = 0;
+			sectors.forEach((sector) => sectorSelectorLanding.add(new Option(sector, sector)));
+			sectors.forEach((sector) => sectorSelector.add(new Option(sector, sector)));
+		};
+
+		function setValuesAssetClassSelector() {
+			const assetClassSelectorLanding = document.querySelector('#asset_class_selector_landing');
+			const assetClassSelector = document.querySelector('#asset_class_selector');
+
+			let classesVolTraj = new Set(d3.map(traj_data, (d) => d.asset_class).keys());
+			let classesTechmix = new Set(d3.map(techmix_data, (d) => d.asset_class).keys());
+			let classesEmissions = new Set(d3.map(emissions_data, (d) => d.asset_class).keys());
+			let assetClasses = Array.from(classesVolTraj.union(classesTechmix).union(classesEmissions));
+
+			assetClassSelectorLanding.length = 0;
+			assetClassSelector.length = 0;
+			assetClasses.forEach((assetClass) => assetClassSelectorLanding.add(new Option(assetClass, assetClass)));
+			assetClasses.forEach((assetClass) => assetClassSelector.add(new Option(assetClass, assetClass)));
+		};
 
 		function updateScenarioSelector() {
 			let selectedClass = document.querySelector('#asset_class_selector').value;
@@ -42,20 +73,26 @@
 
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');
-
+			const asset_class_selector = document.querySelector('#asset_class_selector');
+			const sector_selector = document.querySelector('#sector_selector');
 			go_button_landing.addEventListener('click', function () {
+				let chosenAssetClass = document.querySelector('#asset_class_selector_landing').value;
+				let chosenSector = document.querySelector('#sector_selector_landing').value;
+				asset_class_selector.value = chosenAssetClass;
+				sector_selector.value = chosenSector;
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-sector-view').classList.toggle('hidden');
+				fetchTrajectoryAlignment();
+				fetchTechmix();
+				fetchEmissionIntensityPlot();
 			});
 
-			const sector_selector = document.querySelector('#sector_selector');
 			sector_selector.addEventListener('change', function () {
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
-			const asset_class_selector = document.querySelector('#asset_class_selector');
 			asset_class_selector.addEventListener('change', function () {
 				fetchTrajectoryAlignment();
 				fetchTechmix();
@@ -89,11 +126,13 @@
 			});
 		}
 
+		setValuesSectorSelectors();
+		setValuesAssetClassSelector();
 		updateScenarioSelector();
+		addEventListeners();
 		fetchTechmix();
 		fetchTrajectoryAlignment();
 		fetchEmissionIntensityPlot();
-		addEventListeners();
 	});
 </script>
 
@@ -119,17 +158,10 @@
 	</div>
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
-			<option value="Power">Power</option>
-			<option value="Automotive">Automotive</option>
-			<option value="Oil&Gas">Oil & gas</option>
-			<option value="Coal">Coal</option>
-			<option value="Steel">Steel</option>
-			<option value="Cement">Cement</option>
-			<option value="Aviation">Aviation</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
-			<option value="Corporate Bonds">Corporate Bonds</option>
-			<option value="Listed Equity">Listed Equity</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
 	</div>
@@ -138,19 +170,11 @@
 <div class="content p-8 bg-amber-300 hidden" id="content-sector-view">
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
-			<option value="Power">Power</option>
-			<option value="Automotive">Automotive</option>
-			<option value="Oil&Gas">Oil & gas</option>
-			<option value="Coal">Coal</option>
-			<option value="Steel">Steel</option>
-			<option value="Cement">Cement</option>
-			<option value="Aviation">Aviation</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector">
-			<option value="Corporate Bonds">Corporate Bonds</option>
-			<option value="Listed Equity">Listed Equity</option>
+			<option value="Not_selected">Please select</option>
 		</select>
-		<button class="btn variant-outline-surface" id="go_button">Go!</button>
 	</div>
 	<div class="analysis p-4 bg-cyan-300 grid">
 		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">

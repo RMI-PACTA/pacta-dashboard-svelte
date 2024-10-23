@@ -42,20 +42,26 @@
 
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');
-
+			const asset_class_selector = document.querySelector('#asset_class_selector');
+			const sector_selector = document.querySelector('#sector_selector');
 			go_button_landing.addEventListener('click', function () {
+				let chosenAssetClass = document.querySelector('#asset_class_selector_landing').value;
+				let chosenSector = document.querySelector('#sector_selector_landing').value;
+				asset_class_selector.value = chosenAssetClass;
+				sector_selector.value = chosenSector;
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-sector-view').classList.toggle('hidden');
+				fetchTrajectoryAlignment();
+				fetchTechmix();
+				fetchEmissionIntensityPlot();
 			});
 
-			const sector_selector = document.querySelector('#sector_selector');
 			sector_selector.addEventListener('change', function () {
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
-			const asset_class_selector = document.querySelector('#asset_class_selector');
 			asset_class_selector.addEventListener('change', function () {
 				fetchTrajectoryAlignment();
 				fetchTechmix();
@@ -90,10 +96,10 @@
 		}
 
 		updateScenarioSelector();
+		addEventListeners();
 		fetchTechmix();
 		fetchTrajectoryAlignment();
 		fetchEmissionIntensityPlot();
-		addEventListeners();
 	});
 </script>
 
@@ -150,7 +156,6 @@
 			<option value="Corporate Bonds">Corporate Bonds</option>
 			<option value="Listed Equity">Listed Equity</option>
 		</select>
-		<button class="btn variant-outline-surface" id="go_button">Go!</button>
 	</div>
 	<div class="analysis p-4 bg-cyan-300 grid">
 		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">

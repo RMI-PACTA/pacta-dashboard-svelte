@@ -71,6 +71,36 @@
 				'selected';
 		}
 
+		function updateBenchmarkSelector() {
+			let selectedBenchmark = document.querySelector('#benchmark_selector').value;
+
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+			let selectedMarket = document.querySelector('#equity_market_selector').value;
+
+			let filteredTechmixData = techmix_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector)
+				.filter((d) => d.equity_market == selectedMarket)
+				.filter(d => !(d.this_portfolio));
+			let benchmarksTechmix = new Set(d3.map(filteredTechmixData, (d) => d.portfolio_name).keys());
+
+			let filteredVolTrajData = traj_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector)
+				.filter((d) => d.equity_market == selectedMarket)
+				.filter(d => (d.this_benchmark));
+			let benchmarksVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.portfolio_name).keys());
+
+			let benchmarks = Array.from(benchmarksTechmix.union(benchmarksVolTraj));
+
+			const benchmarkSelector = document.querySelector('#benchmark_selector');
+			benchmarkSelector.length = 0;
+			benchmarks.forEach((benchmark) => benchmarkSelector.add(new Option(benchmark, benchmark)));
+			benchmarkSelector.options[Math.max(0, benchmarks.indexOf(selectedBenchmark))].selected =
+				'selected';
+		}
+
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');
 			const asset_class_selector = document.querySelector('#asset_class_selector');
@@ -88,12 +118,14 @@
 			});
 
 			sector_selector.addEventListener('change', function () {
+				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
 			asset_class_selector.addEventListener('change', function () {
+				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
@@ -115,6 +147,7 @@
 			});
 			const equity_market_selector = document.querySelector('#equity_market_selector');
 			equity_market_selector.addEventListener('change', function () {
+				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
@@ -129,6 +162,7 @@
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
 		updateScenarioSelector();
+		updateBenchmarkSelector();
 		addEventListeners();
 		fetchTechmix();
 		fetchTrajectoryAlignment();
@@ -269,17 +303,12 @@
 					</select>
 				</label>
 				<label class="label">
-					<span>Benchmark</span>
+					<span id="benchmark-label">Benchmark &#9432</span>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">
+						Applies to the production volume alignment and the technology mix plots.
+					</div>
 					<select class="select variant-outline-surface" id="benchmark_selector">
-						<option value="iShares Global Corp Bond UCITS ETF"
-							>iShares Global Corp Bond UCITS ETF</option
-						>
-						<option value="iShares Core S&P 500 ETF">iShares Core S&P 500 ETF</option>
-						<option value="iShares MSCI ACWI ETF">iShares MSCI ACWI ETF</option>
-						<option value="iShares MSCI Emerging Markets ETF"
-							>iShares MSCI Emerging Markets ETF</option
-						>
-						<option value="iShares MSCI World ETF">iShares MSCI World ETF</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 			</div>
@@ -293,6 +322,10 @@
 	}
 
 	#scenario-label:hover + .hide {
+		display: inline-block;
+	}
+
+	#benchmark-label:hover + .hide {
 		display: inline-block;
 	}
 </style>

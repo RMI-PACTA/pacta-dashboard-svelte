@@ -54,6 +54,31 @@
 			assetClasses.forEach((assetClass) => assetClassSelector.add(new Option(assetClass, assetClass)));
 		};
 
+		function updateScenarioSourceSelector() {
+			let selectedSource = document.querySelector('#scenario_source_selector').value;
+
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredTechmixData = techmix_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let scenarioSourcesTechMix = new Set(d3.map(filteredTechmixData, (d) => d.scenario_source).keys());
+
+			let filteredVolTrajData = traj_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let scenarioSourcesVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.scenario_source).keys());
+
+			let scenarioSources = Array.from(scenarioSourcesTechMix.union(scenarioSourcesVolTraj));
+
+			const scenarioSourceSelector = document.querySelector('#scenario_source_selector');
+			scenarioSourceSelector.length = 0;
+			scenarioSources.forEach((source) => scenarioSourceSelector.add(new Option(source, source)));
+			scenarioSourceSelector.options[Math.max(0, scenarioSources.indexOf(selectedSource))].selected =
+				'selected';
+		}
+
 		function updateScenarioSelector() {
 			let selectedClass = document.querySelector('#asset_class_selector').value;
 			let selectedSector = document.querySelector('#sector_selector').value;
@@ -143,6 +168,7 @@
 			});
 
 			sector_selector.addEventListener('change', function () {
+				updateScenarioSourceSelector();
 				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
@@ -150,6 +176,7 @@
 			});
 
 			asset_class_selector.addEventListener('change', function () {
+				updateScenarioSourceSelector();
 				updateAllocationMethodSelector();
 				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
@@ -187,6 +214,7 @@
 
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
+		updateScenarioSourceSelector();
 		updateScenarioSelector();
 		updateAllocationMethodSelector();
 		updateBenchmarkSelector();
@@ -298,11 +326,12 @@
 				<h4 class="h4">Parameters</h4>
 				<br />
 				<label class="label">
-					<span>Scenario source</span>
+					<span id="scenario-source-label">Scenario source &#9432</span>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">
+						Applies to the technology mix and production volume alignment plots.
+					</div>
 					<select class="select variant-outline-surface" id="scenario_source_selector">
-						<option value="WEO2023">WEO2023</option>
-						<option value="GECO2023">GECO2023</option>
-						<option value="ISF2023">ISF2023</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 				<label class="label">
@@ -348,6 +377,10 @@
 <style>
 	.hide {
 		display: none;
+	}
+
+	#scenario-source-label:hover + .hide {
+		display: inline-block;
 	}
 
 	#scenario-label:hover + .hide {

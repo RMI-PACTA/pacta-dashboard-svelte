@@ -121,6 +121,31 @@
 				'selected';
 		};
 
+		function updateEquityMarketSelector() {
+			let selectedMarket = document.querySelector('#equity_market_selector').value;
+
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredTechmixData = techmix_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let equityMarketsTechMix = new Set(d3.map(filteredTechmixData, (d) => d.equity_market).keys());
+
+			let filteredVolTrajData = traj_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let equityMarketsVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.equity_market_translation).keys());
+
+			let equityMarkets = Array.from(equityMarketsTechMix.union(equityMarketsVolTraj));
+
+			const equityMarketSelector = document.querySelector('#equity_market_selector');
+			equityMarketSelector.length = 0;
+			equityMarkets.forEach((market) => equityMarketSelector.add(new Option(market, market)));
+			equityMarketSelector.options[Math.max(0, equityMarkets.indexOf(selectedMarket))].selected =
+				'selected';
+		};
+
 		function updateBenchmarkSelector() {
 			let selectedBenchmark = document.querySelector('#benchmark_selector').value;
 
@@ -169,6 +194,7 @@
 
 			sector_selector.addEventListener('change', function () {
 				updateScenarioSourceSelector();
+				updateEquityMarketSelector();
 				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
@@ -178,6 +204,7 @@
 			asset_class_selector.addEventListener('change', function () {
 				updateScenarioSourceSelector();
 				updateAllocationMethodSelector();
+				updateEquityMarketSelector();
 				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
@@ -217,6 +244,7 @@
 		updateScenarioSourceSelector();
 		updateScenarioSelector();
 		updateAllocationMethodSelector();
+		updateEquityMarketSelector();
 		updateBenchmarkSelector();
 		addEventListeners();
 		fetchTechmix();
@@ -353,11 +381,12 @@
 					</select>
 				</label>
 				<label class="label">
-					<span>Equity market</span>
+					<span id="equity-market-label">Equity market &#9432</span>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">
+						Applies to the production volume alignment and the technology mix plots.
+					</div>
 					<select class="select variant-outline-surface" id="equity_market_selector">
-						<option value="Global Market">Global Market</option>
-						<option value="Developed Market">Developed Market</option>
-						<option value="Emerging Market">Emerging Market</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 				<label class="label">
@@ -388,6 +417,10 @@
 	}
 
 	#allocation-method-label:hover + .hide {
+		display: inline-block;
+	}
+
+	#equity-market-label:hover + .hide {
 		display: inline-block;
 	}
 

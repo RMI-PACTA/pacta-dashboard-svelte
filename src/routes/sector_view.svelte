@@ -194,6 +194,7 @@
 
 			sector_selector.addEventListener('change', function () {
 				updateScenarioSourceSelector();
+				updateScenarioSelector();
 				updateEquityMarketSelector();
 				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
@@ -203,6 +204,7 @@
 
 			asset_class_selector.addEventListener('change', function () {
 				updateScenarioSourceSelector();
+				updateScenarioSelector();
 				updateAllocationMethodSelector();
 				updateEquityMarketSelector();
 				updateBenchmarkSelector();

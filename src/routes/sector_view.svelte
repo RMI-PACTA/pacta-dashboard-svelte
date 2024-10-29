@@ -71,6 +71,31 @@
 				'selected';
 		}
 
+		function updateAllocationMethodSelector() {
+			let selectedAllocation = document.querySelector('#allocation_method_selector').value;
+
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredEmissionsData = emissions_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let allocationsEmissions = new Set(d3.map(filteredEmissionsData, (d) => d.allocation_translation).keys());
+
+			let filteredVolTrajData = traj_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let allocationsVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.allocation_translation).keys());
+
+			let allocationMethods = Array.from(allocationsEmissions.union(allocationsVolTraj));
+
+			const allocationMethodSelector = document.querySelector('#allocation_method_selector');
+			allocationMethodSelector.length = 0;
+			allocationMethods.forEach((allocation) => allocationMethodSelector.add(new Option(allocation, allocation)));
+			allocationMethodSelector.options[Math.max(0, allocationMethods.indexOf(selectedAllocation))].selected =
+				'selected';
+		};
+
 		function updateBenchmarkSelector() {
 			let selectedBenchmark = document.querySelector('#benchmark_selector').value;
 
@@ -125,6 +150,7 @@
 			});
 
 			asset_class_selector.addEventListener('change', function () {
+				updateAllocationMethodSelector();
 				updateBenchmarkSelector();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
@@ -162,6 +188,7 @@
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
 		updateScenarioSelector();
+		updateAllocationMethodSelector();
 		updateBenchmarkSelector();
 		addEventListeners();
 		fetchTechmix();
@@ -288,10 +315,12 @@
 					</select>
 				</label>
 				<label class="label">
-					<span>Allocation method</span>
+					<span id="allocation-method-label">Allocation method &#9432</span>
+					<div class="hide dashboard-tooltip card p-4 shadow-xl">
+						Applies to the production volume alignment and emission intensity plots.
+					</div>
 					<select class="select variant-outline-surface" id="allocation_method_selector">
-						<option value="Portfolio Weight">Portfolio Weight</option>
-						<option value="Ownership Weight">Ownership Weight</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 				<label class="label">
@@ -322,6 +351,10 @@
 	}
 
 	#scenario-label:hover + .hide {
+		display: inline-block;
+	}
+
+	#allocation-method-label:hover + .hide {
 		display: inline-block;
 	}
 

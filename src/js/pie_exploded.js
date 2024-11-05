@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 export class PieExploded {
-	constructor(container, data, labels_pie, opts) {
+	constructor(container, data) {
 		let container_div;
 
 		if (typeof container === 'string') {
@@ -36,9 +36,6 @@ export class PieExploded {
 			.attr('viewBox', [0, 0, width, height])
 			.attr('preserveAspectRatio', 'xMinYMin meet')
 			.attr('style', 'max-width: 100%; height: auto;');
-
-	 	let asset_class =
- 			typeof opts.default_class === 'undefined' ? 'Listed Equity' : opts.default_class;
 
 		// Plot parameters
 		let hole_percent = 0.4;

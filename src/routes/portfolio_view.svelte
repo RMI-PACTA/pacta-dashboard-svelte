@@ -14,31 +14,13 @@
 
 	onMount(() => {
 		function fetchValuePie() {
-			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData, undefined, {
-				default_class: 'Corporate Bonds'
-			});
-			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData, undefined, {
-				default_class: 'Listed Equity'
-			});
+			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData);
+			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData);
 		}
 
 		function fetchEmissionsPie() {
-			new PieExploded(
-				document.querySelector('#emissionsPieBonds'),
-				bondsEmissionsPieData,
-				undefined,
-				{
-					default_class: 'Corporate Bonds'
-				}
-			);
-			new PieExploded(
-				document.querySelector('#emissionsPieEquity'),
-				equityEmissionsPieData,
-				undefined,
-				{
-					default_class: 'Listed Equity'
-				}
-			);
+			new PieExploded(document.querySelector('#emissionsPieBonds'), bondsEmissionsPieData,);
+			new PieExploded(document.querySelector('#emissionsPieEquity'), equityEmissionsPieData);
 		}
 
 		function fetchTechmix() {

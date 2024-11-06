@@ -8,37 +8,19 @@
 	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
 	import techmixData from '../json/data_techexposure.json';
 	import mapData from '../json/data_map.json';
-	import { PieExploded } from '../js/PieExploded2.js';
+	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
 	import { choropleth } from '../js/map.js';
 
 	onMount(() => {
 		function fetchValuePie() {
-			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData, undefined, {
-				default_class: 'Corporate Bonds'
-			});
-			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData, undefined, {
-				default_class: 'Listed Equity'
-			});
+			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData, 'USD', 'Value covered by PACTA sectors');
+			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData, 'USD', 'Value covered by PACTA sectors');
 		}
 
 		function fetchEmissionsPie() {
-			new PieExploded(
-				document.querySelector('#emissionsPieBonds'),
-				bondsEmissionsPieData,
-				undefined,
-				{
-					default_class: 'Corporate Bonds'
-				}
-			);
-			new PieExploded(
-				document.querySelector('#emissionsPieEquity'),
-				equityEmissionsPieData,
-				undefined,
-				{
-					default_class: 'Listed Equity'
-				}
-			);
+			new PieExploded(document.querySelector('#emissionsPieBonds'), bondsEmissionsPieData, 'tonnes CO<sub>2<\/sub> emissions', 'Emissions covered by PACTA sectors');
+			new PieExploded(document.querySelector('#emissionsPieEquity'), equityEmissionsPieData, 'tonnes CO<sub>2<\/sub> emissions', 'Emissions covered by PACTA sectors');
 		}
 
 		function fetchTechmix() {

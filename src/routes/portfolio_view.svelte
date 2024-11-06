@@ -14,13 +14,13 @@
 
 	onMount(() => {
 		function fetchValuePie() {
-			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData, 'USD');
-			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData, 'USD');
+			new PieExploded(document.querySelector('#valuePieBonds'), bondsValuePieData, 'USD', 'Value covered by PACTA sectors');
+			new PieExploded(document.querySelector('#valuePieEquity'), equityValuePieData, 'USD', 'Value covered by PACTA sectors');
 		}
 
 		function fetchEmissionsPie() {
-			new PieExploded(document.querySelector('#emissionsPieBonds'), bondsEmissionsPieData, 'tonnes CO<sub>2<\/sub> emissions');
-			new PieExploded(document.querySelector('#emissionsPieEquity'), equityEmissionsPieData, 'tonnes CO<sub>2<\/sub> emissions');
+			new PieExploded(document.querySelector('#emissionsPieBonds'), bondsEmissionsPieData, 'tonnes CO<sub>2<\/sub> emissions', 'Emissions covered by PACTA sectors');
+			new PieExploded(document.querySelector('#emissionsPieEquity'), equityEmissionsPieData, 'tonnes CO<sub>2<\/sub> emissions', 'Emissions covered by PACTA sectors');
 		}
 
 		function fetchTechmix() {

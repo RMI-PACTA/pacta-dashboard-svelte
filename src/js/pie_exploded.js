@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 export class PieExploded {
-	constructor(container, data, unit) {
+	constructor(container, data, unit, annotation) {
 		let container_div;
 
 		if (typeof container === 'string') {
@@ -25,7 +25,7 @@ export class PieExploded {
 		const height = 500;
 		const marginTop = 40;
 		const marginRight = 40;
-		const marginBottom = 110;
+		const marginBottom = 170;
 		const marginLeft = 110;
 
 		// Create the svg container
@@ -50,13 +50,12 @@ export class PieExploded {
 		let text_right_offset = 50;
 		let text_left_offset = 100;
 		let minLabelSpacing = 16;
-		let comment_position = marginRight + 150;
+		let comment_position = marginRight;
 		let comment_height = height - marginBottom / 3;
 
 			
 		// Plot labels
 		let numbers_long = { M: ' million', G: ' billion', T: ' trillion' };
-		let comment = 'Total: ';
 
 		// Declare colours
 		let color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -184,15 +183,24 @@ export class PieExploded {
 
 		relaxLabels();
 		
-		// Annotation with total
+		// Annotation
 		svg
  			.append('text')
  			.attr('transform', 'translate(' + [width - comment_position, comment_height] + ')')
- 			.text(comment + prcnt_format(total_exploded_value / total_value))
+ 			.text(prcnt_format(total_exploded_value / total_value))
  			.style('dominant-baseline', 'middle')
  			.style('font-weight', 'bold')
- 			.style('text-anchor', 'start')
+ 			.style('text-anchor', 'end')
 			.style('font-size','2em');
+
+		svg
+			.append('text')
+			.attr('transform', 'translate(' + [width - comment_position, comment_height + 30] + ')')
+			.text(annotation)
+			.style('dominant-baseline', 'middle')
+			.style('text-anchor', 'end');
+
+		
 
 		function point_coord(angle, radius) {
  			return [radius * Math.sin(angle), radius * Math.cos(angle) * -1];

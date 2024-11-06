@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 export class PieExploded {
-	constructor(container, data) {
+	constructor(container, data, unit) {
 		let container_div;
 
 		if (typeof container === 'string') {
@@ -56,7 +56,6 @@ export class PieExploded {
 			
 		// Plot labels
 		let numbers_long = { M: ' million', G: ' billion', T: ' trillion' };
-		let unit = 'USD'; // TODO: make a parameter
 		let comment = 'Total: ';
 
 		// Declare colours

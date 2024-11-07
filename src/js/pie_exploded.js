@@ -23,7 +23,7 @@ export class PieExploded {
 		// Declare the chart dimensions and margins.
 		const width = 700;
 		const height = 500;
-		const marginTop = 40;
+		const marginTop = 20;
 		const marginRight = 40;
 		const marginBottom = 170;
 		const marginLeft = 110;

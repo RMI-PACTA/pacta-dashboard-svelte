@@ -32,19 +32,19 @@
 			});
 		}
 
-		function fetchMap() {
-			new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
-				default_class: 'Corporate Bonds'
-			});
-			new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
-				default_class: 'Listed Equity'
-			});
-		}
+		// function fetchMap() {
+		// 	new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
+		// 		default_class: 'Corporate Bonds'
+		// 	});
+		// 	new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
+		// 		default_class: 'Listed Equity'
+		// 	});
+		// }
 
 		fetchValuePie();
 		fetchEmissionsPie();
 		fetchTechmix();
-		fetchMap();
+		//fetchMap();
 	});
 </script>
 

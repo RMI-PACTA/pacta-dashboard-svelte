@@ -32,19 +32,19 @@
 			});
 		}
 
-		// function fetchMap() {
-		// 	new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
-		// 		default_class: 'Corporate Bonds'
-		// 	});
-		// 	new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
-		// 		default_class: 'Listed Equity'
-		// 	});
-		// }
+		function fetchMap() {
+			new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
+				default_class: 'Corporate Bonds'
+			});
+			new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
+				default_class: 'Listed Equity'
+			});
+		}
 
 		fetchValuePie();
 		fetchEmissionsPie();
 		fetchTechmix();
-		//fetchMap();
+		fetchMap();
 	});
 </script>
 
@@ -166,36 +166,28 @@
 					<div class="exposures-equity sm:col-span-6 bg-purple-300" id="techMixAllEquity"></div>
 				</div>
 			</div>
+			<div class="analysis-map-box sm:col-span-12 bg-orange-300">
+				<div class="analysis-map-explanation sm:col-span-12 bg-teal-300">
+					<h4 class="h4">Regional exposure per sector or technology within sector</h4>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
+						scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
+						cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
+						felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
+						tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
+						et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero.
+					</p>
+				</div>
+				<div class="analysis-map-box grid sm:grid-cols-12 bg-green-300">
+					<div class="map-bonds-text sm:col-span-6 bg-blue-300">
+						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
+					</div>
+					<div class="map-equity-text sm:col-span-6 bg-purple-300">
+						<h5 class="h5">Listed equity portion of the portfolio</h5>
+					</div>
+					<div class="map-bonds sm:col-span-6 bg-blue-300" id="mapBonds"></div>
+					<div class="map-equity sm:col-span-6 bg-purple-300" id="mapEquity"></div>
+				</div>
+			</div>
 	</div>
 </div>
-
-<!-- <div class="gap-x-4 p-4">
-	<div class="h-screen flex flex-row gap-x-4">
-		<div class="card p-4 w-full h-full items-center">
-			<div class="flex-row">
-				<h3 class="h3">Regional exposure per sector or technology within sector</h3>
-				<h4 class="h4">For equity and bond portions of the portfolio</h4>
-				<br />
-				<p>
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-					invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-					sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-					elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-					diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-				</p>
-			</div>
-			<div class="flex flex-row">
-				<div class="card p-4 basis-1/2 h-full justify-left">
-					Coverage of listed equity portion of the portfolio
-					<div id="mapBonds"></div>
-				</div>
-				<div class="card p-4 basis-1/2 h-full justify-right">
-					Coverage of corporate bonds' portion of the portfolio
-					<div id="mapEquity"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div> -->

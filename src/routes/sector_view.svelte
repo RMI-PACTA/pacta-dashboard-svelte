@@ -193,29 +193,30 @@
 				sector_selector.value = chosenSector;
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-sector-view').classList.toggle('hidden');
+				fetchExposureStats();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
 			sector_selector.addEventListener('change', function () {
+				fetchExposureStats();
 				updateScenarioSourceSelector();
 				updateScenarioSelector();
 				updateEquityMarketSelector();
 				updateBenchmarkSelector();
-				fetchExposureStats();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
 			asset_class_selector.addEventListener('change', function () {
+				fetchExposureStats();
 				updateScenarioSourceSelector();
 				updateScenarioSelector();
 				updateAllocationMethodSelector();
 				updateEquityMarketSelector();
 				updateBenchmarkSelector();
-				fetchExposureStats();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
@@ -251,13 +252,13 @@
 
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
+		fetchExposureStats();
 		updateScenarioSourceSelector();
 		updateScenarioSelector();
 		updateAllocationMethodSelector();
 		updateEquityMarketSelector();
 		updateBenchmarkSelector();
 		addEventListeners();
-		fetchExposureStats();
 		fetchTechmix();
 		fetchTrajectoryAlignment();
 		fetchEmissionIntensityPlot();

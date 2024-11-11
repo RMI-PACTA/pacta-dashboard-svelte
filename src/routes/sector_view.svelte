@@ -1,9 +1,11 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
+	import exposure_stats_data from '../json/data_exposure_stats.json';
 	import techmix_data from '../json/data_techmix_sector.json';
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
+	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { techexposure_future } from '../js/techexposure_future.js';
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
@@ -12,6 +14,10 @@
 	import { union } from 'd3-array';
 
 	onMount(() => {
+		function fetchExposureStats() {
+			new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+		}
+
 		function fetchTechmix() {
 			new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
 		}
@@ -197,6 +203,7 @@
 				updateScenarioSelector();
 				updateEquityMarketSelector();
 				updateBenchmarkSelector();
+				fetchExposureStats();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
@@ -208,6 +215,7 @@
 				updateAllocationMethodSelector();
 				updateEquityMarketSelector();
 				updateBenchmarkSelector();
+				fetchExposureStats();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
@@ -249,6 +257,7 @@
 		updateEquityMarketSelector();
 		updateBenchmarkSelector();
 		addEventListeners();
+		fetchExposureStats();
 		fetchTechmix();
 		fetchTrajectoryAlignment();
 		fetchEmissionIntensityPlot();
@@ -309,7 +318,9 @@
 					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum.
 				</p>
 			</div>
-			<div class="analysis-intro-stats sm:col-span-3 bg-green-300">Intro stats</div>
+			<div class="analysis-intro-stats sm:col-span-3 p-0 bg-green-300">
+				<div class="exposure-stats" id="exposure-stats"></div>
+			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300">
 			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">

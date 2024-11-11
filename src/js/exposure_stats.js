@@ -118,9 +118,11 @@ export class ExposureStatsTile {
             .style('text-anchor', 'end');
 
         function prcnt_format(num) {
-			if (num < 0.001) {
-				return '< 0.1%';
-			} else {
+			if (num == 0) {
+				return '0%';
+			} else if (num < 0.001) {
+                return '< 0.1%';
+            } else {
 				return d3.format('.2p')(num);
 			}
 		}

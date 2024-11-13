@@ -7,6 +7,7 @@
 	import bondsEmissionsPieData from '../json/data_emissions_pie_bonds.json';
 	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
 	import techmixData from '../json/data_techexposure.json';
+	import techOrder from '../json/tech_order_in_sectors.json';
 	import mapData from '../json/data_map.json';
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
@@ -24,12 +25,8 @@
 		}
 
 		function fetchTechmix() {
-			new techexposure(document.querySelector('#techMixAllBonds'), techmixData, {
-				default_class: 'Corporate Bonds'
-			});
-			new techexposure(document.querySelector('#techMixAllEquity'), techmixData, {
-				default_class: 'Listed Equity'
-			});
+			new techexposure(document.querySelector('#techMixAllBonds'), techmixData, 'Corporate Bonds', 'iShares Global Corp Bond UCITS ETF', techOrder);
+			new techexposure(document.querySelector('#techMixAllEquity'), techmixData, 'Listed Equity', 'iShares MSCI World ETF', techOrder);
 		}
 
 		function fetchMap() {

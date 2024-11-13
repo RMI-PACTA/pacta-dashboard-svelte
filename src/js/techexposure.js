@@ -25,7 +25,7 @@ export class techexposure {
 		const height = 700;
 		const marginTop = 20;
 		const marginRight = 170;
-		const marginBottom = 40;
+		const marginBottom = 60;
 		const marginLeft = 90;
 		const bar_width = 30;
 		const bar_gap = 12;
@@ -35,7 +35,7 @@ export class techexposure {
 
 		// Labels
 		let port_label = 'This portfolio',
-			comp_label = 'Benchmark',
+			comp_label = 'Benchmark*',
 			hover_over_asset = ' of assets under management<br>',
 			hover_over_sec = { before_sec: ' of ', after_sec: ' sector'},
 			hover_over_low_carbon = { before_sec: 'Low-carbon ', after_sec: ' technologies'},
@@ -196,15 +196,35 @@ export class techexposure {
 			svg
 			.append('g')
 			.attr('class', 'axis')
-			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginTop - 20) + ')')
+			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginTop - marginBottom + 20) + ')')
 			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
 		} else {
 			svg
 			.append('g')
 			.attr('class', 'axis')
-			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginTop - 20) + ')')
+			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginTop - marginBottom + 20) + ')')
 			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.2%')));
 		};
+
+		// Footnote Benchmark
+		let footnote = '*' + benchmark;
+		svg
+			.append('g')
+			.attr('class', 'footnote')
+			.attr(
+				'transform',
+				'translate(' + (width - marginRight) + ',' + (height - marginBottom / 4) + ')'
+			)
+			.selectAll(null)
+			.data([footnote])
+			.enter()
+			.append('text')
+			.attr('x', 0)
+			.attr('y', 0)
+			.style('text-anchor', 'middle')
+			.style('alignment-baseline', 'central')
+			.style('font-size', '0.7em')
+			.text((d) => d);
 
 		// Legend
 		let legend_data_unordered = subdata_sorted

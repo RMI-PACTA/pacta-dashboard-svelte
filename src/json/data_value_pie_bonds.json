@@ -1,6 +1,1 @@
-[
-	{ "key": "Oil&Gas", "value": 2720424, "exploded": true, "key_translation": "Oil & Gas" },
-	{ "key": "Power", "value": 819454, "exploded": true, "key_translation": "Power" },
-	{ "key": "Steel", "value": 4026978, "exploded": true, "key_translation": "Steel" },
-	{ "key": "Other", "value": 2521659, "exploded": false, "key_translation": "Other" }
-]
+[{"key":"Oil&Gas","value":2720424,"exploded":true,"key_translation":"Oil & Gas"},{"key":"Power","value":819454,"exploded":true,"key_translation":"Power"},{"key":"Steel","value":4026978,"exploded":true,"key_translation":"Steel"},{"key":"Other","value":2521659,"exploded":false,"key_translation":"Other"}]

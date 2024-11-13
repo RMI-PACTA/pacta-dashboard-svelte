@@ -25,7 +25,7 @@
     },
     {
         "sector": "Steel",
-        "tech_order": ["Ac-Electric Arc Furnace", "Basic Oxygen Furnace", "Dc-Electric Arc Furnace", "Electric Arc Furnace", "Bof Shop", "Open Hearth Furnace", "Open Hearth Meltshop"]
+        "tech_order": ["Electric Arc Furnace", "Open Hearth Furnace", "Basic Oxygen Furnace"]
     },
     {
         "sector": "Aviation",

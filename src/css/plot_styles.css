@@ -321,20 +321,16 @@ div.d3chart svg .Cement[class*='Integrated facility'] {
 	fill: #c1b358;
 }
 
-div.d3chart svg .Steel[class*='Ac-Electric Arc Furnace'] {
-	fill: #a63d57;
+div.d3chart svg .Steel[class*='Electric Arc Furnace'] {
+	fill: #dbb1bb;
 }
 
-div.d3chart svg .Steel[class*='Bof Shop'] {
+div.d3chart svg .Steel[class*='Open Hearth Furnace'] {
 	fill: #c98a9a;
 }
 
-div.d3chart svg .Steel[class*='Dc-Electric Arc Furnace'] {
-	fill: #b76378;
-}
-
-div.d3chart svg .Steel[class*='Open Hearth Meltshop'] {
-	fill: #dbb1bb;
+div.d3chart svg .Steel[class*='Basic Oxygen Furnace'] {
+	fill: #a63d57;
 }
 
 div.d3chart svg .Shipping[class*='A Grade'] {

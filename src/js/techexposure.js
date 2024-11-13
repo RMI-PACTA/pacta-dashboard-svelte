@@ -24,7 +24,7 @@ export class techexposure {
 		const width = 600;
 		const height = 700;
 		const marginTop = 20;
-		const marginRight = 160;
+		const marginRight = 170;
 		const marginBottom = 40;
 		const marginLeft = 90;
 		const bar_width = 30;
@@ -52,28 +52,34 @@ export class techexposure {
 
 		// Filter the data
 		let equity_market = 'Global Market'; // hardcoded at the moment
-		let subdata = data.filter((d) => d.asset_class_translation == asset_class)
+		let subdata = data
+			.filter((d) => d.asset_class_translation == asset_class)
 			.filter((d) => d.equity_market_translation == equity_market)
-			.filter(
-				(d) => (d.this_portfolio == true) | (d.portfolio_name == benchmark)
-			);
+			.filter((d) => (d.this_portfolio == true) | (d.portfolio_name == benchmark));
+		
+		// Sort data based on exposure and filter out sectors that do not exist in the portfolio
+		let subdata_port_sorted = subdata
+		.filter(d => d.this_portfolio)
+		.sort(function(x, y){
+			return d3.descending(x.cumsum + x.plan_carsten, y.cumsum + y.plan_carsten)
+		 });
+		let sectors_sorted = d3.map(subdata_port_sorted,(d) => d.ald_sector_translation).keys();
+		subdata = subdata.filter((d) => sectors_sorted.includes(d.ald_sector_translation));
+		let subdata_sorted = [];
+		sectors_sorted.forEach(function (item) {
+			let subdata_sector = subdata.filter(d => d.ald_sector_translation == item);
+			subdata_sector.forEach(function (obj) {
+				subdata_sorted.push(obj);
+			})
+		});
 
-		// filter out sectors from the benchmark that do not exist in the portfolio
-		let port_sectors = d3
-			.map(
-				subdata.filter((d) => d.this_portfolio == true),
-				(d) => d.ald_sector_translation
-			)
-			.keys();
-		subdata = subdata.filter((d) => port_sectors.includes(d.ald_sector_translation));
-
-		let max_techshare_perc_aum = d3.max(subdata.map((d) => d.cumsum + d.plan_carsten)); // TODO: Fix
+		let max_techshare_perc_aum = d3.max(subdata_sorted.map((d) => d.cumsum + d.plan_carsten)) * 1.1; // TODO: Fix
 
 		// Define axes
 		let y_sector = d3
 			.scaleBand()
 			.range([marginTop, height - marginBottom])
-			.domain(port_sectors);
+			.domain(sectors_sorted);
 
 		let y_port = d3
 			.scaleBand()
@@ -82,16 +88,16 @@ export class techexposure {
 
 		let x = d3
 			.scaleLinear()
+			.range([marginLeft, width - marginRight])
 			.domain([0, max_techshare_perc_aum])
-			.range([marginLeft, width - marginRight - marginLeft])
 			.nice();
 
 		// Stacked bars
 		svg
-		.append('g')
+			.append('g')
 			.attr('class', 'bars_group')
 			.selectAll('rect')
-			.data(subdata)
+			.data(subdata_sorted)
 			.enter()
 			.append('rect')
 			.attr('height', bar_width)
@@ -108,31 +114,31 @@ export class techexposure {
 
 		// Green bars
 		svg
-		.append('g')
-		.attr('class', 'green_group')
-		.selectAll('rect')
-		.data(subdata)
-		.enter()
-		.append('rect')
-		.attr('class', 'green_bar')
-		.attr('height', 5)
-		.attr('fill', 'green')
-		.attr('transform', (d) => 'translate(0,' + y_sector(d.ald_sector_translation) + ')')
-		.attr('width', (d) => x(d.plan_carsten))
-		.attr('visibility', (d) => (d.green ? 'visible' : 'hidden'))
-		.attr('y', (d) => y_port(d.this_portfolio) + bar_width + 2)
-		.attr('x', (d) => x(d.cumsum))
-		.on('mouseover', mouseover_green)
-		.on('mouseout', mouseout)
-		.on('mousemove', mousemove);
+			.append('g')
+			.attr('class', 'green_group')
+			.selectAll('rect')
+			.data(subdata_sorted)
+			.enter()
+			.append('rect')
+			.attr('class', 'green_bar')
+			.attr('height', 5)
+			.attr('fill', 'green')
+			.attr('transform', (d) => 'translate(0,' + y_sector(d.ald_sector_translation) + ')')
+			.attr('y', (d) => y_port(d.this_portfolio) + bar_width + 2)
+			.attr('x', (d) => x(d.cumsum))
+			.attr('width', (d) => x(d.plan_carsten))
+			.attr('visibility', (d) => (d.green ? 'visible' : 'hidden'))
+			.on('mouseover', mouseover_green)
+			.on('mouseout', mouseout)
+			.on('mousemove', mousemove);
 
 		// Labels for sectors
 		svg
 		.append('g')
 		.attr('class', 'sector_labels')
-		.attr('transform', 'translate(' + marginLeft+ ', 0)')
+		.attr('transform', 'translate(' + marginLeft + ', 0)')
 		.selectAll('.sector_label')
-		.data(port_sectors)
+		.data(sectors_sorted)
 		.enter()
 		.append('text')
 		.attr('class', 'sector_label')
@@ -159,7 +165,7 @@ export class techexposure {
 		.attr('transform', 'translate(' + marginLeft+ ', 0)')
 		.selectAll('.portfolio_label')
 		.data(
-		 	port_sectors
+			sectors_sorted
 				.map((d) => {
 					return [
 						{ ald_sector_translation: d, this_portfolio: true },
@@ -199,7 +205,7 @@ export class techexposure {
 		};
 
 		// Legend
-		let legend_data_unordered = subdata
+		let legend_data_unordered = subdata_sorted
 				.filter((d) => d.sector_prcnt > 0)
 				.map((d) =>
 					(({ ald_sector, technology, ald_sector_translation, technology_translation }) => ({
@@ -234,7 +240,7 @@ export class techexposure {
 		let legend_group = svg
 			.append('g')
 			.attr('class', 'legend_group')
-			.attr('transform', 'translate(' + (width - marginLeft - 60) + ',' + marginTop + ')')
+			.attr('transform', 'translate(' + (width - marginLeft - 55) + ',' + marginTop + ')')
 
 		legend_group
 			.selectAll('rect')
@@ -274,13 +280,12 @@ export class techexposure {
 				.attr('y', (d, i) => tech_in_prev_sectors[i] * 17 + 6 + i * sector_gap_legend);
 
 
-
 		let green_legend_group = svg
 		.append('g')
 		.attr('class', 'legend_group');
 
 		// if there are any green bars, add green bar explanation to legend
-		if (subdata.find((datapoint) => datapoint.green == true) != undefined) {
+		if (subdata_sorted.find((datapoint) => datapoint.green == true) != undefined) {
 		 		let legend_green_rect = [
 		 			{
 		 				class: 'green',
@@ -306,7 +311,7 @@ export class techexposure {
 					).length;
 				green_legend_group.attr(
 					'transform',
-					'translate(' + (width - marginLeft - 60) + ',' + (5 + number_rectangles_tech * 17 + marginTop) + ')'
+					'translate(' + (width - marginLeft - 55) + ',' + (5 + number_rectangles_tech * 17 + marginTop) + ')'
 				);
 
 				green_legend_group

@@ -1,9 +1,11 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
+	import exposure_stats_data from '../json/data_exposure_stats.json';
 	import techmix_data from '../json/data_techmix_sector.json';
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
+	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { techexposure_future } from '../js/techexposure_future.js';
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
@@ -12,6 +14,10 @@
 	import { union } from 'd3-array';
 
 	onMount(() => {
+		function fetchExposureStats() {
+			new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+		}
+
 		function fetchTechmix() {
 			new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
 		}
@@ -37,7 +43,7 @@
 			sectorSelector.length = 0;
 			sectors.forEach((sector) => sectorSelectorLanding.add(new Option(sector, sector)));
 			sectors.forEach((sector) => sectorSelector.add(new Option(sector, sector)));
-		};
+		}
 
 		function setValuesAssetClassSelector() {
 			const assetClassSelectorLanding = document.querySelector('#asset_class_selector_landing');
@@ -50,9 +56,13 @@
 
 			assetClassSelectorLanding.length = 0;
 			assetClassSelector.length = 0;
-			assetClasses.forEach((assetClass) => assetClassSelectorLanding.add(new Option(assetClass, assetClass)));
-			assetClasses.forEach((assetClass) => assetClassSelector.add(new Option(assetClass, assetClass)));
-		};
+			assetClasses.forEach((assetClass) =>
+				assetClassSelectorLanding.add(new Option(assetClass, assetClass))
+			);
+			assetClasses.forEach((assetClass) =>
+				assetClassSelector.add(new Option(assetClass, assetClass))
+			);
+		}
 
 		function updateScenarioSourceSelector() {
 			let selectedSource = document.querySelector('#scenario_source_selector').value;
@@ -63,20 +73,25 @@
 			let filteredTechmixData = techmix_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let scenarioSourcesTechMix = new Set(d3.map(filteredTechmixData, (d) => d.scenario_source).keys());
+			let scenarioSourcesTechMix = new Set(
+				d3.map(filteredTechmixData, (d) => d.scenario_source).keys()
+			);
 
 			let filteredVolTrajData = traj_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let scenarioSourcesVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.scenario_source).keys());
+			let scenarioSourcesVolTraj = new Set(
+				d3.map(filteredVolTrajData, (d) => d.scenario_source).keys()
+			);
 
 			let scenarioSources = Array.from(scenarioSourcesTechMix.union(scenarioSourcesVolTraj));
 
 			const scenarioSourceSelector = document.querySelector('#scenario_source_selector');
 			scenarioSourceSelector.length = 0;
 			scenarioSources.forEach((source) => scenarioSourceSelector.add(new Option(source, source)));
-			scenarioSourceSelector.options[Math.max(0, scenarioSources.indexOf(selectedSource))].selected =
-				'selected';
+			scenarioSourceSelector.options[
+				Math.max(0, scenarioSources.indexOf(selectedSource))
+			].selected = 'selected';
 		}
 
 		function updateScenarioSelector() {
@@ -105,21 +120,28 @@
 			let filteredEmissionsData = emissions_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let allocationsEmissions = new Set(d3.map(filteredEmissionsData, (d) => d.allocation_translation).keys());
+			let allocationsEmissions = new Set(
+				d3.map(filteredEmissionsData, (d) => d.allocation_translation).keys()
+			);
 
 			let filteredVolTrajData = traj_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let allocationsVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.allocation_translation).keys());
+			let allocationsVolTraj = new Set(
+				d3.map(filteredVolTrajData, (d) => d.allocation_translation).keys()
+			);
 
 			let allocationMethods = Array.from(allocationsEmissions.union(allocationsVolTraj));
 
 			const allocationMethodSelector = document.querySelector('#allocation_method_selector');
 			allocationMethodSelector.length = 0;
-			allocationMethods.forEach((allocation) => allocationMethodSelector.add(new Option(allocation, allocation)));
-			allocationMethodSelector.options[Math.max(0, allocationMethods.indexOf(selectedAllocation))].selected =
-				'selected';
-		};
+			allocationMethods.forEach((allocation) =>
+				allocationMethodSelector.add(new Option(allocation, allocation))
+			);
+			allocationMethodSelector.options[
+				Math.max(0, allocationMethods.indexOf(selectedAllocation))
+			].selected = 'selected';
+		}
 
 		function updateEquityMarketSelector() {
 			let selectedMarket = document.querySelector('#equity_market_selector').value;
@@ -130,12 +152,16 @@
 			let filteredTechmixData = techmix_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let equityMarketsTechMix = new Set(d3.map(filteredTechmixData, (d) => d.equity_market).keys());
+			let equityMarketsTechMix = new Set(
+				d3.map(filteredTechmixData, (d) => d.equity_market).keys()
+			);
 
 			let filteredVolTrajData = traj_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let equityMarketsVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.equity_market_translation).keys());
+			let equityMarketsVolTraj = new Set(
+				d3.map(filteredVolTrajData, (d) => d.equity_market_translation).keys()
+			);
 
 			let equityMarkets = Array.from(equityMarketsTechMix.union(equityMarketsVolTraj));
 
@@ -144,7 +170,7 @@
 			equityMarkets.forEach((market) => equityMarketSelector.add(new Option(market, market)));
 			equityMarketSelector.options[Math.max(0, equityMarkets.indexOf(selectedMarket))].selected =
 				'selected';
-		};
+		}
 
 		function updateBenchmarkSelector() {
 			let selectedBenchmark = document.querySelector('#benchmark_selector').value;
@@ -157,14 +183,14 @@
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.equity_market == selectedMarket)
-				.filter(d => !(d.this_portfolio));
+				.filter((d) => !d.this_portfolio);
 			let benchmarksTechmix = new Set(d3.map(filteredTechmixData, (d) => d.portfolio_name).keys());
 
 			let filteredVolTrajData = traj_data
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.equity_market == selectedMarket)
-				.filter(d => (d.this_benchmark));
+				.filter((d) => d.this_benchmark);
 			let benchmarksVolTraj = new Set(d3.map(filteredVolTrajData, (d) => d.portfolio_name).keys());
 
 			let benchmarks = Array.from(benchmarksTechmix.union(benchmarksVolTraj));
@@ -187,12 +213,14 @@
 				sector_selector.value = chosenSector;
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-sector-view').classList.toggle('hidden');
+				fetchExposureStats();
 				fetchTrajectoryAlignment();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 
 			sector_selector.addEventListener('change', function () {
+				fetchExposureStats();
 				updateScenarioSourceSelector();
 				updateScenarioSelector();
 				updateEquityMarketSelector();
@@ -203,6 +231,7 @@
 			});
 
 			asset_class_selector.addEventListener('change', function () {
+				fetchExposureStats();
 				updateScenarioSourceSelector();
 				updateScenarioSelector();
 				updateAllocationMethodSelector();
@@ -243,6 +272,7 @@
 
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
+		fetchExposureStats();
 		updateScenarioSourceSelector();
 		updateScenarioSelector();
 		updateAllocationMethodSelector();
@@ -309,7 +339,9 @@
 					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum.
 				</p>
 			</div>
-			<div class="analysis-intro-stats sm:col-span-3 bg-green-300">Intro stats</div>
+			<div class="analysis-intro-stats sm:col-span-3 p-0 bg-green-300">
+				<div class="exposure-stats" id="exposure-stats"></div>
+			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300">
 			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">

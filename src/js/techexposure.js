@@ -73,7 +73,7 @@ export class techexposure {
 			})
 		});
 
-		let max_techshare_perc_aum = d3.max(subdata_sorted.map((d) => d.cumsum + d.plan_carsten)) * 1.1; // TODO: Fix
+		let max_techshare_perc_aum = d3.max(subdata_sorted.map((d) => d.cumsum + d.plan_carsten)) * 1.05;
 
 		// Define axes
 		let y_sector = d3
@@ -88,7 +88,7 @@ export class techexposure {
 
 		let x = d3
 			.scaleLinear()
-			.range([marginLeft, width - marginRight])
+			.range([0, width - marginRight - marginLeft])
 			.domain([0, max_techshare_perc_aum])
 			.nice();
 
@@ -96,6 +96,7 @@ export class techexposure {
 		svg
 			.append('g')
 			.attr('class', 'bars_group')
+			.attr('transform', 'translate(' + marginLeft + ',0)')
 			.selectAll('rect')
 			.data(subdata_sorted)
 			.enter()
@@ -116,6 +117,7 @@ export class techexposure {
 		svg
 			.append('g')
 			.attr('class', 'green_group')
+			.attr('transform', 'translate(' + marginLeft + ',0)')
 			.selectAll('rect')
 			.data(subdata_sorted)
 			.enter()
@@ -194,13 +196,13 @@ export class techexposure {
 			svg
 			.append('g')
 			.attr('class', 'axis')
-			.attr('transform', 'translate(' + 0 + ',' + (height - marginTop - 20) + ')')
+			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginTop - 20) + ')')
 			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
 		} else {
 			svg
 			.append('g')
 			.attr('class', 'axis')
-			.attr('transform', 'translate(' + 0 + ',' + (height - marginTop - 20) + ')')
+			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginTop - 20) + ')')
 			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.2%')));
 		};
 

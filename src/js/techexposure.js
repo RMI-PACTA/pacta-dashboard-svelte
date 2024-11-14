@@ -51,7 +51,7 @@ export class techexposure {
 			.attr('style', 'max-width: 100%; height: auto;');
 
 		// Filter the data
-		let equity_market = 'Global Market'; // hardcoded at the moment
+		let equity_market = 'Global Market'; // this value is hardcoded to the most reasonable default at the moment
 		let subdata = data
 			.filter((d) => d.asset_class_translation == asset_class)
 			.filter((d) => d.equity_market_translation == equity_market)

@@ -1,1 +1,24 @@
-[{"key":"Oil&Gas","value":55469.5549,"exploded":true,"key_translation":"Oil & Gas"},{"key":"Power","value":43.1591,"exploded":true,"key_translation":"Power"},{"key":"Steel","value":70144.0057,"exploded":true,"key_translation":"Steel"},{"key":"Consumer Services","value":223.6761,"exploded":false,"key_translation":"Consumer Services"},{"key":"Finance","value":139.4071,"exploded":false,"key_translation":"Finance"},{"key":"Producer Manufacturing","value":4130.7052,"exploded":false,"key_translation":"Producer Manufacturing"},{"key":"Technology Services","value":466.3637,"exploded":false,"key_translation":"Technology Services"}]
+[
+	{ "key": "Oil&Gas", "value": 55469.5549, "exploded": true, "key_translation": "Oil & Gas" },
+	{ "key": "Power", "value": 43.1591, "exploded": true, "key_translation": "Power" },
+	{ "key": "Steel", "value": 70144.0057, "exploded": true, "key_translation": "Steel" },
+	{
+		"key": "Consumer Services",
+		"value": 223.6761,
+		"exploded": false,
+		"key_translation": "Consumer Services"
+	},
+	{ "key": "Finance", "value": 139.4071, "exploded": false, "key_translation": "Finance" },
+	{
+		"key": "Producer Manufacturing",
+		"value": 4130.7052,
+		"exploded": false,
+		"key_translation": "Producer Manufacturing"
+	},
+	{
+		"key": "Technology Services",
+		"value": 466.3637,
+		"exploded": false,
+		"key_translation": "Technology Services"
+	}
+]

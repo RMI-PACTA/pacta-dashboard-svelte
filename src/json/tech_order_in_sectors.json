@@ -1,34 +1,43 @@
 [
-    {
-        "sector": "Power",
-        "tech_order": ["RenewablesCap", "HydroCap", "NuclearCap", "GasCap", "OilCap", "CoalCap"]
-    },
-    {
-        "sector": "Automotive",
-        "tech_order": ["Electric", "Electric_HDV", "FuelCell", "FuelCell_HDV", "Hybrid", "Hybrid_HDV", "ICE", "ICE_HDV"]
-    },
-    {
-        "sector": "Oil&Gas",
-        "tech_order": ["Gas", "Oil"]
-    },
-    {
-        "sector": "Coal",
-        "tech_order": ["Coal"]
-    },
-    {
-        "sector": "Fossil Fuels",
-        "tech_order": ["Gas", "Oil", "Coal"]
-    },
-    {
-        "sector": "Cement",
-        "tech_order": ["Integrated facility", "Grinding"]
-    },
-    {
-        "sector": "Steel",
-        "tech_order": ["Electric Arc Furnace", "Open Hearth Furnace", "Basic Oxygen Furnace"]
-    },
-    {
-        "sector": "Aviation",
-        "tech_order": ["Freight", "Passenger", "Mix", "Other"]
-    }
+	{
+		"sector": "Power",
+		"tech_order": ["RenewablesCap", "HydroCap", "NuclearCap", "GasCap", "OilCap", "CoalCap"]
+	},
+	{
+		"sector": "Automotive",
+		"tech_order": [
+			"Electric",
+			"Electric_HDV",
+			"FuelCell",
+			"FuelCell_HDV",
+			"Hybrid",
+			"Hybrid_HDV",
+			"ICE",
+			"ICE_HDV"
+		]
+	},
+	{
+		"sector": "Oil&Gas",
+		"tech_order": ["Gas", "Oil"]
+	},
+	{
+		"sector": "Coal",
+		"tech_order": ["Coal"]
+	},
+	{
+		"sector": "Fossil Fuels",
+		"tech_order": ["Gas", "Oil", "Coal"]
+	},
+	{
+		"sector": "Cement",
+		"tech_order": ["Integrated facility", "Grinding"]
+	},
+	{
+		"sector": "Steel",
+		"tech_order": ["Electric Arc Furnace", "Open Hearth Furnace", "Basic Oxygen Furnace"]
+	},
+	{
+		"sector": "Aviation",
+		"tech_order": ["Freight", "Passenger", "Mix", "Other"]
+	}
 ]

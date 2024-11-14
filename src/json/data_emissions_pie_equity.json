@@ -1,123 +1,113 @@
 [
-	{
-		"key": "Automotive",
-		"value": 58188.6818096151,
-		"exploded": true,
-		"key_translation": "Automotive"
-	},
-	{ "key": "Aviation", "value": 2517.93265754763, "exploded": true, "key_translation": "Aviation" },
-	{ "key": "Cement", "value": 23184.4440558877, "exploded": true, "key_translation": "Cement" },
-	{ "key": "Coal", "value": 131901.481868615, "exploded": true, "key_translation": "Coal" },
-	{ "key": "Oil&Gas", "value": 29755.9108737074, "exploded": true, "key_translation": "Oil&Gas" },
-	{ "key": "Power", "value": 83778.4606796421, "exploded": true, "key_translation": "Power" },
-	{ "key": "Steel", "value": 14601.1782469639, "exploded": true, "key_translation": "Steel" },
+	{ "key": "Automotive", "value": 58188.6818, "exploded": true, "key_translation": "Automotive" },
+	{ "key": "Aviation", "value": 2518.421, "exploded": true, "key_translation": "Aviation" },
+	{ "key": "Cement", "value": 23184.4441, "exploded": true, "key_translation": "Cement" },
+	{ "key": "Coal", "value": 145730.6513, "exploded": true, "key_translation": "Coal" },
+	{ "key": "Oil&Gas", "value": 30030.4572, "exploded": true, "key_translation": "Oil&Gas" },
+	{ "key": "Power", "value": 83759.7622, "exploded": true, "key_translation": "Power" },
+	{ "key": "Steel", "value": 38789.9281, "exploded": true, "key_translation": "Steel" },
 	{
 		"key": "Commercial Services",
-		"value": 12.8408766088981,
+		"value": 13.266,
 		"exploded": false,
 		"key_translation": "Commercial Services"
 	},
 	{
 		"key": "Communications",
-		"value": 7.01709450176636,
+		"value": 7.0171,
 		"exploded": false,
 		"key_translation": "Communications"
 	},
 	{
 		"key": "Consumer Durables",
-		"value": 4.47741673685176,
+		"value": 4.4774,
 		"exploded": false,
 		"key_translation": "Consumer Durables"
 	},
 	{
 		"key": "Consumer Non-Durables",
-		"value": 206.22283747492,
+		"value": 206.0199,
 		"exploded": false,
 		"key_translation": "Consumer Non-Durables"
 	},
 	{
 		"key": "Consumer Services",
-		"value": 398.380651524164,
+		"value": 398.4124,
 		"exploded": false,
 		"key_translation": "Consumer Services"
 	},
 	{
 		"key": "Distribution Services",
-		"value": 278.591991162377,
+		"value": 281.7481,
 		"exploded": false,
 		"key_translation": "Distribution Services"
 	},
 	{
 		"key": "Electronic Technology",
-		"value": 9.23637154915783,
+		"value": 9.2364,
 		"exploded": false,
 		"key_translation": "Electronic Technology"
 	},
 	{
 		"key": "Energy Minerals",
-		"value": 2622.29535811187,
+		"value": 2622.2954,
 		"exploded": false,
 		"key_translation": "Energy Minerals"
 	},
-	{ "key": "Finance", "value": 1422.95817812435, "exploded": false, "key_translation": "Finance" },
-	{ "key": "HDV", "value": 2530.47599027769, "exploded": false, "key_translation": "HDV" },
+	{ "key": "Finance", "value": 1423.4973, "exploded": false, "key_translation": "Finance" },
+	{ "key": "HDV", "value": 2530.1289, "exploded": false, "key_translation": "HDV" },
 	{
 		"key": "Health Services",
-		"value": 3.3590250177838,
+		"value": 3.3308,
 		"exploded": false,
 		"key_translation": "Health Services"
 	},
 	{
 		"key": "Health Technology",
-		"value": 9.54966262278655,
+		"value": 9.7428,
 		"exploded": false,
 		"key_translation": "Health Technology"
 	},
 	{
 		"key": "Industrial Services",
-		"value": 2417.31268828854,
+		"value": 2487.4387,
 		"exploded": false,
 		"key_translation": "Industrial Services"
 	},
 	{
 		"key": "Non-Energy Minerals",
-		"value": 5.97043409585789,
+		"value": 5.9704,
 		"exploded": false,
 		"key_translation": "Non-Energy Minerals"
 	},
 	{
 		"key": "Process Industries",
-		"value": 4719.37230802991,
+		"value": 4719.3796,
 		"exploded": false,
 		"key_translation": "Process Industries"
 	},
 	{
 		"key": "Producer Manufacturing",
-		"value": 1387.2542935833,
+		"value": 1307.4804,
 		"exploded": false,
 		"key_translation": "Producer Manufacturing"
 	},
 	{
 		"key": "Retail Trade",
-		"value": 319.59588712392,
+		"value": 319.6331,
 		"exploded": false,
 		"key_translation": "Retail Trade"
 	},
-	{
-		"key": "Shipping",
-		"value": 550.692465936229,
-		"exploded": false,
-		"key_translation": "Shipping"
-	},
+	{ "key": "Shipping", "value": 563.4207, "exploded": false, "key_translation": "Shipping" },
 	{
 		"key": "Technology Services",
-		"value": 9.51164394263711,
+		"value": 9.5116,
 		"exploded": false,
 		"key_translation": "Technology Services"
 	},
 	{
 		"key": "Transportation",
-		"value": 0.732543504746695,
+		"value": 0.7325,
 		"exploded": false,
 		"key_translation": "Transportation"
 	}

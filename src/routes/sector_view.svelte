@@ -22,8 +22,15 @@
 			new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
 		}
 
-		function fetchTrajectoryAlignment() {
-			new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
+		function fetchTrajectoryAlignmentIfApplicable() {
+			const volTrajectorySectors = ['Power', 'Automotive', 'Oil&Gas', 'Coal'];
+			let chosenSector = document.querySelector('#sector_selector').value;
+			if (volTrajectorySectors.includes(chosenSector)) {
+						document.querySelector('#trajectory-box').classList.remove('hidden');
+						new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
+					} else {
+						document.querySelector('#trajectory-box').classList.add('hidden');
+					}
 		}
 
 		function fetchEmissionIntensityPlot() {
@@ -247,7 +254,7 @@
 				fetchExposureStats();
 				if (checkDataAvailability()) {
 					showAnalysisHideAlert();
-					fetchTrajectoryAlignment();
+					fetchTrajectoryAlignmentIfApplicable();
 					fetchTechmix();
 					fetchEmissionIntensityPlot();
 				} else {
@@ -263,7 +270,7 @@
 					updateScenarioSelector();
 					updateEquityMarketSelector();
 					updateBenchmarkSelector();
-					fetchTrajectoryAlignment();
+					fetchTrajectoryAlignmentIfApplicable();
 					fetchTechmix();
 					fetchEmissionIntensityPlot();
 				} else {
@@ -280,7 +287,7 @@
 					updateAllocationMethodSelector();
 					updateEquityMarketSelector();
 					updateBenchmarkSelector();
-					fetchTrajectoryAlignment();
+					fetchTrajectoryAlignmentIfApplicable();
 					fetchTechmix();
 					fetchEmissionIntensityPlot();
 				} else {
@@ -289,13 +296,13 @@
 			});
 			const benchmark_selector = document.querySelector('#benchmark_selector');
 			benchmark_selector.addEventListener('change', function () {
-				fetchTrajectoryAlignment();
+				fetchTrajectoryAlignmentIfApplicable();
 				fetchTechmix();
 			});
 			const scenario_source_selector = document.querySelector('#scenario_source_selector');
 			scenario_source_selector.addEventListener('change', function () {
 				updateScenarioSelector();
-				fetchTrajectoryAlignment();
+				fetchTrajectoryAlignmentIfApplicable();
 				fetchTechmix();
 			});
 			const scenario_selector = document.querySelector('#scenario_selector');
@@ -305,13 +312,13 @@
 			const equity_market_selector = document.querySelector('#equity_market_selector');
 			equity_market_selector.addEventListener('change', function () {
 				updateBenchmarkSelector();
-				fetchTrajectoryAlignment();
+				fetchTrajectoryAlignmentIfApplicable();
 				fetchTechmix();
 				fetchEmissionIntensityPlot();
 			});
 			const allocation_method_selector = document.querySelector('#allocation_method_selector');
 			allocation_method_selector.addEventListener('change', function () {
-				fetchTrajectoryAlignment();
+				fetchTrajectoryAlignmentIfApplicable();
 				fetchEmissionIntensityPlot();
 			});
 		}
@@ -328,7 +335,7 @@
 			updateBenchmarkSelector();
 			addEventListeners();
 			fetchTechmix();
-			fetchTrajectoryAlignment();
+			fetchTrajectoryAlignmentIfApplicable();
 			fetchEmissionIntensityPlot();
 		} else {
 			handleNoDataForAssetSectorCombination();
@@ -396,7 +403,7 @@
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
 			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">
-				<div class="plot-trajectory-box grid p-4 bg-orange-300">
+				<div class="plot-trajectory-box grid p-4 bg-orange-300" id="trajectory-box">
 					<div class="trajectory-explanation bg-cyan-300">
 						<h4 class="h4">Production volume alignment over time for technologies in the sector</h4>
 						<p>

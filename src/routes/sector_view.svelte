@@ -64,6 +64,37 @@
 			);
 		}
 
+		function checkDataAvailability() {
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredTechmixData = techmix_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+
+			let filteredVolTrajData = traj_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+
+			let filteredEmissionsData = emissions_data
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+
+			let check = [filteredTechmixData, filteredVolTrajData, filteredEmissionsData].some(x => x.length != 0)
+
+			return(check)
+		};
+
+		function handleNoDataForAssetSectorCombination() {
+			document.querySelector('#analysis-content').classList.add('hidden');
+			document.querySelector('#alert-message').classList.remove('hidden');
+		};
+
+		function showAnalysisHideAlert() {
+			document.querySelector('#analysis-content').classList.remove('hidden');
+			document.querySelector('#alert-message').classList.add('hidden');
+		};
+
 		function updateScenarioSourceSelector() {
 			let selectedSource = document.querySelector('#scenario_source_selector').value;
 
@@ -214,32 +245,47 @@
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-sector-view').classList.toggle('hidden');
 				fetchExposureStats();
-				fetchTrajectoryAlignment();
-				fetchTechmix();
-				fetchEmissionIntensityPlot();
+				if (checkDataAvailability()) {
+					showAnalysisHideAlert();
+					fetchTrajectoryAlignment();
+					fetchTechmix();
+					fetchEmissionIntensityPlot();
+				} else {
+					handleNoDataForAssetSectorCombination();
+				};
 			});
 
 			sector_selector.addEventListener('change', function () {
 				fetchExposureStats();
-				updateScenarioSourceSelector();
-				updateScenarioSelector();
-				updateEquityMarketSelector();
-				updateBenchmarkSelector();
-				fetchTrajectoryAlignment();
-				fetchTechmix();
-				fetchEmissionIntensityPlot();
+				if (checkDataAvailability()) {
+					showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					updateEquityMarketSelector();
+					updateBenchmarkSelector();
+					fetchTrajectoryAlignment();
+					fetchTechmix();
+					fetchEmissionIntensityPlot();
+				} else {
+					handleNoDataForAssetSectorCombination();
+				};
 			});
 
 			asset_class_selector.addEventListener('change', function () {
 				fetchExposureStats();
-				updateScenarioSourceSelector();
-				updateScenarioSelector();
-				updateAllocationMethodSelector();
-				updateEquityMarketSelector();
-				updateBenchmarkSelector();
-				fetchTrajectoryAlignment();
-				fetchTechmix();
-				fetchEmissionIntensityPlot();
+				if (checkDataAvailability()) {
+					showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					updateAllocationMethodSelector();
+					updateEquityMarketSelector();
+					updateBenchmarkSelector();
+					fetchTrajectoryAlignment();
+					fetchTechmix();
+					fetchEmissionIntensityPlot();
+				} else {
+					handleNoDataForAssetSectorCombination();
+				};
 			});
 			const benchmark_selector = document.querySelector('#benchmark_selector');
 			benchmark_selector.addEventListener('change', function () {
@@ -273,15 +319,20 @@
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
 		fetchExposureStats();
-		updateScenarioSourceSelector();
-		updateScenarioSelector();
-		updateAllocationMethodSelector();
-		updateEquityMarketSelector();
-		updateBenchmarkSelector();
-		addEventListeners();
-		fetchTechmix();
-		fetchTrajectoryAlignment();
-		fetchEmissionIntensityPlot();
+		if (checkDataAvailability()) {
+			showAnalysisHideAlert();
+			updateScenarioSourceSelector();
+			updateScenarioSelector();
+			updateAllocationMethodSelector();
+			updateEquityMarketSelector();
+			updateBenchmarkSelector();
+			addEventListeners();
+			fetchTechmix();
+			fetchTrajectoryAlignment();
+			fetchEmissionIntensityPlot();
+		} else {
+			handleNoDataForAssetSectorCombination();
+		};
 	});
 </script>
 
@@ -343,7 +394,7 @@
 				<div class="exposure-stats" id="exposure-stats"></div>
 			</div>
 		</div>
-		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300">
+		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
 			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">
 				<div class="plot-trajectory-box grid p-4 bg-orange-300">
 					<div class="trajectory-explanation bg-cyan-300">
@@ -435,6 +486,11 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="alert-message bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden" role="alert" id="alert-message">
+	<p class="font-bold">No data found for this asset class / sector combination</p>
+	<p class="text-sm">Please make a different selecion.</p>
 </div>
 
 <style>

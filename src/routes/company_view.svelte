@@ -82,12 +82,12 @@
 	</div>
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
-			<option value="Automotive">Automotive</option>
 			<option value="Power">Power</option>
+			<option value="Automotive">Automotive</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
-			<option value="Corporate Bonds">Corporate Bonds</option>
 			<option value="Listed Equity">Listed Equity</option>
+			<option value="Corporate Bonds">Corporate Bonds</option>
 		</select>
 		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
 	</div>
@@ -96,12 +96,12 @@
 <div class="content p-8 bg-amber-300 hidden" id="content-company-view">
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
-			<option value="Automotive">Automotive</option>
 			<option value="Power">Power</option>
+			<option value="Automotive">Automotive</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector">
-			<option value="Corporate Bonds">Corporate Bonds</option>
 			<option value="Listed Equity">Listed Equity</option>
+			<option value="Corporate Bonds">Corporate Bonds</option>
 		</select>
 		<button class="btn variant-outline-surface" id="go_button">Go!</button>
 	</div>

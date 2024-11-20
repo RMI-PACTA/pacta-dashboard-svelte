@@ -4,7 +4,7 @@ import { cumsum } from 'd3-array';
 export class company_bubble {
 	constructor(container, data, labels, opts) {
 		let container_div;
-		
+
 		if (typeof container === 'string') {
 			container_div = document.querySelector(container);
 		} else {
@@ -27,10 +27,7 @@ export class company_bubble {
 		const marginRight = 60;
 		const marginBottom = 80;
 		const marginLeft = 70;
-		let size = Math.min(
-		 	width - marginLeft - marginRight,
-			height - marginTop - marginBottom
-		);
+		let size = Math.min(width - marginLeft - marginRight, height - marginTop - marginBottom);
 
 		// Chart parameters
 		let year_span = 5,
@@ -44,14 +41,14 @@ export class company_bubble {
 
 		// Labels
 		let xtitle = 'Current capacity in low-carbon technologies',
-		xsubtitle = '(as % of sector production capacity)',
-		ytitle = 'Planned new capacity in low-carbon technologies',
-		ysubtitle = '(as a % of the scenario* target for YEAR)',
-		xtooltip = xtitle,
-		ytooltip = ytitle,
-		ztooltip = 'Weight in portfolio (% of AUM)',
-		legend_title = 'Portfolio weight',
-		footnote = '* Scenario: ';
+			xsubtitle = '(as % of sector production capacity)',
+			ytitle = 'Planned new capacity in low-carbon technologies',
+			ysubtitle = '(as a % of the scenario* target for YEAR)',
+			xtooltip = xtitle,
+			ytooltip = ytitle,
+			ztooltip = 'Weight in portfolio (% of AUM)',
+			legend_title = 'Portfolio weight',
+			footnote = '* Scenario: ';
 
 		// Create the svg container
 		const svg = this.container
@@ -66,8 +63,8 @@ export class company_bubble {
 		let sector = document.querySelector('#sector_selector').value,
 			asset_class = document.querySelector('#asset_class_selector').value;
 		let subdata = data
-			.filter(d => d.asset_class == asset_class)
-		 	.filter(d => d.ald_sector_translation == sector);
+			.filter((d) => d.asset_class == asset_class)
+			.filter((d) => d.ald_sector_translation == sector);
 
 		var year_future = subdata.map((d) => d.year)[0] + year_span;
 		var scenario = subdata.map((d) => d.scenario)[0];
@@ -77,20 +74,23 @@ export class company_bubble {
 
 		// Axes
 		let x = d3
-		.scaleLinear()
-		.range([0, size])
-		.domain([0 - buffer, 1 + buffer]).nice();
+			.scaleLinear()
+			.range([0, size])
+			.domain([0 - buffer, 1 + buffer])
+			.nice();
 
 		let y = d3
-		.scaleLinear()
-		.range([size, 0])
-		.clamp(true)
-		.domain([0 - buffer, 1 + buffer]).nice();
+			.scaleLinear()
+			.range([size, 0])
+			.clamp(true)
+			.domain([0 - buffer, 1 + buffer])
+			.nice();
 
 		let z = d3
-		.scaleLinear()
-		.range([1, 20])
-		.domain(d3.extent(subdata, (d) => d[zvar])).nice();
+			.scaleLinear()
+			.range([1, 20])
+			.domain(d3.extent(subdata, (d) => d[zvar]))
+			.nice();
 
 		// Draw axes
 		let xaxis = d3.axisBottom(x).ticks(6).tickFormat(d3.format('.0%'));
@@ -102,19 +102,19 @@ export class company_bubble {
 			.style('stroke-width', '1px')
 			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginBottom) + ')');
 
-		svg
-		 		.select('.xaxis')
-		 		.call(xaxis)
-		 		.selectAll('.domain')
-		 		.attr('stroke', axis_color);
-		 	svg.select('.xaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
+		svg.select('.xaxis').call(xaxis).selectAll('.domain').attr('stroke', axis_color);
+		svg.select('.xaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
 
 		svg
 			.append('text')
 			.attr('class', 'xtitle')
 			.attr(
 				'transform',
-				'translate(' + ((width - marginLeft - marginRight) / 2 + marginLeft) + ' ,' + (height - marginBottom + 40) + ')'
+				'translate(' +
+					((width - marginLeft - marginRight) / 2 + marginLeft) +
+					' ,' +
+					(height - marginBottom + 40) +
+					')'
 			)
 			.style('text-anchor', 'middle')
 			.text(xtitle);
@@ -124,24 +124,36 @@ export class company_bubble {
 			.attr('class', 'xsubtitle')
 			.attr(
 				'transform',
-				'translate(' + ((width - marginLeft - marginRight) / 2 + marginLeft) + ' ,' + (height - marginBottom + 55) + ')'
+				'translate(' +
+					((width - marginLeft - marginRight) / 2 + marginLeft) +
+					' ,' +
+					(height - marginBottom + 55) +
+					')'
 			)
 			.style('text-anchor', 'middle')
 			.text(xsubtitle);
 
-		svg.append('g')
-		.attr('class', 'yaxis')
-		.style('stroke-width', '1px')
-		.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + Math.max(0, height - marginTop - marginBottom - size))+ ')');
+		svg
+			.append('g')
+			.attr('class', 'yaxis')
+			.style('stroke-width', '1px')
+			.attr(
+				'transform',
+				'translate(' +
+					marginLeft +
+					',' +
+					(marginTop + Math.max(0, height - marginTop - marginBottom - size)) +
+					')'
+			);
 
 		svg
-		 	.append('text')
-		 	.attr('class', 'ytitle')
-		 	.attr('transform', 'rotate(-90)')
-		 	.attr('x', -(height/ 2))
-		 	.attr('y', 10)
-		 	.attr('dy', '1em')
-		 	.style('text-anchor', 'middle')
+			.append('text')
+			.attr('class', 'ytitle')
+			.attr('transform', 'rotate(-90)')
+			.attr('x', -(height / 2))
+			.attr('y', 10)
+			.attr('dy', '1em')
+			.style('text-anchor', 'middle')
 			.text(ytitle);
 
 		ysubtitle = ysubtitle.replaceAll('YEAR', year_future);
@@ -156,17 +168,20 @@ export class company_bubble {
 			.style('text-anchor', 'middle')
 			.text(ysubtitle);
 
-		svg
-				.select('.yaxis')
-				.call(yaxis)
-				.selectAll('.domain')
-				.attr('stroke', axis_color);
+		svg.select('.yaxis').call(yaxis).selectAll('.domain').attr('stroke', axis_color);
 		svg.select('.yaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
 
 		// Mid lines
 		svg
 			.append('line')
-			.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + Math.max(0, height - marginTop - marginBottom - size))+ ')')
+			.attr(
+				'transform',
+				'translate(' +
+					marginLeft +
+					',' +
+					(marginTop + Math.max(0, height - marginTop - marginBottom - size)) +
+					')'
+			)
 			.attr('x1', x(0.5))
 			.attr('x2', x(0.5))
 			.attr('y1', y(0))
@@ -176,7 +191,14 @@ export class company_bubble {
 
 		svg
 			.append('line')
-			.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + Math.max(0, height - marginTop - marginBottom - size)) + ')')
+			.attr(
+				'transform',
+				'translate(' +
+					marginLeft +
+					',' +
+					(marginTop + Math.max(0, height - marginTop - marginBottom - size)) +
+					')'
+			)
 			.attr('x1', x(0))
 			.attr('x2', x(1))
 			.attr('y1', y(0.5))
@@ -187,78 +209,78 @@ export class company_bubble {
 		// Bubbles
 		svg
 			.append('g')
-			.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + Math.max(0, height - marginTop - marginBottom - size)) + ')')
+			.attr(
+				'transform',
+				'translate(' +
+					marginLeft +
+					',' +
+					(marginTop + Math.max(0, height - marginTop - marginBottom - size)) +
+					')'
+			)
 			.selectAll('.bubble')
 			.data(subdata)
-				.enter()
-				.append('circle')
-				.attr('class', 'bubble')
-				.attr('cx', (d) => x(d[xvar]))
-				.attr('cy', (d) => y(d[yvar]))
-				.attr('r', (d) => z(d[zvar]))
-				.style('opacity', '0.7')
-				.style('fill', bblfill)
-				.attr('stroke', '#1b324f')
-				.on('mouseover', mouseover)
-				.on('mousemove', mousemove)
-				.on('mouseout', mouseout);
+			.enter()
+			.append('circle')
+			.attr('class', 'bubble')
+			.attr('cx', (d) => x(d[xvar]))
+			.attr('cy', (d) => y(d[yvar]))
+			.attr('r', (d) => z(d[zvar]))
+			.style('opacity', '0.7')
+			.style('fill', bblfill)
+			.attr('stroke', '#1b324f')
+			.on('mouseover', mouseover)
+			.on('mousemove', mousemove)
+			.on('mouseout', mouseout);
 
-		// Legend 
+		// Legend
 		let ticks = z.ticks(3);
 		let tick_size = ticks.map((d) => z(d));
 		let cumsum_ticks = cumsum(tick_size.map((d) => d * 2));
 		let legend_data = d3.zip(ticks, cumsum_ticks);
 
 		let legend = svg
-		.append('g')
-		.attr(
-			'transform',
-			'translate(' + (size + marginLeft + marginRight/4) + ',' + (marginTop + size/5) + ')'
-		);
+			.append('g')
+			.attr(
+				'transform',
+				'translate(' + (size + marginLeft + marginRight / 4) + ',' + (marginTop + size / 5) + ')'
+			);
 
 		legend
-				.selectAll('circle')
-				.data(legend_data)
-				.enter()
-				.append('circle')
-				.attr('cx', 35)
-				.attr('cy', (d) => 20 + d[1])
-				.attr('r', (d) => z(d[0]))
-				.style('fill', bblfill)
-				.attr('stroke', bblstroke)
-				.style('opacity', '0.7');
+			.selectAll('circle')
+			.data(legend_data)
+			.enter()
+			.append('circle')
+			.attr('cx', 35)
+			.attr('cy', (d) => 20 + d[1])
+			.attr('r', (d) => z(d[0]))
+			.style('fill', bblfill)
+			.attr('stroke', bblstroke)
+			.style('opacity', '0.7');
 
-			legend
-				.selectAll('text')
-				.data(legend_data)
-				.enter()
-				.append('text')
-				.text((d) => d3.format('~%')(d[0].toPrecision(3)))
-				.attr('alignment-baseline', 'central')
-				.attr('font-size', '0.9em')
-				.attr('x', 40 + z.range()[1])
-				.attr('y', (d) => 20 + d[1]);
+		legend
+			.selectAll('text')
+			.data(legend_data)
+			.enter()
+			.append('text')
+			.text((d) => d3.format('~%')(d[0].toPrecision(3)))
+			.attr('alignment-baseline', 'central')
+			.attr('font-size', '0.9em')
+			.attr('x', 40 + z.range()[1])
+			.attr('y', (d) => 20 + d[1]);
 
-			legend
-				.append('text')
-				.attr('x', 10)
-				.attr('y', 5)
-				.attr('alignment-baseline', 'central')
-				
-				.text(legend_title);	
+		legend
+			.append('text')
+			.attr('x', 10)
+			.attr('y', 5)
+			.attr('alignment-baseline', 'central')
+
+			.text(legend_title);
 
 		// Footnote
 		svg
 			.append('text')
 			.attr('class', 'footnote')
-			.attr(
-				'transform',
-				'translate(' +
-					(width - marginRight) +
-					' ,' +
-					(height - 10) +
-					')'
-			)
+			.attr('transform', 'translate(' + (width - marginRight) + ' ,' + (height - 10) + ')')
 			.attr('x', 0)
 			.attr('y', 0)
 			.attr('font-size', '0.7em')
@@ -266,41 +288,39 @@ export class company_bubble {
 			.text(footnote + scenario + '.');
 
 		let tooltip = d3
-		.select(container_div)
-		.append('div')
-		.attr('class', 'd3tooltip')
-		.style('display', 'none');
+			.select(container_div)
+			.append('div')
+			.attr('class', 'd3tooltip')
+			.style('display', 'none');
 
-			function mouseover(d) {
-				let ztooltiptext = '<br>' + ztooltip + ': ' + d3.format('~%')(d[zvar].toPrecision(3));
+		function mouseover(d) {
+			let ztooltiptext = '<br>' + ztooltip + ': ' + d3.format('~%')(d[zvar].toPrecision(3));
 
-				tooltip
-					.html(
-						'<b>' +
-							d[namevar] +
-							'</b><br><br>' +
-							xtooltip +
-							': ' +
-							d3.format('.1%')(d[xvar]) +
-							'<br>' +
-							ytooltip +
-							': ' +
-							d3.format('.1%')(d[yvar]) +
-							ztooltiptext
-					)
-					.style('display', 'inline-block')
-					.style('left', d3.event.pageX + 10 + 'px')
-					.style('top', d3.event.pageY - 20 + 'px');
-			}
+			tooltip
+				.html(
+					'<b>' +
+						d[namevar] +
+						'</b><br><br>' +
+						xtooltip +
+						': ' +
+						d3.format('.1%')(d[xvar]) +
+						'<br>' +
+						ytooltip +
+						': ' +
+						d3.format('.1%')(d[yvar]) +
+						ztooltiptext
+				)
+				.style('display', 'inline-block')
+				.style('left', d3.event.pageX + 10 + 'px')
+				.style('top', d3.event.pageY - 20 + 'px');
+		}
 
-			function mousemove() {
-				tooltip
-					.style('left', d3.event.pageX + 10 + 'px')
-					.style('top', d3.event.pageY - 20 + 'px');
-			}
+		function mousemove() {
+			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
+		}
 
-			function mouseout() {
-				tooltip.style('display', 'none');
-			}
+		function mouseout() {
+			tooltip.style('display', 'none');
+		}
 	}
 }

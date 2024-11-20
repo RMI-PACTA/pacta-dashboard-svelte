@@ -1,9 +1,9 @@
 <!-- src/routes/company_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import companyBubbleData from '../json/data_company_bubble.json';
-	import companyTechmixData from '../json/data_techexposure_company_companies.json';
-	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json';
+	import companyBubbleData from '../data/data_company_bubble.json';
+	import companyTechmixData from '../data/data_techexposure_company_companies.json';
+	import portfolioTechmixData from '../data/data_techexposure_company_portfolio.json';
 	import { company_bubble } from '../js/company_bubble.js';
 	import { techexposure_company } from '../js/techexposure_company.js';
 

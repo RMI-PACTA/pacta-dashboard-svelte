@@ -1,14 +1,14 @@
 <!-- src/routes/portfolio_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import tableData from '../json/data_included_table.json';
-	import bondsValuePieData from '../json/data_value_pie_bonds.json';
-	import equityValuePieData from '../json/data_value_pie_equity.json';
-	import bondsEmissionsPieData from '../json/data_emissions_pie_bonds.json';
-	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
-	import techmixData from '../json/data_techexposure.json';
-	import techOrder from '../json/tech_order_in_sectors.json';
-	import mapData from '../json/data_map.json';
+	import tableData from '../data/data_included_table.json';
+	import bondsValuePieData from '../data/data_value_pie_bonds.json';
+	import equityValuePieData from '../data/data_value_pie_equity.json';
+	import bondsEmissionsPieData from '../data/data_emissions_pie_bonds.json';
+	import equityEmissionsPieData from '../data/data_emissions_pie_equity.json';
+	import techmixData from '../data/data_techexposure.json';
+	import techOrder from '../data/tech_order_in_sectors.json';
+	import mapData from '../data/data_map.json';
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
 	import { choropleth } from '../js/map.js';

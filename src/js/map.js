@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { rollups } from 'd3-array';
 import { geoEckert3 } from 'd3-geo-projection';
 import { feature } from 'topojson-client';
-import world from '../json/countries-110m.json';
+import world from '../data/countries-110m.json';
 
 export class choropleth {
 	constructor(container, data, labels, opts) {

@@ -13,7 +13,7 @@ export class PieExploded {
 		container_div.innerHTML = '';
 
 		d3.select(container_div).attr('chart_type', 'PieExploded');
-		
+
 		container_div.classList.add('PieExploded');
 		container_div.classList.add('d3chart');
 		container_div.classList.add('chart_container');
@@ -39,11 +39,7 @@ export class PieExploded {
 
 		// Plot parameters
 		let hole_percent = 0.4;
-		let radius =
-			Math.min(
-				width - marginLeft - marginRight,
-				height - marginTop - marginBottom
-			) / 2;
+		let radius = Math.min(width - marginLeft - marginRight, height - marginTop - marginBottom) / 2;
 
 		let pie_center = radius + marginLeft;
 		let exploded_offset = 80;
@@ -53,7 +49,6 @@ export class PieExploded {
 		let comment_position = marginRight;
 		let comment_height = height - marginBottom / 3;
 
-			
 		// Plot labels
 		let numbers_long = { M: ' million', G: ' billion', T: ' trillion' };
 
@@ -70,10 +65,10 @@ export class PieExploded {
 
 		// Calculate plot coordinates
 		let total_value = d3.sum(data, (d) => d.value);
- 		var total_exploded_value = d3.sum(data, (d) => (d.exploded ? d.value : 0));
- 		var percent_exploded = total_exploded_value / total_value;
- 		var anglepush = Math.PI * 2 * (percent_exploded / 2);
- 		var chart_startAngle = Math.PI * 0.5 - anglepush;
+		var total_exploded_value = d3.sum(data, (d) => (d.exploded ? d.value : 0));
+		var percent_exploded = total_exploded_value / total_value;
+		var anglepush = Math.PI * 2 * (percent_exploded / 2);
+		var chart_startAngle = Math.PI * 0.5 - anglepush;
 		let pie = d3
 			.pie()
 			.startAngle(chart_startAngle)
@@ -81,16 +76,13 @@ export class PieExploded {
 			.sort((a, b) => (a.exploded < b.exploded ? 1 : -1))
 			.value((d) => d.value);
 		let arc = d3
- 			.arc()
- 			.innerRadius(radius * hole_percent)
- 			.outerRadius(radius)
- 			.cornerRadius(5);
+			.arc()
+			.innerRadius(radius * hole_percent)
+			.outerRadius(radius)
+			.cornerRadius(5);
 
 		// Declare hover overs tooltip
-		let tooltip = this.container
-			.append('div')
-			.attr('class', 'd3tooltip')
-			.style('display', 'none');
+		let tooltip = this.container.append('div').attr('class', 'd3tooltip').style('display', 'none');
 
 		// Calculate plot variables based on data
 		var data_ready = pie(data);
@@ -109,89 +101,89 @@ export class PieExploded {
 					? Math.round(point_coord(d.midAngle, radius)[0]) + text_right_offset
 					: Math.round(point_coord(d.midAngle, radius)[0]) - text_left_offset)
 		);
-			
+
 		data_ready.sort((a, b) => (a.quadrant > b.quadrant ? 1 : -1));
-			
+
 		data_ready.sort(function (a, b) {
 			if (a.quadrant == b.quadrant) {
 				if (a.midAngle > b.midAngle) return 1 * a.ascending;
-				}
+			}
 			return 0;
 		});
-			
+
 		data_ready.forEach(function (d) {
-		var point = point_coord(d.midAngle, radius);
-		var offset = Math.abs(d.texty - point[1]);
+			var point = point_coord(d.midAngle, radius);
+			var offset = Math.abs(d.texty - point[1]);
 			d.elbowx = d.rightHalf
 				? d.textx - text_right_offset * numberSign(d.textx)
 				: d.textx - text_left_offset * numberSign(d.textx);
 		});
-		data_ready.forEach((d) => (d.elbowy = d.texty));	
+		data_ready.forEach((d) => (d.elbowy = d.texty));
 		data_ready.sort((a, b) => (a.startAngle > b.startAngle ? 1 : -1));
 		data_ready = data_ready.sort((d) => d.data.exploded);
 
 		// Plot pie slices
 		let slices = svg
- 			.append('g')
- 			.attr('transform', 'translate(' + pie_center + ',' + height / 2 + ')')
+			.append('g')
+			.attr('transform', 'translate(' + pie_center + ',' + height / 2 + ')')
 			.selectAll('g')
 			.data(data_ready)
 			.enter()
 			.append('g')
 			.attr('transform', (d) =>
- 				d.data.exploded ? 'translate(' + exploded_offset + ' 0)' : 'translate(0 0)'
+				d.data.exploded ? 'translate(' + exploded_offset + ' 0)' : 'translate(0 0)'
 			);
-			
- 		slices
- 			.append('path')
- 			.attr('class', (d) => (d.data.exploded ? d.data.key : 'non-PACTA'))
+
+		slices
+			.append('path')
+			.attr('class', (d) => (d.data.exploded ? d.data.key : 'non-PACTA'))
 			.attr('d', arc)
- 			.attr('fill', (d) => (d.data.exploded ? color(d.data.key) : greys(d.data.key)))
- 			.attr('stroke', 'white')
- 			.style('stroke-width', '2px')
- 			.style('opacity', 1)
- 			.on('mouseover', mouseover)
- 			.on('mousemove', mousemove)
- 			.on('mouseout', mouseout);
+			.attr('fill', (d) => (d.data.exploded ? color(d.data.key) : greys(d.data.key)))
+			.attr('stroke', 'white')
+			.style('stroke-width', '2px')
+			.style('opacity', 1)
+			.on('mouseover', mouseover)
+			.on('mousemove', mousemove)
+			.on('mouseout', mouseout);
 
 		// Slice labels
 		var slicelabels = slices.filter((d) => d.data.exploded);
- 		var linesLabels = slicelabels
- 			.append('polyline')
- 			.attr('stroke', 'black')
+		var linesLabels = slicelabels
+			.append('polyline')
+			.attr('stroke', 'black')
 			.style('fill', 'none')
- 			.attr('stroke-width', 1)
- 			.attr('points', (d) => [
- 				point_coord(d.midAngle, radius),
- 				[d.elbowx, d.elbowy],
- 				[d.textx - 2 * numberSign(d.textx), d.texty]
- 			]);
- 		var textLabels = slicelabels
- 			.append('text')
- 			.attr('x', function (d, i) {
- 				return d.textx;
- 			})
- 			.attr('y', function (d, i) {
- 				return d.texty;
- 			})
- 			.attr('text-anchor', function (d, i) {
- 				return d.rightHalf ? 'start' : 'end';
- 			})
- 			.text((d) => d.data.key_translation + ' ' + prcnt_format(d.data.value / total_value))
- 			.style('dominant-baseline', 'middle');
- 		const alpha = 0.5;
+			.attr('stroke-width', 1)
+			.attr('points', (d) => [
+				point_coord(d.midAngle, radius),
+				[d.elbowx, d.elbowy],
+				[d.textx - 2 * numberSign(d.textx), d.texty]
+			]);
+		var textLabels = slicelabels
+			.append('text')
+			.attr('x', function (d, i) {
+				return d.textx;
+			})
+			.attr('y', function (d, i) {
+				return d.texty;
+			})
+			.attr('text-anchor', function (d, i) {
+				return d.rightHalf ? 'start' : 'end';
+			})
+			.text((d) => d.data.key_translation + ' ' + prcnt_format(d.data.value / total_value))
+			.style('dominant-baseline', 'middle');
+		const alpha = 0.5;
 
 		relaxLabels();
-		
+
 		// Annotation
 		svg
- 			.append('text')
- 			.attr('transform', 'translate(' + [width - comment_position, comment_height] + ')')
- 			.text(prcnt_format(total_exploded_value / total_value))
- 			.style('dominant-baseline', 'middle')
- 			.style('font-weight', 'bold')
- 			.style('text-anchor', 'end')
-			.style('font-size','2em');
+			.append('text')
+			.attr('transform', 'translate(' + [width - comment_position, comment_height] + ')')
+			.text(prcnt_format(total_exploded_value / total_value))
+			.style('dominant-baseline', 'middle')
+			.style('font-weight', 'bold')
+			.style('text-anchor', 'end')
+			.style('font-size', '2em');
 
 		svg
 			.append('text')
@@ -200,11 +192,9 @@ export class PieExploded {
 			.style('dominant-baseline', 'middle')
 			.style('text-anchor', 'end');
 
-		
-
 		function point_coord(angle, radius) {
- 			return [radius * Math.sin(angle), radius * Math.cos(angle) * -1];
- 		}
+			return [radius * Math.sin(angle), radius * Math.cos(angle) * -1];
+		}
 
 		function numberSign(number) {
 			return number < 0 ? -1 : 1;
@@ -278,7 +268,7 @@ export class PieExploded {
 				});
 				setTimeout(relaxLabels, 20);
 			}
-		};
+		}
 
 		function mouseover(d) {
 			tooltip
@@ -293,16 +283,14 @@ export class PieExploded {
 				.style('display', 'inline-block')
 				.style('left', d3.event.pageX + 10 + 'px')
 				.style('top', d3.event.pageY - 20 + 'px');
-		};
+		}
 
 		function mousemove() {
-			tooltip
-				.style('left', d3.event.pageX + 10 + 'px')
-				.style('top', d3.event.pageY - 20 + 'px');
-		};
+			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
+		}
 
 		function mouseout() {
 			tooltip.style('display', 'none');
-		};
- 	}
- }
+		}
+	}
+}

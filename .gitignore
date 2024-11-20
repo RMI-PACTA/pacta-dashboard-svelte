@@ -1,5 +1,8 @@
 node_modules
 
+# Input Data
+/src/json/**/*
+
 # Output
 .output
 .vercel

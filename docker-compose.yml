@@ -9,8 +9,8 @@ services:
     # command: ["sh"]
     volumes:
       - type: bind
-        source: ${JSON_ASSETS_PATH:-./src/json}
-        target: /app/src/json
+        source: ${JSON_ASSETS_PATH:-./sample-data}
+        target: /mnt/dashboard_input_data
         read_only: true
       - type: bind
         source: ${STATIC_BUILD_PATH:-./build}

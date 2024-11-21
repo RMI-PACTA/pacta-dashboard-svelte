@@ -158,7 +158,7 @@ export class techmix_sector {
 		const color = d3
 			.scaleOrdinal()
 			.domain(subgroups)
-			.range(d3.schemeSpectral[subgroups.length])
+			.range(Math.min(3, d3.schemeSpectral[subgroups.length]))
 			.unknown('#ccc');
 
 		// Add rectangles for each stacked bar

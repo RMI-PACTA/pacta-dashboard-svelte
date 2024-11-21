@@ -92,11 +92,6 @@ export class techmix_sector {
 			.filter((d) => d.equity_market == equity_market)
 			.filter((d) => d.this_portfolio | (d.portfolio_name == benchmark));
 
-		if (subdata.length == 0) {
-			container_div.querySelector('svg').innerHTML = '';
-			return;
-		}
-
 		// create the stacked data for plotting
 		let uniqueYears = d3.map(subdata, (d) => d.year).keys();
 		let uniqueValueTypes = [];

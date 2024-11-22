@@ -19,11 +19,6 @@ jobs:
           node-version: '18.18.2'
           cache: 'npm'
       - run: npm install
-      - name: Copy sample data
-        run: |
-          mkdir -p src/data
-          cp -rv sample-data/. src/data/
-          ls -laR src/data
 
   unit_tests:
     name: Run Unit Tests
@@ -52,6 +47,11 @@ jobs:
           node-version: '18.18.2'
       - run: npm install
       - run: npx playwright install
+      - name: Copy sample data
+        run: |
+          mkdir -p src/data
+          cp -rv sample-data/. src/data/
+          ls -laR src/data
       - run: npm run test:integration
         env:
           CI: true

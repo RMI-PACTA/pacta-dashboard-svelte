@@ -50,11 +50,6 @@ export class time_line {
 			.filter((d) => d.allocation_translation == allocation_method)
 			.filter((d) => d.equity_market == equity_market);
 
-		if (subdata.length == 0) {
-			container_div.querySelector('svg').innerHTML = '';
-			return;
-		}
-
 		const parseYear = d3.timeParse('%Y');
 
 		const x = d3

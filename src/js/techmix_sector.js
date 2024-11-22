@@ -36,9 +36,14 @@ export class techmix_sector {
 			let dataYear = data.filter((d) => d.year == year);
 			let greenData = [];
 			uniqueValueTypes.forEach((item, idx) => {
+				let greenDataItem = dataYear.filter((d) => (d.val_type == item & d.green == true));
 				greenData[idx] = {};
 				greenData[idx]['val_type'] = item;
-				greenData[idx]['green_sum'] = dataYear.filter((d) => d.val_type == item)[0].green_sum;
+				if (greenDataItem.length > 0) {
+					greenData[idx]['green_sum'] = greenDataItem[0].green_sum;
+				} else {
+					greenData[idx]['green_sum'] = 0;
+				}
 			});
 
 			return greenData;
@@ -91,11 +96,6 @@ export class techmix_sector {
 			.filter((d) => d.scenario == scenario)
 			.filter((d) => d.equity_market == equity_market)
 			.filter((d) => d.this_portfolio | (d.portfolio_name == benchmark));
-
-		if (subdata.length == 0) {
-			container_div.querySelector('svg').innerHTML = '';
-			return;
-		}
 
 		// create the stacked data for plotting
 		let uniqueYears = d3.map(subdata, (d) => d.year).keys();
@@ -163,7 +163,7 @@ export class techmix_sector {
 		const color = d3
 			.scaleOrdinal()
 			.domain(subgroups)
-			.range(d3.schemeSpectral[subgroups.length])
+			.range(Math.min(3, d3.schemeSpectral[subgroups.length]))
 			.unknown('#ccc');
 
 		// Add rectangles for each stacked bar
@@ -326,23 +326,26 @@ export class techmix_sector {
 			.attr('y', 20)
 			.text((d) => d);
 
-		// Append legend for green bars
-		let legendGreen = svg
-			.append('g')
-			.attr('transform', `translate(${marginLeft},${height - marginBottom / 4})`)
-			.attr('class', 'legend')
-			.selectAll('g')
-			.data(['Low-carbon technologies within a sector'])
-			.enter()
-			.append('g');
+		let sumGreenBarsInPlot = d3.sum(subdataTechPerYear[0], d => d.greenBars.green_sum) + d3.sum(subdataTechPerYear[1], d => d.greenBars.green_sum);
+		if (sumGreenBarsInPlot > 0) {
+			// Append legend for green bars
+			let legendGreen = svg
+				.append('g')
+				.attr('transform', `translate(${marginLeft},${height - marginBottom / 4})`)
+				.attr('class', 'legend')
+				.selectAll('g')
+				.data(['Low-carbon technologies within a sector'])
+				.enter()
+				.append('g');
 
-		legendGreen.append('rect').attr('width', 22).attr('height', 22).attr('fill', 'green');
+			legendGreen.append('rect').attr('width', 22).attr('height', 22).attr('fill', 'green');
 
-		legendGreen
-			.append('text')
-			.attr('x', 30)
-			.attr('y', 20)
-			.text((d) => d);
+			legendGreen
+				.append('text')
+				.attr('x', 30)
+				.attr('y', 20)
+				.text((d) => d);
+			} 
 
 		// Add hover overs
 		const tooltip = d3

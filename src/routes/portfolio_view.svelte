@@ -15,59 +15,100 @@
 
 	onMount(() => {
 		function fetchValuePie() {
-			new PieExploded(
-				document.querySelector('#valuePieBonds'),
-				bondsValuePieData,
-				'USD',
-				"of assets' value covered by PACTA sectors"
-			);
-			new PieExploded(
-				document.querySelector('#valuePieEquity'),
-				equityValuePieData,
-				'USD',
-				"of assets' value covered by PACTA sectors"
-			);
+			try {
+				new PieExploded(
+					document.querySelector('#valuePieBonds'),
+					bondsValuePieData,
+					'USD',
+					"of assets' value covered by PACTA sectors"
+				);
+			} catch (err) {
+				document.querySelector('#valuePieBonds').innerHTML = '';
+				document.querySelector('#valuePieBonds').appendChild(createErrorMessageDiv());
+			}
+			try {
+				new PieExploded(
+					document.querySelector('#valuePieEquity'),
+					equityValuePieData,
+					'USD',
+					"of assets' value covered by PACTA sectors"
+				);
+			} catch (err) {
+				document.querySelector('#valuePieEquity').innerHTML = '';
+				document.querySelector('#valuePieEquity').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function fetchEmissionsPie() {
-			new PieExploded(
-				document.querySelector('#emissionsPieBonds'),
-				bondsEmissionsPieData,
-				'tonnes CO<sub>2</sub> emissions',
-				"of assets' emissions covered by PACTA sectors"
-			);
-			new PieExploded(
-				document.querySelector('#emissionsPieEquity'),
-				equityEmissionsPieData,
-				'tonnes CO<sub>2</sub> emissions',
-				"of assets' emissions covered by PACTA sectors"
-			);
+			try {
+				new PieExploded(
+					document.querySelector('#emissionsPieBonds'),
+					bondsEmissionsPieData,
+					'tonnes CO<sub>2</sub> emissions',
+					"of assets' emissions covered by PACTA sectors"
+				);
+			} catch (err) {
+				document.querySelector('#emissionsPieBonds').innerHTML = '';
+				document.querySelector('#emissionsPieBonds').appendChild(createErrorMessageDiv());
+			}
+			try {
+				new PieExploded(
+					document.querySelector('#emissionsPieEquity'),
+					equityEmissionsPieData,
+					'tonnes CO<sub>2</sub> emissions',
+					"of assets' emissions covered by PACTA sectors"
+				);
+			} catch (err) {
+				document.querySelector('#emissionsPieEquity').innerHTML = '';
+				document.querySelector('#emissionsPieEquity').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function fetchTechmix() {
-			new techexposure(
-				document.querySelector('#techMixAllBonds'),
-				techmixData,
-				'Corporate Bonds',
-				'iShares Global Corp Bond UCITS ETF',
-				techOrder
-			);
-			new techexposure(
-				document.querySelector('#techMixAllEquity'),
-				techmixData,
-				'Listed Equity',
-				'iShares MSCI World ETF',
-				techOrder
-			);
+			try {
+				new techexposure(
+					document.querySelector('#techMixAllBonds'),
+					techmixData,
+					'Corporate Bonds',
+					'iShares Global Corp Bond UCITS ETF',
+					techOrder
+				);
+			} catch (err) {
+				document.querySelector('#techMixAllBonds').innerHTML = '';
+				document.querySelector('#techMixAllBonds').appendChild(createErrorMessageDiv());
+			}
+			try {
+				new techexposure(
+					document.querySelector('#techMixAllEquity'),
+					techmixData,
+					'Listed Equity',
+					'iShares MSCI World ETF',
+					techOrder
+				);
+			} catch (err) {
+				document.querySelector('#techMixAllEquity').innerHTML = '';
+				document.querySelector('#techMixAllEquity').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function fetchMap() {
-			new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
-				default_class: 'Corporate Bonds'
-			});
-			new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
-				default_class: 'Listed Equity'
-			});
+			try {
+				new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
+					default_class: 'Corporate Bonds'
+				});
+			} catch (err) {
+				document.querySelector('#mapBonds').innerHTML = '';
+				document.querySelector('#mapBonds').appendChild(createErrorMessageDiv());
+			}
+
+			try {
+				new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
+					default_class: 'Listed Equity'
+				});
+			} catch (err) {
+				document.querySelector('#mapEquity').innerHTML = '';
+				document.querySelector('#mapEquity').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		fetchValuePie();

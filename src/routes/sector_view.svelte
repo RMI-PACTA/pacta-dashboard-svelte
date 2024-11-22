@@ -10,31 +10,52 @@
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
 	import { time_line } from '../js/time_line.js';
+	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
 	import * as d3 from 'd3';
 	import { union } from 'd3-array';
 
 	onMount(() => {
 		function fetchExposureStats() {
-			new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+			try {
+				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+			} catch (err) {
+				document.querySelector('#exposure-stats').innerHTML = '';
+				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function fetchTechmix() {
-			new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
+			try {
+				new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
+			} catch (err) {
+				document.querySelector('#techmix-plot').innerHTML = '';
+				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function fetchTrajectoryAlignmentIfApplicable() {
-			const volTrajectorySectors = ['Power', 'Automotive', 'Oil&Gas', 'Coal'];
-			let chosenSector = document.querySelector('#sector_selector').value;
-			if (volTrajectorySectors.includes(chosenSector)) {
-						document.querySelector('#trajectory-box').classList.remove('hidden');
-						new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
-					} else {
-						document.querySelector('#trajectory-box').classList.add('hidden');
-					}
+			try {
+				const volTrajectorySectors = ['Power', 'Automotive', 'Oil&Gas', 'Coal'];
+				let chosenSector = document.querySelector('#sector_selector').value;
+				if (volTrajectorySectors.includes(chosenSector)) {
+					document.querySelector('#trajectory-box').classList.remove('hidden');
+					new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
+				} else {
+					document.querySelector('#trajectory-box').classList.add('hidden');
+				}
+			} catch (err) {
+				document.querySelector('#trajectory-box').innerHTML = '';
+				document.querySelector('#trajectory-box').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function fetchEmissionIntensityPlot() {
-			new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
+			try {
+				new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
+			} catch (err) {
+				document.querySelector('#emission-intensity-plot').innerHTML = '';
+				document.querySelector('#emission-intensity-plot').appendChild(createErrorMessageDiv());
+			}
 		}
 
 		function setValuesSectorSelectors() {
@@ -87,20 +108,32 @@
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 
-			let check = [filteredTechmixData, filteredVolTrajData, filteredEmissionsData].some(x => x.length != 0)
+			let check = [filteredTechmixData, filteredVolTrajData, filteredEmissionsData].some(
+				(x) => x.length != 0
+			);
 
-			return(check)
-		};
+			return check;
+		}
 
 		function handleNoDataForAssetSectorCombination() {
 			document.querySelector('#analysis-content').classList.add('hidden');
 			document.querySelector('#alert-message').classList.remove('hidden');
-		};
+		}
 
 		function showAnalysisHideAlert() {
 			document.querySelector('#analysis-content').classList.remove('hidden');
 			document.querySelector('#alert-message').classList.add('hidden');
-		};
+		}
+
+		function handleNoDataParameterSelection() {
+			document.querySelector('#analysis-plots').classList.add('hidden');
+			document.querySelector('#alert-message-parameters').classList.remove('hidden');
+		}
+
+		function showAnalysisHideAlertParameters() {
+			document.querySelector('#analysis-plots').classList.remove('hidden');
+			document.querySelector('#alert-message-parameters').classList.add('hidden');
+		}
 
 		function updateScenarioSourceSelector() {
 			let selectedSource = document.querySelector('#scenario_source_selector').value;
@@ -124,12 +157,17 @@
 
 			let scenarioSources = Array.from(scenarioSourcesTechMix.union(scenarioSourcesVolTraj));
 
-			const scenarioSourceSelector = document.querySelector('#scenario_source_selector');
-			scenarioSourceSelector.length = 0;
-			scenarioSources.forEach((source) => scenarioSourceSelector.add(new Option(source, source)));
-			scenarioSourceSelector.options[
-				Math.max(0, scenarioSources.indexOf(selectedSource))
-			].selected = 'selected';
+			if (scenarioSources.length != 0) {
+				showAnalysisHideAlertParameters();
+				const scenarioSourceSelector = document.querySelector('#scenario_source_selector');
+				scenarioSourceSelector.length = 0;
+				scenarioSources.forEach((source) => scenarioSourceSelector.add(new Option(source, source)));
+				scenarioSourceSelector.options[
+					Math.max(0, scenarioSources.indexOf(selectedSource))
+				].selected = 'selected';
+			} else {
+				handleNoDataParameterSelection();
+			}
 		}
 
 		function updateScenarioSelector() {
@@ -142,11 +180,17 @@
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.scenario_source == selectedSource);
 			let scenarios = d3.map(filteredTechmixData, (d) => d.scenario).keys();
-			const scenarioSelector = document.querySelector('#scenario_selector');
-			scenarioSelector.length = 0;
-			scenarios.forEach((scenario) => scenarioSelector.add(new Option(scenario, scenario)));
-			scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected =
-				'selected';
+
+			if (scenarios.length != 0) {
+				showAnalysisHideAlertParameters();
+				const scenarioSelector = document.querySelector('#scenario_selector');
+				scenarioSelector.length = 0;
+				scenarios.forEach((scenario) => scenarioSelector.add(new Option(scenario, scenario)));
+				scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected =
+					'selected';
+			} else {
+				handleNoDataParameterSelection();
+			}
 		}
 
 		function updateAllocationMethodSelector() {
@@ -171,14 +215,19 @@
 
 			let allocationMethods = Array.from(allocationsEmissions.union(allocationsVolTraj));
 
-			const allocationMethodSelector = document.querySelector('#allocation_method_selector');
-			allocationMethodSelector.length = 0;
-			allocationMethods.forEach((allocation) =>
-				allocationMethodSelector.add(new Option(allocation, allocation))
-			);
-			allocationMethodSelector.options[
-				Math.max(0, allocationMethods.indexOf(selectedAllocation))
-			].selected = 'selected';
+			if (allocationMethods.length != 0) {
+				showAnalysisHideAlertParameters();
+				const allocationMethodSelector = document.querySelector('#allocation_method_selector');
+				allocationMethodSelector.length = 0;
+				allocationMethods.forEach((allocation) =>
+					allocationMethodSelector.add(new Option(allocation, allocation))
+				);
+				allocationMethodSelector.options[
+					Math.max(0, allocationMethods.indexOf(selectedAllocation))
+				].selected = 'selected';
+			} else {
+				handleNoDataParameterSelection();
+			}
 		}
 
 		function updateEquityMarketSelector() {
@@ -203,11 +252,16 @@
 
 			let equityMarkets = Array.from(equityMarketsTechMix.union(equityMarketsVolTraj));
 
-			const equityMarketSelector = document.querySelector('#equity_market_selector');
-			equityMarketSelector.length = 0;
-			equityMarkets.forEach((market) => equityMarketSelector.add(new Option(market, market)));
-			equityMarketSelector.options[Math.max(0, equityMarkets.indexOf(selectedMarket))].selected =
-				'selected';
+			if (equityMarkets.length != 0) {
+				showAnalysisHideAlertParameters();
+				const equityMarketSelector = document.querySelector('#equity_market_selector');
+				equityMarketSelector.length = 0;
+				equityMarkets.forEach((market) => equityMarketSelector.add(new Option(market, market)));
+				equityMarketSelector.options[Math.max(0, equityMarkets.indexOf(selectedMarket))].selected =
+					'selected';
+			} else {
+				handleNoDataParameterSelection();
+			}
 		}
 
 		function updateBenchmarkSelector() {
@@ -233,11 +287,16 @@
 
 			let benchmarks = Array.from(benchmarksTechmix.union(benchmarksVolTraj));
 
-			const benchmarkSelector = document.querySelector('#benchmark_selector');
-			benchmarkSelector.length = 0;
-			benchmarks.forEach((benchmark) => benchmarkSelector.add(new Option(benchmark, benchmark)));
-			benchmarkSelector.options[Math.max(0, benchmarks.indexOf(selectedBenchmark))].selected =
-				'selected';
+			if (benchmarks.length != 0) {
+				showAnalysisHideAlertParameters();
+				const benchmarkSelector = document.querySelector('#benchmark_selector');
+				benchmarkSelector.length = 0;
+				benchmarks.forEach((benchmark) => benchmarkSelector.add(new Option(benchmark, benchmark)));
+				benchmarkSelector.options[Math.max(0, benchmarks.indexOf(selectedBenchmark))].selected =
+					'selected';
+			} else {
+				handleNoDataParameterSelection();
+			}
 		}
 
 		function addEventListeners() {
@@ -259,7 +318,7 @@
 					fetchEmissionIntensityPlot();
 				} else {
 					handleNoDataForAssetSectorCombination();
-				};
+				}
 			});
 
 			sector_selector.addEventListener('change', function () {
@@ -275,7 +334,7 @@
 					fetchEmissionIntensityPlot();
 				} else {
 					handleNoDataForAssetSectorCombination();
-				};
+				}
 			});
 
 			asset_class_selector.addEventListener('change', function () {
@@ -292,7 +351,7 @@
 					fetchEmissionIntensityPlot();
 				} else {
 					handleNoDataForAssetSectorCombination();
-				};
+				}
 			});
 			const benchmark_selector = document.querySelector('#benchmark_selector');
 			benchmark_selector.addEventListener('change', function () {
@@ -339,7 +398,7 @@
 			fetchEmissionIntensityPlot();
 		} else {
 			handleNoDataForAssetSectorCombination();
-		};
+		}
 	});
 </script>
 
@@ -402,7 +461,7 @@
 			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
-			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">
+			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300" id="analysis-plots">
 				<div class="plot-trajectory-box grid p-4 bg-orange-300" id="trajectory-box">
 					<div class="trajectory-explanation bg-cyan-300">
 						<h4 class="h4">Production volume alignment over time for technologies in the sector</h4>
@@ -493,9 +552,23 @@
 			</div>
 		</div>
 	</div>
+	<div
+		class="alert-message bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+		role="alert"
+		id="alert-message-parameters"
+	>
+		<p class="font-bold">No data found for the parameter selection</p>
+		<p class="text-sm">
+			Please make a different selecion in the parameters panel or change the asset class or sector.
+		</p>
+	</div>
 </div>
 
-<div class="alert-message bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden" role="alert" id="alert-message">
+<div
+	class="alert-message bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+	role="alert"
+	id="alert-message"
+>
 	<p class="font-bold">No data found for this asset class / sector combination</p>
 	<p class="text-sm">Please make a different selecion.</p>
 </div>

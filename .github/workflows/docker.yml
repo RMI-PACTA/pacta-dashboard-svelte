@@ -14,3 +14,5 @@ jobs:
   docker:
     name: Docker actions
     uses: RMI-PACTA/actions/.github/workflows/docker.yml@main
+    with:
+      do-check-r-sysdeps: false

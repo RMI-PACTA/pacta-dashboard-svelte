@@ -19,8 +19,13 @@ jobs:
           node-version: '18.18.2'
           cache: 'npm'
       - run: npm install
+      - name: Copy sample data
+        run: |
+          mkdir -p src/data
+          cp sample-data/. src/data/
 
   unit_tests:
+    name: Run Unit Tests
     needs: setup
     runs-on: ubuntu-latest
     steps:

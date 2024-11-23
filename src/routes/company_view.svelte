@@ -4,6 +4,7 @@
 	import companyBubbleData from '../json/data_company_bubble.json';
 	import companyTechmixData from '../json/data_techexposure_company_companies.json';
 	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json';
+	import techOrder from '../json/tech_order_in_sectors.json';
 	import { company_bubble } from '../js/company_bubble.js';
 	import { techexposure_company } from '../js/techexposure_company.js';
 
@@ -17,9 +18,8 @@
 			new techexposure_company(
 				document.querySelector('#techmix-plot'),
 				companyTechmixData,
-				undefined,
-				{},
-				portfolioTechmixData
+				portfolioTechmixData,
+				techOrder
 			);
 		}
 		function addEventListeners() {

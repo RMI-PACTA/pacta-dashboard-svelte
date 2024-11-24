@@ -22,8 +22,8 @@ export class techexposure_company {
 		const width = 928;
 		const height = 650;
 		const marginTop = 40;
-		const marginRight = 50;
-		const marginBottom = 180;
+		const marginRight = 70;
+		const marginBottom = 140;
 		let marginLeft = 90;
 
 		// Chart parameters
@@ -73,7 +73,7 @@ export class techexposure_company {
 			let long_label_down = findLongestName(subdata_down, 'id');
 			let long_label_up = findLongestName(subdata_up, 'id');
 			let long_label = long_label_down >= long_label_up ? long_label_down : long_label_up;
-			let label_width = long_label.length * 5.5;
+			let label_width = long_label.length * 8;
 			
 			if (marginLeft < label_width) {
 				let margin_left_new = label_width;
@@ -176,14 +176,16 @@ export class techexposure_company {
 							return weights_strings[i];
 						})
 				)
-				.call((g) => g.select('.domain').remove());
+				.call((g) => g.select('.domain').remove())
+				.selectAll('text')
+				.attr('font-size', '1.5em');
 
 			svg.append('g')
 			.attr('class','weights_label')
 				.append('text')
 				.attr('x', width - marginRight + 5 + 1)
 				.attr('y', groups_up.length * bar_height_space + port_gap - 5 + marginTop)
-				.attr('font-size', '10')
+				.attr('font-size', '1.1em')
 				.text(weights_title);
 
 			// Legend
@@ -239,7 +241,7 @@ export class techexposure_company {
 				'translate(' +
 					(width - marginRight)+
 					',' +
-					(height - 2*marginBottom/3 + (Math.floor(legend_data.length / nr_labels_in_row) + 1) * 50) +
+					(height - marginBottom/6) +
 					')'
 			);
 
@@ -259,7 +261,7 @@ export class techexposure_company {
 				.attr('y', 0)
 				.style('text-anchor', 'end')
 				.style('alignment-baseline', 'central')
-				.style('font-size', '0.7em')
+				.style('font-size', '0.9em')
 				.text((d) => d);
 		
 
@@ -376,7 +378,9 @@ export class techexposure_company {
 			y_labels_group
 				.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + graph_start_height )+ ')')
 				.call(d3.axisLeft(y).tickSize(0))
-				.call((g) => g.select('.domain').remove());
+				.call((g) => g.select('.domain').remove())
+				.selectAll('text')
+				.attr('font-size', '1.5em');
 
 			var color = d3.scaleOrdinal(d3.schemeCategory10);
 

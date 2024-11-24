@@ -32,8 +32,12 @@ export class techexposure_company {
 
 		// Labels
 		let hover_over_sec = { before_sec: ' of ', after_sec: ' sector' },
-		weights_title = 'Weights',
-		footnote_lab = { befor_scen: '* Aligned to ', after_scen: ' scenario in year ', after_year: '.' };
+			weights_title = 'Weights',
+			footnote_lab = {
+				befor_scen: '* Aligned to ',
+				after_scen: ' scenario in year ',
+				after_year: '.'
+			};
 
 		// Create the svg container
 		const svg = this.container
@@ -50,220 +54,235 @@ export class techexposure_company {
 			.attr('class', 'd3tooltip')
 			.style('display', 'none');
 
-			let selected_sector = document.querySelector('#sector_selector').value,
+		let selected_sector = document.querySelector('#sector_selector').value,
 			selected_class = document.querySelector('#asset_class_selector').value;
-			let selected_sector_org = data_down.filter(
-				(d) => d.ald_sector_translation == selected_sector
-			)[0]['ald_sector'];
-			
-			let [subdata_up, undefined] = getDataBarsAndWeights(data_up, selected_class, selected_sector);
-			subdata_up = orderData(subdata_up, tech_order.filter(d => d.sector == selected_sector)[0].tech_order);
-			
-			// artificially add company name translations
-			data_down.forEach( (item, index) => {
-				data_down[index]['id_translation'] = item.id;
-			});
-			let [subdata_down, subdata_weights] = getDataBarsAndWeights(
-				data_down,
-				selected_class,
-				selected_sector
-			);
-			subdata_down = orderData(subdata_down, tech_order.filter(d => d.sector == selected_sector)[0].tech_order);
-			
-			let long_label_down = findLongestName(subdata_down, 'id');
-			let long_label_up = findLongestName(subdata_up, 'id');
-			let long_label = long_label_down >= long_label_up ? long_label_down : long_label_up;
-			let label_width = long_label.length * 8;
-			
-			if (marginLeft < label_width) {
-				let margin_left_new = label_width;
-				marginLeft = margin_left_new;
-			}
-			
-			// Axes
-			let y = d3.scaleBand();
-			let x = d3.scaleLinear().domain([0, 1]).range([0, width - marginLeft - marginRight]);
+		let selected_sector_org = data_down.filter(
+			(d) => d.ald_sector_translation == selected_sector
+		)[0]['ald_sector'];
 
-			let yWeights = d3.scaleBand();
-			
-			let subgroups = d3.keys(subdata_down[0]).slice(1);
-			
-						let groups_down = d3
-							.map(subdata_down, function (d) {
-								return d.id;
-							})
-							.keys();
-						let groups_up = d3
-							.map(subdata_up, function (d) {
-								return d.id;
-							})
-							.keys();
-			
-			let nr_bars = groups_up.length + groups_down.length;
-			let bar_height_space = (height - marginTop - marginBottom - port_gap) / nr_bars;
+		let [subdata_up, undefined] = getDataBarsAndWeights(data_up, selected_class, selected_sector);
+		subdata_up = orderData(
+			subdata_up,
+			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order
+		);
 
-		let y_labels_group_up = svg
-		.append('g')
-		.attr('class', 'y_axis_labels_up');
+		// artificially add company name translations
+		data_down.forEach((item, index) => {
+			data_down[index]['id_translation'] = item.id;
+		});
+		let [subdata_down, subdata_weights] = getDataBarsAndWeights(
+			data_down,
+			selected_class,
+			selected_sector
+		);
+		subdata_down = orderData(
+			subdata_down,
+			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order
+		);
 
-		let y_labels_group_down = svg
-		.append('g')
-		.attr('class', 'y_axis_labels_down');
+		let long_label_down = findLongestName(subdata_down, 'id');
+		let long_label_up = findLongestName(subdata_up, 'id');
+		let long_label = long_label_down >= long_label_up ? long_label_down : long_label_up;
+		let label_width = long_label.length * 8;
+
+		if (marginLeft < label_width) {
+			let margin_left_new = label_width;
+			marginLeft = margin_left_new;
+		}
+
+		// Axes
+		let y = d3.scaleBand();
+		let x = d3
+			.scaleLinear()
+			.domain([0, 1])
+			.range([0, width - marginLeft - marginRight]);
+
+		let yWeights = d3.scaleBand();
+
+		let subgroups = d3.keys(subdata_down[0]).slice(1);
+
+		let groups_down = d3
+			.map(subdata_down, function (d) {
+				return d.id;
+			})
+			.keys();
+		let groups_up = d3
+			.map(subdata_up, function (d) {
+				return d.id;
+			})
+			.keys();
+
+		let nr_bars = groups_up.length + groups_down.length;
+		let bar_height_space = (height - marginTop - marginBottom - port_gap) / nr_bars;
+
+		let y_labels_group_up = svg.append('g').attr('class', 'y_axis_labels_up');
+
+		let y_labels_group_down = svg.append('g').attr('class', 'y_axis_labels_down');
 
 		let bars_group = svg
-		.append('g')
-		.attr('class', 'bars_group')
-		.attr('transform', 'translate(' + marginLeft + ',' + marginTop + ')');
+			.append('g')
+			.attr('class', 'bars_group')
+			.attr('transform', 'translate(' + marginLeft + ',' + marginTop + ')');
 
-			drawStackedBarGroup(
-				bars_group,
-				x,
-				y,
-				y_labels_group_up,
-				'bars_up',
-				subdata_up,
-				subgroups,
-				groups_up,
-				0,
-				width - marginRight - marginLeft,
-				bar_height_space,
-				bar_gap,
-				selected_sector_org
-			);
-			drawStackedBarGroup(
-				bars_group,
-				x,
-				y,
-				y_labels_group_down,
-				'bars_down',
-				subdata_down,
-				subgroups,
-				groups_down,
-				groups_up.length * bar_height_space + port_gap,
-				width - marginRight - marginLeft,
-				bar_height_space,
-				bar_gap,
-				selected_sector_org
-			);
+		drawStackedBarGroup(
+			bars_group,
+			x,
+			y,
+			y_labels_group_up,
+			'bars_up',
+			subdata_up,
+			subgroups,
+			groups_up,
+			0,
+			width - marginRight - marginLeft,
+			bar_height_space,
+			bar_gap,
+			selected_sector_org
+		);
+		drawStackedBarGroup(
+			bars_group,
+			x,
+			y,
+			y_labels_group_down,
+			'bars_down',
+			subdata_down,
+			subgroups,
+			groups_down,
+			groups_up.length * bar_height_space + port_gap,
+			width - marginRight - marginLeft,
+			bar_height_space,
+			bar_gap,
+			selected_sector_org
+		);
 
-	var formatter = d3.format('.0%');
-	
-	svg.append('g').attr('class', 'xaxis_group')
-				.attr('transform', 'translate('+ marginLeft + ',' + (height - marginBottom)+ ')')
-				.call(d3.axisBottom(x).tickFormat(formatter))
-				.selectAll('text')
-				.style('text-anchor', 'middle');
+		var formatter = d3.format('.0%');
 
+		svg
+			.append('g')
+			.attr('class', 'xaxis_group')
+			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginBottom) + ')')
+			.call(d3.axisBottom(x).tickFormat(formatter))
+			.selectAll('text')
+			.style('text-anchor', 'middle');
 
-			var weights_strings = subdata_weights.map(function (d) {
-				let weight_perc = d.port_weight * 100;
-				return weight_perc.toFixed(2) + '%';
-			});
+		var weights_strings = subdata_weights.map(function (d) {
+			let weight_perc = d.port_weight * 100;
+			return weight_perc.toFixed(2) + '%';
+		});
 
-			yWeights.range([0, groups_down.length * bar_height_space]).domain(groups_down);
+		yWeights.range([0, groups_down.length * bar_height_space]).domain(groups_down);
 
-			svg.append('g').attr('class', 'y_axis_weights_labels')
-				.attr(
-					'transform',
-					'translate( ' + (width - marginRight + 5) + ', ' + (groups_up.length * bar_height_space + port_gap + marginTop) + ' )'
-				)
-				.call(
-					d3
-						.axisRight(yWeights)
-						.tickSize(0)
-						.tickValues(groups_down)
-						.tickFormat(function (d, i) {
-							return weights_strings[i];
-						})
-				)
-				.call((g) => g.select('.domain').remove())
-				.selectAll('text')
-				.attr('font-size', '1.5em');
-
-			svg.append('g')
-			.attr('class','weights_label')
-				.append('text')
-				.attr('x', width - marginRight + 5 + 1)
-				.attr('y', groups_up.length * bar_height_space + port_gap - 5 + marginTop)
-				.attr('font-size', '1.1em')
-				.text(weights_title);
-
-			// Legend
-			let legend = svg.append('g').attr('class', 'legend')
-			.attr('transform', 'translate( '+ (marginLeft) +',' + (height -  2*marginBottom/3)+ ')');
-			let legend_data = [];
-
-			subgroups.forEach( (item, index) => {
-				legend_data[index] = {};
-				legend_data[index].technology = item;
-				legend_data[index].technology_translation = data_down.filter(
-					(d) => d.technology == item
-				)[0]['technology_translation'];
-				legend_data[index].class = selected_sector_org + ' ' + item;
-			});
-
-			
-			let long_label_leg = findLongestName(legend_data, 'technology_translation');
-
-			let label_width_leg = long_label_leg.length * 8;
-
-			let nr_labels_in_row = Math.round((width - marginLeft - marginRight)/ (label_width_leg + 45));
-
-			if (Math.ceil(legend_data.length / nr_labels_in_row) == 1) {
-				label_width_leg = Math.max(100, label_width_leg);
-			}
-
-			legend
-				.selectAll('rect')
-				.data(legend_data)
-				.enter()
-				.append('rect')
-				.attr('class', (d) => d.class)
-				.attr('width', 15)
-				.attr('height', 15)
-				.attr('x', (d, i) => (i % nr_labels_in_row) * (label_width_leg + 45))
-				.attr('y', (d, i) => Math.floor(i / nr_labels_in_row) * 30);
-
-			legend
-				.selectAll('text')
-				.data(legend_data)
-				.enter()
-				.append('text')
-				.text((d) => d.technology_translation)
-				.style('alignment-baseline', 'central')
-				.style('text-anchor', 'start')
-				.attr('font-size', '0.7em')
-				.attr('x', (d, i) => (i % nr_labels_in_row) * (label_width_leg + 45) + 20)
-				.attr('y', (d, i) => Math.floor(i / nr_labels_in_row) * 30 + 7);
-
-		let footnote = svg.append('g').attr('class', 'footnote').attr(
+		svg
+			.append('g')
+			.attr('class', 'y_axis_weights_labels')
+			.attr(
 				'transform',
-				'translate(' +
-					(width - marginRight)+
-					',' +
-					(height - marginBottom/6) +
-					')'
+				'translate( ' +
+					(width - marginRight + 5) +
+					', ' +
+					(groups_up.length * bar_height_space + port_gap + marginTop) +
+					' )'
+			)
+			.call(
+				d3
+					.axisRight(yWeights)
+					.tickSize(0)
+					.tickValues(groups_down)
+					.tickFormat(function (d, i) {
+						return weights_strings[i];
+					})
+			)
+			.call((g) => g.select('.domain').remove())
+			.selectAll('text')
+			.attr('font-size', '1.5em');
+
+		svg
+			.append('g')
+			.attr('class', 'weights_label')
+			.append('text')
+			.attr('x', width - marginRight + 5 + 1)
+			.attr('y', groups_up.length * bar_height_space + port_gap - 5 + marginTop)
+			.attr('font-size', '1.1em')
+			.text(weights_title);
+
+		// Legend
+		let legend = svg
+			.append('g')
+			.attr('class', 'legend')
+			.attr(
+				'transform',
+				'translate( ' + marginLeft + ',' + (height - (2 * marginBottom) / 3) + ')'
+			);
+		let legend_data = [];
+
+		subgroups.forEach((item, index) => {
+			legend_data[index] = {};
+			legend_data[index].technology = item;
+			legend_data[index].technology_translation = data_down.filter((d) => d.technology == item)[0][
+				'technology_translation'
+			];
+			legend_data[index].class = selected_sector_org + ' ' + item;
+		});
+
+		let long_label_leg = findLongestName(legend_data, 'technology_translation');
+
+		let label_width_leg = long_label_leg.length * 8;
+
+		let nr_labels_in_row = Math.round((width - marginLeft - marginRight) / (label_width_leg + 45));
+
+		if (Math.ceil(legend_data.length / nr_labels_in_row) == 1) {
+			label_width_leg = Math.max(100, label_width_leg);
+		}
+
+		legend
+			.selectAll('rect')
+			.data(legend_data)
+			.enter()
+			.append('rect')
+			.attr('class', (d) => d.class)
+			.attr('width', 15)
+			.attr('height', 15)
+			.attr('x', (d, i) => (i % nr_labels_in_row) * (label_width_leg + 45))
+			.attr('y', (d, i) => Math.floor(i / nr_labels_in_row) * 30);
+
+		legend
+			.selectAll('text')
+			.data(legend_data)
+			.enter()
+			.append('text')
+			.text((d) => d.technology_translation)
+			.style('alignment-baseline', 'central')
+			.style('text-anchor', 'start')
+			.attr('font-size', '0.7em')
+			.attr('x', (d, i) => (i % nr_labels_in_row) * (label_width_leg + 45) + 20)
+			.attr('y', (d, i) => Math.floor(i / nr_labels_in_row) * 30 + 7);
+
+		let footnote = svg
+			.append('g')
+			.attr('class', 'footnote')
+			.attr(
+				'transform',
+				'translate(' + (width - marginRight) + ',' + (height - marginBottom / 6) + ')'
 			);
 
-			let footnote_label =
-				footnote_lab.befor_scen +
-				data_up.filter((d) => d.scenario != 'production').map((d) => d.scenario)[0] +
-				footnote_lab.after_scen +
-				data_up.map((d) => d.year)[0] +
-				footnote_lab.after_year;
+		let footnote_label =
+			footnote_lab.befor_scen +
+			data_up.filter((d) => d.scenario != 'production').map((d) => d.scenario)[0] +
+			footnote_lab.after_scen +
+			data_up.map((d) => d.year)[0] +
+			footnote_lab.after_year;
 
-			footnote
-				.selectAll('text')
-				.data([footnote_label])
-				.enter()
-				.append('text')
-				.attr('x', 0)
-				.attr('y', 0)
-				.style('text-anchor', 'end')
-				.style('alignment-baseline', 'central')
-				.style('font-size', '0.9em')
-				.text((d) => d);
-		
+		footnote
+			.selectAll('text')
+			.data([footnote_label])
+			.enter()
+			.append('text')
+			.attr('x', 0)
+			.attr('y', 0)
+			.style('text-anchor', 'end')
+			.style('alignment-baseline', 'central')
+			.style('font-size', '0.9em')
+			.text((d) => d);
 
 		// Data manipulation functions
 		function getPortfolioWeightsPerIdData(data) {
@@ -287,11 +306,11 @@ export class techexposure_company {
 			data_weights.forEach((item, index) => {
 				subdata_tech[index] = {};
 				subdata_tech[index]['id'] = item.id;
-				data.filter((d) => d.id_translation == item.id).forEach(
-					function (x) {
+				data
+					.filter((d) => d.id_translation == item.id)
+					.forEach(function (x) {
 						subdata_tech[index][x.technology] = x.plan_tech_share;
-					}
-				);
+					});
 			});
 
 			return subdata_tech;
@@ -337,27 +356,27 @@ export class techexposure_company {
 		}
 
 		function getSectorAssetSubsetData(data, asset_class, sector) {
-						let subdata = data.filter((d) => d.asset_class_translation == asset_class);
-						subdata = subdata.filter((d) => d.ald_sector_translation == sector);
-			
-						return subdata;
-					}
+			let subdata = data.filter((d) => d.asset_class_translation == asset_class);
+			subdata = subdata.filter((d) => d.ald_sector_translation == sector);
+
+			return subdata;
+		}
 
 		function orderData(data_unordered, tech_order_sector) {
 			let data_ordered = [];
-						
+
 			data_unordered.forEach(function (item, idx) {
 				data_ordered[idx] = {};
 				data_ordered[idx].id = item.id;
-				tech_order_sector.forEach(function(tech) {
+				tech_order_sector.forEach(function (tech) {
 					data_ordered[idx][tech] = item[tech];
-				})
+				});
 			});
-			
+
 			return data_ordered;
 		}
 
-		// Plotting functions 
+		// Plotting functions
 		function drawStackedBarGroup(
 			bars_group,
 			x,
@@ -376,7 +395,7 @@ export class techexposure_company {
 			y.range([0, groups.length * bar_height]).domain(groups);
 
 			y_labels_group
-				.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + graph_start_height )+ ')')
+				.attr('transform', 'translate(' + marginLeft + ',' + (marginTop + graph_start_height) + ')')
 				.call(d3.axisLeft(y).tickSize(0))
 				.call((g) => g.select('.domain').remove())
 				.selectAll('text')

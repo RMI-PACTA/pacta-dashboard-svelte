@@ -9,6 +9,9 @@
 	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { company_bubble } from '../js/company_bubble.js';
 	import { techexposure_company } from '../js/techexposure_company.js';
+	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
+	import * as d3 from 'd3';
+	import { union } from 'd3-array';
 
 	onMount(() => {
 		function fetchExposureStats() {
@@ -18,7 +21,7 @@
 				document.querySelector('#exposure-stats').innerHTML = '';
 				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
 			}
-		}
+		};
 
 		function fetchCompanyBubble() {
 			try {
@@ -27,7 +30,8 @@
 				document.querySelector('#bubble-plot').innerHTML = '';
 				document.querySelector('#bubble-plot').appendChild(createErrorMessageDiv());
 			}
-		}
+		};
+
 		function fetchCompanyTechmix() {
 			try {
 				new techexposure_company(
@@ -40,43 +44,252 @@
 				document.querySelector('#techmix-plot').innerHTML = '';
 				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
 			}
+		};
+
+		function setValuesSectorSelectors() {
+			const sectorSelectorLanding = document.querySelector('#sector_selector_landing');
+			const sectorSelector = document.querySelector('#sector_selector');
+
+			let sectorsBubble = new Set(d3.map(companyBubbleData, (d) => d.ald_sector).keys());
+			let sectorsTechmix = new Set(d3.map(portfolioTechmixData, (d) => d.ald_sector).keys());
+			let sectorsTechmixComp = new Set(d3.map(companyTechmixData, (d) => d.ald_sector).keys());
+			let sectors = Array.from(sectorsBubble.union(sectorsTechmix).union(sectorsTechmixComp));
+
+			sectorSelectorLanding.length = 0;
+			sectorSelector.length = 0;
+			sectors.forEach((sector) => sectorSelectorLanding.add(new Option(sector, sector)));
+			sectors.forEach((sector) => sectorSelector.add(new Option(sector, sector)));
+		};
+
+		function setValuesAssetClassSelector() {
+			const assetClassSelectorLanding = document.querySelector('#asset_class_selector_landing');
+			const assetClassSelector = document.querySelector('#asset_class_selector');
+
+			let classesBubble = new Set(d3.map(companyBubbleData, (d) => d.asset_class).keys());
+			let classesTechmix = new Set(d3.map(portfolioTechmixData, (d) => d.asset_class).keys());
+			let sectorsTechmixComp = new Set(d3.map(companyTechmixData, (d) => d.asset_class).keys());
+			let assetClasses = Array.from(classesBubble.union(classesTechmix).union(sectorsTechmixComp));
+
+			assetClassSelectorLanding.length = 0;
+			assetClassSelector.length = 0;
+			assetClasses.forEach((assetClass) =>
+				assetClassSelectorLanding.add(new Option(assetClass, assetClass))
+			);
+			assetClasses.forEach((assetClass) =>
+				assetClassSelector.add(new Option(assetClass, assetClass))
+			);
+		};
+
+		function updateScenarioSourceSelector() {
+			let selectedSource = document.querySelector('#scenario_source_selector').value;
+
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredTechmixData = portfolioTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let scenarioSourcesTechMix = new Set(
+				d3.map(filteredTechmixData, (d) => d.scenario_source).keys()
+			);
+
+			let filteredTechmixCompData = companyTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let scenarioSourcesCompTechMix = new Set(
+				d3.map(filteredTechmixCompData, (d) => d.scenario_source).keys()
+			);
+
+			let filteredBubbleData = companyBubbleData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let scenarioSourcesBubble = new Set(
+				d3.map(filteredBubbleData, (d) => d.scenario_source).keys()
+			);
+
+			let scenarioSources = Array.from(scenarioSourcesTechMix.union(scenarioSourcesCompTechMix).union(scenarioSourcesBubble));
+
+			if (scenarioSources.length != 0) {
+				//showAnalysisHideAlertParameters();
+				const scenarioSourceSelector = document.querySelector('#scenario_source_selector');
+				scenarioSourceSelector.length = 0;
+				scenarioSources.forEach((source) => scenarioSourceSelector.add(new Option(source, source)));
+				scenarioSourceSelector.options[
+					Math.max(0, scenarioSources.indexOf(selectedSource))
+				].selected = 'selected';
+			} else {
+				//handleNoDataParameterSelection();
+			}
+		};
+
+		function updateScenarioSelector() {
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+			let selectedSource = document.querySelector('#scenario_source_selector').value;
+
+			let selectedScenario = document.querySelector('#scenario_selector').value;
+
+			let filteredTechmixData = portfolioTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector)
+				.filter((d) => d.scenario_source == selectedSource);
+			let scenariosTechMix = new Set(
+				d3.map(filteredTechmixData, (d) => d.scenario).keys()
+			);
+
+			let filteredTechmixCompData = companyTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector)
+				.filter((d) => d.scenario_source == selectedSource);
+			let scenariosCompTechMix = new Set(
+				d3.map(filteredTechmixCompData, (d) => d.scenario).keys()
+			);
+
+			let filteredBubbleData = companyBubbleData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector)
+				.filter((d) => d.scenario_source == selectedSource);
+			let scenariosBubble = new Set(
+				d3.map(filteredBubbleData, (d) => d.scenario).keys()
+			);
+
+			let scenarios = Array.from(scenariosTechMix.union(scenariosCompTechMix).union(scenariosBubble));
+
+			if (scenarios.length != 0) {
+				//showAnalysisHideAlertParameters();
+				const scenarioSelector = document.querySelector('#scenario_selector');
+				scenarioSelector.length = 0;
+				scenarios.forEach((scenario) => scenarioSelector.add(new Option(scenario, scenario)));
+				scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected =
+					'selected';
+			} else {
+				//handleNoDataParameterSelection();
+			}
+		};
+
+		function updateAllocationMethodSelector() {
+			let selectedAllocation = document.querySelector('#allocation_method_selector').value;
+
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredTechmixData = portfolioTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let allocationsTechMix = new Set(
+				d3.map(filteredTechmixData, (d) => d.allocation).keys()
+			);
+
+			let filteredTechmixCompData = companyTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let allocationsCompTechMix = new Set(
+				d3.map(filteredTechmixCompData, (d) => d.allocation).keys()
+			);
+
+			let filteredBubbleData = companyBubbleData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+			let allocationsBubble = new Set(
+				d3.map(filteredBubbleData, (d) => d.allocation).keys()
+			);
+
+			let allocationMethods = Array.from(allocationsTechMix.union(allocationsCompTechMix).union(allocationsBubble));
+
+			if (allocationMethods.length != 0) {
+				//showAnalysisHideAlertParameters();
+				const allocationMethodSelector = document.querySelector('#allocation_method_selector');
+				allocationMethodSelector.length = 0;
+				allocationMethods.forEach((allocation) =>
+					allocationMethodSelector.add(new Option(capitalizeFirstLetter(allocation.replace('_', ' ')), allocation))
+				);
+				allocationMethodSelector.options[
+					Math.max(0, allocationMethods.indexOf(selectedAllocation))
+				].selected = 'selected';
+			} else {
+				//handleNoDataParameterSelection();
+			}
+		};
+
+		function capitalizeFirstLetter(val) {
+			return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 		}
+
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');
+			const asset_class_selector = document.querySelector('#asset_class_selector');
+			const sector_selector = document.querySelector('#sector_selector');
 
 			go_button_landing.addEventListener('click', function () {
+				let chosenAssetClass = document.querySelector('#asset_class_selector_landing').value;
+				let chosenSector = document.querySelector('#sector_selector_landing').value;
+				asset_class_selector.value = chosenAssetClass;
+				sector_selector.value = chosenSector;
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-company-view').classList.toggle('hidden');
+				fetchExposureStats();
+				//if (checkDataAvailability()) {
+					//showAnalysisHideAlert();
+					fetchCompanyBubble();
+					fetchCompanyTechmix();
+				//} else {
+				//	handleNoDataForAssetSectorCombination();
+				//}
 			});
 
-			const go_button = document.querySelector('#go_button');
+			sector_selector.addEventListener('change', function () {
+				fetchExposureStats();
+				//if (checkDataAvailability()) {
+					//showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					fetchCompanyBubble();
+					fetchCompanyTechmix();
+				//} else {
+				//	handleNoDataForAssetSectorCombination();
+				//}
+			});
 
-			// TODO: wire these up correctly. Doesn't make sense to spend too much time on this
-			// now since we'll remove the selectors from inside the plot anyway.
-			go_button.addEventListener('click', function () {
-				const sector_selector = document.querySelector('#sector_selector');
-				const asset_class_selector = document.querySelector('#asset_class_selector');
-				const selects_asset = document.querySelectorAll(
-					'companybubble_class_selector, .techexposure_class_selector'
-				);
-				const selects_sector = document.querySelectorAll(
-					'.companybubble_group_selector, .techexposure_group_selector'
-				);
-				selects_asset.forEach((d) => {
-					d.value = asset_class_selector.value;
-					d.dispatchEvent(new Event('change'));
-				});
-				selects_sector.forEach((d) => {
-					d.value = sector_selector.value;
-					d.dispatchEvent(new Event('change'));
-				});
+			asset_class_selector.addEventListener('change', function () {
+				fetchExposureStats();
+				//if (checkDataAvailability()) {
+					//showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					updateAllocationMethodSelector();
+					fetchCompanyBubble();
+					fetchCompanyTechmix();
+				//} else {
+				//	handleNoDataForAssetSectorCombination();
+				//}
+			});
+			const scenario_source_selector = document.querySelector('#scenario_source_selector');
+			scenario_source_selector.addEventListener('change', function () {
+				updateScenarioSelector();
+				fetchCompanyBubble();
+				fetchCompanyTechmix();
+			});
+			const scenario_selector = document.querySelector('#scenario_selector');
+			scenario_selector.addEventListener('change', function () {
+				fetchCompanyBubble();
+				fetchCompanyTechmix();
+			});
+			const allocation_method_selector = document.querySelector('#allocation_method_selector');
+			allocation_method_selector.addEventListener('change', function () {
+				fetchCompanyBubble();
+				fetchCompanyTechmix();
 			});
 		}
 
+		setValuesSectorSelectors();
+		setValuesAssetClassSelector();
+		updateScenarioSourceSelector();
+		updateScenarioSelector();
+		updateAllocationMethodSelector();
+		addEventListeners();
 		fetchExposureStats();
 		fetchCompanyBubble();
 		fetchCompanyTechmix();
-		addEventListeners();
 	});
 </script>
 
@@ -102,12 +315,10 @@
 	</div>
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
-			<option value="Power">Power</option>
-			<option value="Automotive">Automotive</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
-			<option value="Listed Equity">Listed Equity</option>
-			<option value="Corporate Bonds">Corporate Bonds</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
 	</div>
@@ -116,14 +327,11 @@
 <div class="content p-8 bg-amber-300 hidden" id="content-company-view">
 	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
-			<option value="Power">Power</option>
-			<option value="Automotive">Automotive</option>
+			<option value="Not_selected">Please select</option>
 		</select>
 		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector">
-			<option value="Listed Equity">Listed Equity</option>
-			<option value="Corporate Bonds">Corporate Bonds</option>
+			<option value="Not_selected">Please select</option>
 		</select>
-		<button class="btn variant-outline-surface" id="go_button">Go!</button>
 	</div>
 	<div class="analysis p-4 bg-cyan-300 grid">
 		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">
@@ -175,33 +383,24 @@
 				</div>
 			</div>
 			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
-				<h4 class="h4">Parameters (not working now)</h4>
+				<h4 class="h4">Parameters</h4>
 				<br />
 				<label class="label">
 					<span>Scenario source</span>
 					<select class="select variant-outline-surface" id="scenario_source_selector">
-						<option value="GECO2023">GECO2023</option>
-						<option value="WEO2023">WEO2023</option>
-						<option value="ISF2023">ISF2023</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 				<label class="label">
 					<span>Scenario</span>
 					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="1.5C">1.5C</option>
-						<option value="NDC-LTS">NDC-LTS</option>
-						<option value="Reference">Reference</option>
-						<option value="APS">APS</option>
-						<option value="NZE: 2050">NZE: 2050</option>
-						<option value="STEPS">STEPS</option>
-						<option value="1.5°C">1.5°C</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 				<label class="label">
 					<span>Allocation method</span>
 					<select class="select variant-outline-surface" id="allocation_method_selector">
-						<option value="portfolio_weight">Portfolio weight</option>
-						<option value="ownership_weight">Ownership weight</option>
+						<option value="Not_selected">Please select</option>
 					</select>
 				</label>
 			</div>

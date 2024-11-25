@@ -14,16 +14,19 @@
 		function fetchExposureStats() {
 			try {
 				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
-			} catch (err) {
+			} catch {
 				document.querySelector('#exposure-stats').innerHTML = '';
 				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
 			}
 		}
 
 		function fetchCompanyBubble() {
-			new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData, undefined, {
-				bkg_fill: false
-			});
+			try {
+				new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData);
+			} catch {
+				document.querySelector('#exposure-stats').innerHTML = '';
+				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
+			}
 		}
 		function fetchCompanyTechmix() {
 			new techexposure_company(
@@ -180,20 +183,20 @@
 				<label class="label">
 					<span>Scenario</span>
 					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="GECO2023: 1.5C">GECO2023: 1.5C</option>
-						<option value="GECO2023: NDC-LTS">GECO2023: NDC-LTS</option>
-						<option value="GECO2023: Reference">GECO2023: Reference</option>
-						<option value="WEO2023: APS">WEO2023: APS</option>
-						<option value="WEO2023: NZE: 2050">WEO2023: NZE: 2050</option>
-						<option value="WEO2023: STEPS">WEO2023: STEPS</option>
-						<option value="ISF2023: 1.5°C">ISF2023: 1.5°C</option>
+						<option value="1.5C">1.5C</option>
+						<option value="NDC-LTS">NDC-LTS</option>
+						<option value="Reference">Reference</option>
+						<option value="APS">APS</option>
+						<option value="NZE: 2050">NZE: 2050</option>
+						<option value="STEPS">STEPS</option>
+						<option value="1.5°C">1.5°C</option>
 					</select>
 				</label>
 				<label class="label">
 					<span>Allocation method</span>
-					<select class="select variant-outline-surface" id="asset_class_selector">
-						<option value="Portfolio weight">Portfolio weight</option>
-						<option value="Ownership weight">Ownership weight</option>
+					<select class="select variant-outline-surface" id="allocation_method_selector">
+						<option value="portfolio_weight">Portfolio weight</option>
+						<option value="ownership_weight">Ownership weight</option>
 					</select>
 				</label>
 			</div>

@@ -61,13 +61,18 @@ export class company_bubble {
 
 		// Filter data
 		let sector = document.querySelector('#sector_selector').value,
-			asset_class = document.querySelector('#asset_class_selector').value;
+			asset_class = document.querySelector('#asset_class_selector').value,
+			scenario_source = document.querySelector('#scenario_source_selector').value,
+			scenario = document.querySelector('#scenario_selector').value,
+			allocation = document.querySelector('#allocation_method_selector').value;
 		let subdata = data
 			.filter((d) => d.asset_class == asset_class)
-			.filter((d) => d.ald_sector_translation == sector);
+			.filter((d) => d.ald_sector_translation == sector)
+			.filter((d) => d.scenario_source == scenario_source)
+			.filter((d) => d.scenario == scenario)
+			.filter((d) => d.allocation == allocation);
 
 		var year_future = subdata.map((d) => d.year)[0] + year_span;
-		var scenario = subdata.map((d) => d.scenario)[0];
 		var buffer = 0.0;
 		
 		// Axes

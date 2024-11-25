@@ -30,11 +30,16 @@
 		}
 		function fetchCompanyTechmix() {
 			try {
-				new techexposure_company(document.querySelector('#techmix-plot'), companyTechmixData, portfolioTechmixData, techOrder);
+				new techexposure_company(
+					document.querySelector('#techmix-plot'),
+					companyTechmixData,
+					portfolioTechmixData,
+					techOrder
+				);
 			} catch {
 				document.querySelector('#techmix-plot').innerHTML = '';
 				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
-			}	
+			}
 		}
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');

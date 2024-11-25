@@ -27,7 +27,7 @@ export class company_bubble {
 		const marginRight = 60;
 		const marginBottom = 80;
 		const marginLeft = 80;
-		let size =height - marginTop - marginBottom;
+		let size = height - marginTop - marginBottom;
 
 		// Chart parameters
 		let year_span = 5,
@@ -47,7 +47,7 @@ export class company_bubble {
 			xtooltip = xtitle,
 			ytooltip = ytitle,
 			ztooltip = 'Weight in portfolio (% of AUM)',
-			legend_title = 'Portfolio weight'
+			legend_title = 'Portfolio weight';
 
 		// Create the svg container
 		const svg = this.container
@@ -73,7 +73,7 @@ export class company_bubble {
 
 		var year_future = subdata.map((d) => d.year)[0] + year_span;
 		var buffer = 0.0;
-		
+
 		// Axes
 		let x = d3
 			.scaleLinear()
@@ -112,11 +112,7 @@ export class company_bubble {
 			.attr('class', 'xtitle')
 			.attr(
 				'transform',
-				'translate(' +
-					(size / 2 + marginLeft) +
-					' ,' +
-					(height - marginBottom + 40) +
-					')'
+				'translate(' + (size / 2 + marginLeft) + ' ,' + (height - marginBottom + 40) + ')'
 			)
 			.style('text-anchor', 'middle')
 			.text(xtitle);
@@ -126,11 +122,7 @@ export class company_bubble {
 			.attr('class', 'xsubtitle')
 			.attr(
 				'transform',
-				'translate(' +
-					(size / 2 + marginLeft) +
-					' ,' +
-					(height - marginBottom + 55) +
-					')'
+				'translate(' + (size / 2 + marginLeft) + ' ,' + (height - marginBottom + 55) + ')'
 			)
 			.style('text-anchor', 'middle')
 			.text(xsubtitle);

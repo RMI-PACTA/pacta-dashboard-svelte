@@ -47,8 +47,7 @@ export class company_bubble {
 			xtooltip = xtitle,
 			ytooltip = ytitle,
 			ztooltip = 'Weight in portfolio (% of AUM)',
-			legend_title = 'Portfolio weight',
-			footnote = '* Scenario: ';
+			legend_title = 'Portfolio weight';
 
 		// Create the svg container
 		const svg = this.container
@@ -278,17 +277,6 @@ export class company_bubble {
 			.attr('alignment-baseline', 'central')
 
 			.text(legend_title);
-
-		// Footnote
-		svg
-			.append('text')
-			.attr('class', 'footnote')
-			.attr('transform', 'translate(' + (width - marginRight) + ' ,' + (height - 10) + ')')
-			.attr('x', 0)
-			.attr('y', 0)
-			.attr('font-size', '0.7em')
-			.style('text-anchor', 'end')
-			.text(footnote + scenario + '.');
 
 		let tooltip = d3
 			.select(container_div)

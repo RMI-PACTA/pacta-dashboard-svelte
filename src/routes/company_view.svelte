@@ -1,14 +1,25 @@
 <!-- src/routes/company_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
+	import exposure_stats_data from '../json/data_exposure_stats.json';
 	import companyBubbleData from '../json/data_company_bubble.json';
 	import companyTechmixData from '../json/data_techexposure_company_companies.json';
 	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json';
 	import techOrder from '../json/tech_order_in_sectors.json';
+	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { company_bubble } from '../js/company_bubble.js';
 	import { techexposure_company } from '../js/techexposure_company.js';
 
 	onMount(() => {
+		function fetchExposureStats() {
+			try {
+				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+			} catch (err) {
+				document.querySelector('#exposure-stats').innerHTML = '';
+				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
+			}
+		}
+
 		function fetchCompanyBubble() {
 			new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData, undefined, {
 				bkg_fill: false
@@ -54,6 +65,7 @@
 			});
 		}
 
+		fetchExposureStats();
 		fetchCompanyBubble();
 		fetchCompanyTechmix();
 		addEventListeners();
@@ -119,7 +131,9 @@
 					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum.
 				</p>
 			</div>
-			<div class="analysis-intro-stats sm:col-span-3 bg-green-300">Intro stats</div>
+			<div class="analysis-intro-stats sm:col-span-3 bg-green-300">
+				<div class="exposure-stats" id="exposure-stats"></div>
+			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300">
 			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">

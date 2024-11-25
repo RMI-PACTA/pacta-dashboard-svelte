@@ -36,7 +36,7 @@ export class techmix_sector {
 			let dataYear = data.filter((d) => d.year == year);
 			let greenData = [];
 			uniqueValueTypes.forEach((item, idx) => {
-				let greenDataItem = dataYear.filter((d) => (d.val_type == item & d.green == true));
+				let greenDataItem = dataYear.filter((d) => (d.val_type == item) & (d.green == true));
 				greenData[idx] = {};
 				greenData[idx]['val_type'] = item;
 				if (greenDataItem.length > 0) {
@@ -326,7 +326,9 @@ export class techmix_sector {
 			.attr('y', 20)
 			.text((d) => d);
 
-		let sumGreenBarsInPlot = d3.sum(subdataTechPerYear[0], d => d.greenBars.green_sum) + d3.sum(subdataTechPerYear[1], d => d.greenBars.green_sum);
+		let sumGreenBarsInPlot =
+			d3.sum(subdataTechPerYear[0], (d) => d.greenBars.green_sum) +
+			d3.sum(subdataTechPerYear[1], (d) => d.greenBars.green_sum);
 		if (sumGreenBarsInPlot > 0) {
 			// Append legend for green bars
 			let legendGreen = svg
@@ -345,7 +347,7 @@ export class techmix_sector {
 				.attr('x', 30)
 				.attr('y', 20)
 				.text((d) => d);
-			} 
+		}
 
 		// Add hover overs
 		const tooltip = d3

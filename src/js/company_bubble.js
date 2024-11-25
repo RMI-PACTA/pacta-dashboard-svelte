@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { cumsum } from 'd3-array';
 
 export class company_bubble {
-	constructor(container, data, labels, opts) {
+	constructor(container, data) {
 		let container_div;
 
 		if (typeof container === 'string') {
@@ -69,9 +69,7 @@ export class company_bubble {
 		var year_future = subdata.map((d) => d.year)[0] + year_span;
 		var scenario = subdata.map((d) => d.scenario)[0];
 		var buffer = 0.0;
-		var xmax = d3.max(subdata, (d) => d[xvar]);
-		var ymax = d3.max(subdata, (d) => d[yvar]);
-
+		
 		// Axes
 		let x = d3
 			.scaleLinear()

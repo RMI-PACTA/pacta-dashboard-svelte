@@ -24,17 +24,17 @@
 			try {
 				new company_bubble(document.querySelector('#bubble-plot'), companyBubbleData);
 			} catch {
-				document.querySelector('#exposure-stats').innerHTML = '';
-				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
+				document.querySelector('#bubble-plot').innerHTML = '';
+				document.querySelector('#bubble-plot').appendChild(createErrorMessageDiv());
 			}
 		}
 		function fetchCompanyTechmix() {
-			new techexposure_company(
-				document.querySelector('#techmix-plot'),
-				companyTechmixData,
-				portfolioTechmixData,
-				techOrder
-			);
+			try {
+				new techexposure_company(document.querySelector('#techmix-plot'), companyTechmixData, portfolioTechmixData, techOrder);
+			} catch {
+				document.querySelector('#techmix-plot').innerHTML = '';
+				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
+			}	
 		}
 		function addEventListeners() {
 			const go_button_landing = document.querySelector('#go_button_landing');

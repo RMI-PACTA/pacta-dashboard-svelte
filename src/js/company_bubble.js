@@ -23,11 +23,11 @@ export class company_bubble {
 		// Declare the chart dimensions and margins.
 		const width = 600;
 		const height = 500;
-		const marginTop = 70;
+		const marginTop = 40;
 		const marginRight = 60;
 		const marginBottom = 80;
-		const marginLeft = 70;
-		let size = Math.min(width - marginLeft - marginRight, height - marginTop - marginBottom);
+		const marginLeft = 80;
+		let size =height - marginTop - marginBottom;
 
 		// Chart parameters
 		let year_span = 5,
@@ -47,7 +47,7 @@ export class company_bubble {
 			xtooltip = xtitle,
 			ytooltip = ytitle,
 			ztooltip = 'Weight in portfolio (% of AUM)',
-			legend_title = 'Portfolio weight';
+			legend_title = 'Portfolio weight'
 
 		// Create the svg container
 		const svg = this.container
@@ -113,7 +113,7 @@ export class company_bubble {
 			.attr(
 				'transform',
 				'translate(' +
-					((width - marginLeft - marginRight) / 2 + marginLeft) +
+					(size / 2 + marginLeft) +
 					' ,' +
 					(height - marginBottom + 40) +
 					')'
@@ -127,7 +127,7 @@ export class company_bubble {
 			.attr(
 				'transform',
 				'translate(' +
-					((width - marginLeft - marginRight) / 2 + marginLeft) +
+					(size / 2 + marginLeft) +
 					' ,' +
 					(height - marginBottom + 55) +
 					')'

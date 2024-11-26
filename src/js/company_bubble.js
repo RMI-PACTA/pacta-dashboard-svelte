@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { cumsum } from 'd3-array';
 
 export class company_bubble {
-	constructor(container, data, labels, opts) {
+	constructor(container, data) {
 		let container_div;
 
 		if (typeof container === 'string') {
@@ -23,11 +23,11 @@ export class company_bubble {
 		// Declare the chart dimensions and margins.
 		const width = 600;
 		const height = 500;
-		const marginTop = 70;
+		const marginTop = 40;
 		const marginRight = 60;
 		const marginBottom = 80;
-		const marginLeft = 70;
-		let size = Math.min(width - marginLeft - marginRight, height - marginTop - marginBottom);
+		const marginLeft = 80;
+		let size = height - marginTop - marginBottom;
 
 		// Chart parameters
 		let year_span = 5,
@@ -47,8 +47,7 @@ export class company_bubble {
 			xtooltip = xtitle,
 			ytooltip = ytitle,
 			ztooltip = 'Weight in portfolio (% of AUM)',
-			legend_title = 'Portfolio weight',
-			footnote = '* Scenario: ';
+			legend_title = 'Portfolio weight';
 
 		// Create the svg container
 		const svg = this.container
@@ -61,16 +60,19 @@ export class company_bubble {
 
 		// Filter data
 		let sector = document.querySelector('#sector_selector').value,
-			asset_class = document.querySelector('#asset_class_selector').value;
+			asset_class = document.querySelector('#asset_class_selector').value,
+			scenario_source = document.querySelector('#scenario_source_selector').value,
+			scenario = document.querySelector('#scenario_selector').value,
+			allocation = document.querySelector('#allocation_method_selector').value;
 		let subdata = data
 			.filter((d) => d.asset_class == asset_class)
-			.filter((d) => d.ald_sector_translation == sector);
+			.filter((d) => d.ald_sector_translation == sector)
+			.filter((d) => d.scenario_source == scenario_source)
+			.filter((d) => d.scenario == scenario)
+			.filter((d) => d.allocation == allocation);
 
 		var year_future = subdata.map((d) => d.year)[0] + year_span;
-		var scenario = subdata.map((d) => d.scenario)[0];
 		var buffer = 0.0;
-		var xmax = d3.max(subdata, (d) => d[xvar]);
-		var ymax = d3.max(subdata, (d) => d[yvar]);
 
 		// Axes
 		let x = d3
@@ -110,11 +112,7 @@ export class company_bubble {
 			.attr('class', 'xtitle')
 			.attr(
 				'transform',
-				'translate(' +
-					((width - marginLeft - marginRight) / 2 + marginLeft) +
-					' ,' +
-					(height - marginBottom + 40) +
-					')'
+				'translate(' + (size / 2 + marginLeft) + ' ,' + (height - marginBottom + 40) + ')'
 			)
 			.style('text-anchor', 'middle')
 			.text(xtitle);
@@ -124,11 +122,7 @@ export class company_bubble {
 			.attr('class', 'xsubtitle')
 			.attr(
 				'transform',
-				'translate(' +
-					((width - marginLeft - marginRight) / 2 + marginLeft) +
-					' ,' +
-					(height - marginBottom + 55) +
-					')'
+				'translate(' + (size / 2 + marginLeft) + ' ,' + (height - marginBottom + 55) + ')'
 			)
 			.style('text-anchor', 'middle')
 			.text(xsubtitle);
@@ -275,17 +269,6 @@ export class company_bubble {
 			.attr('alignment-baseline', 'central')
 
 			.text(legend_title);
-
-		// Footnote
-		svg
-			.append('text')
-			.attr('class', 'footnote')
-			.attr('transform', 'translate(' + (width - marginRight) + ' ,' + (height - 10) + ')')
-			.attr('x', 0)
-			.attr('y', 0)
-			.attr('font-size', '0.7em')
-			.style('text-anchor', 'end')
-			.text(footnote + scenario + '.');
 
 		let tooltip = d3
 			.select(container_div)

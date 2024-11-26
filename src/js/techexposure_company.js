@@ -20,7 +20,7 @@ export class techexposure_company {
 
 		// Declare the chart dimensions and margins.
 		const width = 928;
-		const height = 650;
+		const height = 750;
 		const marginTop = 40;
 		const marginRight = 70;
 		const marginBottom = 140;
@@ -55,12 +55,22 @@ export class techexposure_company {
 			.style('display', 'none');
 
 		let selected_sector = document.querySelector('#sector_selector').value,
-			selected_class = document.querySelector('#asset_class_selector').value;
+			selected_class = document.querySelector('#asset_class_selector').value,
+			scenario_source = document.querySelector('#scenario_source_selector').value,
+			scenario = document.querySelector('#scenario_selector').value,
+			allocation = document.querySelector('#allocation_method_selector').value;
 		let selected_sector_org = data_down.filter(
 			(d) => d.ald_sector_translation == selected_sector
 		)[0]['ald_sector'];
 
-		let [subdata_up, undefined] = getDataBarsAndWeights(data_up, selected_class, selected_sector);
+		let [subdata_up, undefined] = getDataBarsAndWeights(
+			data_up,
+			selected_class,
+			selected_sector,
+			scenario_source,
+			scenario,
+			allocation
+		);
 		subdata_up = orderData(
 			subdata_up,
 			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order
@@ -73,7 +83,10 @@ export class techexposure_company {
 		let [subdata_down, subdata_weights] = getDataBarsAndWeights(
 			data_down,
 			selected_class,
-			selected_sector
+			selected_sector,
+			scenario_source,
+			scenario,
+			allocation
 		);
 		subdata_down = orderData(
 			subdata_down,
@@ -316,8 +329,22 @@ export class techexposure_company {
 			return subdata_tech;
 		}
 
-		function getDataBarsAndWeights(data, asset_class, sector) {
-			let subdata = getSectorAssetSubsetData(data, asset_class, sector);
+		function getDataBarsAndWeights(
+			data,
+			asset_class,
+			sector,
+			scenario_source,
+			scenario,
+			allocation
+		) {
+			let subdata = getSectorAssetSubsetData(
+				data,
+				asset_class,
+				sector,
+				scenario_source,
+				scenario,
+				allocation
+			);
 			var subdata_weights = getPortfolioWeightsPerIdData(subdata);
 			let subdata_tech = getTechnologyDataForStacking(subdata, subdata_weights);
 
@@ -355,9 +382,20 @@ export class techexposure_company {
 			}
 		}
 
-		function getSectorAssetSubsetData(data, asset_class, sector) {
-			let subdata = data.filter((d) => d.asset_class_translation == asset_class);
-			subdata = subdata.filter((d) => d.ald_sector_translation == sector);
+		function getSectorAssetSubsetData(
+			data,
+			asset_class,
+			sector,
+			scenario_source,
+			scenario,
+			allocation
+		) {
+			let subdata = data
+				.filter((d) => d.asset_class_translation == asset_class)
+				.filter((d) => d.ald_sector_translation == sector)
+				.filter((d) => d.scenario_source == scenario_source)
+				.filter((d) => d.scenario == scenario)
+				.filter((d) => d.allocation == allocation);
 
 			return subdata;
 		}
@@ -369,9 +407,14 @@ export class techexposure_company {
 				data_ordered[idx] = {};
 				data_ordered[idx].id = item.id;
 				tech_order_sector.forEach(function (tech) {
-					data_ordered[idx][tech] = item[tech];
+					if (Object.keys(item).includes(tech)) {
+						data_ordered[idx][tech] = item[tech];
+					}
 				});
-			});
+				if (Object.keys(item).length != Object.keys(data_ordered[idx]).length) {
+					throw new Error('Not all technologies for the sector found in json/tech_order_in_sectors.json dataset. Please append the dataset with new technologies if needed.');
+				}
+ 			});
 
 			return data_ordered;
 		}

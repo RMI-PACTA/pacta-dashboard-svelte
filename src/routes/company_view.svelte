@@ -395,9 +395,9 @@
 			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
-			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300" id="analysis-plots">
-				<div class="plot-bubble-box grid sm:grid-cols-6 p-4 bg-orange-300">
-					<div class="bubble-explanation sm:col-span-2 bg-cyan-300">
+			<div class="analysis-plots sm:col-span-10 grid sm:grid-cols-6 bg-yellow-300" id="analysis-plots">
+				<div class="plot-bubble-box sm:col-span-3 bg-orange-300">
+					<div class="bubble-explanation  bg-cyan-300">
 						<h4 class="h4">
 							Companies’ expected alignment in low-carbon vs. high-carbon technologies
 						</h4>
@@ -408,10 +408,10 @@
 							sanctus est Lorem ipsum dolor sit amet.
 						</p>
 					</div>
-					<div class="bubble-plot sm:col-span-4 bg-teal-300" id="bubble-plot"></div>
+					<div class="bubble-plot bg-teal-300" id="bubble-plot"></div>
 				</div>
-				<div class="plot-techmix grid sm:grid-cols-6 p-4 bg-orange-300">
-					<div class="techmix-explanation sm:col-span-2 bg-cyan-300">
+				<div class="plot-techmix sm:col-span-3 bg-orange-300">
+					<div class="techmix-explanation bg-cyan-300">
 						<h4 class="h4">
 							Expected Technology Mix in 5 years for portfolio, scneario and selected companies
 						</h4>
@@ -422,7 +422,7 @@
 							sanctus est Lorem ipsum dolor sit amet.
 						</p>
 					</div>
-					<div class="techmix-plot sm:col-span-4 bg-teal-300" id="techmix-plot"></div>
+					<div class="techmix-plot bg-teal-300" id="techmix-plot"></div>
 				</div>
 			</div>
 			<div

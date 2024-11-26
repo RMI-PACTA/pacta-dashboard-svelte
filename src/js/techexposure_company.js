@@ -20,7 +20,7 @@ export class techexposure_company {
 
 		// Declare the chart dimensions and margins.
 		const width = 928;
-		const height = 650;
+		const height = 750;
 		const marginTop = 40;
 		const marginRight = 70;
 		const marginBottom = 140;

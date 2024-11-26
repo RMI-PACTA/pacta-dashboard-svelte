@@ -508,7 +508,8 @@
 			>
 				<p class="font-bold">No data found for the parameter selection</p>
 				<p class="text-sm">
-					Please make a different selecion in the parameters panel or change the asset class or sector.
+					Please make a different selecion in the parameters panel or change the asset class or
+					sector.
 				</p>
 			</div>
 			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">

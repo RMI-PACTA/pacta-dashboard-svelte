@@ -63,7 +63,14 @@ export class techexposure_company {
 			(d) => d.ald_sector_translation == selected_sector
 		)[0]['ald_sector'];
 
-		let [subdata_up, undefined] = getDataBarsAndWeights(data_up, selected_class, selected_sector, scenario_source, scenario, allocation);
+		let [subdata_up, undefined] = getDataBarsAndWeights(
+			data_up,
+			selected_class,
+			selected_sector,
+			scenario_source,
+			scenario,
+			allocation
+		);
 		subdata_up = orderData(
 			subdata_up,
 			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order
@@ -76,9 +83,9 @@ export class techexposure_company {
 		let [subdata_down, subdata_weights] = getDataBarsAndWeights(
 			data_down,
 			selected_class,
-			selected_sector, 
-			scenario_source, 
-			scenario,  
+			selected_sector,
+			scenario_source,
+			scenario,
 			allocation
 		);
 		subdata_down = orderData(
@@ -322,8 +329,22 @@ export class techexposure_company {
 			return subdata_tech;
 		}
 
-		function getDataBarsAndWeights(data, asset_class, sector, scenario_source, scenario, allocation) {
-			let subdata = getSectorAssetSubsetData(data, asset_class, sector, scenario_source, scenario, allocation);
+		function getDataBarsAndWeights(
+			data,
+			asset_class,
+			sector,
+			scenario_source,
+			scenario,
+			allocation
+		) {
+			let subdata = getSectorAssetSubsetData(
+				data,
+				asset_class,
+				sector,
+				scenario_source,
+				scenario,
+				allocation
+			);
 			var subdata_weights = getPortfolioWeightsPerIdData(subdata);
 			let subdata_tech = getTechnologyDataForStacking(subdata, subdata_weights);
 
@@ -361,13 +382,20 @@ export class techexposure_company {
 			}
 		}
 
-		function getSectorAssetSubsetData(data, asset_class, sector, scenario_source, scenario, allocation) {
+		function getSectorAssetSubsetData(
+			data,
+			asset_class,
+			sector,
+			scenario_source,
+			scenario,
+			allocation
+		) {
 			let subdata = data
-			.filter((d) => d.asset_class_translation == asset_class)
-			.filter((d) => d.ald_sector_translation == sector)
-			.filter((d) => d.scenario_source == scenario_source)
-			.filter((d) => d.scenario == scenario)
-			.filter((d) => d.allocation == allocation);
+				.filter((d) => d.asset_class_translation == asset_class)
+				.filter((d) => d.ald_sector_translation == sector)
+				.filter((d) => d.scenario_source == scenario_source)
+				.filter((d) => d.scenario == scenario)
+				.filter((d) => d.allocation == allocation);
 
 			return subdata;
 		}

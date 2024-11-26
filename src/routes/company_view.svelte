@@ -21,7 +21,7 @@
 				document.querySelector('#exposure-stats').innerHTML = '';
 				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
 			}
-		};
+		}
 
 		function fetchCompanyBubble() {
 			try {
@@ -30,7 +30,7 @@
 				document.querySelector('#bubble-plot').innerHTML = '';
 				document.querySelector('#bubble-plot').appendChild(createErrorMessageDiv());
 			}
-		};
+		}
 
 		function fetchCompanyTechmix() {
 			try {
@@ -44,7 +44,7 @@
 				document.querySelector('#techmix-plot').innerHTML = '';
 				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
 			}
-		};
+		}
 
 		function setValuesSectorSelectors() {
 			const sectorSelectorLanding = document.querySelector('#sector_selector_landing');
@@ -59,7 +59,7 @@
 			sectorSelector.length = 0;
 			sectors.forEach((sector) => sectorSelectorLanding.add(new Option(sector, sector)));
 			sectors.forEach((sector) => sectorSelector.add(new Option(sector, sector)));
-		};
+		}
 
 		function setValuesAssetClassSelector() {
 			const assetClassSelectorLanding = document.querySelector('#asset_class_selector_landing');
@@ -78,7 +78,7 @@
 			assetClasses.forEach((assetClass) =>
 				assetClassSelector.add(new Option(assetClass, assetClass))
 			);
-		};
+		}
 
 		function checkDataAvailability() {
 			let selectedClass = document.querySelector('#asset_class_selector').value;
@@ -150,7 +150,9 @@
 				d3.map(filteredBubbleData, (d) => d.scenario_source).keys()
 			);
 
-			let scenarioSources = Array.from(scenarioSourcesTechMix.union(scenarioSourcesCompTechMix).union(scenarioSourcesBubble));
+			let scenarioSources = Array.from(
+				scenarioSourcesTechMix.union(scenarioSourcesCompTechMix).union(scenarioSourcesBubble)
+			);
 
 			if (scenarioSources.length != 0) {
 				showAnalysisHideAlertParameters();
@@ -163,7 +165,7 @@
 			} else {
 				handleNoDataParameterSelection();
 			}
-		};
+		}
 
 		function updateScenarioSelector() {
 			let selectedClass = document.querySelector('#asset_class_selector').value;
@@ -176,27 +178,23 @@
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.scenario_source == selectedSource);
-			let scenariosTechMix = new Set(
-				d3.map(filteredTechmixData, (d) => d.scenario).keys()
-			);
+			let scenariosTechMix = new Set(d3.map(filteredTechmixData, (d) => d.scenario).keys());
 
 			let filteredTechmixCompData = companyTechmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.scenario_source == selectedSource);
-			let scenariosCompTechMix = new Set(
-				d3.map(filteredTechmixCompData, (d) => d.scenario).keys()
-			);
+			let scenariosCompTechMix = new Set(d3.map(filteredTechmixCompData, (d) => d.scenario).keys());
 
 			let filteredBubbleData = companyBubbleData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.scenario_source == selectedSource);
-			let scenariosBubble = new Set(
-				d3.map(filteredBubbleData, (d) => d.scenario).keys()
-			);
+			let scenariosBubble = new Set(d3.map(filteredBubbleData, (d) => d.scenario).keys());
 
-			let scenarios = Array.from(scenariosTechMix.union(scenariosCompTechMix).union(scenariosBubble));
+			let scenarios = Array.from(
+				scenariosTechMix.union(scenariosCompTechMix).union(scenariosBubble)
+			);
 
 			if (scenarios.length != 0) {
 				showAnalysisHideAlertParameters();
@@ -208,7 +206,7 @@
 			} else {
 				handleNoDataParameterSelection();
 			}
-		};
+		}
 
 		function updateAllocationMethodSelector() {
 			let selectedAllocation = document.querySelector('#allocation_method_selector').value;
@@ -219,9 +217,7 @@
 			let filteredTechmixData = portfolioTechmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let allocationsTechMix = new Set(
-				d3.map(filteredTechmixData, (d) => d.allocation).keys()
-			);
+			let allocationsTechMix = new Set(d3.map(filteredTechmixData, (d) => d.allocation).keys());
 
 			let filteredTechmixCompData = companyTechmixData
 				.filter((d) => d.asset_class == selectedClass)
@@ -233,18 +229,20 @@
 			let filteredBubbleData = companyBubbleData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
-			let allocationsBubble = new Set(
-				d3.map(filteredBubbleData, (d) => d.allocation).keys()
-			);
+			let allocationsBubble = new Set(d3.map(filteredBubbleData, (d) => d.allocation).keys());
 
-			let allocationMethods = Array.from(allocationsTechMix.union(allocationsCompTechMix).union(allocationsBubble));
+			let allocationMethods = Array.from(
+				allocationsTechMix.union(allocationsCompTechMix).union(allocationsBubble)
+			);
 
 			if (allocationMethods.length != 0) {
 				showAnalysisHideAlertParameters();
 				const allocationMethodSelector = document.querySelector('#allocation_method_selector');
 				allocationMethodSelector.length = 0;
 				allocationMethods.forEach((allocation) =>
-					allocationMethodSelector.add(new Option(capitalizeFirstLetter(allocation.replace('_', ' ')), allocation))
+					allocationMethodSelector.add(
+						new Option(capitalizeFirstLetter(allocation.replace('_', ' ')), allocation)
+					)
 				);
 				allocationMethodSelector.options[
 					Math.max(0, allocationMethods.indexOf(selectedAllocation))
@@ -252,7 +250,7 @@
 			} else {
 				handleNoDataParameterSelection();
 			}
-		};
+		}
 
 		function capitalizeFirstLetter(val) {
 			return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -395,9 +393,12 @@
 			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
-			<div class="analysis-plots sm:col-span-10 grid sm:grid-cols-6 bg-yellow-300" id="analysis-plots">
+			<div
+				class="analysis-plots sm:col-span-10 grid sm:grid-cols-6 bg-yellow-300"
+				id="analysis-plots"
+			>
 				<div class="plot-bubble-box sm:col-span-3 bg-orange-300">
-					<div class="bubble-explanation  bg-cyan-300">
+					<div class="bubble-explanation bg-cyan-300">
 						<h4 class="h4">
 							Companies’ expected alignment in low-carbon vs. high-carbon technologies
 						</h4>
@@ -432,7 +433,8 @@
 			>
 				<p class="font-bold">No data found for the parameter selection</p>
 				<p class="text-sm">
-					Please make a different selecion in the parameters panel or change the asset class or sector.
+					Please make a different selecion in the parameters panel or change the asset class or
+					sector.
 				</p>
 			</div>
 			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">

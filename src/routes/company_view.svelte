@@ -80,6 +80,49 @@
 			);
 		};
 
+		function checkDataAvailability() {
+			let selectedClass = document.querySelector('#asset_class_selector').value;
+			let selectedSector = document.querySelector('#sector_selector').value;
+
+			let filteredTechmixData = portfolioTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+
+			let filteredTechmixCompData = companyTechmixData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+
+			let filteredBubbleData = companyBubbleData
+				.filter((d) => d.asset_class == selectedClass)
+				.filter((d) => d.ald_sector == selectedSector);
+
+			let check = [filteredTechmixData, filteredTechmixCompData, filteredBubbleData].some(
+				(x) => x.length != 0
+			);
+
+			return check;
+		}
+
+		function handleNoDataForAssetSectorCombination() {
+			document.querySelector('#analysis-content').classList.add('hidden');
+			document.querySelector('#alert-message').classList.remove('hidden');
+		}
+
+		function showAnalysisHideAlert() {
+			document.querySelector('#analysis-content').classList.remove('hidden');
+			document.querySelector('#alert-message').classList.add('hidden');
+		}
+
+		function handleNoDataParameterSelection() {
+			document.querySelector('#analysis-plots').classList.add('hidden');
+			document.querySelector('#alert-message-parameters').classList.remove('hidden');
+		}
+
+		function showAnalysisHideAlertParameters() {
+			document.querySelector('#analysis-plots').classList.remove('hidden');
+			document.querySelector('#alert-message-parameters').classList.add('hidden');
+		}
+
 		function updateScenarioSourceSelector() {
 			let selectedSource = document.querySelector('#scenario_source_selector').value;
 
@@ -110,7 +153,7 @@
 			let scenarioSources = Array.from(scenarioSourcesTechMix.union(scenarioSourcesCompTechMix).union(scenarioSourcesBubble));
 
 			if (scenarioSources.length != 0) {
-				//showAnalysisHideAlertParameters();
+				showAnalysisHideAlertParameters();
 				const scenarioSourceSelector = document.querySelector('#scenario_source_selector');
 				scenarioSourceSelector.length = 0;
 				scenarioSources.forEach((source) => scenarioSourceSelector.add(new Option(source, source)));
@@ -118,7 +161,7 @@
 					Math.max(0, scenarioSources.indexOf(selectedSource))
 				].selected = 'selected';
 			} else {
-				//handleNoDataParameterSelection();
+				handleNoDataParameterSelection();
 			}
 		};
 
@@ -156,14 +199,14 @@
 			let scenarios = Array.from(scenariosTechMix.union(scenariosCompTechMix).union(scenariosBubble));
 
 			if (scenarios.length != 0) {
-				//showAnalysisHideAlertParameters();
+				showAnalysisHideAlertParameters();
 				const scenarioSelector = document.querySelector('#scenario_selector');
 				scenarioSelector.length = 0;
 				scenarios.forEach((scenario) => scenarioSelector.add(new Option(scenario, scenario)));
 				scenarioSelector.options[Math.max(0, scenarios.indexOf(selectedScenario))].selected =
 					'selected';
 			} else {
-				//handleNoDataParameterSelection();
+				handleNoDataParameterSelection();
 			}
 		};
 
@@ -197,7 +240,7 @@
 			let allocationMethods = Array.from(allocationsTechMix.union(allocationsCompTechMix).union(allocationsBubble));
 
 			if (allocationMethods.length != 0) {
-				//showAnalysisHideAlertParameters();
+				showAnalysisHideAlertParameters();
 				const allocationMethodSelector = document.querySelector('#allocation_method_selector');
 				allocationMethodSelector.length = 0;
 				allocationMethods.forEach((allocation) =>
@@ -207,7 +250,7 @@
 					Math.max(0, allocationMethods.indexOf(selectedAllocation))
 				].selected = 'selected';
 			} else {
-				//handleNoDataParameterSelection();
+				handleNoDataParameterSelection();
 			}
 		};
 
@@ -228,40 +271,40 @@
 				document.querySelector('#content-landing-page').classList.toggle('hidden');
 				document.querySelector('#content-company-view').classList.toggle('hidden');
 				fetchExposureStats();
-				//if (checkDataAvailability()) {
-					//showAnalysisHideAlert();
+				if (checkDataAvailability()) {
+					showAnalysisHideAlert();
 					fetchCompanyBubble();
 					fetchCompanyTechmix();
-				//} else {
-				//	handleNoDataForAssetSectorCombination();
-				//}
+				} else {
+					handleNoDataForAssetSectorCombination();
+				}
 			});
 
 			sector_selector.addEventListener('change', function () {
 				fetchExposureStats();
-				//if (checkDataAvailability()) {
-					//showAnalysisHideAlert();
+				if (checkDataAvailability()) {
+					showAnalysisHideAlert();
 					updateScenarioSourceSelector();
 					updateScenarioSelector();
 					fetchCompanyBubble();
 					fetchCompanyTechmix();
-				//} else {
-				//	handleNoDataForAssetSectorCombination();
-				//}
+				} else {
+					handleNoDataForAssetSectorCombination();
+				}
 			});
 
 			asset_class_selector.addEventListener('change', function () {
 				fetchExposureStats();
-				//if (checkDataAvailability()) {
-					//showAnalysisHideAlert();
+				if (checkDataAvailability()) {
+					showAnalysisHideAlert();
 					updateScenarioSourceSelector();
 					updateScenarioSelector();
 					updateAllocationMethodSelector();
 					fetchCompanyBubble();
 					fetchCompanyTechmix();
-				//} else {
-				//	handleNoDataForAssetSectorCombination();
-				//}
+				} else {
+					handleNoDataForAssetSectorCombination();
+				}
 			});
 			const scenario_source_selector = document.querySelector('#scenario_source_selector');
 			scenario_source_selector.addEventListener('change', function () {
@@ -351,8 +394,8 @@
 				<div class="exposure-stats" id="exposure-stats"></div>
 			</div>
 		</div>
-		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300">
-			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300">
+		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
+			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300" id="analysis-plots">
 				<div class="plot-bubble-box grid sm:grid-cols-6 p-4 bg-orange-300">
 					<div class="bubble-explanation sm:col-span-2 bg-cyan-300">
 						<h4 class="h4">
@@ -382,6 +425,16 @@
 					<div class="techmix-plot sm:col-span-4 bg-teal-300" id="techmix-plot"></div>
 				</div>
 			</div>
+			<div
+				class="alert-message sm:col-span-10 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+				role="alert"
+				id="alert-message-parameters"
+			>
+				<p class="font-bold">No data found for the parameter selection</p>
+				<p class="text-sm">
+					Please make a different selecion in the parameters panel or change the asset class or sector.
+				</p>
+			</div>
 			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
 				<h4 class="h4">Parameters</h4>
 				<br />
@@ -406,4 +459,13 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div
+	class="alert-message bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+	role="alert"
+	id="alert-message"
+>
+	<p class="font-bold">No data found for this asset class / sector combination</p>
+	<p class="text-sm">Please make a different selecion.</p>
 </div>

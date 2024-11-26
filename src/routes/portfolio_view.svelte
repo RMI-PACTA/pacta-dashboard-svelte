@@ -8,10 +8,8 @@
 	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
 	import techmixData from '../json/data_techexposure.json';
 	import techOrder from '../json/tech_order_in_sectors.json';
-	import mapData from '../json/data_map.json';
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
-	import { choropleth } from '../js/map.js';
 
 	onMount(() => {
 		function fetchValuePie() {
@@ -91,30 +89,9 @@
 			}
 		}
 
-		function fetchMap() {
-			try {
-				new choropleth(document.querySelector('#mapBonds'), mapData, undefined, {
-					default_class: 'Corporate Bonds'
-				});
-			} catch (err) {
-				document.querySelector('#mapBonds').innerHTML = '';
-				document.querySelector('#mapBonds').appendChild(createErrorMessageDiv());
-			}
-
-			try {
-				new choropleth(document.querySelector('#mapEquity'), mapData, undefined, {
-					default_class: 'Listed Equity'
-				});
-			} catch (err) {
-				document.querySelector('#mapEquity').innerHTML = '';
-				document.querySelector('#mapEquity').appendChild(createErrorMessageDiv());
-			}
-		}
-
 		fetchValuePie();
 		fetchEmissionsPie();
 		fetchTechmix();
-		fetchMap();
 	});
 </script>
 
@@ -234,29 +211,6 @@
 				</div>
 				<div class="exposures-bonds sm:col-span-6 bg-blue-300" id="techMixAllBonds"></div>
 				<div class="exposures-equity sm:col-span-6 bg-purple-300" id="techMixAllEquity"></div>
-			</div>
-		</div>
-		<div class="analysis-map-box sm:col-span-12 bg-orange-300">
-			<div class="analysis-map-explanation sm:col-span-12 bg-teal-300">
-				<h4 class="h4">Regional exposure per sector or technology within sector</h4>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
-					scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
-					cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
-					felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
-					tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
-					et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero.
-				</p>
-			</div>
-			<div class="analysis-map-box grid sm:grid-cols-12 bg-green-300">
-				<div class="map-bonds-text sm:col-span-6 bg-blue-300">
-					<h5 class="h5">Corporate bonds portion of the portfolio</h5>
-				</div>
-				<div class="map-equity-text sm:col-span-6 bg-purple-300">
-					<h5 class="h5">Listed equity portion of the portfolio</h5>
-				</div>
-				<div class="map-bonds sm:col-span-6 bg-blue-300" id="mapBonds"></div>
-				<div class="map-equity sm:col-span-6 bg-purple-300" id="mapEquity"></div>
 			</div>
 		</div>
 	</div>

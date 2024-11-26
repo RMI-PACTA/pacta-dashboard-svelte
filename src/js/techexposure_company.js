@@ -407,9 +407,14 @@ export class techexposure_company {
 				data_ordered[idx] = {};
 				data_ordered[idx].id = item.id;
 				tech_order_sector.forEach(function (tech) {
-					data_ordered[idx][tech] = item[tech];
+					if (Object.keys(item).includes(tech)) {
+						data_ordered[idx][tech] = item[tech];
+					}
 				});
-			});
+				if (Object.keys(item).length != Object.keys(data_ordered[idx]).length) {
+					throw new Error('Not all technologies for the sector found in json/tech_order_in_sectors.json dataset. Please append the dataset with new technologies if needed.');
+				}
+ 			});
 
 			return data_ordered;
 		}

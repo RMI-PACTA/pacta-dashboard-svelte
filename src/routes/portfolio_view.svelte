@@ -10,6 +10,7 @@
 	import techOrder from '../json/tech_order_in_sectors.json';
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
+	import { tabulateIntoIncludedTable } from '../js/included_table.js';
 
 	onMount(() => {
 		function fetchValuePie() {
@@ -89,6 +90,25 @@
 			}
 		}
 
+		function fetchTable() {
+			try {
+				let opts_table = {
+				columnsText: [1, 6],
+				columnsNumeric: [2, 5],
+				columnsPercent: [3],
+				columnsShortText: [4],
+				columnValueBreakdown: 5,
+				columnToMergeHeaderWithContent: 5,
+				columnToMergeHeaderNoContent: 6
+				}
+				tabulateIntoIncludedTable(tableData, '#includedTable', opts_table)
+			} catch {
+				document.querySelector('#includedTable').innerHTML = '';
+				document.querySelector('#includedTable').appendChild(createErrorMessageDiv());
+			}
+		}
+
+		fetchTable();
 		fetchValuePie();
 		fetchEmissionsPie();
 		fetchTechmix();
@@ -126,35 +146,8 @@
 				</p>
 			</div>
 			<div class="table-box sm:col-span-12">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Asset Class</th>
-							<th>Portfolio value invested (M USD)</th>
-							<th>Portfolio value invested (%)</th>
-							<th>Included in the analysis</th>
-							<th>Value breakout per means of investment</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each tableData as row, i}
-							<tr>
-								<td>{row['Asset Class']}</td>
-								<td>{row['Portfolio value invested (M USD)']}</td>
-								<td>{row['Portfolio value invested (%)']}</td>
-								<td>{row['Included in the analysis']}</td>
-								<td>{row['Value breakout per means of investment']}</td>
-								<td>{row['_']}</td>
-							</tr>
-						{/each}
-					</tbody>
-					<tfoot>
-						<tr>
-							<th colspan="3">This is where we could write a footer.</th>
-						</tr>
-					</tfoot>
-				</table>
+				<div class="table table-hover" id="includedTable">
+				</div>	
 			</div>
 		</div>
 		<div class="analysis-pie-box sm:col-span-12 bg-orange-300">

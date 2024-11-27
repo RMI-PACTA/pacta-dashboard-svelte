@@ -401,8 +401,8 @@
 	});
 </script>
 
-<div class="content p-8 bg-amber-300" id="content-landing-page">
-	<div class="intro-text p-4 bg-teal-300">
+<div class="content p-8" id="content-landing-page">
+	<div class="intro-text p-4">
 		<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
 		<br />
 		<p>
@@ -421,7 +421,7 @@
 			sagittis. Ut varius feugiat volutpat.
 		</p>
 	</div>
-	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
+	<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
 			<option value="Not_selected">Please select</option>
 		</select>
@@ -432,8 +432,8 @@
 	</div>
 </div>
 
-<div class="content p-8 bg-amber-300 hidden" id="content-sector-view">
-	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
+<div class="content p-8 hidden" id="content-sector-view">
+	<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
 			<option value="Not_selected">Please select</option>
 		</select>
@@ -441,9 +441,9 @@
 			<option value="Not_selected">Please select</option>
 		</select>
 	</div>
-	<div class="analysis p-4 bg-cyan-300 grid">
-		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">
-			<div class="analysis-intro-text sm:col-span-9 bg-orange-300">
+	<div class="analysis p-4">
+		<div class="analysis-intro grid sm:grid-cols-12 p-4">
+			<div class="analysis-intro-text sm:col-span-9">
 				<h3 class="h3">Current state and future predictions for a sector</h3>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
@@ -455,14 +455,14 @@
 					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum.
 				</p>
 			</div>
-			<div class="analysis-intro-stats sm:col-span-3 p-0 bg-green-300">
+			<div class="analysis-intro-stats sm:col-span-3 p-0">
 				<div class="exposure-stats" id="exposure-stats"></div>
 			</div>
 		</div>
-		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
-			<div class="analysis-plots sm:col-span-10 p-4 bg-yellow-300" id="analysis-plots">
-				<div class="plot-trajectory-box grid p-4 bg-orange-300" id="trajectory-box">
-					<div class="trajectory-explanation bg-cyan-300">
+		<div class="analysis-content grid sm:grid-cols-12 p-4" id="analysis-content">
+			<div class="analysis-plots sm:col-span-10 p-4" id="analysis-plots">
+				<div class="plot-trajectory-box grid p-4" id="trajectory-box">
+					<div class="trajectory-explanation">
 						<h4 class="h4">Production volume alignment over time for technologies in the sector</h4>
 						<p>
 							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
@@ -473,8 +473,8 @@
 					</div>
 					<div class="trajectory-plot" id="trajectory-plot"></div>
 				</div>
-				<div class="other-sector-plots-box grid sm:grid-cols-6 p-4 bg-purple-300">
-					<div class="techmix-plot-box sm:col-span-3 bg-teal-300">
+				<div class="other-sector-plots-box grid sm:grid-cols-6 p-4">
+					<div class="techmix-plot-box sm:col-span-3">
 						<div class="techmix-explanation">
 							<h4 class="h4">Technology mix for a sector</h4>
 							<p>
@@ -486,7 +486,7 @@
 						</div>
 						<div class="techmix-plot" id="techmix-plot"></div>
 					</div>
-					<div class="emission-intensity-plot-box sm:col-span-3 bg-teal-300">
+					<div class="emission-intensity-plot-box sm:col-span-3">
 						<div class="emission-intensity-explanation">
 							<h4 class="h4">Emission intensity for a sector</h4>
 							<p>
@@ -511,7 +511,7 @@
 					sector.
 				</p>
 			</div>
-			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
+			<div class="analysis-parameters sm:col-span-2 p-4">
 				<h4 class="h4">Parameters</h4>
 				<br />
 				<label class="label">

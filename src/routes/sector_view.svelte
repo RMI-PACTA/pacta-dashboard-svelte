@@ -429,7 +429,7 @@
 			<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
 				<option value="Not_selected">Please select</option>
 			</select>
-			<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
+			<button class="btn variant-filled-surface" id="go_button_landing">Go!</button>
 		</div>
 	</div>
 </div>

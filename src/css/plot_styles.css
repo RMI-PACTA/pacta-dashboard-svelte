@@ -171,16 +171,16 @@ div.d3chart.WaffleChart {
 }
 
 div.d3chart .axis {
-	font-size: 0.9em;
+	font-size: 0.8em;
 }
 
 /* axis color */
 div.d3chart path.domain {
-	stroke: #c0c0c0;
+	stroke: #99b1c1;
 }
 
 div.d3chart .tick line {
-	stroke: #c0c0c0;
+	stroke: #99b1c1;
 }
 
 /* d3 data_table styling */
@@ -210,7 +210,7 @@ div.d3chart.included_table {
 
 div.d3chart.included_table table thead tr {
   border-top: none !important;
-  border-bottom: 2px solid #ccc !important;
+  border-bottom: 2px solid #99b1c1 !important;
 }
 
 div.d3chart.included_table table,
@@ -225,13 +225,13 @@ div.d3chart.included_table tr {
 }
 
 div.d3chart.included_table table tr.summary_row {
-  border-top: 1px solid #ccc !important;
+  border-top: 1px solid #99b1c1 !important;
   border-bottom: none !important;
 }
 
 div.d3chart.included_table table td.column_left_border,
 div.d3chart.included_table table th.column_left_border {
-  border-left: 1px solid #ccc !important;
+  border-left: 1px solid #99b1c1 !important;
 }
 
 /* sectors color palette */

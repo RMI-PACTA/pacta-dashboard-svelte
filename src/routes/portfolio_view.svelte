@@ -164,10 +164,10 @@
 					</p>
 				</div>
 				<div class="analysis-pies-box grid sm:grid-cols-12 card p-4">
-					<div class="pies-bonds-text sm:col-span-6">
+					<div class="pies-bonds-text sm:col-span-6" style="text-align: center">
 						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
 					</div>
-					<div class="pies-equity-text sm:col-span-6">
+					<div class="pies-equity-text sm:col-span-6" style="text-align: center">
 						<h5 class="h5">Listed equity portion of the portfolio</h5>
 					</div>
 					<div class="pie-value-bonds sm:col-span-6" id="valuePieBonds"></div>
@@ -197,11 +197,11 @@
 						pretium ex. In vehicula neque et eros accumsan sagittis. Ut varius feugiat volutpat.
 					</p>
 				</div>
-				<div class="analysis-exosures-box grid sm:grid-cols-12">
-					<div class="exposures-bonds-text sm:col-span-6">
+				<div class="analysis-exosures-box grid sm:grid-cols-12 p-4">
+					<div class="exposures-bonds-text sm:col-span-6" style="text-align: center">
 						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
 					</div>
-					<div class="exposures-equity-text sm:col-span-6">
+					<div class="exposures-equity-text sm:col-span-6" style="text-align: center">
 						<h5 class="h5">Listed equity portion of the portfolio</h5>
 					</div>
 					<div class="exposures-bonds sm:col-span-6" id="techMixAllBonds"></div>

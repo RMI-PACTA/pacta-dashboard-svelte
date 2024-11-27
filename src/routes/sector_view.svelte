@@ -6,7 +6,6 @@
 	import traj_data from '../json/data_trajectory_alignment.json';
 	import emissions_data from '../json/data_emissions.json';
 	import { ExposureStatsTile } from '../js/exposure_stats.js';
-	import { techexposure_future } from '../js/techexposure_future.js';
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
 	import { time_line } from '../js/time_line.js';

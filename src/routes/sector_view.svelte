@@ -402,33 +402,35 @@
 </script>
 
 <div class="content p-8" id="content-landing-page">
-	<div class="intro-text p-4">
-		<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
-		<br />
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
-			scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus
-			auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam
-			eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec
-			eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate
-			mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt
-			erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet,
-			consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex,
-			vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum. Nullam vel
-			malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac
-			tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed
-			consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan
-			sagittis. Ut varius feugiat volutpat.
-		</p>
-	</div>
-	<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
-		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
-			<option value="Not_selected">Please select</option>
-		</select>
-		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
-			<option value="Not_selected">Please select</option>
-		</select>
-		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
+	<div class="intro-box card">
+		<div class="intro-text p-4">
+			<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
+			<br />
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
+				scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus
+				auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam
+				eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec
+				eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate
+				mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt
+				erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet,
+				consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex,
+				vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum. Nullam vel
+				malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac
+				tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed
+				consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan
+				sagittis. Ut varius feugiat volutpat.
+			</p>
+		</div>
+		<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
+			<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
+				<option value="Not_selected">Please select</option>
+			</select>
+			<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
+				<option value="Not_selected">Please select</option>
+			</select>
+			<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
+		</div>
 	</div>
 </div>
 
@@ -442,7 +444,7 @@
 		</select>
 	</div>
 	<div class="analysis p-4">
-		<div class="analysis-intro grid sm:grid-cols-12 p-4">
+		<div class="analysis-intro grid sm:grid-cols-12 p-2">
 			<div class="analysis-intro-text sm:col-span-9">
 				<h3 class="h3">Current state and future predictions for a sector</h3>
 				<p>
@@ -459,44 +461,50 @@
 				<div class="exposure-stats" id="exposure-stats"></div>
 			</div>
 		</div>
-		<div class="analysis-content grid sm:grid-cols-12 p-4" id="analysis-content">
-			<div class="analysis-plots sm:col-span-10 p-4" id="analysis-plots">
-				<div class="plot-trajectory-box grid p-4" id="trajectory-box">
-					<div class="trajectory-explanation">
-						<h4 class="h4">Production volume alignment over time for technologies in the sector</h4>
-						<p>
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-							invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-							accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-							sanctus est Lorem ipsum dolor sit amet.
-						</p>
+		<div class="analysis-content grid sm:grid-cols-12" id="analysis-content">
+			<div class="analysis-plots sm:col-span-10" id="analysis-plots">
+				<div class="plot-trajectory-card-box p-2 sm:col-span-10">
+					<div class="plot-trajectory-box grid p-4 card" id="trajectory-box">
+						<div class="trajectory-explanation">
+							<h4 class="h4">Production volume alignment over time for technologies in the sector</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+								invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+								accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+								sanctus est Lorem ipsum dolor sit amet.
+							</p>
+						</div>
+						<div class="trajectory-plot" id="trajectory-plot"></div>
 					</div>
-					<div class="trajectory-plot" id="trajectory-plot"></div>
 				</div>
-				<div class="other-sector-plots-box grid sm:grid-cols-6 p-4">
-					<div class="techmix-plot-box sm:col-span-3">
-						<div class="techmix-explanation">
-							<h4 class="h4">Technology mix for a sector</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-								takimata sanctus est Lorem ipsum dolor sit amet.
-							</p>
+				<div class="other-sector-plots-box grid sm:grid-cols-6">
+					<div class="techmix-plot-card-box p-2 sm:col-span-3">
+						<div class="techmix-plot-box sm:col-span-3 card p-4">
+							<div class="techmix-explanation">
+								<h4 class="h4">Technology mix for a sector</h4>
+								<p>
+									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+									eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+									takimata sanctus est Lorem ipsum dolor sit amet.
+								</p>
+							</div>
+							<div class="techmix-plot" id="techmix-plot"></div>
 						</div>
-						<div class="techmix-plot" id="techmix-plot"></div>
 					</div>
-					<div class="emission-intensity-plot-box sm:col-span-3">
-						<div class="emission-intensity-explanation">
-							<h4 class="h4">Emission intensity for a sector</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-								takimata sanctus est Lorem ipsum dolor sit amet.
-							</p>
+					<div class="emission-intensity-card-box p-2 sm:col-span-3">
+						<div class="emission-intensity-plot-box sm:col-span-3 card p-4">
+							<div class="emission-intensity-explanation">
+								<h4 class="h4">Emission intensity for a sector</h4>
+								<p>
+									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+									eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+									takimata sanctus est Lorem ipsum dolor sit amet.
+								</p>
+							</div>
+							<div class="emission-intensity-plot" id="emission-intensity-plot"></div>
 						</div>
-						<div class="emission-intensity-plot" id="emission-intensity-plot"></div>
 					</div>
 				</div>
 			</div>
@@ -511,54 +519,56 @@
 					sector.
 				</p>
 			</div>
-			<div class="analysis-parameters sm:col-span-2 p-4">
-				<h4 class="h4">Parameters</h4>
-				<br />
-				<label class="label">
-					<span id="scenario-source-label">Scenario source &#9432</span>
-					<div class="hide dashboard-tooltip card p-4 shadow-xl">
-						Applies to the technology mix and production volume alignment plots.
-					</div>
-					<select class="select variant-outline-surface" id="scenario_source_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
-				<label class="label">
-					<span id="scenario-label">Scenario &#9432</span>
-					<div class="hide dashboard-tooltip card p-4 shadow-xl">
-						Applies to the technology mix plot.
-					</div>
-					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
-				<label class="label">
-					<span id="allocation-method-label">Allocation method &#9432</span>
-					<div class="hide dashboard-tooltip card p-4 shadow-xl">
-						Applies to the production volume alignment and emission intensity plots.
-					</div>
-					<select class="select variant-outline-surface" id="allocation_method_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
-				<label class="label">
-					<span id="equity-market-label">Equity market &#9432</span>
-					<div class="hide dashboard-tooltip card p-4 shadow-xl">
-						Applies to the production volume alignment and the technology mix plots.
-					</div>
-					<select class="select variant-outline-surface" id="equity_market_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
-				<label class="label">
-					<span id="benchmark-label">Benchmark &#9432</span>
-					<div class="hide dashboard-tooltip card p-4 shadow-xl">
-						Applies to the production volume alignment and the technology mix plots.
-					</div>
-					<select class="select variant-outline-surface" id="benchmark_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
+			<div class="parameters-box p-2 sm:col-span-2">
+				<div class="analysis-parameters sm:col-span-2 p-4 card">
+					<h4 class="h4">Parameters</h4>
+					<br />
+					<label class="label">
+						<span id="scenario-source-label">Scenario source &#9432</span>
+						<div class="hide dashboard-tooltip card p-4 shadow-xl">
+							Applies to the technology mix and production volume alignment plots.
+						</div>
+						<select class="select variant-outline-surface" id="scenario_source_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+					<label class="label">
+						<span id="scenario-label">Scenario &#9432</span>
+						<div class="hide dashboard-tooltip card p-4 shadow-xl">
+							Applies to the technology mix plot.
+						</div>
+						<select class="select variant-outline-surface" id="scenario_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+					<label class="label">
+						<span id="allocation-method-label">Allocation method &#9432</span>
+						<div class="hide dashboard-tooltip card p-4 shadow-xl">
+							Applies to the production volume alignment and emission intensity plots.
+						</div>
+						<select class="select variant-outline-surface" id="allocation_method_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+					<label class="label">
+						<span id="equity-market-label">Equity market &#9432</span>
+						<div class="hide dashboard-tooltip card p-4 shadow-xl">
+							Applies to the production volume alignment and the technology mix plots.
+						</div>
+						<select class="select variant-outline-surface" id="equity_market_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+					<label class="label">
+						<span id="benchmark-label">Benchmark &#9432</span>
+						<div class="hide dashboard-tooltip card p-4 shadow-xl">
+							Applies to the production volume alignment and the technology mix plots.
+						</div>
+						<select class="select variant-outline-surface" id="benchmark_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+				</div>
 			</div>
 		</div>
 	</div>

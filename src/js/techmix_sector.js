@@ -259,13 +259,17 @@ export class techmix_sector {
 			.append('g')
 			.attr('transform', `translate(0,${marginTop - marginTop / 5})`)
 			.attr('class', 'axis')
-			.call(d3.axisTop(x).ticks(5).tickFormat(d3.format('.0%')));
+			.call(d3.axisTop(x).ticks(5).tickFormat(d3.format('.0%')))
+			.selectAll('text')
+			.style('font-size','1.8em');
 
 		svg
 			.append('g')
 			.attr('transform', `translate(0,${height - marginBottom})`)
 			.attr('class', 'axis')
-			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')));
+			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')))
+			.selectAll('text')
+			.style('font-size','1.8em');
 
 		// Add the y axis and tick labels
 		let yaxisCurrent = svg
@@ -276,6 +280,7 @@ export class techmix_sector {
 			.call((g) => g.selectAll('.domain').remove())
 			.call((g) => g.selectAll('.tick line').remove())
 			.selectAll('text')
+			.style('font-size','1.8em')
 			.on('mouseover', mouseOverLabels)
 			.on('mouseout', mouseout)
 			.on('mousemove', mousemove);
@@ -288,6 +293,7 @@ export class techmix_sector {
 			.call((g) => g.selectAll('.domain').remove())
 			.call((g) => g.selectAll('.tick line').remove())
 			.selectAll('text')
+			.style('font-size','1.8em')
 			.on('mouseover', mouseOverLabels)
 			.on('mouseout', mouseout)
 			.on('mousemove', mousemove);
@@ -298,7 +304,9 @@ export class techmix_sector {
 			.attr('class', 'axis')
 			.call(d3.axisRight(y0).tickSizeOuter(0)) // not sure why axis right produces ticks on the left but leaving as is as it works
 			.call((g) => g.selectAll('.domain').remove())
-			.call((g) => g.selectAll('.tick line').remove());
+			.call((g) => g.selectAll('.tick line').remove())
+			.selectAll('text')
+			.style('font-size','1.8em');
 
 		// Append legend rectangles
 		let legend = svg
@@ -324,11 +332,12 @@ export class techmix_sector {
 			.append('text')
 			.attr('x', 30)
 			.attr('y', 20)
-			.text((d) => d);
+			.text((d) => d)
+			.style('font-size','0.9em');
 
 		let sumGreenBarsInPlot =
-			d3.sum(subdataTechPerYear[0], (d) => d.greenBars.green_sum) +
-			d3.sum(subdataTechPerYear[1], (d) => d.greenBars.green_sum);
+			d3.sum(subdataTechPerYear[0].greenBars, (d) => d.green_sum) +
+			d3.sum(subdataTechPerYear[1].greenBars, (d) => d.green_sum);
 		if (sumGreenBarsInPlot > 0) {
 			// Append legend for green bars
 			let legendGreen = svg
@@ -346,7 +355,8 @@ export class techmix_sector {
 				.append('text')
 				.attr('x', 30)
 				.attr('y', 20)
-				.text((d) => d);
+				.text((d) => d)
+				.style('font-size','0.9em');
 		}
 
 		// Add hover overs

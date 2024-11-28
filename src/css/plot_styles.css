@@ -130,7 +130,7 @@ div.d3chart .chart_source {
 
 div.d3chart svg {
 	/*   border: 1px dashed; */
-	background-color: white;
+	background-color: #d9e2e8;
 }
 
 div.d3chart > * {
@@ -140,7 +140,7 @@ div.d3chart > * {
 
 div.d3chart div.d3tooltip {
 	opacity: 0.9;
-	background-color: white;
+	background-color: #d9e2e8;
 	color: black;
 	border-radius: 4px;
 	padding: 10px;
@@ -171,16 +171,16 @@ div.d3chart.WaffleChart {
 }
 
 div.d3chart .axis {
-	font-size: 0.9em;
+	font-size: 0.8em;
 }
 
 /* axis color */
 div.d3chart path.domain {
-	stroke: #c0c0c0;
+	stroke: #99b1c1;
 }
 
 div.d3chart .tick line {
-	stroke: #c0c0c0;
+	stroke: #99b1c1;
 }
 
 /* d3 data_table styling */
@@ -188,20 +188,20 @@ div.d3chart .tick line {
 div.d3chart.data_table table,
 div.d3chart.data_table th,
 div.d3chart.data_table td {
-  border-collapse: collapse;
-  padding: 8px;
-  border-bottom: 1px solid #aaa;
-  border-bottom: none !important;
-  text-align: center;
-  font-size: 1em;
+	border-collapse: collapse;
+	padding: 8px;
+	border-bottom: 1px solid #aaa;
+	border-bottom: none !important;
+	text-align: center;
+	font-size: 1em;
 }
 
 div.d3chart.data_table table tr {
-  background-color: #fff !important;
+	background-color: #fff !important;
 }
 
 div.d3chart.data_table table tr:hover {
-  background-color: #f5f5f5 !important;
+	background-color: #f5f5f5 !important;
 }
 
 div.d3chart.included_table {
@@ -209,29 +209,29 @@ div.d3chart.included_table {
 }
 
 div.d3chart.included_table table thead tr {
-  border-top: none !important;
-  border-bottom: 2px solid #ccc !important;
+	border-top: none !important;
+	border-bottom: 2px solid #99b1c1 !important;
 }
 
 div.d3chart.included_table table,
 div.d3chart.included_table th,
 div.d3chart.included_table td,
 div.d3chart.included_table tr {
-  border-collapse: collapse;
-  padding: 10px !important;
-  border-bottom: none !important;
-  border-top: none !important;
-  font-size: 1em;
+	border-collapse: collapse;
+	padding: 10px !important;
+	border-bottom: none !important;
+	border-top: none !important;
+	font-size: 1em;
 }
 
 div.d3chart.included_table table tr.summary_row {
-  border-top: 1px solid #ccc !important;
-  border-bottom: none !important;
+	border-top: 1px solid #99b1c1 !important;
+	border-bottom: none !important;
 }
 
 div.d3chart.included_table table td.column_left_border,
 div.d3chart.included_table table th.column_left_border {
-  border-left: 1px solid #ccc !important;
+	border-left: 1px solid #99b1c1 !important;
 }
 
 /* sectors color palette */

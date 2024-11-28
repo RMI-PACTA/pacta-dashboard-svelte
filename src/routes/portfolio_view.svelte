@@ -93,15 +93,15 @@
 		function fetchTable() {
 			try {
 				let opts_table = {
-				columnsText: [1, 6],
-				columnsNumeric: [2, 5],
-				columnsPercent: [3],
-				columnsShortText: [4],
-				columnValueBreakdown: 5,
-				columnToMergeHeaderWithContent: 5,
-				columnToMergeHeaderNoContent: 6
-				}
-				tabulateIntoIncludedTable(tableData, '#includedTable', opts_table)
+					columnsText: [1, 6],
+					columnsNumeric: [2, 5],
+					columnsPercent: [3],
+					columnsShortText: [4],
+					columnValueBreakdown: 5,
+					columnToMergeHeaderWithContent: 5,
+					columnToMergeHeaderNoContent: 6
+				};
+				tabulateIntoIncludedTable(tableData, '#includedTable', opts_table);
 			} catch {
 				document.querySelector('#includedTable').innerHTML = '';
 				document.querySelector('#includedTable').appendChild(createErrorMessageDiv());
@@ -115,10 +115,10 @@
 	});
 </script>
 
-<div class="content p-8 bg-amber-300" id="content-portfolio-view">
-	<div class="analysis p-4 bg-cyan-300">
-		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">
-			<div class="analysis-intro-text sm:col-span-12 bg-orange-300">
+<div class="content p-4" id="content-portfolio-view">
+	<div class="analysis">
+		<div class="analysis-intro grid sm:grid-cols-12">
+			<div class="analysis-intro-text sm:col-span-12 p-4">
 				<h3 class="h3">Overview of the current state of the portfolio</h3>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
@@ -131,9 +131,8 @@
 				</p>
 			</div>
 		</div>
-		<div class="analysis-content grid sm:grid-cols-12 p-2 bg-teal-300">
-			<div class="analysis-table sm:col-span-12 bg-orange-300"></div>
-			<div class="analysis-table-explanation sm:col-span-12 bg-orange-300">
+		<div class="analysis-content grid sm:grid-cols-12 p-4">
+			<div class="analysis-table-explanation sm:col-span-12 card p-4">
 				<h4 class="h4">Asset classes covered by the analysis</h4>
 				<p>
 					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
@@ -144,66 +143,71 @@
 					diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
 					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 				</p>
-			</div>
-			<div class="table-box sm:col-span-12">
-				<div class="table table-hover" id="includedTable">
-				</div>	
+				<div class="table-box sm:col-span-12">
+					<div class="table table-hover" id="includedTable"></div>
+				</div>
 			</div>
 		</div>
-		<div class="analysis-pie-box sm:col-span-12 bg-orange-300">
-			<div class="analysis-pies-explanation sm:col-span-12 bg-teal-300">
-				<h4 class="h4">Portfolio value and emissions covered by PACTA sectors</h4>
-				<p>
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-					invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-					sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-					elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-					diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-				</p>
-			</div>
-			<div class="analysis-pies-box grid sm:grid-cols-12 bg-green-300">
-				<div class="pies-bonds-text sm:col-span-6 bg-blue-300">
-					<h5 class="h5">Corporate bonds portion of the portfolio</h5>
+		<div class="analysis-pie grid sm:grid-cols-12 p-4">
+			<div class="analysis-pie-box sm:col-span-12 card p-4">
+				<div class="analysis-pies-explanation sm:col-span-12">
+					<h4 class="h4">Portfolio value and emissions covered by PACTA sectors</h4>
+					<p>
+						Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+						invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+						accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+						sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+						sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+						aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+						rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+						amet.
+					</p>
 				</div>
-				<div class="pies-equity-text sm:col-span-6 bg-purple-300">
-					<h5 class="h5">Listed equity portion of the portfolio</h5>
+				<div class="analysis-pies-box grid sm:grid-cols-12 card p-4">
+					<div class="pies-bonds-text sm:col-span-6" style="text-align: center">
+						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
+					</div>
+					<div class="pies-equity-text sm:col-span-6" style="text-align: center">
+						<h5 class="h5">Listed equity portion of the portfolio</h5>
+					</div>
+					<div class="pie-value-bonds sm:col-span-6" id="valuePieBonds"></div>
+					<div class="pie-value-equity sm:col-span-6" id="valuePieEquity"></div>
+					<div class="pie-emissions-bonds sm:col-span-6" id="emissionsPieBonds"></div>
+					<div class="pie-emissions-equity sm:col-span-6" id="emissionsPieEquity"></div>
 				</div>
-				<div class="pie-value-bonds sm:col-span-6 bg-blue-300" id="valuePieBonds"></div>
-				<div class="pie-value-equity sm:col-span-6 bg-purple-300" id="valuePieEquity"></div>
-				<div class="pie-emissions-bonds sm:col-span-6 bg-blue-300" id="emissionsPieBonds"></div>
-				<div class="pie-emissions-equity sm:col-span-6 bg-purple-300" id="emissionsPieEquity"></div>
 			</div>
 		</div>
-		<div class="analysis-exposure-box sm:col-span-12 bg-orange-300">
-			<div class="analysis-exposures-explanation sm:col-span-12 bg-teal-300">
-				<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
-					scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
-					cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
-					felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
-					tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
-					et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero.
-					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem
-					ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor
-					malesuada, quam ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula
-					libero in bibendum. Nullam vel malesuada urna. Quisque volutpat sapien a consequat
-					maximus. Morbi nisi dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam
-					ultricies condimentum nulla quis mollis. Sed consectetur vel lectus in vulputate. Cras vel
-					pretium ex. In vehicula neque et eros accumsan sagittis. Ut varius feugiat volutpat.
-				</p>
-			</div>
-			<div class="analysis-exosures-box grid sm:grid-cols-12 bg-green-300">
-				<div class="exposures-bonds-text sm:col-span-6 bg-blue-300">
-					<h5 class="h5">Corporate bonds portion of the portfolio</h5>
+		<div class="analysis-exposures grid sm:grid-cols-12 p-4">
+			<div class="analysis-exposure-box sm:col-span-12 card p-4">
+				<div class="analysis-exposures-explanation sm:col-span-12">
+					<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
+						scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
+						cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
+						felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat
+						vel tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit
+						ac est et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et
+						libero. Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in
+						fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit,
+						eros in tempor malesuada, quam ex semper ex, vitae vulputate est est quis eros. Aenean
+						fringilla vehicula libero in bibendum. Nullam vel malesuada urna. Quisque volutpat
+						sapien a consequat maximus. Morbi nisi dolor, mollis ac tellus quis, facilisis egestas
+						tellus. Aliquam ultricies condimentum nulla quis mollis. Sed consectetur vel lectus in
+						vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan sagittis. Ut varius
+						feugiat volutpat.
+					</p>
 				</div>
-				<div class="exposures-equity-text sm:col-span-6 bg-purple-300">
-					<h5 class="h5">Listed equity portion of the portfolio</h5>
+				<div class="analysis-exosures-box grid sm:grid-cols-12 p-4">
+					<div class="exposures-bonds-text sm:col-span-6" style="text-align: center">
+						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
+					</div>
+					<div class="exposures-equity-text sm:col-span-6" style="text-align: center">
+						<h5 class="h5">Listed equity portion of the portfolio</h5>
+					</div>
+					<div class="exposures-bonds sm:col-span-6" id="techMixAllBonds"></div>
+					<div class="exposures-equity sm:col-span-6" id="techMixAllEquity"></div>
 				</div>
-				<div class="exposures-bonds sm:col-span-6 bg-blue-300" id="techMixAllBonds"></div>
-				<div class="exposures-equity sm:col-span-6 bg-purple-300" id="techMixAllEquity"></div>
 			</div>
 		</div>
 	</div>

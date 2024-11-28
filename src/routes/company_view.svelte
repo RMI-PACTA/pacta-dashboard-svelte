@@ -334,39 +334,41 @@
 	});
 </script>
 
-<div class="content p-8 bg-amber-300" id="content-landing-page">
-	<div class="intro-text p-4 bg-teal-300">
-		<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
-		<br />
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
-			scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus
-			auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam
-			eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec
-			eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate
-			mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt
-			erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet,
-			consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex,
-			vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum. Nullam vel
-			malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac
-			tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed
-			consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan
-			sagittis. Ut varius feugiat volutpat.
-		</p>
-	</div>
-	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
-		<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
-			<option value="Not_selected">Please select</option>
-		</select>
-		<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
-			<option value="Not_selected">Please select</option>
-		</select>
-		<button class="btn variant-outline-surface" id="go_button_landing">Go!</button>
+<div class="content p-8" id="content-landing-page">
+	<div class="intro-box card">
+		<div class="intro-text p-4">
+			<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
+			<br />
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
+				scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
+				cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
+				felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
+				tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
+				et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis
+				et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum
+				dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam
+				ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula libero in
+				bibendum. Nullam vel malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi
+				dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla
+				quis mollis. Sed consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque
+				et eros accumsan sagittis. Ut varius feugiat volutpat.
+			</p>
+		</div>
+		<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
+			<select class="select max-w-48 variant-outline-surface" id="sector_selector_landing">
+				<option value="Not_selected">Please select</option>
+			</select>
+			<select class="select max-w-48 variant-outline-surface" id="asset_class_selector_landing">
+				<option value="Not_selected">Please select</option>
+			</select>
+			<button class="btn variant-filled-surface" id="go_button_landing">Go!</button>
+		</div>
 	</div>
 </div>
 
-<div class="content p-8 bg-amber-300 hidden" id="content-company-view">
-	<div class="buttons-sector-asset-class p-4 bg-purple-300 flex space-x-2 justify-center">
+<div class="content p-8 hidden" id="content-company-view">
+	<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
 		<select class="select max-w-48 variant-outline-surface" id="sector_selector">
 			<option value="Not_selected">Please select</option>
 		</select>
@@ -374,9 +376,9 @@
 			<option value="Not_selected">Please select</option>
 		</select>
 	</div>
-	<div class="analysis p-4 bg-cyan-300 grid">
-		<div class="analysis-intro grid sm:grid-cols-12 p-4 bg-purple-300">
-			<div class="analysis-intro-text sm:col-span-9 bg-orange-300">
+	<div class="analysis p-4 grid">
+		<div class="analysis-intro grid sm:grid-cols-12 p-4">
+			<div class="analysis-intro-text sm:col-span-9 p-2">
 				<h3 class="h3">Current state and future predictions for companies in a sector</h3>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
@@ -388,42 +390,43 @@
 					Duis et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum.
 				</p>
 			</div>
-			<div class="analysis-intro-stats sm:col-span-3 bg-green-300">
+			<div class="analysis-intro-stats sm:col-span-3">
 				<div class="exposure-stats" id="exposure-stats"></div>
 			</div>
 		</div>
-		<div class="analysis-content grid sm:grid-cols-12 p-4 bg-teal-300" id="analysis-content">
-			<div
-				class="analysis-plots sm:col-span-10 grid sm:grid-cols-6 bg-yellow-300"
-				id="analysis-plots"
-			>
-				<div class="plot-bubble-box sm:col-span-3 bg-orange-300">
-					<div class="bubble-explanation bg-cyan-300">
-						<h4 class="h4">
-							Companies’ expected alignment in low-carbon vs. high-carbon technologies
-						</h4>
-						<p>
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-							invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-							accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-							sanctus est Lorem ipsum dolor sit amet.
-						</p>
+		<div class="analysis-content grid sm:grid-cols-12 p-4" id="analysis-content">
+			<div class="analysis-plots sm:col-span-10 grid sm:grid-cols-6" id="analysis-plots">
+				<div class="plot-bubble-card-box sm:col-span-3 p-2">
+					<div class="plot-bubble-box sm:col-span-3 card p-4">
+						<div class="bubble-explanation">
+							<h4 class="h4">
+								Companies’ expected alignment in low-carbon vs. high-carbon technologies
+							</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+								takimata sanctus est Lorem ipsum dolor sit amet.
+							</p>
+						</div>
+						<div class="bubble-plot" id="bubble-plot"></div>
 					</div>
-					<div class="bubble-plot bg-teal-300" id="bubble-plot"></div>
 				</div>
-				<div class="plot-techmix sm:col-span-3 bg-orange-300">
-					<div class="techmix-explanation bg-cyan-300">
-						<h4 class="h4">
-							Expected Technology Mix in 5 years for portfolio, scneario and selected companies
-						</h4>
-						<p>
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-							invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-							accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-							sanctus est Lorem ipsum dolor sit amet.
-						</p>
+				<div class="plot-techmix-card-box sm:col-span-3 p-2">
+					<div class="plot-techmix sm:col-span-3 card p-4">
+						<div class="techmix-explanation">
+							<h4 class="h4">
+								Expected Technology Mix in 5 years for portfolio, scneario and selected companies
+							</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+								takimata sanctus est Lorem ipsum dolor sit amet.
+							</p>
+						</div>
+						<div class="techmix-plot" id="techmix-plot"></div>
 					</div>
-					<div class="techmix-plot bg-teal-300" id="techmix-plot"></div>
 				</div>
 			</div>
 			<div
@@ -437,27 +440,29 @@
 					sector.
 				</p>
 			</div>
-			<div class="analysis-parameters sm:col-span-2 bg-red-300 p-4">
-				<h4 class="h4">Parameters</h4>
-				<br />
-				<label class="label">
-					<span>Scenario source</span>
-					<select class="select variant-outline-surface" id="scenario_source_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
-				<label class="label">
-					<span>Scenario</span>
-					<select class="select variant-outline-surface" id="scenario_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
-				<label class="label">
-					<span>Allocation method</span>
-					<select class="select variant-outline-surface" id="allocation_method_selector">
-						<option value="Not_selected">Please select</option>
-					</select>
-				</label>
+			<div class="parameters-box p-2 sm:col-span-2">
+				<div class="analysis-parameters sm:col-span-2 card p-4">
+					<h4 class="h4">Parameters</h4>
+					<br />
+					<label class="label">
+						<span>Scenario source</span>
+						<select class="select variant-outline-surface" id="scenario_source_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+					<label class="label">
+						<span>Scenario</span>
+						<select class="select variant-outline-surface" id="scenario_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+					<label class="label">
+						<span>Allocation method</span>
+						<select class="select variant-outline-surface" id="allocation_method_selector">
+							<option value="Not_selected">Please select</option>
+						</select>
+					</label>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -132,26 +132,27 @@ export class time_line {
 
 		svg
 			.append('g')
-			.attr('class', 'axis')
 			.attr('transform', 'translate(0,' + (height - marginBottom) + ')')
 			.call(
 				d3
 					.axisBottom(x)
 					.ticks(Math.min(num_of_years, 5))
 					.tickFormat((d, i) => tick_labels[i])
-			);
+			)
+			.selectAll('text')
+			.style('font-size', '2em');
 
 		// Add y axis
 		svg
 			.append('g')
-			.attr('class', 'axis')
 			.attr('transform', 'translate(' + marginLeft + ',0)')
-			.call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('.3s')));
+			.call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('.3s')))
+			.selectAll('text')
+			.style('font-size', '2em');
 
 		// Add y axis title
 		svg
 			.append('text')
-			.attr('class', 'axis')
 			.attr(
 				'transform',
 				`translate(${marginLeft / 2},${(height - marginBottom) / 2 + 15}) rotate(-90)`
@@ -160,7 +161,8 @@ export class time_line {
 			.attr('y', 0)
 			.attr('dy', '1em')
 			.style('text-anchor', 'middle')
-			.text(subdata.map((d) => d.unit_translation)[0]);
+			.text(subdata.map((d) => d.unit_translation)[0])
+			.style('font-size', '1.6em');
 
 		// Add footnote
 		svg
@@ -179,7 +181,7 @@ export class time_line {
 			.attr('y', 0)
 			.style('text-anchor', 'end')
 			.style('alignment-baseline', 'central')
-			.style('font-size', '1.2em')
+			.style('font-size', '1.4em')
 			.text(footnote);
 
 		// Add legend
@@ -217,7 +219,8 @@ export class time_line {
 			.attr('x', (d) => (d == port_label ? 70 : 270))
 			.attr('y', 3)
 			.text((d) => d)
-			.attr('alignment-baseline', 'middle');
+			.attr('alignment-baseline', 'middle')
+			.style('font-size', '0.9em');
 
 		function mouseover(d) {
 			tooltip

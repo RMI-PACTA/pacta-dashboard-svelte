@@ -26,7 +26,7 @@ export class techexposure {
 		const marginTop = 20;
 		const marginRight = 170;
 		const marginBottom = 60;
-		const marginLeft = 90;
+		const marginLeft = 100;
 		const bar_width = 30;
 		const bar_gap = 12;
 		const sector_gap = 10;
@@ -148,7 +148,7 @@ export class techexposure {
 			.style('alignment-baseline', 'bottom')
 			.style('text-anchor', 'middle')
 			.attr('fill', 'black')
-			.attr('font-size', '10')
+			.attr('font-size', '0.8em')
 			.attr(
 				'transform',
 				(d) =>
@@ -183,7 +183,7 @@ export class techexposure {
 			.style('alignment-baseline', 'central')
 			.style('text-anchor', 'end')
 			.attr('fill', 'black')
-			.attr('font-size', '0.7em')
+			.attr('font-size', '0.8em')
 			.text((d) => (d.this_portfolio ? port_label : comp_label))
 			.attr(
 				'transform',
@@ -230,7 +230,7 @@ export class techexposure {
 			.attr('y', 0)
 			.style('text-anchor', 'middle')
 			.style('alignment-baseline', 'central')
-			.style('font-size', '0.7em')
+			.style('font-size', '0.8em')
 			.text((d) => d);
 
 		// Legend
@@ -269,7 +269,7 @@ export class techexposure {
 		let legend_group = svg
 			.append('g')
 			.attr('class', 'legend_group')
-			.attr('transform', 'translate(' + (width - marginLeft - 55) + ',' + marginTop + ')');
+			.attr('transform', 'translate(' + (width - marginLeft - 65) + ',' + marginTop + ')');
 
 		legend_group
 			.selectAll('rect')
@@ -290,7 +290,7 @@ export class techexposure {
 			.text((d) => d.technology_translation)
 			.style('alignment-baseline', 'central')
 			.style('text-anchor', 'start')
-			.attr('font-size', '0.7em')
+			.attr('font-size', '0.8em')
 			.attr('x', 25)
 			.attr('y', (d, i) => i * 17 + 6 + d.sector_shift * sector_gap_legend + 20);
 
@@ -304,7 +304,7 @@ export class techexposure {
 			.text((d) => d)
 			.style('alignment-baseline', 'central')
 			.style('text-anchor', 'start')
-			.attr('font-size', '0.7em')
+			.attr('font-size', '0.8em')
 			.attr('x', 0)
 			.attr('y', (d, i) => tech_in_prev_sectors[i] * 17 + 6 + i * sector_gap_legend);
 
@@ -338,7 +338,7 @@ export class techexposure {
 			green_legend_group.attr(
 				'transform',
 				'translate(' +
-					(width - marginLeft - 55) +
+					(width - marginLeft - 65) +
 					',' +
 					(5 + number_rectangles_tech * 17 + marginTop) +
 					')'
@@ -364,7 +364,7 @@ export class techexposure {
 				.text((d) => d.text)
 				.style('alignment-baseline', 'top')
 				.style('text-anchor', 'start')
-				.attr('font-size', '0.7em')
+				.attr('font-size', '0.8em')
 				.attr('x', 25)
 				.attr('y', (d, i) => i * 14 + 5 + d.sector_shift * sector_gap_legend + 20);
 		}

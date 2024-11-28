@@ -22,7 +22,7 @@ export class techexposure_company {
 		const width = 928;
 		const height = 775;
 		const marginTop = 40;
-		const marginRight = 70;
+		const marginRight = 90;
 		const marginBottom = 140;
 		let marginLeft = 90;
 
@@ -96,7 +96,7 @@ export class techexposure_company {
 		let long_label_down = findLongestName(subdata_down, 'id');
 		let long_label_up = findLongestName(subdata_up, 'id');
 		let long_label = long_label_down >= long_label_up ? long_label_down : long_label_up;
-		let label_width = long_label.length * 8;
+		let label_width = long_label.length * 11;
 
 		if (marginLeft < label_width) {
 			let margin_left_new = label_width;
@@ -176,7 +176,8 @@ export class techexposure_company {
 			.attr('transform', 'translate(' + marginLeft + ',' + (height - marginBottom) + ')')
 			.call(d3.axisBottom(x).tickFormat(formatter))
 			.selectAll('text')
-			.style('text-anchor', 'middle');
+			.style('text-anchor', 'middle')
+			.style('font-size', '2em');
 
 		var weights_strings = subdata_weights.map(function (d) {
 			let weight_perc = d.port_weight * 100;
@@ -207,7 +208,7 @@ export class techexposure_company {
 			)
 			.call((g) => g.select('.domain').remove())
 			.selectAll('text')
-			.attr('font-size', '1.5em');
+			.attr('font-size', '2em');
 
 		svg
 			.append('g')
@@ -215,7 +216,7 @@ export class techexposure_company {
 			.append('text')
 			.attr('x', width - marginRight + 5 + 1)
 			.attr('y', groups_up.length * bar_height_space + port_gap - 5 + marginTop)
-			.attr('font-size', '1.1em')
+			.attr('font-size', '1.5em')
 			.text(weights_title);
 
 		// Legend
@@ -239,7 +240,7 @@ export class techexposure_company {
 
 		let long_label_leg = findLongestName(legend_data, 'technology_translation');
 
-		let label_width_leg = long_label_leg.length * 8;
+		let label_width_leg = long_label_leg.length * 10;
 
 		let nr_labels_in_row = Math.round((width - marginLeft - marginRight) / (label_width_leg + 45));
 
@@ -266,7 +267,7 @@ export class techexposure_company {
 			.text((d) => d.technology_translation)
 			.style('alignment-baseline', 'central')
 			.style('text-anchor', 'start')
-			.attr('font-size', '0.7em')
+			.attr('font-size', '0.9em')
 			.attr('x', (d, i) => (i % nr_labels_in_row) * (label_width_leg + 45) + 20)
 			.attr('y', (d, i) => Math.floor(i / nr_labels_in_row) * 30 + 7);
 
@@ -294,7 +295,7 @@ export class techexposure_company {
 			.attr('y', 0)
 			.style('text-anchor', 'end')
 			.style('alignment-baseline', 'central')
-			.style('font-size', '0.9em')
+			.style('font-size', '1.5em')
 			.text((d) => d);
 
 		// Data manipulation functions
@@ -442,7 +443,7 @@ export class techexposure_company {
 				.call(d3.axisLeft(y).tickSize(0))
 				.call((g) => g.select('.domain').remove())
 				.selectAll('text')
-				.attr('font-size', '1.5em');
+				.attr('font-size', '2em');
 
 			var color = d3.scaleOrdinal(d3.schemeCategory10);
 

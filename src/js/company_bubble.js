@@ -26,7 +26,7 @@ export class company_bubble {
 		const marginTop = 40;
 		const marginRight = 60;
 		const marginBottom = 80;
-		const marginLeft = 80;
+		const marginLeft = 85;
 		let size = height - marginTop - marginBottom;
 
 		// Chart parameters
@@ -43,7 +43,7 @@ export class company_bubble {
 		let xtitle = 'Current capacity in low-carbon technologies',
 			xsubtitle = '(as % of sector production capacity)',
 			ytitle = 'Planned new capacity in low-carbon technologies',
-			ysubtitle = '(as a % of the scenario* target for YEAR)',
+			ysubtitle = '(as a % of the scenario target for YEAR)',
 			xtooltip = xtitle,
 			ytooltip = ytitle,
 			ztooltip = 'Weight in portfolio (% of AUM)',
@@ -106,6 +106,7 @@ export class company_bubble {
 
 		svg.select('.xaxis').call(xaxis).selectAll('.domain').attr('stroke', axis_color);
 		svg.select('.xaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
+		svg.select('.xaxis').selectAll('text').style('font-size','1.2em');
 
 		svg
 			.append('text')
@@ -164,6 +165,7 @@ export class company_bubble {
 
 		svg.select('.yaxis').call(yaxis).selectAll('.domain').attr('stroke', axis_color);
 		svg.select('.yaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
+		svg.select('.yaxis').selectAll('text').style('font-size','1.2em');
 
 		// Mid lines
 		svg

@@ -1,10 +1,6 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import exposure_stats_data from '../json/data_exposure_stats.json';
-	import techmix_data from '../json/data_techmix_sector.json';
-	import traj_data from '../json/data_trajectory_alignment.json';
-	import emissions_data from '../json/data_emissions.json';
 	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
@@ -13,7 +9,19 @@
 	import * as d3 from 'd3';
 	import { union } from 'd3-array';
 
-	onMount(() => {
+	onMount(async () => {
+		const exposure_stats_data_response = await fetch('/data/data_exposure_stats.json');
+		let exposure_stats_data = await exposure_stats_data_response.json();
+
+		const techmix_data_response = await fetch('/data/data_techmix_sector.json');
+		let techmix_data = await techmix_data_response.json();
+
+		const traj_data_response = await fetch('/data/data_trajectory_alignment.json');
+		let traj_data = await traj_data_response.json();
+
+		const emissions_data_response = await fetch('/data/data_emissions.json');
+		let emissions_data = await emissions_data_response.json();
+
 		function fetchExposureStats() {
 			try {
 				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);

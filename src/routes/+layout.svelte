@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { AppShell, AppBar, LightSwitch } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
@@ -32,7 +32,6 @@
 				<strong class="text-xl">PACTA Climate Alignment Tool</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<LightSwitch />
 				<a
 					class="btn btn-sm variant-filled-secondary"
 					href="https://github.com/RMI-PACTA"

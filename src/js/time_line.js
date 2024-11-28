@@ -220,7 +220,7 @@ export class time_line {
 			.attr('y', 3)
 			.text((d) => d)
 			.attr('alignment-baseline', 'middle')
-			.style('font-size','0.9em');
+			.style('font-size', '0.9em');
 
 		function mouseover(d) {
 			tooltip

@@ -408,18 +408,18 @@
 			<br />
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
-				scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus
-				auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam
-				eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec
-				eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate
-				mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt
-				erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet,
-				consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex,
-				vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum. Nullam vel
-				malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac
-				tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed
-				consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan
-				sagittis. Ut varius feugiat volutpat.
+				scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
+				cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
+				felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
+				tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
+				et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis
+				et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum
+				dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam
+				ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula libero in
+				bibendum. Nullam vel malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi
+				dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla
+				quis mollis. Sed consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque
+				et eros accumsan sagittis. Ut varius feugiat volutpat.
 			</p>
 		</div>
 		<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
@@ -466,12 +466,14 @@
 				<div class="plot-trajectory-card-box p-2 sm:col-span-10">
 					<div class="plot-trajectory-box grid p-4 card" id="trajectory-box">
 						<div class="trajectory-explanation">
-							<h4 class="h4">Production volume alignment over time for technologies in the sector</h4>
+							<h4 class="h4">
+								Production volume alignment over time for technologies in the sector
+							</h4>
 							<p>
-								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-								invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-								accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-								sanctus est Lorem ipsum dolor sit amet.
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+								takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 						</div>
 						<div class="trajectory-plot" id="trajectory-plot"></div>
@@ -484,9 +486,9 @@
 								<h4 class="h4">Technology mix for a sector</h4>
 								<p>
 									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-									eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-									takimata sanctus est Lorem ipsum dolor sit amet.
+									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+									vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+									no sea takimata sanctus est Lorem ipsum dolor sit amet.
 								</p>
 							</div>
 							<div class="techmix-plot" id="techmix-plot"></div>
@@ -498,9 +500,9 @@
 								<h4 class="h4">Emission intensity for a sector</h4>
 								<p>
 									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-									eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-									takimata sanctus est Lorem ipsum dolor sit amet.
+									tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+									vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+									no sea takimata sanctus est Lorem ipsum dolor sit amet.
 								</p>
 							</div>
 							<div class="emission-intensity-plot" id="emission-intensity-plot"></div>

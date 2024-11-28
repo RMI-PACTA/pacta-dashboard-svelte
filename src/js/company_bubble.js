@@ -106,7 +106,7 @@ export class company_bubble {
 
 		svg.select('.xaxis').call(xaxis).selectAll('.domain').attr('stroke', axis_color);
 		svg.select('.xaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
-		svg.select('.xaxis').selectAll('text').style('font-size','1.2em');
+		svg.select('.xaxis').selectAll('text').style('font-size', '1.2em');
 
 		svg
 			.append('text')
@@ -165,7 +165,7 @@ export class company_bubble {
 
 		svg.select('.yaxis').call(yaxis).selectAll('.domain').attr('stroke', axis_color);
 		svg.select('.yaxis').selectAll('.tick').selectAll('line').attr('stroke', axis_color);
-		svg.select('.yaxis').selectAll('text').style('font-size','1.2em');
+		svg.select('.yaxis').selectAll('text').style('font-size', '1.2em');
 
 		// Mid lines
 		svg

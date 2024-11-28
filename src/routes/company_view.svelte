@@ -341,18 +341,18 @@
 			<br />
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula quam sed mollis
-				scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et cursus
-				auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum felis. Etiam
-				eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel tortor nec
-				eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est et, vulputate
-				mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis et tincidunt
-				erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum dolor sit amet,
-				consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam ex semper ex,
-				vitae vulputate est est quis eros. Aenean fringilla vehicula libero in bibendum. Nullam vel
-				malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi dolor, mollis ac
-				tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla quis mollis. Sed
-				consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque et eros accumsan
-				sagittis. Ut varius feugiat volutpat.
+				scelerisque. Donec sit amet purus in nibh consequat pretium. Aenean suscipit, ligula et
+				cursus auctor, justo enim ornare ipsum, quis aliquet augue dui nec mauris. Nam eu ipsum
+				felis. Etiam eu lorem ac magna facilisis tempus. In at quam lorem. Maecenas consequat vel
+				tortor nec eleifend. Sed tempor fermentum tincidunt. Vivamus magna diam, hendrerit ac est
+				et, vulputate mollis orci. Quisque ut elit vitae enim hendrerit pulvinar vel et libero. Duis
+				et tincidunt erat. Nunc in tempus leo. Donec imperdiet ut ante in fermentum. Lorem ipsum
+				dolor sit amet, consectetur adipiscing elit. Morbi hendrerit, eros in tempor malesuada, quam
+				ex semper ex, vitae vulputate est est quis eros. Aenean fringilla vehicula libero in
+				bibendum. Nullam vel malesuada urna. Quisque volutpat sapien a consequat maximus. Morbi nisi
+				dolor, mollis ac tellus quis, facilisis egestas tellus. Aliquam ultricies condimentum nulla
+				quis mollis. Sed consectetur vel lectus in vulputate. Cras vel pretium ex. In vehicula neque
+				et eros accumsan sagittis. Ut varius feugiat volutpat.
 			</p>
 		</div>
 		<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
@@ -403,10 +403,10 @@
 								Companies’ expected alignment in low-carbon vs. high-carbon technologies
 							</h4>
 							<p>
-								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-								invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-								accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-								sanctus est Lorem ipsum dolor sit amet.
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+								takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 						</div>
 						<div class="bubble-plot" id="bubble-plot"></div>
@@ -419,10 +419,10 @@
 								Expected Technology Mix in 5 years for portfolio, scneario and selected companies
 							</h4>
 							<p>
-								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-								invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-								accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-								sanctus est Lorem ipsum dolor sit amet.
+								Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+								tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+								eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+								takimata sanctus est Lorem ipsum dolor sit amet.
 							</p>
 						</div>
 						<div class="techmix-plot" id="techmix-plot"></div>

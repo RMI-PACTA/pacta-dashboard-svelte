@@ -282,7 +282,7 @@ export class trajectory_alignment {
 						.tickFormat((d, i) => tick_labels[i])
 				)
 				.selectAll('text')
-				.style('font-size','1.1em');
+				.style('font-size', '1.1em');
 
 			// y-axis
 			group
@@ -290,7 +290,7 @@ export class trajectory_alignment {
 				.attr('class', 'yaxis')
 				.call(d3.axisLeft(y).ticks(8).tickFormat(d3.format('.2s')))
 				.selectAll('text')
-				.style('font-size','1.1em');
+				.style('font-size', '1.1em');
 
 			//	y-axis label
 			group
@@ -402,18 +402,18 @@ export class trajectory_alignment {
 
 		// legend
 
-		svg.append("svg:defs")
-		.append("svg:marker")
-		.attr("id", "arrow")
-		.attr("viewBox", "0 0 10 10")
-		.attr("refX", 5)
-		.attr("refY", 5)
-		.attr("markerWidth", 6)
-		.attr("markerHeight", 6)
-		.attr("orient", "auto-start-reverse")
-		.append("svg:path")
-		.attr("d", "M 0 0 L 10 5 L 0 10 z")
-		;
+		svg
+			.append('svg:defs')
+			.append('svg:marker')
+			.attr('id', 'arrow')
+			.attr('viewBox', '0 0 10 10')
+			.attr('refX', 5)
+			.attr('refY', 5)
+			.attr('markerWidth', 6)
+			.attr('markerHeight', 6)
+			.attr('orient', 'auto-start-reverse')
+			.append('svg:path')
+			.attr('d', 'M 0 0 L 10 5 L 0 10 z');
 
 		let box_height = 25;
 		let box_width = 50;
@@ -462,7 +462,7 @@ export class trajectory_alignment {
 			.data([portfolio_label, benchmark_label])
 			.enter()
 			.append('text')
-			.attr('transform', 'translate(0,' + (legend_data.length * box_height + 10)+ ')')
+			.attr('transform', 'translate(0,' + (legend_data.length * box_height + 10) + ')')
 			.attr('x', 31)
 			.attr('y', (d, i) => i * box_height + box_height / 2)
 			.style('text-anchor', 'start')
@@ -487,7 +487,7 @@ export class trajectory_alignment {
 			.data([portfolio_label, benchmark_label])
 			.enter()
 			.append('circle')
-			.attr('transform', 'translate(0,' + (legend_data.length * box_height + 10)+ ')')
+			.attr('transform', 'translate(0,' + (legend_data.length * box_height + 10) + ')')
 			.attr('r', 2.5)
 			.style('stroke', '#000')
 			.style('fill', '#000')
@@ -498,7 +498,7 @@ export class trajectory_alignment {
 			.data([1])
 			.enter()
 			.append('circle')
-			.attr('transform', 'translate(0,' + ((legend_data.length + 1) * box_height  + 10)+ ')')
+			.attr('transform', 'translate(0,' + ((legend_data.length + 1) * box_height + 10) + ')')
 			.attr('r', 2.5)
 			.style('stroke', '#000')
 			.style('fill', '#000')
@@ -511,7 +511,7 @@ export class trajectory_alignment {
 			.data(label_dots_legend_data)
 			.enter()
 			.append('text')
-			.attr('transform', 'translate(0,' + ((legend_data.length + 1) * box_height + 10)+ ')')
+			.attr('transform', 'translate(0,' + ((legend_data.length + 1) * box_height + 10) + ')')
 			.attr('x', 31)
 			.attr('y', (d, i) => box_height + box_height / 2 + i * (box_height / 2))
 			.style('text-anchor', 'start')

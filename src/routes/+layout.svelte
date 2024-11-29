@@ -34,7 +34,7 @@
 			<svelte:fragment slot="trail">
 				<a
 					class="btn btn-sm variant-filled-secondary"
-					href="https://github.com/RMI-PACTA"
+					href="https://github.com/RMI-PACTA/pacta-dashboard-svelte"
 					target="_blank"
 					rel="noreferrer"
 				>

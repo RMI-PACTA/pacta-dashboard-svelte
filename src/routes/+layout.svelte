@@ -62,7 +62,9 @@
 				>
 					GitHub
 				</a>
-				<button class="btn btn-sm variant-filled-primary" on:click={downloadArchive}>Save</button>
+				<button class="btn btn-sm variant-filled-primary" on:click={downloadArchive}
+					>Save Data</button
+				>
 				<button class="btn btn-sm variant-filled-primary">Help</button>
 			</svelte:fragment>
 		</AppBar>

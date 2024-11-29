@@ -76,6 +76,10 @@ export class techexposure_company {
 			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order
 		);
 
+		if (subdata_up.length == 0) {
+			throw new Error('No data found after applying selected filters')
+		}
+
 		// artificially add company name translations
 		data_down.forEach((item, index) => {
 			data_down[index]['id_translation'] = item.id;
@@ -88,6 +92,11 @@ export class techexposure_company {
 			scenario,
 			allocation
 		);
+
+		if (subdata_down.length == 0) {
+			throw new Error('No data found after applying selected filters')
+		}
+
 		subdata_down = orderData(
 			subdata_down,
 			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order

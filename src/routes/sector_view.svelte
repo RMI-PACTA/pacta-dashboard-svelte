@@ -481,8 +481,8 @@
 					</li>
 				</ul>
 				<br />
-				For deeper insights into the methodology behind these analyses, please refer to the Knowledge
-				Hub.
+				For deeper insights into the methodology behind these analyses, please refer to the <a href="https://rmi.gitbook.io/pacta-knowledge-hub">Knowledge
+				Hub</a>.
 			</div>
 			<div class="analysis-intro-stats sm:col-span-3 p-0">
 				<div class="exposure-stats" id="exposure-stats"></div>

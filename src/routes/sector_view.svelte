@@ -10,16 +10,16 @@
 	import { union } from 'd3-array';
 
 	onMount(async () => {
-		const exposureStatsDataResponse = await fetch('/data/data_exposure_stats.json');
+		const exposureStatsDataResponse = await fetch('data/data_exposure_stats.json');
 		let exposureStatsData = await exposureStatsDataResponse.json();
 
-		const techmixDataResponse = await fetch('/data/data_techmix_sector.json');
+		const techmixDataResponse = await fetch('data/data_techmix_sector.json');
 		let techmixData = await techmixDataResponse.json();
 
-		const trajDataResponse = await fetch('/data/data_trajectory_alignment.json');
+		const trajDataResponse = await fetch('data/data_trajectory_alignment.json');
 		let trajData = await trajDataResponse.json();
 
-		const emissionsDataResponse = await fetch('/data/data_emissions.json');
+		const emissionsDataResponse = await fetch('data/data_emissions.json');
 		let emissionsData = await emissionsDataResponse.json();
 
 		function fetchExposureStats() {
@@ -489,8 +489,8 @@
 					</li>
 				</ul>
 				<br />
-				For deeper insights into the methodology behind these analyses, please refer to the <a href="https://rmi.gitbook.io/pacta-knowledge-hub">Knowledge
-				Hub</a>.
+				For deeper insights into the methodology behind these analyses, please refer to the
+				<a href="https://rmi.gitbook.io/pacta-knowledge-hub">Knowledge Hub</a>.
 			</div>
 			<div class="analysis-intro-stats sm:col-span-3 p-0">
 				<div class="exposure-stats" id="exposure-stats"></div>
@@ -520,7 +520,11 @@
 								scenario trajectories reflect different assumptions about the pace of technological
 								change. Some scenarios anticipate rapid technological shifts, while others are more
 								gradual. For a deeper understanding of the scenarios used in the analysis, refer to
-								the <a href="https://pacta.rmi.org/wp-content/uploads/2024/11/202410_P4I_scenario_document.pdf">"Scenario Supporting Document. PACTA for Investors"</a>.
+								the
+								<a
+									href="https://pacta.rmi.org/wp-content/uploads/2024/11/202410_P4I_scenario_document.pdf"
+									>"Scenario Supporting Document. PACTA for Investors"</a
+								>.
 							</p>
 						</div>
 						<div class="trajectory-plot" id="trajectory-plot"></div>

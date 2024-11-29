@@ -7,22 +7,22 @@
 	import { tabulateIntoIncludedTable } from '../js/included_table.js';
 
 	onMount(async () => {
-		const tableDataResponse = await fetch('/data/data_included_table.json');
+		const tableDataResponse = await fetch('data/data_included_table.json');
 		let tableData = await tableDataResponse.json();
 
-		const bondsValuePieDataResponse = await fetch('/data/data_value_pie_bonds.json');
+		const bondsValuePieDataResponse = await fetch('data/data_value_pie_bonds.json');
 		let bondsValuePieData = await bondsValuePieDataResponse.json();
 
-		const equityValuePieDataResponse = await fetch('/data/data_value_pie_equity.json');
+		const equityValuePieDataResponse = await fetch('data/data_value_pie_equity.json');
 		let equityValuePieData = await equityValuePieDataResponse.json();
 
-		const bondsEmissionsPieDataResponse = await fetch('/data/data_emissions_pie_bonds.json');
+		const bondsEmissionsPieDataResponse = await fetch('data/data_emissions_pie_bonds.json');
 		let bondsEmissionsPieData = await bondsEmissionsPieDataResponse.json();
 
-		const equityEmissionsPieDataResponse = await fetch('/data/data_emissions_pie_equity.json');
+		const equityEmissionsPieDataResponse = await fetch('data/data_emissions_pie_equity.json');
 		let equityEmissionsPieData = await equityEmissionsPieDataResponse.json();
 
-		const techmixDataResponse = await fetch('/data/data_techexposure.json');
+		const techmixDataResponse = await fetch('data/data_techexposure.json');
 		let techmixData = await techmixDataResponse.json();
 
 		function fetchValuePie() {
@@ -219,8 +219,8 @@
 					<br />
 					While other sectors like <strong>agriculture, forestry, aluminum, paper,</strong> and
 					<strong>glass</strong>
-					are also climate-relevant, they are not included in this analysis due to the lack of
-					comprehensive asset-level or scenario data.
+					are also climate-relevant, they are not included in this analysis due to the lack of comprehensive
+					asset-level or scenario data.
 					<br /><br />
 					<strong>PACTA</strong> focuses on sectoral alignment through production capacity. However,
 					estimating <strong>absolute CO<sub>2</sub> emissions</strong> associated with a portfolio

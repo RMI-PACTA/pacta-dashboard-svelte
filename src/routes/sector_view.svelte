@@ -512,7 +512,7 @@
 								scenario trajectories reflect different assumptions about the pace of technological
 								change. Some scenarios anticipate rapid technological shifts, while others are more
 								gradual. For a deeper understanding of the scenarios used in the analysis, refer to
-								the "PACTA for Investors Scenario Document."
+								the <a href="https://pacta.rmi.org/wp-content/uploads/2024/11/202410_P4I_scenario_document.pdf">"Scenario Supporting Document. PACTA for Investors"</a>.
 							</p>
 						</div>
 						<div class="trajectory-plot" id="trajectory-plot"></div>

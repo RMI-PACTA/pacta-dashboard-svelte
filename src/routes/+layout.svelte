@@ -21,6 +21,28 @@
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	async function downloadArchive() {
+		try {
+			const response = await fetch('/data/archive.zip');
+
+			if (!response.ok) {
+				throw new Error(`Failed to fetch: ${response.statusText}`);
+			}
+
+			const blob = await response.blob();
+			const url = window.URL.createObjectURL(blob);
+
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = 'archive.zip';
+			a.click();
+			window.URL.revokeObjectURL(url); // Clean up
+		} catch (error) {
+			console.error('Error downloading archive:', error);
+			alert('Failed to download the archive. Please try again.');
+		}
+	}
 </script>
 
 <!-- App Shell -->
@@ -40,7 +62,9 @@
 				>
 					GitHub
 				</a>
-				<button class="btn btn-sm variant-filled-primary">Save</button>
+				<button class="btn btn-sm variant-filled-primary" on:click={downloadArchive}
+					>Save Data</button
+				>
 				<button class="btn btn-sm variant-filled-primary">Help</button>
 			</svelte:fragment>
 		</AppBar>

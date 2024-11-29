@@ -24,7 +24,7 @@
 
 	async function downloadArchive() {
 		try {
-			const response = await fetch('/data/archive.zip');
+			const response = await fetch('data/archive.zip');
 
 			if (!response.ok) {
 				throw new Error(`Failed to fetch: ${response.statusText}`);

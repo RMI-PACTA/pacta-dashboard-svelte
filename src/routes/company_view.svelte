@@ -10,19 +10,17 @@
 	import { union } from 'd3-array';
 
 	onMount(async () => {
-		const exposureStatsDataResponse = await fetch('/data/data_exposure_stats.json');
+		const exposureStatsDataResponse = await fetch('data/data_exposure_stats.json');
 		let exposureStatsData = await exposureStatsDataResponse.json();
 
-		const companyBubbleDataResponse = await fetch('/data/data_company_bubble.json');
+		const companyBubbleDataResponse = await fetch('data/data_company_bubble.json');
 		let companyBubbleData = await companyBubbleDataResponse.json();
 
-		const companyTechmixDataResponse = await fetch(
-			'/data/data_techexposure_company_companies.json'
-		);
+		const companyTechmixDataResponse = await fetch('data/data_techexposure_company_companies.json');
 		let companyTechmixData = await companyTechmixDataResponse.json();
 
 		const portfolioTechmixDataResponse = await fetch(
-			'/data/data_techexposure_company_portfolio.json'
+			'data/data_techexposure_company_portfolio.json'
 		);
 		let portfolioTechmixData = await portfolioTechmixDataResponse.json();
 

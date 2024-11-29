@@ -1,10 +1,6 @@
 <!-- src/routes/sector_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import exposure_stats_data from '../json/data_exposure_stats.json';
-	import techmix_data from '../json/data_techmix_sector.json';
-	import traj_data from '../json/data_trajectory_alignment.json';
-	import emissions_data from '../json/data_emissions.json';
 	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { techmix_sector } from '../js/techmix_sector.js';
 	import { trajectory_alignment } from '../js/trajectory_alignment.js';
@@ -13,10 +9,22 @@
 	import * as d3 from 'd3';
 	import { union } from 'd3-array';
 
-	onMount(() => {
+	onMount(async () => {
+		const exposureStatsDataResponse = await fetch('/data/data_exposure_stats.json');
+		let exposureStatsData = await exposureStatsDataResponse.json();
+
+		const techmixDataResponse = await fetch('/data/data_techmix_sector.json');
+		let techmixData = await techmixDataResponse.json();
+
+		const trajDataResponse = await fetch('/data/data_trajectory_alignment.json');
+		let trajData = await trajDataResponse.json();
+
+		const emissionsDataResponse = await fetch('/data/data_emissions.json');
+		let emissionsData = await emissionsDataResponse.json();
+
 		function fetchExposureStats() {
 			try {
-				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposureStatsData);
 			} catch (err) {
 				document.querySelector('#exposure-stats').innerHTML = '';
 				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
@@ -25,7 +33,7 @@
 
 		function fetchTechmix() {
 			try {
-				new techmix_sector(document.querySelector('#techmix-plot'), techmix_data);
+				new techmix_sector(document.querySelector('#techmix-plot'), techmixData);
 			} catch (err) {
 				document.querySelector('#techmix-plot').innerHTML = '';
 				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
@@ -38,7 +46,7 @@
 				let chosenSector = document.querySelector('#sector_selector').value;
 				if (volTrajectorySectors.includes(chosenSector)) {
 					document.querySelector('#trajectory-box').classList.remove('hidden');
-					new trajectory_alignment(document.querySelector('#trajectory-plot'), traj_data);
+					new trajectory_alignment(document.querySelector('#trajectory-plot'), trajData);
 				} else {
 					document.querySelector('#trajectory-box').classList.add('hidden');
 				}
@@ -50,7 +58,7 @@
 
 		function fetchEmissionIntensityPlot() {
 			try {
-				new time_line(document.querySelector('#emission-intensity-plot'), emissions_data);
+				new time_line(document.querySelector('#emission-intensity-plot'), emissionsData);
 			} catch (err) {
 				document.querySelector('#emission-intensity-plot').innerHTML = '';
 				document.querySelector('#emission-intensity-plot').appendChild(createErrorMessageDiv());
@@ -61,9 +69,9 @@
 			const sectorSelectorLanding = document.querySelector('#sector_selector_landing');
 			const sectorSelector = document.querySelector('#sector_selector');
 
-			let sectorsVolTraj = new Set(d3.map(traj_data, (d) => d.ald_sector).keys());
-			let sectorsTechmix = new Set(d3.map(techmix_data, (d) => d.ald_sector).keys());
-			let sectorsEmissions = new Set(d3.map(emissions_data, (d) => d.sector).keys());
+			let sectorsVolTraj = new Set(d3.map(trajData, (d) => d.ald_sector).keys());
+			let sectorsTechmix = new Set(d3.map(techmixData, (d) => d.ald_sector).keys());
+			let sectorsEmissions = new Set(d3.map(emissionsData, (d) => d.sector).keys());
 			let sectors = Array.from(sectorsVolTraj.union(sectorsTechmix).union(sectorsEmissions));
 
 			sectorSelectorLanding.length = 0;
@@ -76,9 +84,9 @@
 			const assetClassSelectorLanding = document.querySelector('#asset_class_selector_landing');
 			const assetClassSelector = document.querySelector('#asset_class_selector');
 
-			let classesVolTraj = new Set(d3.map(traj_data, (d) => d.asset_class).keys());
-			let classesTechmix = new Set(d3.map(techmix_data, (d) => d.asset_class).keys());
-			let classesEmissions = new Set(d3.map(emissions_data, (d) => d.asset_class).keys());
+			let classesVolTraj = new Set(d3.map(trajData, (d) => d.asset_class).keys());
+			let classesTechmix = new Set(d3.map(techmixData, (d) => d.asset_class).keys());
+			let classesEmissions = new Set(d3.map(emissionsData, (d) => d.asset_class).keys());
 			let assetClasses = Array.from(classesVolTraj.union(classesTechmix).union(classesEmissions));
 
 			assetClassSelectorLanding.length = 0;
@@ -95,15 +103,15 @@
 			let selectedClass = document.querySelector('#asset_class_selector').value;
 			let selectedSector = document.querySelector('#sector_selector').value;
 
-			let filteredTechmixData = techmix_data
+			let filteredTechmixData = techmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 
-			let filteredVolTrajData = traj_data
+			let filteredVolTrajData = trajData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 
-			let filteredEmissionsData = emissions_data
+			let filteredEmissionsData = emissionsData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 
@@ -140,14 +148,14 @@
 			let selectedClass = document.querySelector('#asset_class_selector').value;
 			let selectedSector = document.querySelector('#sector_selector').value;
 
-			let filteredTechmixData = techmix_data
+			let filteredTechmixData = techmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 			let scenarioSourcesTechMix = new Set(
 				d3.map(filteredTechmixData, (d) => d.scenario_source).keys()
 			);
 
-			let filteredVolTrajData = traj_data
+			let filteredVolTrajData = trajData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 			let scenarioSourcesVolTraj = new Set(
@@ -174,7 +182,7 @@
 			let selectedSector = document.querySelector('#sector_selector').value;
 			let selectedSource = document.querySelector('#scenario_source_selector').value;
 			let selectedScenario = document.querySelector('#scenario_selector').value;
-			let filteredTechmixData = techmix_data
+			let filteredTechmixData = techmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.scenario_source == selectedSource);
@@ -198,14 +206,14 @@
 			let selectedClass = document.querySelector('#asset_class_selector').value;
 			let selectedSector = document.querySelector('#sector_selector').value;
 
-			let filteredEmissionsData = emissions_data
+			let filteredEmissionsData = emissionsData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 			let allocationsEmissions = new Set(
 				d3.map(filteredEmissionsData, (d) => d.allocation_translation).keys()
 			);
 
-			let filteredVolTrajData = traj_data
+			let filteredVolTrajData = trajData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 			let allocationsVolTraj = new Set(
@@ -235,14 +243,14 @@
 			let selectedClass = document.querySelector('#asset_class_selector').value;
 			let selectedSector = document.querySelector('#sector_selector').value;
 
-			let filteredTechmixData = techmix_data
+			let filteredTechmixData = techmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 			let equityMarketsTechMix = new Set(
 				d3.map(filteredTechmixData, (d) => d.equity_market).keys()
 			);
 
-			let filteredVolTrajData = traj_data
+			let filteredVolTrajData = trajData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector);
 			let equityMarketsVolTraj = new Set(
@@ -270,14 +278,14 @@
 			let selectedSector = document.querySelector('#sector_selector').value;
 			let selectedMarket = document.querySelector('#equity_market_selector').value;
 
-			let filteredTechmixData = techmix_data
+			let filteredTechmixData = techmixData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.equity_market == selectedMarket)
 				.filter((d) => !d.this_portfolio);
 			let benchmarksTechmix = new Set(d3.map(filteredTechmixData, (d) => d.portfolio_name).keys());
 
-			let filteredVolTrajData = traj_data
+			let filteredVolTrajData = trajData
 				.filter((d) => d.asset_class == selectedClass)
 				.filter((d) => d.ald_sector == selectedSector)
 				.filter((d) => d.equity_market == selectedMarket)

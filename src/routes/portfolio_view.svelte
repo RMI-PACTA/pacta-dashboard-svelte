@@ -1,18 +1,30 @@
 <!-- src/routes/portfolio_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import tableData from '../json/data_included_table.json';
-	import bondsValuePieData from '../json/data_value_pie_bonds.json';
-	import equityValuePieData from '../json/data_value_pie_equity.json';
-	import bondsEmissionsPieData from '../json/data_emissions_pie_bonds.json';
-	import equityEmissionsPieData from '../json/data_emissions_pie_equity.json';
-	import techmixData from '../json/data_techexposure.json';
 	import techOrder from '../json/tech_order_in_sectors.json';
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
 	import { tabulateIntoIncludedTable } from '../js/included_table.js';
 
-	onMount(() => {
+	onMount(async () => {
+		const tableDataResponse = await fetch('/data/data_included_table.json');
+		let tableData = await tableDataResponse.json();
+
+		const bondsValuePieDataResponse = await fetch('/data/data_value_pie_bonds.json');
+		let bondsValuePieData = await bondsValuePieDataResponse.json();
+
+		const equityValuePieDataResponse = await fetch('/data/data_value_pie_equity.json');
+		let equityValuePieData = await equityValuePieDataResponse.json();
+
+		const bondsEmissionsPieDataResponse = await fetch('/data/data_emissions_pie_bonds.json');
+		let bondsEmissionsPieData = await bondsEmissionsPieDataResponse.json();
+
+		const equityEmissionsPieDataResponse = await fetch('/data/data_emissions_pie_equity.json');
+		let equityEmissionsPieData = await equityEmissionsPieDataResponse.json();
+
+		const techmixDataResponse = await fetch('/data/data_techexposure.json');
+		let techmixData = await techmixDataResponse.json();
+
 		function fetchValuePie() {
 			try {
 				new PieExploded(

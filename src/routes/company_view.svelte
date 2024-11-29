@@ -1,10 +1,6 @@
 <!-- src/routes/company_view.svelte -->
 <script>
 	import { onMount } from 'svelte';
-	import exposure_stats_data from '../json/data_exposure_stats.json';
-	import companyBubbleData from '../json/data_company_bubble.json';
-	import companyTechmixData from '../json/data_techexposure_company_companies.json';
-	import portfolioTechmixData from '../json/data_techexposure_company_portfolio.json';
 	import techOrder from '../json/tech_order_in_sectors.json';
 	import { ExposureStatsTile } from '../js/exposure_stats.js';
 	import { company_bubble } from '../js/company_bubble.js';
@@ -13,10 +9,26 @@
 	import * as d3 from 'd3';
 	import { union } from 'd3-array';
 
-	onMount(() => {
+	onMount(async () => {
+		const exposureStatsDataResponse = await fetch('/data/data_exposure_stats.json');
+		let exposureStatsData = await exposureStatsDataResponse.json();
+
+		const companyBubbleDataResponse = await fetch('/data/data_company_bubble.json');
+		let companyBubbleData = await companyBubbleDataResponse.json();
+
+		const companyTechmixDataResponse = await fetch(
+			'/data/data_techexposure_company_companies.json'
+		);
+		let companyTechmixData = await companyTechmixDataResponse.json();
+
+		const portfolioTechmixDataResponse = await fetch(
+			'/data/data_techexposure_company_portfolio.json'
+		);
+		let portfolioTechmixData = await portfolioTechmixDataResponse.json();
+
 		function fetchExposureStats() {
 			try {
-				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposure_stats_data);
+				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposureStatsData);
 			} catch {
 				document.querySelector('#exposure-stats').innerHTML = '';
 				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());

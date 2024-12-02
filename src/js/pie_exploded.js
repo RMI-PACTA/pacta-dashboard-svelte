@@ -233,11 +233,11 @@ export class PieExploded {
 
 			again = false;
 			textLabels.each(function () {
-				thisLabel = this;
+				thisLabel = this; //eslint-disable-line
 				thisLabelDoc = d3.select(thisLabel);
 				y1 = thisLabelDoc.attr('y');
 				textLabels.each(function () {
-					thatLabel = this;
+					thatLabel = this; //eslint-disable-line
 					if (thisLabel == thatLabel) return;
 
 					thatLabelDoc = d3.select(thatLabel);

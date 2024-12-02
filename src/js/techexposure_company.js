@@ -63,7 +63,8 @@ export class techexposure_company {
 			(d) => d.ald_sector_translation == selected_sector
 		)[0]['ald_sector'];
 
-		let [subdata_up, undefined] = getDataBarsAndWeights(
+		// eslint-disable-next-line
+		let [subdata_up, _null] = getDataBarsAndWeights(
 			data_up,
 			selected_class,
 			selected_sector,

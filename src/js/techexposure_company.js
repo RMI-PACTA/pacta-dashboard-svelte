@@ -312,7 +312,7 @@ export class techexposure_company {
 		function getPortfolioWeightsPerIdData(data) {
 			let subdata_weights = [];
 
-			data.forEach((item, index) => {
+			data.forEach((item) => {
 				exist_id = false;
 				for (var i = 0; i < subdata_weights.length; i++) {
 					var exist_id = exist_id || subdata_weights[i]['id'] == item.id_translation;

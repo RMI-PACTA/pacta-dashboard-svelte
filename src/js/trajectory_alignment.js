@@ -1,6 +1,5 @@
 // src/js./trajectory_alignment.js
 import * as d3 from 'd3';
-import { rollups } from 'd3-array';
 import '../css/plot_styles.css';
 
 export class trajectory_alignment {
@@ -44,7 +43,7 @@ export class trajectory_alignment {
 
 		// Declare the chart dimensions and margins.
 		const width = 1000;
-		let height, paddingBetweenPlotsVertical, nrRowsMiniPlots;
+		let height, paddingBetweenPlotsVertical;
 		if ((technologies.length > 3) & (technologies.length <= 6)) {
 			height = 550;
 			paddingBetweenPlotsVertical = 60;
@@ -89,22 +88,6 @@ export class trajectory_alignment {
 			return;
 		}
 
-		const scenarios_to_include = [
-			'STEPS',
-			'APS',
-			'SDS',
-			'NZE_2050',
-			'CurPol',
-			'NDC-LTS',
-			'1.5C-Unif',
-			'ETP_SDS',
-			'NZE',
-			'IPR FPS 2021',
-			'1.5C',
-			'NDC_LTS',
-			'Reference',
-			'1.5\xb0C'
-		];
 		let ytitle = 'Production in ',
 			portfolio_label = 'Portfolio',
 			benchmark_label = 'Benchmark',
@@ -145,7 +128,6 @@ export class trajectory_alignment {
 			1 + Math.abs(x.domain().reduce((a, b) => a.getFullYear() - b.getFullYear()));
 
 		let subdataTech,
-			i,
 			group,
 			production_data,
 			benchmark_data,
@@ -160,7 +142,7 @@ export class trajectory_alignment {
 			area_paths_grp,
 			area_paths,
 			production_line_grp;
-		let production_line, dots_production, benchmark_line_grp, dots_benchmark, unit, tick_labels;
+		let production_line, benchmark_line_grp, unit, tick_labels;
 
 		technologies.forEach((item, index) => {
 			subdataTech = subdata.filter((d) => d.technology == item);
@@ -322,9 +304,9 @@ export class trajectory_alignment {
 				.attr('stroke-width', 1.5)
 				.attr('fill', 'none')
 				.attr('stroke', 'black')
-				.attr('d', (d) => production_line(production_data));
+				.attr('d', () => production_line(production_data));
 
-			dots_production = production_line_grp
+			production_line_grp
 				.selectAll('.dot')
 				.data(production_data)
 				.enter()
@@ -357,9 +339,9 @@ export class trajectory_alignment {
 					.attr('fill', 'none')
 					.attr('stroke', 'black')
 					.style('stroke-dasharray', '2,2')
-					.attr('d', (d) => benchmark_line(benchmark_data));
+					.attr('d', () => benchmark_line(benchmark_data));
 
-				dots_benchmark = benchmark_line_grp
+				benchmark_line_grp
 					.selectAll('.dot')
 					.data(benchmark_data)
 					.enter()
@@ -570,49 +552,41 @@ export class trajectory_alignment {
 						.scaleOrdinal()
 						.domain(['production', '1.5C-Unif', 'NDC-LTS', 'CurPol', 'worse'])
 						.range(['black', '#709458', '#8db96e', '#FDF28D', '#e07b73']);
-					break;
 				case 'WEO2021':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE_2050', 'SDS', 'APS', 'STEPS', 'worse'])
 						.range(['black', '#9cab7c', '#c3d69b', '#FFFFCC', '#fde291', '#e07b73']);
-					break;
 				case 'GECO2022':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', '1.5C', 'NDC_LTS', 'Reference', 'worse'])
 						.range(['black', '#9cab7c', '#c3d69b', '#FFFFCC', '#e07b73']);
-					break;
 				case 'ISF2021':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE', 'worse'])
 						.range(['black', '#9cab7c', '#e07b73']);
-					break;
 				case 'WEO2022':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE_2050', 'APS', 'STEPS', 'worse'])
 						.range(['black', '#9cab7c', '#FFFFCC', '#fde291', '#e07b73']);
-					break;
 				case 'GECO2023':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', '1.5C', 'NDC-LTS', 'Reference', 'worse'])
 						.range(['black', '#9cab7c', '#c3d69b', '#FFFFCC', '#e07b73']);
-					break;
 				case 'ISF2023':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', '1.5\xb0C', 'worse'])
 						.range(['black', '#9cab7c', '#e07b73']);
-					break;
 				case 'WEO2023':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE_2050', 'APS', 'STEPS', 'worse'])
 						.range(['black', '#9cab7c', '#FFFFCC', '#fde291', '#e07b73']);
-					break;
 				default:
 					return d3
 						.scaleOrdinal()
@@ -644,48 +618,23 @@ export class trajectory_alignment {
 			}
 			return legendOrder;
 		}
-		// TODO: refactor to shorter
 		function direction(tech) {
 			switch (tech) {
 				case 'Oil':
-					return true;
-					break;
 				case 'Coal':
-					return true;
-					break;
 				case 'Gas':
-					return true;
-					break;
-				case 'Electric':
-					return false;
-					break;
-				case 'Hybrid':
-					return false;
-					break;
 				case 'ICE':
-					return true;
-					break;
 				case 'CoalCap':
-					return true;
-					break;
 				case 'GasCap':
-					return true;
-					break;
-				case 'HydroCap':
-					return false;
-					break;
-				case 'NuclearCap':
-					return false;
-					break;
 				case 'OilCap':
 					return true;
-					break;
+				case 'Electric':
+				case 'Hybrid':
+				case 'HydroCap':
+				case 'NuclearCap':
 				case 'RenewablesCap':
-					return false;
-					break;
 				case 'FuelCell':
 					return false;
-					break;
 				default:
 					console.log('undefined tech:', tech);
 			}

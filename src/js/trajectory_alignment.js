@@ -552,49 +552,41 @@ export class trajectory_alignment {
 						.scaleOrdinal()
 						.domain(['production', '1.5C-Unif', 'NDC-LTS', 'CurPol', 'worse'])
 						.range(['black', '#709458', '#8db96e', '#FDF28D', '#e07b73']);
-					break;
 				case 'WEO2021':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE_2050', 'SDS', 'APS', 'STEPS', 'worse'])
 						.range(['black', '#9cab7c', '#c3d69b', '#FFFFCC', '#fde291', '#e07b73']);
-					break;
 				case 'GECO2022':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', '1.5C', 'NDC_LTS', 'Reference', 'worse'])
 						.range(['black', '#9cab7c', '#c3d69b', '#FFFFCC', '#e07b73']);
-					break;
 				case 'ISF2021':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE', 'worse'])
 						.range(['black', '#9cab7c', '#e07b73']);
-					break;
 				case 'WEO2022':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE_2050', 'APS', 'STEPS', 'worse'])
 						.range(['black', '#9cab7c', '#FFFFCC', '#fde291', '#e07b73']);
-					break;
 				case 'GECO2023':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', '1.5C', 'NDC-LTS', 'Reference', 'worse'])
 						.range(['black', '#9cab7c', '#c3d69b', '#FFFFCC', '#e07b73']);
-					break;
 				case 'ISF2023':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', '1.5\xb0C', 'worse'])
 						.range(['black', '#9cab7c', '#e07b73']);
-					break;
 				case 'WEO2023':
 					return d3
 						.scaleOrdinal()
 						.domain(['production', 'NZE_2050', 'APS', 'STEPS', 'worse'])
 						.range(['black', '#9cab7c', '#FFFFCC', '#fde291', '#e07b73']);
-					break;
 				default:
 					return d3
 						.scaleOrdinal()
@@ -626,48 +618,23 @@ export class trajectory_alignment {
 			}
 			return legendOrder;
 		}
-		// TODO: refactor to shorter
 		function direction(tech) {
 			switch (tech) {
 				case 'Oil':
-					return true;
-					break;
 				case 'Coal':
-					return true;
-					break;
 				case 'Gas':
-					return true;
-					break;
-				case 'Electric':
-					return false;
-					break;
-				case 'Hybrid':
-					return false;
-					break;
 				case 'ICE':
-					return true;
-					break;
 				case 'CoalCap':
-					return true;
-					break;
 				case 'GasCap':
-					return true;
-					break;
-				case 'HydroCap':
-					return false;
-					break;
-				case 'NuclearCap':
-					return false;
-					break;
 				case 'OilCap':
 					return true;
-					break;
+				case 'Electric':
+				case 'Hybrid':
+				case 'HydroCap':
+				case 'NuclearCap':
 				case 'RenewablesCap':
-					return false;
-					break;
 				case 'FuelCell':
 					return false;
-					break;
 				default:
 					console.log('undefined tech:', tech);
 			}

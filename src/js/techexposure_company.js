@@ -77,7 +77,7 @@ export class techexposure_company {
 		);
 
 		if (subdata_up.length == 0) {
-			throw new Error('No data found after applying selected filters')
+			throw new Error('No data found after applying selected filters');
 		}
 
 		// artificially add company name translations
@@ -94,7 +94,7 @@ export class techexposure_company {
 		);
 
 		if (subdata_down.length == 0) {
-			throw new Error('No data found after applying selected filters')
+			throw new Error('No data found after applying selected filters');
 		}
 
 		subdata_down = orderData(

@@ -488,7 +488,7 @@ export class techexposure_company {
 				.attr('technology', function (d) {
 					return getTechnologyTranslation(d.key);
 				})
-				.attr('sector', function (d) {
+				.attr('sector', function () {
 					return getSectorTranslation(sector);
 				})
 				.selectAll('rect')
@@ -546,11 +546,11 @@ export class techexposure_company {
 				.style('display', 'inline-block');
 		}
 
-		function mousemove(d) {
+		function mousemove() {
 			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
 		}
 
-		function mouseout(d) {
+		function mouseout() {
 			tooltip.style('display', 'none');
 		}
 	}

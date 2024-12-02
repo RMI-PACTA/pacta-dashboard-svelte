@@ -24,7 +24,6 @@ export class ExposureStatsTile {
 		const width = 250;
 		const height = 120;
 		const marginTop = 10;
-		const marginRight = 5;
 		const marginBottom = 5;
 		const marginLeft = 5;
 

@@ -158,13 +158,13 @@ export class PieExploded {
 			]);
 		var textLabels = slicelabels
 			.append('text')
-			.attr('x', function (d, i) {
+			.attr('x', function (d) {
 				return d.textx;
 			})
-			.attr('y', function (d, i) {
+			.attr('y', function (d) {
 				return d.texty;
 			})
-			.attr('text-anchor', function (d, i) {
+			.attr('text-anchor', function (d) {
 				return d.rightHalf ? 'start' : 'end';
 			})
 			.text((d) => d.data.key_translation + ' ' + prcnt_format(d.data.value / total_value))
@@ -232,11 +232,11 @@ export class PieExploded {
 				labelForLine;
 
 			again = false;
-			textLabels.each(function (d, i) {
+			textLabels.each(function () {
 				thisLabel = this;
 				thisLabelDoc = d3.select(thisLabel);
 				y1 = thisLabelDoc.attr('y');
-				textLabels.each(function (d, i) {
+				textLabels.each(function () {
 					thatLabel = this;
 					if (thisLabel == thatLabel) return;
 

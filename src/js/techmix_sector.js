@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import { union } from 'd3-array';
 import '../css/plot_styles.css';
 
 export class techmix_sector {

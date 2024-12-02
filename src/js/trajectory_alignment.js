@@ -644,48 +644,24 @@ export class trajectory_alignment {
 			}
 			return legendOrder;
 		}
-		// TODO: refactor to shorter
+
 		function direction(tech) {
 			switch (tech) {
 				case 'Oil':
-					return true;
-					break;
 				case 'Coal':
-					return true;
-					break;
 				case 'Gas':
-					return true;
-					break;
-				case 'Electric':
-					return false;
-					break;
-				case 'Hybrid':
-					return false;
-					break;
 				case 'ICE':
-					return true;
-					break;
 				case 'CoalCap':
-					return true;
-					break;
 				case 'GasCap':
-					return true;
-					break;
-				case 'HydroCap':
-					return false;
-					break;
-				case 'NuclearCap':
-					return false;
-					break;
 				case 'OilCap':
 					return true;
-					break;
+				case 'Electric':
+				case 'Hybrid':
+				case 'HydroCap':
+				case 'NuclearCap':
 				case 'RenewablesCap':
-					return false;
-					break;
 				case 'FuelCell':
 					return false;
-					break;
 				default:
 					console.log('undefined tech:', tech);
 			}

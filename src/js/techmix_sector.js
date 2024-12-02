@@ -270,6 +270,20 @@ export class techmix_sector {
 			.selectAll('text')
 			.style('font-size', '1.8em');
 
+		// Add the y axis and tick labels
+		svg
+			.append('g')
+			.attr('transform', `translate(${marginLeft},${y0(subdataTechPerYear[0].year)})`)
+			.attr('class', 'axis')
+			.call(d3.axisLeft(yCurrent).tickSizeOuter(0))
+			.call((g) => g.selectAll('.domain').remove())
+			.call((g) => g.selectAll('.tick line').remove())
+			.selectAll('text')
+			.style('font-size', '1.8em')
+			.on('mouseover', mouseOverLabels)
+			.on('mouseout', mouseout)
+			.on('mousemove', mousemove);
+
 		svg
 			.append('g')
 			.attr('transform', `translate(${marginLeft},${y0(subdataTechPerYear[1].year)})`)

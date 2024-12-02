@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import { union } from 'd3-array';
 import '../css/plot_styles.css';
 
 export class techmix_sector {
@@ -169,7 +168,7 @@ export class techmix_sector {
 		// Add rectangles for each stacked bar
 		svg
 			.append('g')
-			.attr('transform', function (d) {
+			.attr('transform', function () {
 				return 'translate(0, ' + y0(subdataTechPerYear[0].year) + ')';
 			})
 			.selectAll('g')
@@ -192,7 +191,7 @@ export class techmix_sector {
 
 		svg
 			.append('g')
-			.attr('transform', function (d) {
+			.attr('transform', function () {
 				return 'translate(0, ' + y0(subdataTechPerYear[1].year) + ')';
 			})
 			.selectAll('g')
@@ -216,7 +215,7 @@ export class techmix_sector {
 		// Add bars for green technologies
 		svg
 			.append('g')
-			.attr('transform', function (d) {
+			.attr('transform', function () {
 				return 'translate(0, ' + y0(subdataTechPerYear[0].year) + ')';
 			})
 			.selectAll()
@@ -236,7 +235,7 @@ export class techmix_sector {
 
 		svg
 			.append('g')
-			.attr('transform', function (d) {
+			.attr('transform', function () {
 				return 'translate(0, ' + y0(subdataTechPerYear[1].year) + ')';
 			})
 			.selectAll()
@@ -270,20 +269,6 @@ export class techmix_sector {
 			.call(d3.axisBottom(x).ticks(5).tickFormat(d3.format('.0%')))
 			.selectAll('text')
 			.style('font-size', '1.8em');
-
-		// Add the y axis and tick labels
-		let yaxisCurrent = svg
-			.append('g')
-			.attr('transform', `translate(${marginLeft},${y0(subdataTechPerYear[0].year)})`)
-			.attr('class', 'axis')
-			.call(d3.axisLeft(yCurrent).tickSizeOuter(0))
-			.call((g) => g.selectAll('.domain').remove())
-			.call((g) => g.selectAll('.tick line').remove())
-			.selectAll('text')
-			.style('font-size', '1.8em')
-			.on('mouseover', mouseOverLabels)
-			.on('mouseout', mouseout)
-			.on('mousemove', mousemove);
 
 		svg
 			.append('g')
@@ -401,11 +386,11 @@ export class techmix_sector {
 			}
 		}
 
-		function mousemove(d) {
+		function mousemove() {
 			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
 		}
 
-		function mouseout(d) {
+		function mouseout() {
 			tooltip.style('display', 'none');
 		}
 	}

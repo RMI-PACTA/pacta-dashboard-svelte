@@ -5,6 +5,7 @@
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
 	import { tabulateIntoIncludedTable } from '../js/included_table.js';
+	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
 
 	onMount(async () => {
 		const tableDataResponse = await fetch('data/data_included_table.json');

@@ -47,7 +47,7 @@ export function tabulateIntoIncludedTable(data, id, opts) {
 
 	var rows = tbody.selectAll('tr').data(data).enter().append('tr');
 
-	var cells = rows
+	var _cells = rows // eslint-disable-line
 		.selectAll('td')
 		.data((row) => {
 			return columns.map((column) => {

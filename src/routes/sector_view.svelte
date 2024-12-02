@@ -26,6 +26,7 @@
 			try {
 				new ExposureStatsTile(document.querySelector('#exposure-stats'), exposureStatsData);
 			} catch (err) {
+				console.error('Error fetching exposure stats: ', err);
 				document.querySelector('#exposure-stats').innerHTML = '';
 				document.querySelector('#exposure-stats').appendChild(createErrorMessageDiv());
 			}
@@ -35,6 +36,7 @@
 			try {
 				new techmix_sector(document.querySelector('#techmix-plot'), techmixData);
 			} catch (err) {
+				console.error('Error fetching techmix: ', err);
 				document.querySelector('#techmix-plot').innerHTML = '';
 				document.querySelector('#techmix-plot').appendChild(createErrorMessageDiv());
 			}
@@ -51,6 +53,7 @@
 					document.querySelector('#trajectory-box').classList.add('hidden');
 				}
 			} catch (err) {
+				console.error('Error fetching trajectory alignment: ', err);
 				document.querySelector('#trajectory-box').innerHTML = '';
 				document.querySelector('#trajectory-box').appendChild(createErrorMessageDiv());
 			}
@@ -60,6 +63,7 @@
 			try {
 				new time_line(document.querySelector('#emission-intensity-plot'), emissionsData);
 			} catch (err) {
+				console.error('Error fetching emission intensity plot: ', err);
 				document.querySelector('#emission-intensity-plot').innerHTML = '';
 				document.querySelector('#emission-intensity-plot').appendChild(createErrorMessageDiv());
 			}

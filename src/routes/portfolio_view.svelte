@@ -4,6 +4,7 @@
 	import techOrder from '../json/tech_order_in_sectors.json';
 	import { PieExploded } from '../js/pie_exploded.js';
 	import { techexposure } from '../js/techexposure';
+	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
 	import { tabulateIntoIncludedTable } from '../js/included_table.js';
 
 	onMount(async () => {
@@ -34,6 +35,7 @@
 					"of assets' value covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching bonds pie values:', err);
 				document.querySelector('#valuePieBonds').innerHTML = '';
 				document.querySelector('#valuePieBonds').appendChild(createErrorMessageDiv());
 			}
@@ -45,6 +47,7 @@
 					"of assets' value covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching equity pie values:', err);
 				document.querySelector('#valuePieEquity').innerHTML = '';
 				document.querySelector('#valuePieEquity').appendChild(createErrorMessageDiv());
 			}
@@ -59,6 +62,7 @@
 					"of assets' emissions covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching bonds pie emissions:', err);
 				document.querySelector('#emissionsPieBonds').innerHTML = '';
 				document.querySelector('#emissionsPieBonds').appendChild(createErrorMessageDiv());
 			}
@@ -70,6 +74,7 @@
 					"of assets' emissions covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching equity pie emissions:', err);
 				document.querySelector('#emissionsPieEquity').innerHTML = '';
 				document.querySelector('#emissionsPieEquity').appendChild(createErrorMessageDiv());
 			}
@@ -85,6 +90,7 @@
 					techOrder
 				);
 			} catch (err) {
+				console.error('Error fetching bonds techmix:', err);
 				document.querySelector('#techMixAllBonds').innerHTML = '';
 				document.querySelector('#techMixAllBonds').appendChild(createErrorMessageDiv());
 			}
@@ -97,6 +103,7 @@
 					techOrder
 				);
 			} catch (err) {
+				console.error('Error fetching equity techmix:', err);
 				document.querySelector('#techMixAllEquity').innerHTML = '';
 				document.querySelector('#techMixAllEquity').appendChild(createErrorMessageDiv());
 			}
@@ -114,7 +121,8 @@
 					columnToMergeHeaderNoContent: 6
 				};
 				tabulateIntoIncludedTable(tableData, '#includedTable', opts_table);
-			} catch {
+			} catch (err) {
+				console.error('Error fetching table:', err);
 				document.querySelector('#includedTable').innerHTML = '';
 				document.querySelector('#includedTable').appendChild(createErrorMessageDiv());
 			}

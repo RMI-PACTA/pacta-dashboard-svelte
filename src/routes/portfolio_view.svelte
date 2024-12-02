@@ -35,6 +35,7 @@
 					"of assets' value covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching value pie for bonds', err);
 				document.querySelector('#valuePieBonds').innerHTML = '';
 				document.querySelector('#valuePieBonds').appendChild(createErrorMessageDiv());
 			}
@@ -46,6 +47,7 @@
 					"of assets' value covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching value pie for equity', err);
 				document.querySelector('#valuePieEquity').innerHTML = '';
 				document.querySelector('#valuePieEquity').appendChild(createErrorMessageDiv());
 			}
@@ -60,6 +62,7 @@
 					"of assets' emissions covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching emissions pie for bonds', err);
 				document.querySelector('#emissionsPieBonds').innerHTML = '';
 				document.querySelector('#emissionsPieBonds').appendChild(createErrorMessageDiv());
 			}
@@ -71,6 +74,7 @@
 					"of assets' emissions covered by PACTA sectors"
 				);
 			} catch (err) {
+				console.error('Error fetching emissions pie for equity', err);
 				document.querySelector('#emissionsPieEquity').innerHTML = '';
 				document.querySelector('#emissionsPieEquity').appendChild(createErrorMessageDiv());
 			}
@@ -86,6 +90,7 @@
 					techOrder
 				);
 			} catch (err) {
+				console.error('Error fetching techmix for bonds', err);
 				document.querySelector('#techMixAllBonds').innerHTML = '';
 				document.querySelector('#techMixAllBonds').appendChild(createErrorMessageDiv());
 			}
@@ -98,6 +103,7 @@
 					techOrder
 				);
 			} catch (err) {
+				console.error('Error fetching techmix for equity', err);
 				document.querySelector('#techMixAllEquity').innerHTML = '';
 				document.querySelector('#techMixAllEquity').appendChild(createErrorMessageDiv());
 			}

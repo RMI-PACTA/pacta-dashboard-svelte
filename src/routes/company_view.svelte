@@ -7,7 +7,6 @@
 	import { techexposure_company } from '../js/techexposure_company.js';
 	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
 	import * as d3 from 'd3';
-	import { union } from 'd3-array';
 
 	onMount(async () => {
 		const exposureStatsDataResponse = await fetch('data/data_exposure_stats.json');

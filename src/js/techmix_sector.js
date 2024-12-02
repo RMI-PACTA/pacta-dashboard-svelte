@@ -215,7 +215,7 @@ export class techmix_sector {
 		// Add bars for green technologies
 		svg
 			.append('g')
-			.attr('transform', function (d) {
+			.attr('transform', function () {
 				return 'translate(0, ' + y0(subdataTechPerYear[0].year) + ')';
 			})
 			.selectAll()

@@ -29,9 +29,7 @@ export class techexposure {
 		const marginLeft = 100;
 		const bar_width = 30;
 		const bar_gap = 12;
-		const sector_gap = 10;
 		const portfolio_label_offset = 25;
-		const legend_labels_offset = 50;
 
 		// Labels
 		let port_label = 'This portfolio',
@@ -416,11 +414,11 @@ export class techexposure {
 				.style('display', 'inline-block');
 		}
 
-		function mousemove(d) {
+		function mousemove() {
 			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
 		}
 
-		function mouseout(d) {
+		function mouseout() {
 			tooltip.style('display', 'none');
 		}
 

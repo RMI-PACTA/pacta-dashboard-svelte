@@ -68,8 +68,7 @@ export class time_line {
 			scen_line_color = '#00c082';
 
 		// Declare text labels
-		let xtitle = '',
-			scen_label = 'Scenario',
+		let scen_label = 'Scenario',
 			port_label = 'Portfolio',
 			hoverover_value = 'Value: ',
 			footnote = '* start date of the analysis';

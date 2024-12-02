@@ -112,8 +112,6 @@ export class PieExploded {
 		});
 
 		data_ready.forEach(function (d) {
-			var point = point_coord(d.midAngle, radius);
-			var offset = Math.abs(d.texty - point[1]);
 			d.elbowx = d.rightHalf
 				? d.textx - text_right_offset * numberSign(d.textx)
 				: d.textx - text_left_offset * numberSign(d.textx);

@@ -63,7 +63,8 @@ export class techexposure_company {
 			(d) => d.ald_sector_translation == selected_sector
 		)[0]['ald_sector'];
 
-		let subdata_up = getDataBarsAndWeights(
+		// eslint-disable-next-line
+		let [subdata_up, _] = getDataBarsAndWeights(
 			data_up,
 			selected_class,
 			selected_sector,
@@ -71,6 +72,7 @@ export class techexposure_company {
 			scenario,
 			allocation
 		);
+
 		subdata_up = orderData(
 			subdata_up,
 			tech_order.filter((d) => d.sector == selected_sector)[0].tech_order

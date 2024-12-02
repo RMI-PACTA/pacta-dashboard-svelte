@@ -64,7 +64,7 @@ export class techexposure_company {
 		)[0]['ald_sector'];
 
 		// eslint-disable-next-line
-		let [subdata_up, _null] = getDataBarsAndWeights(
+		let [subdata_up, unused] = getDataBarsAndWeights(
 			data_up,
 			selected_class,
 			selected_sector,

@@ -63,7 +63,7 @@ export class techexposure_company {
 			(d) => d.ald_sector_translation == selected_sector
 		)[0]['ald_sector'];
 
-		let [subdata_up, undefined] = getDataBarsAndWeights(
+		let subdata_up = getDataBarsAndWeights(
 			data_up,
 			selected_class,
 			selected_sector,
@@ -311,7 +311,7 @@ export class techexposure_company {
 		function getPortfolioWeightsPerIdData(data) {
 			let subdata_weights = [];
 
-			data.forEach((item, index) => {
+			data.forEach((item) => {
 				exist_id = false;
 				for (var i = 0; i < subdata_weights.length; i++) {
 					var exist_id = exist_id || subdata_weights[i]['id'] == item.id_translation;
@@ -487,7 +487,7 @@ export class techexposure_company {
 				.attr('technology', function (d) {
 					return getTechnologyTranslation(d.key);
 				})
-				.attr('sector', function (d) {
+				.attr('sector', function () {
 					return getSectorTranslation(sector);
 				})
 				.selectAll('rect')
@@ -545,11 +545,11 @@ export class techexposure_company {
 				.style('display', 'inline-block');
 		}
 
-		function mousemove(d) {
+		function mousemove() {
 			tooltip.style('left', d3.event.pageX + 10 + 'px').style('top', d3.event.pageY - 20 + 'px');
 		}
 
-		function mouseout(d) {
+		function mouseout() {
 			tooltip.style('display', 'none');
 		}
 	}

@@ -38,7 +38,7 @@ You can preview the production build with `npm run preview`.
 ### Production
 
 Production builds of the dashboard are built using a docker container (defined with `Dockerfile`).
-This container executes a script to run `npm run build`, and then copy the rendered files from the default build directory to `/mnt/static` in the container.
+This container executes a script to run `npm run build`, and then copy the rendered files from the default build directory to `/mnt/build_artifacts/` in the container.
 
 The simplest way to use this is with `docker-compose up --build`, which will run the build container as an init container.
 Once that has completed sucessfully, a `nginx` container (with the rendered files bind-mounted to the correct location) will start, and the prepared dashboard will be visible at `localhost:3000`.

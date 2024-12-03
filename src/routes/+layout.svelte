@@ -54,18 +54,23 @@
 				<strong class="text-xl app-bar-custom">PACTA Climate Alignment Tool</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<a
-					class="btn btn-sm variant-filled-secondary"
-					href="https://github.com/RMI-PACTA/pacta-dashboard-svelte"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
-				</a>
-				<button class="btn btn-sm variant-filled-primary" on:click={downloadArchive}
-					>Save Data</button
-				>
-				<button class="btn btn-sm variant-filled-primary">Help</button>
+				<span class="btn-icon variant-filled">
+					<a
+						href="https://github.com/RMI-PACTA/pacta-dashboard-svelte"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<i class="fab fa-l fa-github"></i>
+					</a>
+				</span>
+				<span class="btn-icon">
+					<button on:click={downloadArchive}>
+						<i class="fas fa-l fa-floppy-disk"></i>
+					</button>
+				</span>
+				<span class="btn-icon">
+					<i class="fas fa-l fa-question"></i>
+				</span>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>

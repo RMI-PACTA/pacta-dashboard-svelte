@@ -1,13 +1,31 @@
 ---
 services:
-  svelte-app:
+  build-app:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - '8080:8080'
+    # stdin_open: true
+    # tty: true
+    # command: ["sh"]
     volumes:
       - type: bind
-        source: ${JSON_ASSETS_PATH}
-        target: /app/src/json
+        source: ${STATIC_BUILD_PATH:-./build}
+        target: /mnt/build_artifacts
+        read_only: false
+
+  server:
+    image: nginx:alpine
+    ports:
+      - 3000:80
+    volumes:
+      - type: bind
+        source: ${STATIC_BUILD_PATH:-./build}
+        target: /usr/share/nginx/html
+        read_only: false
+      - type: bind
+        source: ${JSON_ASSETS_PATH:-./sample-data}
+        target: /usr/share/nginx/html/data
         read_only: true
+    depends_on:
+      build-app:
+        condition: service_completed_successfully # build-app acts as an init container

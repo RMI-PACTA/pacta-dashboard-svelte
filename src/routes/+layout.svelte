@@ -49,9 +49,9 @@
 <AppShell>
 	<svelte:fragment slot="header">
 		<!-- App Bar -->
-		<AppBar>
+		<AppBar class="app-bar-custom">
 			<svelte:fragment slot="lead">
-				<strong class="text-xl">PACTA Climate Alignment Tool</strong>
+				<strong class="text-xl app-bar-custom">PACTA Climate Alignment Tool</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<a

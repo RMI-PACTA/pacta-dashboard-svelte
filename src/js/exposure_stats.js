@@ -112,7 +112,8 @@ export class ExposureStatsTile {
 			.attr('transform', (d, i) => 'translate(0, ' + i * 15 + ')')
 			.text((d) => d)
 			.style('dominant-baseline', 'middle')
-			.style('text-anchor', 'end');
+			.style('text-anchor', 'end')
+			.style('font-weight', (d, i) => (i == 1 ? 'bold' : 'normal'));
 
 		function prcnt_format(num) {
 			if (num == 0) {

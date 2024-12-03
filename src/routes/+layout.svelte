@@ -58,7 +58,7 @@
 			<svelte:fragment slot="lead">
 				<img class="w-[128px]" src="logo.png" alt="RMI Logo" />
 			</svelte:fragment>
-			<title class="text-xl app-bar-custom">PACTA Climate Alignment Tool</title>
+			<h1 class="text-xl app-bar-custom">PACTA Climate Alignment Tool</h1>
 			<svelte:fragment slot="trail">
 				<a
 					class="btn btn-sm variant-filled-secondary"

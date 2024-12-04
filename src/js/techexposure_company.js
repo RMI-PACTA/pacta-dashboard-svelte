@@ -291,7 +291,9 @@ export class techexposure_company {
 
 		let footnote_label =
 			footnote_lab.befor_scen +
-			scenario_source + " " + scenario +
+			scenario_source +
+			' ' +
+			scenario +
 			footnote_lab.after_scen +
 			data_up.map((d) => d.year)[0] +
 			footnote_lab.after_year;

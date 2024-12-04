@@ -273,7 +273,7 @@ export class techmix_sector {
 		// Add the y axis and tick labels
 		svg
 			.append('g')
-			.attr('transform', `translate(${marginLeft},${y0(subdataTechPerYear[0].year)})`)
+			.attr('transform', `translate(${marginLeft},${y0(subdataTechPerYear[0].year) - 20})`)
 			.attr('class', 'axis')
 			.call(d3.axisLeft(yCurrent).tickSizeOuter(0))
 			.call((g) => g.selectAll('.domain').remove())

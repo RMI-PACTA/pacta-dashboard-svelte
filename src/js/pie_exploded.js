@@ -219,31 +219,20 @@ export class PieExploded {
 		}
 
 		function relaxLabels() {
-			let again,
-				thisLabel,
-				thisLabelDoc,
-				y1,
-				thatLabel,
-				thatLabelDoc,
-				y2,
-				deltaY,
-				sign,
-				adjustment,
-				labelForLine;
+			let again, thisLabelDoc, y1, thatLabelDoc, y2, deltaY, sign, adjustment, labelForLine;
 
 			again = false;
-			textLabels.each(function () {
-				thisLabel = this; // eslint-disable-line
-				thisLabelDoc = d3.select(thisLabel);
+			textLabels.each(function (idx1) {
+				thisLabelDoc = d3.select(this);
 				y1 = thisLabelDoc.attr('y');
-				textLabels.each(function () {
-					thatLabel = this; // eslint-disable-line
-					if (thisLabel == thatLabel) return;
 
-					thatLabelDoc = d3.select(thatLabel);
+				textLabels.each(function (idx2) {
+					thatLabelDoc = d3.select(this);
+					y2 = thatLabelDoc.attr('y');
+
+					if (idx1 == idx2) return;
 					if (thisLabelDoc.attr('text-anchor') != thatLabelDoc.attr('text-anchor')) return;
 
-					y2 = thatLabelDoc.attr('y');
 					deltaY = y1 - y2;
 					if (Math.abs(deltaY) > minLabelSpacing) return;
 

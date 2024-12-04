@@ -25,6 +25,9 @@ jobs:
         run: |
           npm run build
 
+      - name: Copy in sample data
+        run: cp -r sample-data build/data
+
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:

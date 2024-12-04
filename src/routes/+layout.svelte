@@ -49,10 +49,16 @@
 <AppShell>
 	<svelte:fragment slot="header">
 		<!-- App Bar -->
-		<AppBar class="app-bar-custom">
+		<AppBar
+			class="app-bar-custom"
+			gridColumns="grid-cols-3"
+			slotDefault="place-self-center"
+			slotTrail="place-content-end"
+		>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl app-bar-custom">PACTA Climate Alignment Tool</strong>
+				<img class="w-[128px]" src="logo.png" alt="RMI Logo" />
 			</svelte:fragment>
+			<h1 class="text-xl app-bar-custom">PACTA Climate Alignment Tool</h1>
 			<svelte:fragment slot="trail">
 				<a
 					class="btn btn-sm variant-filled-secondary"

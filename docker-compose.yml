@@ -12,6 +12,7 @@ services:
         source: ${STATIC_BUILD_PATH:-./build}
         target: /mnt/build_artifacts
         read_only: false
+    network_mode: none
 
   server:
     image: nginx:alpine

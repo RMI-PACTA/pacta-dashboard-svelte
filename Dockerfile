@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the dependencies
-RUN npm install
+RUN npm install \
+      && npm run prepare
 
 # Copy necessary configurations to the working directory
 COPY postcss.config.cjs ./
@@ -20,7 +21,6 @@ COPY vite.config.ts ./
 # Copy the source code to the working directory
 COPY src ./src
 COPY static ./static
-COPY .svelte-kit ./.svelte-kit
 COPY scripts ./scripts
 
 CMD ["./scripts/build.sh"]

@@ -220,10 +220,8 @@ export class PieExploded {
 
 		function relaxLabels() {
 			let again,
-				thisLabel,
 				thisLabelDoc,
 				y1,
-				thatLabel,
 				thatLabelDoc,
 				y2,
 				deltaY,

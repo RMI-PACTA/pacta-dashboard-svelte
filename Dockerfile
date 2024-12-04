@@ -5,7 +5,6 @@ FROM node:18-alpine AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY scripts ./scripts
 COPY package*.json ./
 
 # Install the dependencies
@@ -21,6 +20,7 @@ COPY vite.config.ts ./
 # Copy the source code to the working directory
 COPY src ./src
 COPY static ./static
-
+COPY .svelte-kit ./.svelte-kit
+COPY scripts ./scripts
 
 CMD ["./scripts/build.sh"]

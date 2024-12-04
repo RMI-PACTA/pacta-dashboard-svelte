@@ -219,15 +219,7 @@ export class PieExploded {
 		}
 
 		function relaxLabels() {
-			let again,
-				thisLabelDoc,
-				y1,
-				thatLabelDoc,
-				y2,
-				deltaY,
-				sign,
-				adjustment,
-				labelForLine;
+			let again, thisLabelDoc, y1, thatLabelDoc, y2, deltaY, sign, adjustment, labelForLine;
 
 			again = false;
 			textLabels.each(function (idx1) {

@@ -66,16 +66,16 @@
 						target="_blank"
 						rel="noreferrer"
 					>
-						<i class="fab fa-l fa-github"></i>
+						<i class="fab fa-xl fa-github"></i>
 					</a>
 				</span>
-				<span class="btn-icon">
+				<span class="btn-icon variant-filled">
 					<button on:click={downloadArchive}>
-						<i class="fas fa-l fa-floppy-disk"></i>
+						<i class="fas fa-xl fa-floppy-disk"></i>
 					</button>
 				</span>
-				<span class="btn-icon">
-					<i class="fas fa-l fa-question"></i>
+				<span class="btn-icon variant-filled">
+					<i class="fas fa-xl fa-question"></i>
 				</span>
 			</svelte:fragment>
 		</AppBar>

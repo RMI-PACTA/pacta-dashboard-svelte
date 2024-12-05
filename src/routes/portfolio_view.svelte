@@ -138,20 +138,21 @@
 	});
 </script>
 
-<div class="content p-4" id="content-portfolio-view">
+<div class="content p-8" id="content-portfolio-view">
 	<div class="analysis">
 		<div class="analysis-intro grid sm:grid-cols-12">
 			<div class="analysis-intro-text sm:col-span-12 p-4">
 				<h3 class="h3">Portfolio-Level Overview</h3>
 				<br />
 				<p>
-					The <strong>Portfolio-Level Overview</strong> provides a high-level view of how your
-					entire portfolio aligns with climate transition goals. This section offers key insights
-					into the climate-related risks and opportunities within your investments, helping you
-					understand the overall exposure to sectors, asset classes, and emissions. It answers
-					essential questions about the scope of the PACTA analysis, helping you assess the breadth
-					and depth of climate-related metrics across your portfolio.
-					<br /><br /> Key features in this section:
+					This section provides an overview of your portfolio's exposure to key climate-relevant
+					sectors, asset classes, and emissions. It answers essential questions about the scope of
+					the PACTA analysis, helping you assess the breadth and depth of climate-related metrics
+					across your portfolio.
+					<br /> <br />
+					You can hover over the graphs to get more in-depth insights of your portfolio-level analysis.
+					<br /> <br />
+					Key features in this section:
 				</p>
 				<br />
 				<ul class="list-disc">
@@ -162,35 +163,30 @@
 					<li>
 						<strong>Sector Coverage</strong>: First overview of the exposure to climate-relevant
 						sectors and their technologies, as a share of the AUM (assets under management) of the
-						portfolio.
+						portfolio
 					</li>
 					<li>
-						<strong>Emissions Coverage</strong>: Get an estimate of how much of your portfolio's
+						<strong>Emissions Coverage</strong>: Get an estimate of how much of your portfolio’s
 						emissions are addressed in the analysis, as well as an overview of your portfolio
 						absolute emissions.
 					</li>
 				</ul>
 				<br />
-				<p>
-					You can hover over the graphs to get more in-depth insights of your portfolio-level
-					analysis.
-				</p>
 			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4">
-			<div class="analysis-table-explanation sm:col-span-12 card p-4">
+			<div class="analysis-table-explanation sm:col-span-12 card p-8">
 				<h4 class="h4">Asset classes covered by the analysis</h4>
 				<br />
 				<p>
 					This analysis focuses on asset classes with a direct and measurable impact on the real
 					economy, specifically investments in <strong>listed equities</strong> and
-					<strong>corporate bonds</strong>
-					on the secondary market. These asset classes represent the most accessible and reliable data
-					sources for understanding portfolio alignment with climate transition goals. From the total
-					market value of the portfolio, <strong>[X]%</strong> is allocated to
-					<strong>equity investments</strong>, and <strong>[Y]%</strong> is allocated to
-					<strong>corporate bonds</strong>. The table below summarizes the specific financial
-					instruments included in the analysis.
+					<strong>corporate bonds</strong> on the secondary market. These asset classes represent
+					the most accessible and reliable data sources for understanding portfolio alignment with
+					climate transition goals.
+					<br /> <br />
+					From the total market value of the portfolio, <strong>[X]%</strong> is allocated to equity
+					investments, and <strong>[Y]%</strong> is allocated to corporate bonds.
 				</p>
 				<div class="table-box sm:col-span-12">
 					<div class="table table-hover" id="includedTable"></div>
@@ -198,97 +194,58 @@
 			</div>
 		</div>
 		<div class="analysis-pie grid sm:grid-cols-12 p-4">
-			<div class="analysis-pie-box sm:col-span-12 card p-4">
+			<div class="analysis-pie-box sm:col-span-12 card p-8">
 				<div class="analysis-pies-explanation sm:col-span-12">
 					<h4 class="h4">
 						Sector Coverage by Assets Under Management and Absolute CO<sub>2</sub> Emissions
 					</h4>
 					<br />
-					The <strong>PACTA analysis</strong> is applied to listed equity and corporate bond
-					holdings in the most critical segments of climate-relevant sectors, including
+					The <strong>PACTA for Investors</strong> analysis focuses on listed equity and corporate
+					bond holdings in key climate-relevant sectors, including
 					<strong
-						>upstream oil and gas, coal mining, automotive production (light-duty vehicles), power
-						generation, cement production, steel production</strong
-					>, and <strong>aviation</strong>.
+						>oil and gas, coal, automotive, power generation, cement, steel, and aviation</strong
+					>, and <strong>aviation</strong>. These sectors meet three criteria: they are major
+					contributors to global GHG emissions, have available scenario benchmarks for transition
+					expectations, and provide sufficient data for analysis.
+					<br /> <br />
+					Sectors like <strong>agriculture, forestry, aluminum, paper, and glass</strong>
+					are excluded due to limited asset-level or scenario data.
 					<br /><br />
-					These sectors meet the following criteria:
+					While the PACTA analysis centers on sectoral alignment through production capacity, estimating
+					<strong>absolute CO2 emissions</strong> associated with a portfolio can provide additional
+					insights into the relative importance of each sector in the decarbonization of the
+					portfolio.
 					<br /><br />
-					<ul class="list-disc">
-						<li>
-							<strong>Climate Relevance</strong>: They are significant contributors to global
-							greenhouse gas (GHG) emissions.
-						</li>
-						<li>
-							<strong>Scenario Benchmarks</strong>: Scenario benchmarks are available for each
-							sector to guide transition expectations.
-						</li>
-						<li>
-							<strong>Data Availability</strong>: Sufficient data and business intelligence are
-							available to support analysis.
-						</li>
-					</ul>
-					<br />
-					While other sectors like <strong>agriculture, forestry, aluminum, paper,</strong> and
-					<strong>glass</strong>
-					are also climate-relevant, they are not included in this analysis due to the lack of comprehensive
-					asset-level or scenario data.
-					<br /><br />
-					<strong>PACTA</strong> focuses on sectoral alignment through production capacity. However,
-					estimating <strong>absolute CO<sub>2</sub> emissions</strong> associated with a portfolio
-					can provide additional insights into the relative importance of each sector in the
-					decarbonization of the portfolio.
-					<br /><br />
-					The emissions data used to build the chart below, is sourced by our data provider, from multiple
-					channels, including:
-					<br /><br />
-					<ul class="list-disc">
-						<li><strong>Company-reported data</strong> (via sustainability reports),</li>
-						<li><strong>Climate Disclosure Project (CDP)</strong> submissions,</li>
-						<li><strong>Modeled emissions data</strong> based on company filings.</li>
-					</ul>
-					<br />
-					The charts below provide an overview of the portfolio's exposure to
-					<strong>PACTA sectors</strong>, and the
-					<strong>CO<sub>2</sub>emissions</strong> associated with those sectors.
-					<br />
-					The pie charts show:
-					<br /><br />
-					<ul class="list-disc">
-						<li>
-							The share of <strong>assets</strong>
-							invested in <strong>PACTA sectors</strong>.
-						</li>
-						<li>
-							The contribution of each sector to the total <strong>CO<sub>2</sub> emissions</strong>
-							of the equity and bond portfolio.
-						</li>
-					</ul>
-					<br />
-					Comparing these charts allows you to assess the relative climate relevance of different sectors
-					in your portfolio. For example, while <strong>PACTA sectors</strong> may represent
-					<strong>[X]%</strong>
-					of the equity portfolio's market value and <strong>[Y]%</strong> of the corporate bond
-					portfolio's market value, they are responsible for <strong>[Z]%</strong> and
-					<strong>[W]%</strong>
-					of the portfolio's <strong>absolute CO<sub>2</sub> emissions</strong> in equity and corporate
-					bonds, respectively.
+					The charts below provide an overview of the portfolio’s exposure to
+					<strong>PACTA sectors</strong>, as well as the
+					<strong> emissions</strong> associated with those sectors.
 				</div>
+				<br />
 				<div class="analysis-pies-box grid sm:grid-cols-12 card p-4">
 					<div class="pie-value-bonds sm:col-span-6" id="valuePieBonds"></div>
 					<div class="pie-value-equity sm:col-span-6" id="valuePieEquity"></div>
 					<div class="pie-emissions-bonds sm:col-span-6" id="emissionsPieBonds"></div>
 					<div class="pie-emissions-equity sm:col-span-6" id="emissionsPieEquity"></div>
 				</div>
+				Comparing these charts allows you to assess the relative climate relevance of different sectors
+				in your portfolio. For example, while
+				<strong>PACTA sectors</strong> may represent
+				<strong>[X]%</strong>
+				of the equity portfolio's market value and <strong>[Y]%</strong> of the corporate bond
+				portfolio's market value, they are responsible for <strong>[Z]%</strong> and
+				<strong>[W]%</strong>
+				of the portfolio's <strong>absolute CO<sub>2</sub> emissions</strong> in equity and corporate
+				bonds, respectively.
 			</div>
 		</div>
 		<div class="analysis-exposures grid sm:grid-cols-12 p-4">
-			<div class="analysis-exposure-box sm:col-span-12 card p-4">
+			<div class="analysis-exposure-box sm:col-span-12 card p-8">
 				<div class="analysis-exposures-explanation sm:col-span-12">
 					<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
 					<br />
 					<p>
 						Within each climate-relevant sector, different technologies play varying roles in the
-						transition to a low-carbon economy. Understanding your portfolio's exposure to the
+						transition to a low-carbon economy. Understanding your portfolio’s exposure to the
 						sector and the associated technologies is critical for assessing both <strong
 							>transition risks</strong
 						>

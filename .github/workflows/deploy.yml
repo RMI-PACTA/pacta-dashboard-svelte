@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - ci/ci/gh-page-workflow
+      - ci/gh-page-workflow
 
 jobs:
   build-and-deploy:

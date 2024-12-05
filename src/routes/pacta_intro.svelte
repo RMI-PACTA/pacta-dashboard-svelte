@@ -2,7 +2,7 @@
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 </script>
 
-<div style="padding: 1rem;">
+<div class="p-4">
 	<div class="card p-8">
 		The <strong> PACTA (Paris Agreement Capital Transition Assessment) </strong> dashboard provides
 		a comprehensive view of your organization's alignment with climate transition goals. It enables

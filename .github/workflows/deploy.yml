@@ -1,7 +1,9 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: 'main'
+    branches:
+      - main
+      - ci/ci/gh-page-workflow
 
 jobs:
   build-and-deploy:

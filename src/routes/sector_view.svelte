@@ -416,7 +416,7 @@
 
 <div class="content p-8" id="content-landing-page">
 	<div class="intro-box card">
-		<div class="intro-text p-4">
+		<div class="intro-text p-8">
 			<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
 			<br />
 			<p>
@@ -460,7 +460,7 @@
 			<option value="Not_selected">Please select</option>
 		</select>
 	</div>
-	<div class="analysis p-4">
+	<div class="analysis p-8">
 		<div class="analysis-intro grid sm:grid-cols-12 p-2">
 			<div class="analysis-intro-text sm:col-span-9">
 				<h3 class="h3">Sector-level analysis</h3>
@@ -504,7 +504,7 @@
 		<div class="analysis-content grid sm:grid-cols-12" id="analysis-content">
 			<div class="analysis-plots sm:col-span-10" id="analysis-plots">
 				<div class="plot-trajectory-card-box p-2 sm:col-span-10">
-					<div class="plot-trajectory-box grid p-4 card" id="trajectory-box">
+					<div class="plot-trajectory-box grid card p-8" id="trajectory-box">
 						<div class="trajectory-explanation">
 							<h4 class="h4">
 								Production volume alignment over time for technologies in the sector
@@ -537,7 +537,7 @@
 				</div>
 				<div class="other-sector-plots-box grid sm:grid-cols-6">
 					<div class="techmix-plot-card-box p-2 sm:col-span-3">
-						<div class="techmix-plot-box sm:col-span-3 card p-4">
+						<div class="techmix-plot-box sm:col-span-3 card p-8">
 							<div class="techmix-explanation">
 								<h4 class="h4">Current and Future technology breakdown</h4>
 								<p>
@@ -563,7 +563,7 @@
 						</div>
 					</div>
 					<div class="emission-intensity-card-box p-2 sm:col-span-3">
-						<div class="emission-intensity-plot-box sm:col-span-3 card p-4">
+						<div class="emission-intensity-plot-box sm:col-span-3 card p-8">
 							<div class="emission-intensity-explanation">
 								<h4 class="h4">Alignment of emission intensities</h4>
 								<p>
@@ -601,7 +601,7 @@
 				</p>
 			</div>
 			<div class="parameters-box p-2 sm:col-span-2">
-				<div class="analysis-parameters sm:col-span-2 p-4 card">
+				<div class="analysis-parameters sm:col-span-2 p-8 card">
 					<h4 class="h4">Parameters</h4>
 					<br />
 					<label class="label">

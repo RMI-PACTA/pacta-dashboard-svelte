@@ -138,7 +138,7 @@
 	});
 </script>
 
-<div class="content p-4" id="content-portfolio-view">
+<div class="content p-8" id="content-portfolio-view">
 	<div class="analysis">
 		<div class="analysis-intro grid sm:grid-cols-12">
 			<div class="analysis-intro-text sm:col-span-12 p-4">
@@ -178,7 +178,7 @@
 			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4">
-			<div class="analysis-table-explanation sm:col-span-12 card p-4">
+			<div class="analysis-table-explanation sm:col-span-12 card p-8">
 				<h4 class="h4">Asset classes covered by the analysis</h4>
 				<br />
 				<p>
@@ -198,7 +198,7 @@
 			</div>
 		</div>
 		<div class="analysis-pie grid sm:grid-cols-12 p-4">
-			<div class="analysis-pie-box sm:col-span-12 card p-4">
+			<div class="analysis-pie-box sm:col-span-12 card p-8">
 				<div class="analysis-pies-explanation sm:col-span-12">
 					<h4 class="h4">
 						Sector Coverage by Assets Under Management and Absolute CO<sub>2</sub> Emissions
@@ -282,7 +282,7 @@
 			</div>
 		</div>
 		<div class="analysis-exposures grid sm:grid-cols-12 p-4">
-			<div class="analysis-exposure-box sm:col-span-12 card p-4">
+			<div class="analysis-exposure-box sm:col-span-12 card p-8">
 				<div class="analysis-exposures-explanation sm:col-span-12">
 					<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
 					<br />

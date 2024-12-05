@@ -345,7 +345,7 @@
 
 <div class="content p-8" id="content-landing-page">
 	<div class="intro-box card">
-		<div class="intro-text p-4">
+		<div class="intro-text p-8">
 			<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
 			<br />
 			<p>
@@ -384,7 +384,7 @@
 			<option value="Not_selected">Please select</option>
 		</select>
 	</div>
-	<div class="analysis p-4 grid">
+	<div class="analysis p-8 grid">
 		<div class="analysis-intro grid sm:grid-cols-12 p-4">
 			<div class="analysis-intro-text sm:col-span-9 p-2">
 				<h3 class="h3">Company-level analysis</h3>
@@ -424,7 +424,7 @@
 		<div class="analysis-content grid sm:grid-cols-12 p-4" id="analysis-content">
 			<div class="analysis-plots sm:col-span-10 grid sm:grid-cols-6" id="analysis-plots">
 				<div class="plot-bubble-card-box sm:col-span-3 p-2">
-					<div class="plot-bubble-box sm:col-span-3 card p-4">
+					<div class="plot-bubble-box sm:col-span-3 card p-8">
 						<div class="bubble-explanation">
 							<h4 class="h4">
 								Companies' expected alignment in low-carbon vs. current exposure to high-carbon
@@ -481,7 +481,7 @@
 					</div>
 				</div>
 				<div class="plot-techmix-card-box sm:col-span-3 p-2">
-					<div class="plot-techmix sm:col-span-3 card p-4">
+					<div class="plot-techmix sm:col-span-3 card p-8">
 						<div class="techmix-explanation">
 							<h4 class="h4">
 								Expected technology mix in 5 years for portfolio, scenario and key companies within
@@ -520,7 +520,7 @@
 				</p>
 			</div>
 			<div class="parameters-box p-2 sm:col-span-2">
-				<div class="analysis-parameters sm:col-span-2 card p-4">
+				<div class="analysis-parameters sm:col-span-2 card p-8">
 					<h4 class="h4">Parameters</h4>
 					<br />
 					<label class="label">

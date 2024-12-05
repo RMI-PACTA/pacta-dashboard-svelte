@@ -107,9 +107,15 @@
 						For more detailed information on the specific parts of each value chain that PACTA focuses
 						on, see the diagram in the figure below:
 						<br /><br />
-						<div class="card p-4 bg-tertiary-200 flex justify-center">
-							<img src="pacta_value_chain.svg" alt="PACTA Value Chain" />
-							<p>
+						<div class="card p-4 bg-tertiary-200">
+							<div class="flex justify-center">
+								<img
+									src="pacta_value_chain.svg"
+									alt="PACTA Value Chain"
+									style="height: 100%; width: auto;"
+								/>
+							</div>
+							<p class="p-2">
 								<i
 									>Figure 1: PACTA Sectors for listed equity and corporate bonds. Supply chain
 									segments with the largest contribution to climate change are colored blue.</i

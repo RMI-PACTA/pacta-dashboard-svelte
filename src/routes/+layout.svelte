@@ -86,7 +86,9 @@
 					</div>
 				</span>
 				<span class="btn-icon variant-filled">
-					<i class="fas fa-xl fa-question"></i>
+					<a href="https://rmi.gitbook.io/pacta-knowledge-hub" target="_blank" rel="noreferrer">
+						<i class="fas fa-xl fa-question"></i>
+					</a>
 				</span>
 			</svelte:fragment>
 		</AppBar>

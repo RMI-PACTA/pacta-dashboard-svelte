@@ -78,7 +78,7 @@
 						the accelerating impacts of climate change, particularly through investments aimed at
 						reducing CO2 emissions across key sectors. These efforts are essential to prevent global
 						temperatures from rising to dangerous levels.
-						<br />
+						<br /><br />
 						According to Our World In Data, taking a closer look at global greenhouse gas (GHG) emissions
 						reveals where urgent action is required. Approximately 73% of global emissions stem from
 						the energy sector (including electricity, heat, and transport), 18.4% from agriculture, forestry,
@@ -86,27 +86,27 @@
 						and 3.2% from waste management. These sectors are not only responsible for the majority of
 						emissions but are also critical areas where investment in low-carbon technologies can have
 						the greatest impact.
-						<br />
+						<br /><br />
 						PACTA (Paris Agreement Capital Transition Assessment) focuses on seven of the most carbon-intensive
 						sectors, which are likely to face significant transition risks as the world shifts toward
 						a low-carbon economy. These sectors include Oil & Gas, Coal, Power, Automotive, Steel, Cement,
 						and Aviation. Within each sector, PACTA examines the areas of the value chain that contribute
 						most significantly to CO2 emissions and where the potential for emission reductions is most
 						significant.
-						<br />
+						<br /><br />
 						PACTA's methodology targets the technology transitions needed within these sectors according
 						to climate change scenarios, emphasizing the phase-out of high-carbon technologies and the
 						ramp-up of low-carbon solutions. For example, in the Oil & Gas sector, the focus is on upstream
 						production activities, while in the Power sector, it is centered on power generation capacity
 						and the energy sources used.
-						<br />
+						<br /><br />
 						By assessing these key areas, PACTA helps investors understand the alignment of their portfolios
 						with the global shift towards a low-carbon future, highlighting where climate risks and opportunities
 						lie across different sectors and value chains.
 						<br />
 						For more detailed information on the specific parts of each value chain that PACTA focuses
 						on, see the diagram in the figure below:
-						<br />
+						<br /><br />
 						<div class="card p-4 bg-tertiary-200">
 							<img src="pacta_value_chain.svg" alt="PACTA Value Chain" />
 							<p>
@@ -116,6 +116,7 @@
 								>
 							</p>
 						</div>
+						<br />
 						Because PACTA covers sectors with very different value chains, the scope of the emissions
 						addressed by the analysis also varies between sectors. As an orientation, the Greenhouse
 						Gas Protocol defines and categorizes emissions into scopes 1, 2, and 3. This widely used
@@ -162,14 +163,13 @@
 						and steel (referred to as the "PACTA sectors"). The analysis provides a five-year
 						forward-looking, bottom-up assessment, focusing primarily on the necessary technology
 						transitions within these sectors.
-						<br />
+						<br /><br />
 						The PACTA analysis highlights the need to phase out high-emitting technologies and scale
 						up low-carbon alternatives. It uses climate scenarios to quantify the required technology
 						shifts and sectoral decarbonization needed to meet the Paris Agreement goals: limiting global
 						warming to well below 2°C and striving for 1.5°C, as well as other, less ambitious climate
 						targets.
-						<br />
-						<br />
+						<br /><br />
 						The climate scenario analysis for listed equities and corporate bonds, based on the PACTA
 						methodology, provides actionable insights by answering critical questions about portfolio
 						alignment with climate goals:
@@ -198,7 +198,7 @@
 						data, assessing how aligned these plans are with various climate scenarios. This company-specific
 						data is then consolidated to provide portfolio-level results, offering a clear view of misalignment
 						or alignment with transition pathways.
-						<br />
+						<br /><br />
 						The results help investors understand potential exposure to both transition risks and opportunities.
 						This forward-looking approach provides valuable insights for:
 						<ul class="list-disc p-4">
@@ -209,11 +209,11 @@
 						</ul>
 						The following table provides an overview of key components and principles underlying the
 						PACTA methodology.
-						<br />
+						<br /><br />
 						<!-- Responsive Container (recommended) -->
 						<div class="table-container">
 							<!-- Native Table Element -->
-							<table class="table table-hover bg-surface-200">
+							<table class="table table-hover bg-surface-200 p-4">
 								<tbody>
 									<tr>
 										<td><strong>Physical asset-based company level data (ABCD)</strong></td>
@@ -253,6 +253,7 @@
 								</tbody>
 							</table>
 						</div>
+						<br />
 						In the analysis provided for each sector, the user has the option to select from two different
 						portfolio attribution methodologies - the Portfolio Weight Approach (PA) and the Ownership
 						Weight Approach (OA). These methods are used to attribute the physical assets of a company
@@ -294,21 +295,22 @@
 						methodology, please refer to the knowledge hub on the Transition Monitor website, or to
 						the PACTA for Investors methodology document, also available on the Transition Monitor
 						website.
-						<br />
-						<h4 class="h4">Scenarios and Data</h4>
+						<br /><br />
+						<h4 class="h4">Data and Scenarios</h4>
 						<h5 class="h5">Asset-Based Company-Level Data</h5>
+						<br />
 						The PACTA methodology measures the alignment of a financial portfolio to decarbonization
 						pathways set out in climate change scenarios. It does this by attributing physical assets
 						in the real economy to the financial assets that finance them. The physical asset-based company-level
 						data used for this analysis is provided by Asset Impact.
-						<br />
+						<br /><br />
 						The production values of each company in the dataset provided by Asset Impact, measured as
 						an economic unit of output, are known. For example, the number of cars produced or barrels
 						of oil for automotive and oil assets, respectively. The asset’s production values are allocated
 						to the companies owning them based on the “Credit Ownership” and the “Equity Ownership” consolidation
 						methodologies. For more information related to the consolidation of physical assets to companies
 						please refer to the PACTA for Investors methodology document.
-						<br />
+						<br /><br />
 						<h5 class="h5">Scenarios</h5>
 						Climate change scenarios are an important tool to explore and understand what can happen
 						and what may need to happen in the future under different conditions and in order to achieve
@@ -316,7 +318,7 @@
 						what will happen with 100% certainty in the upcoming years. Instead they propose different
 						views of the future, under different political, economic and social contexts and with different
 						possible decarbonization outcomes.
-						<br />
+						<br /><br />
 						The PACTA Methodology is intended to be agnostic and to be able to use any climate scenario
 						that lays out production capacity targets at the technology level or, for the relevant sectors,
 						emission-intensity units. Scenarios typically differ in the following main ways:
@@ -345,16 +347,17 @@
 						For example, for the power sector, markets tend to be regional or national, and as such,
 						alignment should be measured at that level. However, the oil, gas, coal and automotive sectors
 						operate in a global market and in such a case a global scenario target is used.
-						<br />
+						<br /><br />
 						Not all scenarios provide information for all sectors analyzed in the PACTA assessment, therefore
 						different sectors might be analyzed using different scenarios. However, in general we recommend
 						using the same scenario where possible when performing the portfolio analysis, since the
 						sectoral pathways within scenarios are created to meet the same overall carbon budget.
-						<br />
+						<br /><br />
 						We further recommend that investors seek to understand the scenarios used, and their underlying
 						assumptions, in order to evaluate which of them is more appropriate for their purposes. For
 						further information on the scenarios included in this analysis, please refer to the scenario
 						document available on the Transition Monitor website.
+						<br /><br />
 						<h4 class="h4">Time horizons</h4>
 						Results given in this analysis are shown for the present and up to 5 years in the future.
 						This is based on the capital expenditure (CAPEX) plans reported by the company’s current
@@ -362,6 +365,7 @@
 						be made due to the lack of adequate data forecasts beyond that time frame. In PACTA, for
 						the sake of homogeneity and consistency, we provide the forecast information on a 5 year
 						forward looking basis.
+						<br /><br />
 						<h5 class="h5">Data Sources</h5>
 						<ul class="list-disc p-4">
 							<li>
@@ -423,16 +427,16 @@
 					of the sectoral production in the sector-level analysis tab. It reflects the mix of technologies
 					being used in the sector, which can indicate how exposed the portfolio is to sectors undergoing
 					a transition to low-carbon alternatives.
-					<br />
+					<br /><br />
 					For example, in the power sector, this metric tracks the proportion of production coming from
 					renewable energy compared to coal-fired generation. Similarly, in the automotive sector, it
 					shows the share of production coming from electric vehicles versus traditional internal combustion
 					engine vehicles.
-					<br />
+					<br /><br />
 					The Technology Share Mix gives more insight into the relative exposure to different technologies,
 					especially when compared with the volume trajectory, and provides a clearer picture of how
 					a company's production is distributed across different technological solutions.
-					<br />
+					<br /><br />
 					When comparing current and future tech mix for a specific sector along with the volume trajectory
 					results, the Technology Share Mix gives insights on two key types of changes:
 					<br />
@@ -456,7 +460,7 @@
 					increasing or decreasing production volumes over time and how that aligns with climate targets.
 					For instance, it could track whether a company is scaling back coal production or increasing
 					the output of electric vehicles.
-					<br />
+					<br /><br />
 					Changes in production volumes can result from:
 					<ul class="list-disc p-4">
 						<li>
@@ -478,7 +482,7 @@
 					still be reduced significantly to align with climate goals. The Emission Intensity metric helps
 					guide capital allocation toward reducing carbon emissions in these sectors in line with the
 					required reduction trajectories, even without clear technology shifts
-					<br />
+					<br /><br />
 					Each of the three PACTA metrics provides unique insights into how a portfolio aligns with climate
 					transition goals. The Technology Share Mix focuses on the distribution of production by technology
 					within sectors, offering a current and five-year forward-looking snapshot of relative exposure

@@ -188,7 +188,14 @@ export class time_line {
 			.text(footnote);
 
 		// Add legend
-		let legend_data = [port_label, subdata.map((d) => d.scenario_source)[0] + ' ' + subdata.map((d) => d.scenario)[0] + ' ' + scen_label];
+		let legend_data = [
+			port_label,
+			subdata.map((d) => d.scenario_source)[0] +
+				' ' +
+				subdata.map((d) => d.scenario)[0] +
+				' ' +
+				scen_label
+		];
 
 		let legend = svg
 			.append('g')

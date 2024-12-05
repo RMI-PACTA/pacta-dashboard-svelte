@@ -158,7 +158,7 @@ export class time_line {
 			.append('text')
 			.attr(
 				'transform',
-				`translate(${marginLeft / 2},${(height - marginBottom) / 2 + 15}) rotate(-90)`
+				`translate(${marginLeft / 2},${(height - marginBottom) / 2 + 25}) rotate(-90)`
 			)
 			.attr('x', 0)
 			.attr('y', 0)

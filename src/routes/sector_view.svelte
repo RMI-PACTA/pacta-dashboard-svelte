@@ -418,7 +418,7 @@
 			<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
 			<br />
 			<p>
-				The <strong>Sector-level analysis</strong> provides a detailed look at your listed equity
+				The <strong>sector-level analysis</strong> provides a detailed look at your listed equity
 				and corporate bond holding’s exposure to key technologies relevant for the climate
 				transition in the analysed sector.
 				<br /><br />
@@ -541,12 +541,11 @@
 									The emission intensities metric tracks changes in <strong
 										>emissions intensity</strong
 									>
-									over time, comparing the current trajectory of the portfolio with the emission
-									reduction paths outlined in climate scenarios. It's a key measure for sectors like
-									cement, steel, and aviation, where decarbonization relies on improving efficiency
-									and investing in R&D. This metric helps investors understand how companies are
-									progressing toward carbon neutrality and assess their potential for future
-									alignment with decarbonization goals.
+									over time, comparing the current trajectory of the portfolio with the emission reduction
+									paths outlined in climate scenarios. It's a key measure for sectors like cement, steel,
+									and aviation, where decarbonization relies on improving efficiency and investing in
+									R&D. This metric helps investors understand how companies are progressing toward carbon
+									neutrality and assess their potential for future alignment with decarbonization goals.
 									<br />
 								</p>
 							</div>

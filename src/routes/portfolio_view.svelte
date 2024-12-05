@@ -33,7 +33,7 @@
 					bondsValuePieData,
 					'USD',
 					"of assets' value covered by PACTA sectors",
-					"Corporate bonds portion of the portfolio"
+					"Corporate bonds portion of the portfolio [% market value]"
 				);
 			} catch (err) {
 				console.error('Error fetching value pie for bonds', err);

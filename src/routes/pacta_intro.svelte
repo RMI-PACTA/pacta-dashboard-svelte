@@ -107,7 +107,7 @@
 						For more detailed information on the specific parts of each value chain that PACTA focuses
 						on, see the diagram in the figure below:
 						<br /><br />
-						<div class="card p-4 bg-tertiary-200">
+						<div class="card p-4 bg-tertiary-200 flex justify-center">
 							<img src="pacta_value_chain.svg" alt="PACTA Value Chain" />
 							<p>
 								<i

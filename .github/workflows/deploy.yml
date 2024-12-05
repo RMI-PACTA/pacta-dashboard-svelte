@@ -4,7 +4,7 @@ on:
     branches: 'main'
 
 jobs:
-  build_site:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,23 +28,12 @@ jobs:
       - name: Copy in sample data
         run: cp -r sample-data build/data
 
-      - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v3
+      - name: nojekyll
+        run: touch build/.nojekyll
+
+      - name: 🚀 Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          # this should match the `pages` option in your adapter-static options
-          path: 'build/'
-
-  deploy:
-    needs: build_site
-    runs-on: ubuntu-latest
-
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          folder: build # The folder the action should deploy.
+          clean: true
+          dry-run: true

@@ -499,7 +499,7 @@
 					<br />
 				</svelte:fragment>
 			</AccordionItem>
-			<AccordionItem open>
+			<AccordionItem>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<svelte:fragment slot="summary"
 					><h3 class="h3">Disclaimers and Limitations of the Analysis</h3></svelte:fragment

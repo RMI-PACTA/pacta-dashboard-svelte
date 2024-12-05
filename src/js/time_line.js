@@ -41,14 +41,18 @@ export class time_line {
 		let asset_class = document.querySelector('#asset_class_selector').value,
 			sector = document.querySelector('#sector_selector').value,
 			allocation_method = document.querySelector('#allocation_method_selector').value,
-			equity_market = document.querySelector('#equity_market_selector').value;
+			equity_market = document.querySelector('#equity_market_selector').value,
+			scenario_source = document.querySelector('#scenario_source_selector').value,
+			scenario = document.querySelector('#scenario_selector').value;
 
 		//filter data
 		let subdata = data
 			.filter((d) => d.asset_class == asset_class)
 			.filter((d) => d.sector == sector)
 			.filter((d) => d.allocation_translation == allocation_method)
-			.filter((d) => d.equity_market == equity_market);
+			.filter((d) => d.equity_market == equity_market)
+			.filter((d) => d.scenario_source == scenario_source)
+			.filter((d) => d.scenario == scenario);
 
 		const parseYear = d3.timeParse('%Y');
 
@@ -184,7 +188,7 @@ export class time_line {
 			.text(footnote);
 
 		// Add legend
-		let legend_data = [port_label, subdata.map((d) => d.scenario)[0] + ' ' + scen_label];
+		let legend_data = [port_label, subdata.map((d) => d.scenario_source)[0] + ' ' + subdata.map((d) => d.scenario)[0] + ' ' + scen_label];
 
 		let legend = svg
 			.append('g')

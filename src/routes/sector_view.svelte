@@ -418,23 +418,15 @@
 			<h2 class="h3 text-center">Please select a sector and an asset class for the analysis</h2>
 			<br />
 			<p>
-				The <strong>Sector-level analysis</strong> provides a detailed look at your portfolio's
-				exposure to key technologies relevant for the climate transition in the analyzed sector.
-				This section highlights by sector and asset class, how the aggregated production plans of
-				companies within the portfolio align with climate goals in terms of technology share, and
-				future build out of low carbon technologies or future phase down of high carbon
-				technologies. For sectors without technology roadmaps, you will have access to the five-year
-				forward-looking emission intensity of your portfolio for the analyzed sector, compared to
-				the five-year scenario objective. By assessing at a sector level, the alignment of
-				companies' production trajectories with various climate scenarios, this section helps you
-				understand how well the portfolio is positioned in sectors critical to the global transition
-				to a low-carbon economy.
+				The <strong>Sector-level analysis</strong> provides a detailed look at your listed equity
+				and corporate bond holding’s exposure to key technologies relevant for the climate
+				transition in the analysed sector.
 				<br /><br />
 
 				To view the sector-level results, select the appropriate options from the drop-down menus
-				below and click <strong>Go!</strong>. If no results appear after clicking
-				<strong>Go!</strong>, it likely means your portfolio does not have exposure to the selected
-				sector or financial asset.
+				below and click <kbd class="kbd">Go!</kbd>. If no results appear after clicking
+				<kbd class="kbd">Go!</kbd>, it likely means your portfolio does not have exposure to the
+				selected sector or financial asset.
 			</p>
 		</div>
 		<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
@@ -463,17 +455,13 @@
 			<div class="analysis-intro-text sm:col-span-9">
 				<h3 class="h3">Sector-level analysis</h3>
 				<br />
-				The <strong>Sector-level analysis</strong> provides a detailed look at your portfolio's
-				exposure to key technologies relevant for the climate transition in the analyzed sector.
-				This section highlights by sector and asset class, how the aggregated production plans of
-				companies within the portfolio align with climate goals in terms of technology share, and
-				future build out of low carbon technologies or future phase down of high carbon
-				technologies. For sectors without technology roadmaps, you will have access to the five-year
-				forward-looking emission intensity of your portfolio for the analyzed sector, compared to
-				the five-year scenario objective. By assessing at a sector level, the alignment of
-				companies' production trajectories with various climate scenarios, this section helps you
-				understand how well the portfolio is positioned in sectors critical to the global transition
-				to a low-carbon economy.
+				This section presents by sector and asset class, how the aggregated production plans of companies
+				within the portfolio align with climate goals in terms of technology share, and future build
+				out of low carbon technologies or future phase down of high carbon technologies. For sectors
+				without technology roadmaps, you will obtain the 5-year emission intensity projections for your
+				portfolio, compared to scenario targets. By evaluating sector-level alignment with climate scenarios,
+				this section helps you understand your portfolio's positioning in key sectors for the global
+				transition to a low-carbon economy.
 				<br /><br />
 				Key features in this section:
 				<br /><br />
@@ -493,7 +481,7 @@
 				</ul>
 				<br />
 				For deeper insights into the methodology behind these analyses, please refer to the
-				<a href="https://rmi.gitbook.io/pacta-knowledge-hub">Knowledge Hub</a>.
+				<a class="anchor" href="https://rmi.gitbook.io/pacta-knowledge-hub">PACTA Knowledge Hub</a>.
 			</div>
 			<div class="analysis-intro-stats sm:col-span-3 p-0">
 				<div class="exposure-stats" id="exposure-stats"></div>
@@ -504,29 +492,25 @@
 				<div class="plot-trajectory-card-box p-2 sm:col-span-10">
 					<div class="plot-trajectory-box grid p-4 card" id="trajectory-box">
 						<div class="trajectory-explanation">
-							<h4 class="h4">
-								Production volume alignment over time for technologies in the sector
-							</h4>
+							<h4 class="h4">Future production plans</h4>
 							<br />
 							<p>
-								This section evaluates how well the portfolio aligns with various climate transition
-								scenarios, based on the <strong>production plans</strong> of the companies in the
-								portfolio. This analysis applies to sectors with well-defined technology
-								decarbonization roadmaps, including <strong>power, coal, oil & gas,</strong> and
-								<strong>automotive</strong>. The analysis looks at a five-year forward-looking
-								horizon, comparing companies' planned production trajectories with those outlined in
-								climate scenarios. The results are benchmarked against market indices to help assess
-								potential risks and opportunities for alignment with climate goals.
-								<br /><br />
-								This information can be used for <strong>risk management, target setting,</strong>
-								and the development of <strong>climate strategies</strong>. Please note that the
-								scenario trajectories reflect different assumptions about the pace of technological
-								change. Some scenarios anticipate rapid technological shifts, while others are more
-								gradual. For a deeper understanding of the scenarios used in the analysis, refer to
-								the
+								The charts below present the portfolio alignment with various climate transition
+								scenarios by technology, based on the <strong>production plans</strong> of the
+								companies in the portfolio. This analysis applies to sectors with well-defined
+								technology decarbonization roadmaps, including <strong>power, fossil fuels,</strong>
+								and <strong>automotive</strong>. The analysis looks at a
+								<strong>5-year horizon</strong>, comparing companies’ planned production
+								trajectories with those outlined in climate scenarios. The results are benchmarked
+								against market indices to help assess potential risks and opportunities for
+								alignment with climate goals.
+								<br />
+								Note that the scenarios vary in their assumptions about the pace of technological change,
+								ranging from rapid to gradual shifts. For more details, refer to the
 								<a
+									class="anchor"
 									href="https://pacta.rmi.org/wp-content/uploads/2024/11/202410_P4I_scenario_document.pdf"
-									>"Scenario Supporting Document. PACTA for Investors"</a
+									>PACTA for Investors Scenario Document</a
 								>.
 							</p>
 						</div>
@@ -539,22 +523,11 @@
 							<div class="techmix-explanation">
 								<h4 class="h4">Current and Future technology breakdown</h4>
 								<p>
-									In sectors with established low-carbon alternatives, such as <strong>power</strong
-									>
-									and <strong>automotive</strong>, it is valuable to examine how the
-									<strong>technology mix</strong>
-									evolves over the next five years. This comparison helps gauge how the portfolio's technology
-									distribution aligns with future decarbonization goals. In the long term, low-carbon
-									technologies will play a more critical role than high carbon technologies.
-									<br /><br />
-									This chart displays the
-									<strong>current</strong> and <strong>projected</strong> technology breakdown for
-									each sector in the portfolio. It shows how the portfolio's composition is expected
-									to change based on company-level production plans under the selected climate
-									scenario. The chart does not account for potential changes in portfolio
-									composition (i.e., changes in holdings) but rather focuses on the
-									<strong>impact of production shifts</strong> within the companies included in the portfolio
-									when compared with the production volume trajectory metric.
+									In sectors with established low-carbon alternatives, it is valuable to examine how
+									the <strong>technology mix</strong> evolves over the next five years. This comparison
+									helps gauge how the portfolio’s technology distribution aligns with future decarbonization
+									goals. In the long term, low-carbon technologies will play a more critical role than
+									high carbon technologies.
 								</p>
 							</div>
 							<div class="techmix-plot" id="techmix-plot"></div>
@@ -565,20 +538,15 @@
 							<div class="emission-intensity-explanation">
 								<h4 class="h4">Alignment of emission intensities</h4>
 								<p>
-									For sectors where low-carbon alternatives are either not yet available or where
-									significant decarbonization is required to reduce emissions (e.g., <strong
-										>cement, steel, aviation</strong
-									>), the focus is on reducing <strong>CO<sub>2</sub> emissions intensity</strong>
-									through improved production efficiency and investment in research and development.
-									Therefore, for those sectors the emission intensities metric is the main alignment
-									metric. The emission intensities metric tracks changes in emissions intensity over
-									time, comparing the current trajectory of the portfolio with the emission reduction
-									paths outlined in climate scenarios. By analyzing
-									<strong>emissions intensity</strong>, this metric provides insight into how
-									companies within the portfolio are progressing towards carbon neutrality, helping
-									investors assess the potential for future alignment with
-									<strong>decarbonization goals</strong>.
-									<br /><br />
+									The emission intensities metric tracks changes in <strong
+										>emissions intensity</strong
+									>
+									over time, comparing the current trajectory of the portfolio with the emission
+									reduction paths outlined in climate scenarios. It's a key measure for sectors like
+									cement, steel, and aviation, where decarbonization relies on improving efficiency
+									and investing in R&D. This metric helps investors understand how companies are
+									progressing toward carbon neutrality and assess their potential for future
+									alignment with decarbonization goals.
 									<br />
 								</p>
 							</div>

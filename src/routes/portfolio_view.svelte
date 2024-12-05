@@ -33,7 +33,7 @@
 					bondsValuePieData,
 					'USD',
 					"of assets' value covered by PACTA sectors",
-					"Corporate bonds portion of the portfolio [% market value]"
+					'Corporate bonds portion of the portfolio [% market value]'
 				);
 			} catch (err) {
 				console.error('Error fetching value pie for bonds', err);
@@ -46,7 +46,7 @@
 					equityValuePieData,
 					'USD',
 					"of assets' value covered by PACTA sectors",
-					"Listed equity portion of the portfolio [% market value]"
+					'Listed equity portion of the portfolio [% market value]'
 				);
 			} catch (err) {
 				console.error('Error fetching value pie for equity', err);
@@ -62,7 +62,7 @@
 					bondsEmissionsPieData,
 					'tonnes CO<sub>2</sub> emissions',
 					"of assets' emissions covered by PACTA sectors",
-					"Corporate bonds portion of the portfolio [% CO2 emissions]"
+					'Corporate bonds portion of the portfolio [% CO2 emissions]'
 				);
 			} catch (err) {
 				console.error('Error fetching emissions pie for bonds', err);
@@ -75,7 +75,7 @@
 					equityEmissionsPieData,
 					'tonnes CO<sub>2</sub> emissions',
 					"of assets' emissions covered by PACTA sectors",
-					"Listed equity portion of the portfolio [% CO2 emissions]"
+					'Listed equity portion of the portfolio [% CO2 emissions]'
 				);
 			} catch (err) {
 				console.error('Error fetching emissions pie for equity', err);

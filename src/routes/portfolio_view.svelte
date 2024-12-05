@@ -46,7 +46,7 @@
 					equityValuePieData,
 					'USD',
 					"of assets' value covered by PACTA sectors",
-					"Listed equity portion of the portfolio"
+					"Listed equity portion of the portfolio [% market value]"
 				);
 			} catch (err) {
 				console.error('Error fetching value pie for equity', err);

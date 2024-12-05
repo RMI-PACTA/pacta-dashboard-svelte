@@ -62,7 +62,7 @@
 					bondsEmissionsPieData,
 					'tonnes CO<sub>2</sub> emissions',
 					"of assets' emissions covered by PACTA sectors",
-					"Corporate bonds portion of the portfolio"
+					"Corporate bonds portion of the portfolio [% CO2 emissions]"
 				);
 			} catch (err) {
 				console.error('Error fetching emissions pie for bonds', err);

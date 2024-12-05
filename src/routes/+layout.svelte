@@ -5,7 +5,8 @@
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
 	import 'highlight.js/styles/github-dark.css';
-	import { storeHighlightJs } from '@skeletonlabs/skeleton';
+	import { storeHighlightJs, popup } from '@skeletonlabs/skeleton';
+	import type { PopupSettings } from '@skeletonlabs/skeleton';
 	import xml from 'highlight.js/lib/languages/xml'; // for HTML
 	import css from 'highlight.js/lib/languages/css';
 	import javascript from 'highlight.js/lib/languages/javascript';
@@ -21,6 +22,12 @@
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	const popupDataHover: PopupSettings = {
+		event: 'hover',
+		target: 'popupHover',
+		placement: 'bottom'
+	};
 
 	async function downloadArchive() {
 		try {
@@ -70,9 +77,13 @@
 					</a>
 				</span>
 				<span class="btn-icon variant-filled">
-					<button on:click={downloadArchive}>
+					<button on:click={downloadArchive} use:popup={popupDataHover}>
 						<i class="fas fa-xl fa-floppy-disk"></i>
 					</button>
+					<div class="card p-4 variant-filled-primary" data-popup="popupHover">
+						<p>Save Data</p>
+						<div class="arrow variant-filled-primary" />
+					</div>
 				</span>
 				<span class="btn-icon variant-filled">
 					<i class="fas fa-xl fa-question"></i>

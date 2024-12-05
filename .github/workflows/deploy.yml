@@ -38,3 +38,5 @@ jobs:
         with:
           folder: build # The folder the action should deploy.
           clean: true
+          clean-exclude: |
+            .nojekyll

@@ -599,7 +599,7 @@
 				</p>
 			</div>
 			<div class="parameters-box p-2 sm:col-span-2">
-				<div class="analysis-parameters sm:col-span-2 p-4 card">
+				<div class="analysis-parameters sm:col-span-2 p-8 card">
 					<h4 class="h4">Parameters</h4>
 					<br />
 					<label class="label">

@@ -32,7 +32,8 @@
 					document.querySelector('#valuePieBonds'),
 					bondsValuePieData,
 					'USD',
-					"of assets' value covered by PACTA sectors"
+					"of assets' value covered by PACTA sectors",
+					'Corporate bonds portion of the portfolio [% market value]'
 				);
 			} catch (err) {
 				console.error('Error fetching value pie for bonds', err);
@@ -44,7 +45,8 @@
 					document.querySelector('#valuePieEquity'),
 					equityValuePieData,
 					'USD',
-					"of assets' value covered by PACTA sectors"
+					"of assets' value covered by PACTA sectors",
+					'Listed equity portion of the portfolio [% market value]'
 				);
 			} catch (err) {
 				console.error('Error fetching value pie for equity', err);
@@ -59,7 +61,8 @@
 					document.querySelector('#emissionsPieBonds'),
 					bondsEmissionsPieData,
 					'tonnes CO<sub>2</sub> emissions',
-					"of assets' emissions covered by PACTA sectors"
+					"of assets' emissions covered by PACTA sectors",
+					'Corporate bonds portion of the portfolio [% CO2 emissions]'
 				);
 			} catch (err) {
 				console.error('Error fetching emissions pie for bonds', err);
@@ -71,7 +74,8 @@
 					document.querySelector('#emissionsPieEquity'),
 					equityEmissionsPieData,
 					'tonnes CO<sub>2</sub> emissions',
-					"of assets' emissions covered by PACTA sectors"
+					"of assets' emissions covered by PACTA sectors",
+					'Listed equity portion of the portfolio [% CO2 emissions]'
 				);
 			} catch (err) {
 				console.error('Error fetching emissions pie for equity', err);
@@ -270,12 +274,6 @@
 					bonds, respectively.
 				</div>
 				<div class="analysis-pies-box grid sm:grid-cols-12 card p-4">
-					<div class="pies-bonds-text sm:col-span-6" style="text-align: center">
-						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
-					</div>
-					<div class="pies-equity-text sm:col-span-6" style="text-align: center">
-						<h5 class="h5">Listed equity portion of the portfolio</h5>
-					</div>
 					<div class="pie-value-bonds sm:col-span-6" id="valuePieBonds"></div>
 					<div class="pie-value-equity sm:col-span-6" id="valuePieEquity"></div>
 					<div class="pie-emissions-bonds sm:col-span-6" id="emissionsPieBonds"></div>
@@ -301,12 +299,6 @@
 					</p>
 				</div>
 				<div class="analysis-exosures-box grid sm:grid-cols-12 p-4">
-					<div class="exposures-bonds-text sm:col-span-6" style="text-align: center">
-						<h5 class="h5">Corporate bonds portion of the portfolio</h5>
-					</div>
-					<div class="exposures-equity-text sm:col-span-6" style="text-align: center">
-						<h5 class="h5">Listed equity portion of the portfolio</h5>
-					</div>
 					<div class="exposures-bonds sm:col-span-6" id="techMixAllBonds"></div>
 					<div class="exposures-equity sm:col-span-6" id="techMixAllEquity"></div>
 				</div>

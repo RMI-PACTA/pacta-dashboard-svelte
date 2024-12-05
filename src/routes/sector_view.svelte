@@ -373,10 +373,12 @@
 				updateScenarioSelector();
 				fetchTrajectoryAlignmentIfApplicable();
 				fetchTechmix();
+				fetchEmissionIntensityPlot();
 			});
 			const scenario_selector = document.querySelector('#scenario_selector');
 			scenario_selector.addEventListener('change', function () {
 				fetchTechmix();
+				fetchEmissionIntensityPlot();
 			});
 			const equity_market_selector = document.querySelector('#equity_market_selector');
 			equity_market_selector.addEventListener('change', function () {

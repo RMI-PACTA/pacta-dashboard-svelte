@@ -351,16 +351,13 @@
 			<p>
 				The <strong>company-level analysis</strong> focuses on identifying the companies within your
 				portfolio with the greatest impact on the overall climate alignment results for the
-				Automotive and the Power Sectors. This section allows you to drill down into specific
-				companies and evaluate their role in driving or hindering progress towards low-carbon
-				solutions. By understanding which companies are leaders or laggards in their transition to
-				low-carbon technologies, this section provides valuable information for shaping engagement
-				strategies, making investment decisions, and managing transition risks.
+				<strong>Automotive</strong> and the <strong>Power</strong> Sectors on your listed equity and
+				corporate bond investments.
 				<br /><br />
 				To view the company-level results, select the appropriate options from the drop-down menus below
-				and click <strong>Go!</strong>. If no results appear after clicking <strong>Go!</strong>, it
-				likely means your portfolio does not have exposure to the selected sector or financial
-				asset.
+				and click <kbd class="kbd">Go!</kbd>. If no results appear after clicking
+				<kbd class="kbd">Go!</kbd>, it likely means your portfolio does not have exposure to the
+				selected sector or financial asset.
 			</p>
 		</div>
 		<div class="buttons-sector-asset-class p-4 flex space-x-2 justify-center">
@@ -389,13 +386,12 @@
 			<div class="analysis-intro-text sm:col-span-9 p-2">
 				<h3 class="h3">Company-level analysis</h3>
 				<p>
-					The <strong>company-level analysis</strong> focuses on identifying the companies within
-					your portfolio with the greatest impact on the overall climate alignment results for the
-					Automotive and the Power Sectors. This section allows you to drill down into specific
-					companies and evaluate their role in driving or hindering progress towards low-carbon
-					solutions. By understanding which companies are leaders or laggards in their transition to
-					low-carbon technologies, this section provides valuable information for shaping engagement
-					strategies, making investment decisions, and managing transition risks.
+					This section allows you to drill down into specific companies and evaluate their role in
+					driving or hindering progress towards low-carbon solutions. It highlights leaders and
+					laggards in adopting low-carbon technologies, providing key insights for engagement
+					strategies, investment decisions, and managing transition risks. This analysis supports
+					climate-related decisions, such as investment selection, engagement, or exclusion, and
+					helps shape targeted climate strategies.
 					<br /><br />
 					Key features in this section:
 					<br /><br />
@@ -411,11 +407,6 @@
 					</li>
 				</ul>
 				<br />
-				<p>
-					This analysis supports climate-related decision-making, such as engagement, investment
-					selection, or exclusion, and can be used to guide the development of targeted climate
-					strategies.
-				</p>
 			</div>
 			<div class="analysis-intro-stats sm:col-span-3">
 				<div class="exposure-stats" id="exposure-stats"></div>
@@ -426,56 +417,26 @@
 				<div class="plot-bubble-card-box sm:col-span-3 p-2">
 					<div class="plot-bubble-box sm:col-span-3 card p-4">
 						<div class="bubble-explanation">
-							<h4 class="h4">
-								Companies' expected alignment in low-carbon vs. current exposure to high-carbon
-								technologies
-							</h4>
+							<h4 class="h4">Company Exposure to Low- and High-Carbon Technologies</h4>
 							<p>
-								This chart illustrates the current technology exposure and forward-looking plans for
-								climate alignment of companies within the Power and Automotive sectors. These
-								sectors feature a competitive landscape in which <strong
-									>low-carbon technologies</strong
-								>
-								are increasingly replacing <strong>high-carbon alternatives</strong>.
+								This chart illustrates the current and future technology exposure and future plans
+								for climate alignment of companies in the sector. Companies on the left have higher
+								exposure to high-carbon technologies, while those on the right are more aligned with
+								low-carbon solutions.
 							</p>
 							<br /><br />
-							<ul class="list-disc">
-								<li>
-									Companies positioned towards the
-									<strong>left</strong> of the chart have a higher current exposure to
-									<strong>high-carbon technologies</strong>.
-								</li>
-								<li>
-									Companies towards the <strong>right</strong> are more aligned with
-									<strong>low-carbon technologies</strong>.
-								</li>
-							</ul>
-							<br />
-							<p></p>
-							This chart also compares each company's<strong
-								>planned build-out of low-carbon technologies</strong
-							>
-							to the requirements of the selected climate scenario.
-							<ul class="list-disc">
-								<li>
-									Companies positioned in the
-									<strong>lower</strong> part of the graph have lower planned expansions of
-									<strong>low-carbon technologies</strong>.
-								</li>
-								<li>
-									Companies <strong>higher up</strong> are planning more significant investments in
-									<strong>low-carbon technologies.</strong>.
-								</li>
-							</ul>
-							<br />
 							<p>
-								The
-								<strong>size of the data points</strong> on the chart indicates the
-								<strong>importance</strong>
-								of each company within the portfolio, based on its portfolio weight.
-								<strong>Larger dots</strong> represent companies that have a greater influence on the
-								portfolio's overall climate alignment.
+								It also compares each company's plans for expanding low-carbon technologies against
+								the selected climate scenario. Companies lower on the chart have smaller planned
+								investments in low-carbon tech, while those higher up have larger planned
+								expansions.
 							</p>
+							<br /><br />
+							<p>
+								The size of the dots reflects each company's influence on the portfolio’s overall
+								climate alignment, with larger dots representing companies with greater weight.
+							</p>
+							<br /><br />
 						</div>
 						<div class="bubble-plot" id="bubble-plot"></div>
 					</div>
@@ -483,22 +444,17 @@
 				<div class="plot-techmix-card-box sm:col-span-3 p-2">
 					<div class="plot-techmix sm:col-span-3 card p-4">
 						<div class="techmix-explanation">
-							<h4 class="h4">
-								Expected technology mix in 5 years for portfolio, scenario and key companies within
-								portfolio
-							</h4>
+							<h4 class="h4">Future technology mix</h4>
 							<p>
-								This section highlights the <strong>most significant companies</strong> in your
+								This section presents the <strong>most significant companies</strong> in your
 								portfolio, based on their weight, within the <strong>Power</strong> and
 								<strong>Automotive</strong>
-								sectors. For each company, we show its current <strong>technology mix</strong> in
-								production, comparing it to the
-								<strong>portfolio's future technology exposure</strong>
-								and <strong>aligned exposure</strong> based on the selected climate scenario.
+								sectors. For each company, we show its future <strong>technology mix</strong>.
 								<br /> <br />
 								By understanding the <strong>technology breakdown</strong> of these key companies,
-								you can assess how their current and planned production activities contribute to the
-								overall <strong>climate alignment</strong> of the portfolio. This analysis supports
+								you can assess how their planned production activities contribute to the overall
+								<strong>climate alignment</strong>
+								of the portfolio. This analysis supports
 								<strong>transition risk management</strong>
 								and helps inform <strong>engagement strategies</strong> for companies that may need to
 								accelerate their transition to low-carbon solutions.

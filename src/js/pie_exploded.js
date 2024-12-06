@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 export class PieExploded {
-	constructor(container, data, unit, annotation) {
+	constructor(container, data, unit, annotation, title) {
 		let container_div;
 
 		if (typeof container === 'string') {
@@ -48,6 +48,8 @@ export class PieExploded {
 		let minLabelSpacing = 16;
 		let comment_position = marginRight;
 		let comment_height = height - marginBottom / 3;
+		let title_position = width / 2;
+		let title_height = marginTop / 3;
 
 		// Plot labels
 		let numbers_long = { M: ' million', G: ' billion', T: ' trillion' };
@@ -189,6 +191,15 @@ export class PieExploded {
 			.text(annotation)
 			.style('dominant-baseline', 'middle')
 			.style('text-anchor', 'end');
+
+		// Title
+		svg
+			.append('text')
+			.attr('transform', 'translate(' + [width - title_position, title_height + 30] + ')')
+			.text(title)
+			.style('dominant-baseline', 'middle')
+			.style('text-anchor', 'middle')
+			.style('font-size', '1.3em');
 
 		function point_coord(angle, radius) {
 			return [radius * Math.sin(angle), radius * Math.cos(angle) * -1];

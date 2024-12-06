@@ -9,7 +9,7 @@
 </script>
 
 <TabGroup>
-	<Tab bind:group={tabSet} name="pacta_intro" value={0}>PACTA Intro</Tab>
+	<Tab bind:group={tabSet} name="pacta_intro" value={0}>Introduction</Tab>
 	<Tab bind:group={tabSet} name="portfolio_view" value={1}>Portfolio-level Overview</Tab>
 	<Tab bind:group={tabSet} name="sector_view" value={2}>Sector-level Analysis</Tab>
 	<Tab bind:group={tabSet} name="company_view" value={3}>Company-level Analysis</Tab>

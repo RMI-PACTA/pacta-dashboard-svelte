@@ -23,4 +23,7 @@ COPY src ./src
 COPY static ./static
 COPY scripts ./scripts
 
+# Build the application
+RUN npm run build
+
 CMD ["./scripts/build.sh"]

@@ -65,7 +65,7 @@ export class time_line {
 			.scaleLinear()
 			.domain(d3.extent(subdata, (d) => d.value))
 			.nice()
-			.range([marginTop, height - marginBottom]);
+			.range([height - marginBottom, marginTop]);
 
 		// Declare colours
 		let line_color = '#1b324f',

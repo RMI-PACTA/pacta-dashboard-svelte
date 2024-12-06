@@ -56,7 +56,7 @@ jobs:
             .nojekyll
             pr-preview/
 
-      - name: Deploy PR preview
+      - name: 🛸 Deploy PR preview
         if: ${{ github.event_name == 'pull_request' }}
         uses: rossjrw/pr-preview-action@v1
         with:

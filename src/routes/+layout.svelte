@@ -65,6 +65,7 @@
 						href="https://github.com/RMI-PACTA/pacta-dashboard-svelte"
 						target="_blank"
 						rel="noreferrer"
+title="GitHub"
 					>
 						<i class="fab fa-xl fa-github"></i>
 					</a>

@@ -26,7 +26,7 @@
 </div>
 <div class="p-4">
 	<div class="card p-8">
-		<Accordion autocollapse>
+		<Accordion>
 			<AccordionItem>
 				<svelte:fragment slot="lead">
 					<i class="fa-solid fa-book-open"></i>

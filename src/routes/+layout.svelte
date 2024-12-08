@@ -71,7 +71,7 @@ title="GitHub"
 					</a>
 				</span>
 				<span class="btn-icon variant-filled">
-					<button on:click={downloadArchive}>
+					<button on:click={downloadArchive} title="Save data">
 						<i class="fas fa-xl fa-floppy-disk"></i>
 					</button>
 					<div class="card p-4 variant-filled-primary" data-popup="popupHover">

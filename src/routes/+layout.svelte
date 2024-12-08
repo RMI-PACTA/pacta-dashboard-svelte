@@ -65,7 +65,7 @@
 						href="https://github.com/RMI-PACTA/pacta-dashboard-svelte"
 						target="_blank"
 						rel="noreferrer"
-title="GitHub"
+						title="GitHub"
 					>
 						<i class="fab fa-xl fa-github"></i>
 					</a>
@@ -80,7 +80,12 @@ title="GitHub"
 					</div>
 				</span>
 				<span class="btn-icon variant-filled">
-					<a href="https://rmi.gitbook.io/pacta-knowledge-hub" target="_blank" rel="noreferrer" title="PACTA Knowledge Hub">
+					<a
+						href="https://rmi.gitbook.io/pacta-knowledge-hub"
+						target="_blank"
+						rel="noreferrer"
+						title="PACTA Knowledge Hub"
+					>
 						<i class="fas fa-xl fa-question"></i>
 					</a>
 				</span>

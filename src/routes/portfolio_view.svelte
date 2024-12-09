@@ -179,7 +179,6 @@
 			<div class="analysis-table-explanation sm:col-span-12 card p-8">
 				<Accordion>
 					<AccordionItem>
-						<svelte:fragment slot="lead">(icon)</svelte:fragment>
 						<svelte:fragment slot="summary">
 							<h4 class="h4">Asset classes covered by the analysis</h4>
 						</svelte:fragment>
@@ -207,7 +206,6 @@
 				<div class="analysis-pies-explanation sm:col-span-12">
 					<Accordion>
 						<AccordionItem>
-							<svelte:fragment slot="lead">(icon)</svelte:fragment>
 							<svelte:fragment slot="summary">
 								<h4 class="h4">
 									Sector Coverage by Assets Under Management and Absolute CO<sub>2</sub> Emissions
@@ -262,7 +260,6 @@
 				<div class="analysis-exposures-explanation sm:col-span-12">
 					<Accordion>
 						<AccordionItem>
-							<svelte:fragment slot="lead">(icon)</svelte:fragment>
 							<svelte:fragment slot="summary">
 								<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
 							</svelte:fragment>

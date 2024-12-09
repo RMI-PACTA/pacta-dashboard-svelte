@@ -21,9 +21,8 @@ RUN npm install \
 # Copy the source code to the working directory
 COPY src ./src
 COPY static ./static
-COPY scripts ./scripts
 
 # Build the application
 RUN npm run build
 
-CMD ["./scripts/build.sh"]
+CMD ["cp", "-rv", "/app/build/.", "/mnt/build_artifacts/"]

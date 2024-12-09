@@ -7,6 +7,7 @@
 	import { time_line } from '../js/time_line.js';
 	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
 	import * as d3 from 'd3';
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
 	onMount(async () => {
 		const exposureStatsDataResponse = await fetch('data/data_exposure_stats.json');
@@ -494,27 +495,43 @@
 				<div class="plot-trajectory-card-box p-2 sm:col-span-10">
 					<div class="plot-trajectory-box grid card p-8" id="trajectory-box">
 						<div class="trajectory-explanation">
-							<h4 class="h4">Future production plans</h4>
-							<br />
-							<p>
-								The charts below present the portfolio alignment with various climate transition
-								scenarios by technology, based on the <strong>production plans</strong> of the
-								companies in the portfolio. This analysis applies to sectors with well-defined
-								technology decarbonization roadmaps, including <strong>power, fossil fuels,</strong>
-								and <strong>automotive</strong>. The analysis looks at a
-								<strong>5-year horizon</strong>, comparing companies’ planned production
-								trajectories with those outlined in climate scenarios. The results are benchmarked
-								against market indices to help assess potential risks and opportunities for
-								alignment with climate goals.
-								<br />
-								Note that the scenarios vary in their assumptions about the pace of technological change,
-								ranging from rapid to gradual shifts. For more details, refer to the
-								<a
-									class="anchor"
-									href="https://pacta.rmi.org/wp-content/uploads/2024/11/202410_P4I_scenario_document.pdf"
-									>PACTA for Investors Scenario Document</a
-								>.
-							</p>
+							<Accordion>
+								<AccordionItem>
+									<svelte:fragment slot="iconClosed">
+										<i class="fa-xl fa-solid fa-circle-xmark"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="iconOpen">
+										<i class="fa-xl fa-solid fa-circle-info"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="summary">
+										<h4 class="h4">Future production plans</h4>
+									</svelte:fragment>
+									<svelte:fragment slot="content">
+										<p>
+											The charts below present the portfolio alignment with various climate
+											transition scenarios by technology, based on the <strong
+												>production plans</strong
+											>
+											of the companies in the portfolio. This analysis applies to sectors with well-defined
+											technology decarbonization roadmaps, including
+											<strong>power, fossil fuels,</strong>
+											and <strong>automotive</strong>. The analysis looks at a
+											<strong>5-year horizon</strong>, comparing companies’ planned production
+											trajectories with those outlined in climate scenarios. The results are
+											benchmarked against market indices to help assess potential risks and
+											opportunities for alignment with climate goals.
+											<br />
+											Note that the scenarios vary in their assumptions about the pace of technological
+											change, ranging from rapid to gradual shifts. For more details, refer to the
+											<a
+												class="anchor"
+												href="https://pacta.rmi.org/wp-content/uploads/2024/11/202410_P4I_scenario_document.pdf"
+												>PACTA for Investors Scenario Document</a
+											>.
+										</p>
+									</svelte:fragment>
+								</AccordionItem>
+							</Accordion>
 						</div>
 						<div class="trajectory-plot" id="trajectory-plot"></div>
 					</div>
@@ -523,14 +540,28 @@
 					<div class="techmix-plot-card-box p-2 sm:col-span-3">
 						<div class="techmix-plot-box sm:col-span-3 card p-8">
 							<div class="techmix-explanation">
-								<h4 class="h4">Current and Future technology breakdown</h4>
-								<p>
-									In sectors with established low-carbon alternatives, it is valuable to examine how
-									the <strong>technology mix</strong> evolves over the next five years. This comparison
-									helps gauge how the portfolio’s technology distribution aligns with future decarbonization
-									goals. In the long term, low-carbon technologies will play a more critical role than
-									high carbon technologies.
-								</p>
+								<Accordion>
+									<AccordionItem>
+										<svelte:fragment slot="iconClosed">
+											<i class="fa-xl fa-solid fa-circle-xmark"></i>
+										</svelte:fragment>
+										<svelte:fragment slot="iconOpen">
+											<i class="fa-xl fa-solid fa-circle-info"></i>
+										</svelte:fragment>
+										<svelte:fragment slot="summary">
+											<h4 class="h4">Current and Future technology breakdown</h4>
+										</svelte:fragment>
+										<svelte:fragment slot="content">
+											<p>
+												In sectors with established low-carbon alternatives, it is valuable to
+												examine how the <strong>technology mix</strong> evolves over the next five years.
+												This comparison helps gauge how the portfolio’s technology distribution aligns
+												with future decarbonization goals. In the long term, low-carbon technologies
+												will play a more critical role than high carbon technologies.
+											</p>
+										</svelte:fragment>
+									</AccordionItem>
+								</Accordion>
 							</div>
 							<div class="techmix-plot" id="techmix-plot"></div>
 						</div>
@@ -538,18 +569,33 @@
 					<div class="emission-intensity-card-box p-2 sm:col-span-3">
 						<div class="emission-intensity-plot-box sm:col-span-3 card p-8">
 							<div class="emission-intensity-explanation">
-								<h4 class="h4">Alignment of emission intensities</h4>
-								<p>
-									The emission intensities metric tracks changes in <strong
-										>emissions intensity</strong
-									>
-									over time, comparing the current trajectory of the portfolio with the emission reduction
-									paths outlined in climate scenarios. It's a key measure for sectors like cement, steel,
-									and aviation, where decarbonization relies on improving efficiency and investing in
-									R&D. This metric helps investors understand how companies are progressing toward carbon
-									neutrality and assess their potential for future alignment with decarbonization goals.
-									<br />
-								</p>
+								<Accordion>
+									<AccordionItem>
+										<svelte:fragment slot="iconClosed">
+											<i class="fa-xl fa-solid fa-circle-xmark"></i>
+										</svelte:fragment>
+										<svelte:fragment slot="iconOpen">
+											<i class="fa-xl fa-solid fa-circle-info"></i>
+										</svelte:fragment>
+										<svelte:fragment slot="summary">
+											<h4 class="h4">Alignment of emission intensities</h4>
+										</svelte:fragment>
+										<svelte:fragment slot="content">
+											<p>
+												The emission intensities metric tracks changes in <strong
+													>emissions intensity</strong
+												>
+												over time, comparing the current trajectory of the portfolio with the emission
+												reduction paths outlined in climate scenarios. It's a key measure for sectors
+												like cement, steel, and aviation, where decarbonization relies on improving efficiency
+												and investing in R&D. This metric helps investors understand how companies are
+												progressing toward carbon neutrality and assess their potential for future alignment
+												with decarbonization goals.
+												<br />
+											</p>
+										</svelte:fragment>
+									</AccordionItem>
+								</Accordion>
 							</div>
 							<div class="emission-intensity-plot" id="emission-intensity-plot"></div>
 						</div>

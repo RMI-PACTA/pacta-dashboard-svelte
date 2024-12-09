@@ -6,6 +6,7 @@
 	import { techexposure } from '../js/techexposure';
 	import { tabulateIntoIncludedTable } from '../js/included_table.js';
 	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
 	onMount(async () => {
 		const tableDataResponse = await fetch('data/data_included_table.json');
@@ -176,18 +177,31 @@
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4">
 			<div class="analysis-table-explanation sm:col-span-12 card p-8">
-				<h4 class="h4">Asset classes covered by the analysis</h4>
-				<br />
-				<p>
-					This analysis focuses on asset classes with a direct and measurable impact on the real
-					economy, specifically investments in <strong>listed equities</strong> and
-					<strong>corporate bonds</strong> on the secondary market. These asset classes represent
-					the most accessible and reliable data sources for understanding portfolio alignment with
-					climate transition goals.
-					<br /> <br />
-					From the total market value of the portfolio, <strong>[X]%</strong> is allocated to equity
-					investments, and <strong>[Y]%</strong> is allocated to corporate bonds.
-				</p>
+				<Accordion>
+					<AccordionItem>
+						<svelte:fragment slot="iconClosed">
+							<i class="fa-xl fa-solid fa-circle-xmark"></i>
+						</svelte:fragment>
+						<svelte:fragment slot="iconOpen">
+							<i class="fa-xl fa-solid fa-circle-info"></i>
+						</svelte:fragment>
+						<svelte:fragment slot="summary">
+							<h4 class="h4">Asset classes covered by the analysis</h4>
+						</svelte:fragment>
+						<svelte:fragment slot="content">
+							<p>
+								This analysis focuses on asset classes with a direct and measurable impact on the
+								real economy, specifically investments in <strong>listed equities</strong> and
+								<strong>corporate bonds</strong> on the secondary market. These asset classes
+								represent the most accessible and reliable data sources for understanding portfolio
+								alignment with climate transition goals.
+								<br /> <br />
+								From the total market value of the portfolio, <strong>[X]%</strong> is allocated to
+								equity investments, and <strong>[Y]%</strong> is allocated to corporate bonds.
+							</p>
+						</svelte:fragment>
+					</AccordionItem>
+				</Accordion>
 				<div class="table-box sm:col-span-12">
 					<div class="table table-hover" id="includedTable"></div>
 				</div>
@@ -196,31 +210,46 @@
 		<div class="analysis-pie grid sm:grid-cols-12 p-4">
 			<div class="analysis-pie-box sm:col-span-12 card p-8">
 				<div class="analysis-pies-explanation sm:col-span-12">
-					<h4 class="h4">
-						Sector Coverage by Assets Under Management and Absolute CO<sub>2</sub> Emissions
-					</h4>
-					<br />
-					The <strong>PACTA for Investors</strong> analysis focuses on listed equity and corporate
-					bond holdings in key climate-relevant sectors, including
-					<strong
-						>oil and gas, coal, automotive, power generation, cement, steel, and aviation</strong
-					>, and <strong>aviation</strong>. These sectors meet three criteria: they are major
-					contributors to global GHG emissions, have available scenario benchmarks for transition
-					expectations, and provide sufficient data for analysis.
-					<br /> <br />
-					Sectors like <strong>agriculture, forestry, aluminum, paper, and glass</strong>
-					are excluded due to limited asset-level or scenario data.
-					<br /><br />
-					While the PACTA analysis centers on sectoral alignment through production capacity, estimating
-					<strong>absolute CO2 emissions</strong> associated with a portfolio can provide additional
-					insights into the relative importance of each sector in the decarbonization of the
-					portfolio.
-					<br /><br />
-					The charts below provide an overview of the portfolio’s exposure to
-					<strong>PACTA sectors</strong>, as well as the
-					<strong> emissions</strong> associated with those sectors.
+					<Accordion>
+						<AccordionItem>
+							<svelte:fragment slot="iconClosed">
+								<i class="fa-xl fa-solid fa-circle-xmark"></i>
+							</svelte:fragment>
+							<svelte:fragment slot="iconOpen">
+								<i class="fa-xl fa-solid fa-circle-info"></i>
+							</svelte:fragment>
+							<svelte:fragment slot="summary">
+								<h4 class="h4">
+									Sector Coverage by Assets Under Management and Absolute CO<sub>2</sub> Emissions
+								</h4>
+							</svelte:fragment>
+							<svelte:fragment slot="content">
+								<p>
+									The <strong>PACTA for Investors</strong> analysis focuses on listed equity and
+									corporate bond holdings in key climate-relevant sectors, including
+									<strong
+										>oil and gas, coal, automotive, power generation, cement, steel, and aviation</strong
+									>, and <strong>aviation</strong>. These sectors meet three criteria: they are
+									major contributors to global GHG emissions, have available scenario benchmarks for
+									transition expectations, and provide sufficient data for analysis.
+									<br /> <br />
+									Sectors like <strong>agriculture, forestry, aluminum, paper, and glass</strong>
+									are excluded due to limited asset-level or scenario data.
+									<br /><br />
+									While the PACTA analysis centers on sectoral alignment through production capacity,
+									estimating
+									<strong>absolute CO2 emissions</strong> associated with a portfolio can provide
+									additional insights into the relative importance of each sector in the
+									decarbonization of the portfolio.
+									<br /><br />
+									The charts below provide an overview of the portfolio’s exposure to
+									<strong>PACTA sectors</strong>, as well as the
+									<strong> emissions</strong> associated with those sectors.
+								</p>
+							</svelte:fragment>
+						</AccordionItem>
+					</Accordion>
 				</div>
-				<br />
 				<div class="analysis-pies-box grid sm:grid-cols-12 card p-4">
 					<div class="pie-value-bonds sm:col-span-6" id="valuePieBonds"></div>
 					<div class="pie-value-equity sm:col-span-6" id="valuePieEquity"></div>
@@ -241,19 +270,32 @@
 		<div class="analysis-exposures grid sm:grid-cols-12 p-4">
 			<div class="analysis-exposure-box sm:col-span-12 card p-8">
 				<div class="analysis-exposures-explanation sm:col-span-12">
-					<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
-					<br />
-					<p>
-						Within each climate-relevant sector, different technologies play varying roles in the
-						transition to a low-carbon economy. Understanding your portfolio’s exposure to the
-						sector and the associated technologies is critical for assessing both <strong
-							>transition risks</strong
-						>
-						and <strong>investment opportunities</strong> in the context of climate change.
-						<br />
-						The following chart visualizes the portfolio's exposure to the different sectors and technologies,
-						compared to the relevant benchmarks.
-					</p>
+					<Accordion>
+						<AccordionItem>
+							<svelte:fragment slot="iconClosed">
+								<i class="fa-xl fa-solid fa-circle-xmark"></i>
+							</svelte:fragment>
+							<svelte:fragment slot="iconOpen">
+								<i class="fa-xl fa-solid fa-circle-info"></i>
+							</svelte:fragment>
+							<svelte:fragment slot="summary">
+								<h4 class="h4">Exposure to climate-relevant sectors and technologies</h4>
+							</svelte:fragment>
+							<svelte:fragment slot="content">
+								<p>
+									Within each climate-relevant sector, different technologies play varying roles in
+									the transition to a low-carbon economy. Understanding your portfolio’s exposure to
+									the sector and the associated technologies is critical for assessing both <strong
+										>transition risks</strong
+									>
+									and <strong>investment opportunities</strong> in the context of climate change.
+									<br />
+									The following chart visualizes the portfolio's exposure to the different sectors and
+									technologies, compared to the relevant benchmarks.
+								</p>
+							</svelte:fragment>
+						</AccordionItem>
+					</Accordion>
 				</div>
 				<div class="analysis-exosures-box grid sm:grid-cols-12 p-4">
 					<div class="exposures-bonds sm:col-span-6" id="techMixAllBonds"></div>

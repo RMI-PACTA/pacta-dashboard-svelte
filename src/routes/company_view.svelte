@@ -7,6 +7,7 @@
 	import { techexposure_company } from '../js/techexposure_company.js';
 	import { createErrorMessageDiv } from '../js/createErrorMessageDiv.js';
 	import * as d3 from 'd3';
+	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
 	onMount(async () => {
 		const exposureStatsDataResponse = await fetch('data/data_exposure_stats.json');
@@ -417,26 +418,34 @@
 				<div class="plot-bubble-card-box sm:col-span-3 p-2">
 					<div class="plot-bubble-box sm:col-span-3 card p-8">
 						<div class="bubble-explanation">
-							<h4 class="h4">Company Exposure to Low- and High-Carbon Technologies</h4>
-							<p>
-								This chart illustrates the current and future technology exposure and future plans
-								for climate alignment of companies in the sector. Companies on the left have higher
-								exposure to high-carbon technologies, while those on the right are more aligned with
-								low-carbon solutions.
-							</p>
-							<br /><br />
-							<p>
-								It also compares each company's plans for expanding low-carbon technologies against
-								the selected climate scenario. Companies lower on the chart have smaller planned
-								investments in low-carbon tech, while those higher up have larger planned
-								expansions.
-							</p>
-							<br /><br />
-							<p>
-								The size of the dots reflects each company's influence on the portfolio’s overall
-								climate alignment, with larger dots representing companies with greater weight.
-							</p>
-							<br /><br />
+							<Accordion>
+								<AccordionItem>
+									<svelte:fragment slot="iconClosed">
+										<i class="fa-xl fa-solid fa-circle-xmark"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="iconOpen">
+										<i class="fa-xl fa-solid fa-circle-info"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="summary">
+										<h4 class="h4">Company Exposure to Low- and High-Carbon Technologies</h4>
+									</svelte:fragment>
+									<svelte:fragment slot="content">
+										<p>
+											This chart illustrates the current and future technology exposure and future
+											plans for climate alignment of companies in the sector. Companies on the left
+											have higher exposure to high-carbon technologies, while those on the right are
+											more aligned with low-carbon solutions.
+											<br /><br />
+											It also compares each company's plans for expanding low-carbon technologies against
+											the selected climate scenario. Companies lower on the chart have smaller planned
+											investments in low-carbon tech, while those higher up have larger planned expansions.
+											<br /><br />
+											The size of the dots reflects each company's influence on the portfolio’s overall
+											climate alignment, with larger dots representing companies with greater weight.
+										</p>
+									</svelte:fragment>
+								</AccordionItem>
+							</Accordion>
 						</div>
 						<div class="bubble-plot" id="bubble-plot"></div>
 					</div>
@@ -444,21 +453,36 @@
 				<div class="plot-techmix-card-box sm:col-span-3 p-2">
 					<div class="plot-techmix sm:col-span-3 card p-8">
 						<div class="techmix-explanation">
-							<h4 class="h4">Future technology mix</h4>
-							<p>
-								This section presents the <strong>most significant companies</strong> in your
-								portfolio, based on their weight, within the <strong>Power</strong> and
-								<strong>Automotive</strong>
-								sectors. For each company, we show its future <strong>technology mix</strong>.
-								<br /> <br />
-								By understanding the <strong>technology breakdown</strong> of these key companies,
-								you can assess how their planned production activities contribute to the overall
-								<strong>climate alignment</strong>
-								of the portfolio. This analysis supports
-								<strong>transition risk management</strong>
-								and helps inform <strong>engagement strategies</strong> for companies that may need to
-								accelerate their transition to low-carbon solutions.
-							</p>
+							<Accordion>
+								<AccordionItem>
+									<svelte:fragment slot="iconClosed">
+										<i class="fa-xl fa-solid fa-circle-xmark"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="iconOpen">
+										<i class="fa-xl fa-solid fa-circle-info"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="summary">
+										<h4 class="h4">Future technology mix</h4>
+									</svelte:fragment>
+									<svelte:fragment slot="content">
+										<p>
+											This section presents the <strong>most significant companies</strong> in your
+											portfolio, based on their weight, within the <strong>Power</strong> and
+											<strong>Automotive</strong>
+											sectors. For each company, we show its future <strong>technology mix</strong>.
+											<br /> <br />
+											By understanding the <strong>technology breakdown</strong> of these key
+											companies, you can assess how their planned production activities contribute
+											to the overall
+											<strong>climate alignment</strong>
+											of the portfolio. This analysis supports
+											<strong>transition risk management</strong>
+											and helps inform <strong>engagement strategies</strong> for companies that may
+											need to accelerate their transition to low-carbon solutions.
+										</p>
+									</svelte:fragment>
+								</AccordionItem>
+							</Accordion>
 						</div>
 						<div class="techmix-plot" id="techmix-plot"></div>
 					</div>

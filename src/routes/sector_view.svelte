@@ -497,6 +497,12 @@
 						<div class="trajectory-explanation">
 							<Accordion>
 								<AccordionItem>
+									<svelte:fragment slot="iconClosed">
+										<i class="fa-xl fa-solid fa-circle-xmark"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="iconOpen">
+										<i class="fa-xl fa-solid fa-circle-info"></i>
+									</svelte:fragment>
 									<svelte:fragment slot="summary">
 										<h4 class="h4">Future production plans</h4>
 									</svelte:fragment>
@@ -536,6 +542,12 @@
 							<div class="techmix-explanation">
 								<Accordion>
 									<AccordionItem>
+										<svelte:fragment slot="iconClosed">
+											<i class="fa-xl fa-solid fa-circle-xmark"></i>
+										</svelte:fragment>
+										<svelte:fragment slot="iconOpen">
+											<i class="fa-xl fa-solid fa-circle-info"></i>
+										</svelte:fragment>
 										<svelte:fragment slot="summary">
 											<h4 class="h4">Current and Future technology breakdown</h4>
 										</svelte:fragment>
@@ -559,6 +571,12 @@
 							<div class="emission-intensity-explanation">
 								<Accordion>
 									<AccordionItem>
+										<svelte:fragment slot="iconClosed">
+											<i class="fa-xl fa-solid fa-circle-xmark"></i>
+										</svelte:fragment>
+										<svelte:fragment slot="iconOpen">
+											<i class="fa-xl fa-solid fa-circle-info"></i>
+										</svelte:fragment>
 										<svelte:fragment slot="summary">
 											<h4 class="h4">Alignment of emission intensities</h4>
 										</svelte:fragment>

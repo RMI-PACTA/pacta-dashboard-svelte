@@ -420,6 +420,12 @@
 						<div class="bubble-explanation">
 							<Accordion>
 								<AccordionItem>
+									<svelte:fragment slot="iconClosed">
+										<i class="fa-xl fa-solid fa-circle-xmark"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="iconOpen">
+										<i class="fa-xl fa-solid fa-circle-info"></i>
+									</svelte:fragment>
 									<svelte:fragment slot="summary">
 										<h4 class="h4">Company Exposure to Low- and High-Carbon Technologies</h4>
 									</svelte:fragment>
@@ -449,6 +455,12 @@
 						<div class="techmix-explanation">
 							<Accordion>
 								<AccordionItem>
+									<svelte:fragment slot="iconClosed">
+										<i class="fa-xl fa-solid fa-circle-xmark"></i>
+									</svelte:fragment>
+									<svelte:fragment slot="iconOpen">
+										<i class="fa-xl fa-solid fa-circle-info"></i>
+									</svelte:fragment>
 									<svelte:fragment slot="summary">
 										<h4 class="h4">Future technology mix</h4>
 									</svelte:fragment>

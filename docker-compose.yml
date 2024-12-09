@@ -9,7 +9,7 @@ services:
     # command: ["sh"]
     volumes:
       - type: bind
-        source: ${STATIC_BUILD_PATH:-./build}
+        source: ${STATIC_BUILD_PATH:-./build_artifacts}
         target: /mnt/build_artifacts
         read_only: false
     network_mode: none
@@ -20,7 +20,7 @@ services:
       - 3000:80
     volumes:
       - type: bind
-        source: ${STATIC_BUILD_PATH:-./build}
+        source: ${STATIC_BUILD_PATH:-./build_artifacts}
         target: /usr/share/nginx/html
         read_only: false
       - type: bind

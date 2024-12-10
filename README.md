@@ -1,6 +1,11 @@
 # pacta-dashboard-svelte
 
-This is a demonstration of a dashboard for the Pacta project using Svelte, SvelteKit, Vite, TypeScript, Tailwind and Skeleton UI.
+[![ci](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml)
+[![docker build](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml)
+[![version](https://img.shields.io/github/package-json/v/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte)
+[![license](https://img.shields.io/github/license/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/blob/main/LICENSE.md)
+
+This Svelte project builds a static site that contains the PACTA dashboard front-end. The project utilizes Svelte, SvelteKit, Vite, TypeScript, Tailwind, and Skeleton UI to deliver a modern and responsive dashboard for the PACTA project.
 
 ## Developing
 
@@ -42,3 +47,11 @@ This container executes a script to run `npm run build`, and then copy the rende
 
 The simplest way to use this is with `docker-compose up --build`, which will run the build container as an init container.
 Once that has completed sucessfully, a `nginx` container (with the rendered files bind-mounted to the correct location) will start, and the prepared dashboard will be visible at `localhost:3000`.
+
+## Backend
+
+The dashboard is designed to be used with the PACTA backend, which can be found [here](https://github.com/RMI-PACTA/workflow.pacta.dashboard)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.

@@ -10,15 +10,8 @@
 		insights into how well your portfolio is positioned to align with multiple climate objectives.
 		This section provides a high-level overview of the dashboard's functionalities, setting the
 		stage for in-depth analysis across various levels—from portfolio-wide metrics to
-		company-specific evaluations. Key features in this section:
-		<ul class="list-disc p-4">
-			<li><strong>Overview of the methodology</strong> behind the PACTA analysis;</li>
-			<li><strong>Sector and asset class</strong> coverage in the analysis;</li>
-			<li>
-				<strong>Metrics used to assess alignment with climate targets </strong> (e.g., emission intensity,
-				future technology)
-			</li>
-		</ul>
+		company-specific evaluations.
+		<br /><br />
 		To explore more detailed content for each section below, simply click on the titles. A dropdown will
 		appear with further explanations and insights for each topic. This allows you to dig deeper into
 		the information that matters most to you.

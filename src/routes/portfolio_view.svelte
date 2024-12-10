@@ -153,26 +153,7 @@
 					<br /> <br />
 					You can hover over the graphs to get more in-depth insights of your portfolio-level analysis.
 					<br /> <br />
-					Key features in this section:
 				</p>
-				<br />
-				<ul class="list-disc">
-					<li>
-						<strong>Scope of Analysis</strong>: Understand which holdings are included in the
-						assessment and if it is a direct or indirect investment.
-					</li>
-					<li>
-						<strong>Sector Coverage</strong>: First overview of the exposure to climate-relevant
-						sectors and their technologies, as a share of the AUM (assets under management) of the
-						portfolio
-					</li>
-					<li>
-						<strong>Emissions Coverage</strong>: Get an estimate of how much of your portfolio’s
-						emissions are addressed in the analysis, as well as an overview of your portfolio
-						absolute emissions.
-					</li>
-				</ul>
-				<br />
 			</div>
 		</div>
 		<div class="analysis-content grid sm:grid-cols-12 p-4">

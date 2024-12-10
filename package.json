@@ -1,6 +1,28 @@
 {
 	"name": "pacta-dashboard-svelte",
 	"version": "0.0.1",
+	"contributors": [
+		{
+			"name": "Monika Furdyna",
+			"email": "monika.furdyna@gmail.com",
+			"url": "https://github.com/MonikaFu"
+		},
+		{
+			"name": "Alex Axthelm",
+			"email": "aaxthelm@rmi.org",
+			"url": "https://github.com/AlexAxthelm"
+		},
+		{
+			"name": "CJ Yetman",
+			"email": "cj@cjyetman.com",
+			"url": "https://github.com/cjyetman"
+		},
+		{
+			"name": "Jackson Hoffart",
+			"email": "jackson.hoffart@gmail.com",
+			"url": "https://github.com/jdhoffa"
+		}
+	],
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

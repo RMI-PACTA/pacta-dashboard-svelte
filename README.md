@@ -1,4 +1,8 @@
 # pacta-dashboard-svelte
+[![ci](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml)
+[![docker build](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml)
+[![version](https://img.shields.io/github/package-json/v/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte)
+[![license](https://img.shields.io/github/license/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/blob/main/LICENSE)
 
 This is a demonstration of a dashboard for the Pacta project using Svelte, SvelteKit, Vite, TypeScript, Tailwind and Skeleton UI.
 

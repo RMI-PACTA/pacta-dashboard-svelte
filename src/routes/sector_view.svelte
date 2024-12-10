@@ -466,25 +466,6 @@
 				this section helps you understand your portfolio's positioning in key sectors for the global
 				transition to a low-carbon economy.
 				<br /><br />
-				Key features in this section:
-				<br /><br />
-				<ul class="list-disc">
-					<li>
-						<strong>Sector Exposure</strong>: Review the portfolio's exposure to a specific sector,
-						as well as its exposure to sector-specific technologies.
-					</li>
-					<li>
-						<strong>Climate Scenario Alignment</strong>: Understand how the production plans of
-						investee companies in this sector align with different climate pathways.
-					</li>
-					<li>
-						<strong>Benchmark Comparison</strong>: See how your portfolio's performance compares to
-						market benchmarks.
-					</li>
-				</ul>
-				<br />
-				For deeper insights into the methodology behind these analyses, please refer to the
-				<a class="anchor" href="https://rmi.gitbook.io/pacta-knowledge-hub">PACTA Knowledge Hub</a>.
 			</div>
 			<div class="analysis-intro-stats sm:col-span-3 p-0">
 				<div class="exposure-stats" id="exposure-stats"></div>

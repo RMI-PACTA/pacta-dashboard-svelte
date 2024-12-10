@@ -10,15 +10,8 @@
 		insights into how well your portfolio is positioned to align with multiple climate objectives.
 		This section provides a high-level overview of the dashboard's functionalities, setting the
 		stage for in-depth analysis across various levels—from portfolio-wide metrics to
-		company-specific evaluations. Key features in this section:
-		<ul class="list-disc p-4">
-			<li><strong>Overview of the methodology</strong> behind the PACTA analysis;</li>
-			<li><strong>Sector and asset class</strong> coverage in the analysis;</li>
-			<li>
-				<strong>Metrics used to assess alignment with climate targets </strong> (e.g., emission intensity,
-				future technology)
-			</li>
-		</ul>
+		company-specific evaluations.
+		<br /><br />
 		To explore more detailed content for each section below, simply click on the titles. A dropdown will
 		appear with further explanations and insights for each topic. This allows you to dig deeper into
 		the information that matters most to you.
@@ -28,7 +21,9 @@
 	<div class="card p-8">
 		<Accordion autocollapse>
 			<AccordionItem open>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-book-open"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary"><h3 class="h3">About PACTA</h3></svelte:fragment>
 				<svelte:fragment slot="content">
 					<div class="p-4">
@@ -63,7 +58,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-industry"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary">
 					<h3 class="h3">
 						Economic Sectors Covered in PACTA and Their Relevance for Limiting Climate Change
@@ -157,7 +154,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary"
 					><h3 class="h3">The PACTA Methodology at a Glance</h3>
 				</svelte:fragment>
@@ -288,7 +287,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-trowel-bricks"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary">
 					<h3 class="h3">Inputs into the PACTA Methodology</h3>
 				</svelte:fragment>
@@ -407,7 +408,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-chart-area"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary">
 					<h3 class="h3">PACTA Core Metrics overview</h3>
 				</svelte:fragment>
@@ -500,7 +503,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-building-columns"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary"
 					><h3 class="h3">Disclaimers and Limitations of the Analysis</h3></svelte:fragment
 				>

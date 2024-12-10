@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
-	import PactaIntro from './pacta_intro.svelte';
+	import PactaIntro from './about.svelte';
 	import PortfolioView from './portfolio_view.svelte';
 	import SectorView from './sector_view.svelte';
 	import CompanyView from './company_view.svelte';
 	// Tab Group
-	let tabSet: number = 0;
+	let tabSet: number = 1;
 </script>
 
 <TabGroup>
-	<Tab bind:group={tabSet} name="pacta_intro" value={0}>Introduction</Tab>
+	<Tab bind:group={tabSet} name="about" value={0}>About PACTA</Tab>
 	<Tab bind:group={tabSet} name="portfolio_view" value={1}>Portfolio-level Overview</Tab>
 	<Tab bind:group={tabSet} name="sector_view" value={2}>Sector-level Analysis</Tab>
 	<Tab bind:group={tabSet} name="company_view" value={3}>Company-level Analysis</Tab>

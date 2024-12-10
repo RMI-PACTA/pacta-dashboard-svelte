@@ -28,7 +28,9 @@
 	<div class="card p-8">
 		<Accordion autocollapse>
 			<AccordionItem open>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-book-open"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary"><h3 class="h3">About PACTA</h3></svelte:fragment>
 				<svelte:fragment slot="content">
 					<div class="p-4">
@@ -63,7 +65,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-industry"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary">
 					<h3 class="h3">
 						Economic Sectors Covered in PACTA and Their Relevance for Limiting Climate Change
@@ -157,7 +161,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary"
 					><h3 class="h3">The PACTA Methodology at a Glance</h3>
 				</svelte:fragment>
@@ -288,7 +294,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-trowel-bricks"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary">
 					<h3 class="h3">Inputs into the PACTA Methodology</h3>
 				</svelte:fragment>
@@ -407,7 +415,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-chart-area"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary">
 					<h3 class="h3">PACTA Core Metrics overview</h3>
 				</svelte:fragment>
@@ -500,7 +510,9 @@
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<svelte:fragment slot="lead">
+					<i class="fa-solid fa-building-columns"></i>
+				</svelte:fragment>
 				<svelte:fragment slot="summary"
 					><h3 class="h3">Disclaimers and Limitations of the Analysis</h3></svelte:fragment
 				>

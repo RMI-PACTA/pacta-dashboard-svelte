@@ -394,20 +394,7 @@
 					climate-related decisions, such as investment selection, engagement, or exclusion, and
 					helps shape targeted climate strategies.
 					<br /><br />
-					Key features in this section:
-					<br /><br />
 				</p>
-				<ul class="list-disc">
-					<li>
-						<strong>Critical Players</strong>: Identify the most influential companies in your
-						portfolio’s alignment with climate goals.
-					</li>
-					<li>
-						<strong>Leaders and Laggards</strong>: Discover which companies are at the forefront of
-						adopting low-carbon alternatives and which are lagging behind.
-					</li>
-				</ul>
-				<br />
 			</div>
 			<div class="analysis-intro-stats sm:col-span-3">
 				<div class="exposure-stats" id="exposure-stats"></div>

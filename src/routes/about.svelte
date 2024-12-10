@@ -278,8 +278,6 @@
 								investor. This approach comes closer to allocating “responsibility” for the
 								companies’ activities to the financial institution.
 							</li>
-							While the Ownership Weight Approach (OA) is only available for listed equity, the Portfolio
-							Weight Approach (PA) is available for both corporate bonds and listed equity.
 						</ul>
 						While the Ownership Weight Approach (OA) is only available for listed equity, the Portfolio
 						Weight Approach (PA) is available for both corporate bonds and listed equity.

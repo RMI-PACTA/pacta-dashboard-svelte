@@ -192,12 +192,9 @@
 							<p>
 								This analysis focuses on asset classes with a direct and measurable impact on the
 								real economy, specifically investments in <strong>listed equities</strong> and
-								<strong>corporate bonds</strong> on the secondary market. These asset classes
-								represent the most accessible and reliable data sources for understanding portfolio
-								alignment with climate transition goals.
-								<br /> <br />
-								From the total market value of the portfolio, <strong>[X]%</strong> is allocated to
-								equity investments, and <strong>[Y]%</strong> is allocated to corporate bonds.
+								<strong>corporate bonds</strong> on the secondary market. These asset classes represent
+								the most accessible and reliable data sources for understanding portfolio alignment with
+								climate transition goals.
 							</p>
 						</svelte:fragment>
 					</AccordionItem>
@@ -256,15 +253,6 @@
 					<div class="pie-emissions-bonds sm:col-span-6" id="emissionsPieBonds"></div>
 					<div class="pie-emissions-equity sm:col-span-6" id="emissionsPieEquity"></div>
 				</div>
-				Comparing these charts allows you to assess the relative climate relevance of different sectors
-				in your portfolio. For example, while
-				<strong>PACTA sectors</strong> may represent
-				<strong>[X]%</strong>
-				of the equity portfolio's market value and <strong>[Y]%</strong> of the corporate bond
-				portfolio's market value, they are responsible for <strong>[Z]%</strong> and
-				<strong>[W]%</strong>
-				of the portfolio's <strong>absolute CO<sub>2</sub> emissions</strong> in equity and corporate
-				bonds, respectively.
 			</div>
 		</div>
 		<div class="analysis-exposures grid sm:grid-cols-12 p-4">

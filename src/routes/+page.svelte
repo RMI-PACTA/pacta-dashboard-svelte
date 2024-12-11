@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { AppShell } from '@skeletonlabs/skeleton';
 	import PactaIntro from './about.svelte';
 	import PortfolioView from './portfolio_view.svelte';
 	import SectorView from './sector_view.svelte';

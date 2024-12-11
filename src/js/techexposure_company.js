@@ -36,7 +36,7 @@ export class techexposure_company {
 			footnote_lab = {
 				befor_scen: '* Aligned to ',
 				after_scen: ' scenario in year ',
-				after_year: '.'
+				after_year: ''
 			};
 
 		// Create the svg container

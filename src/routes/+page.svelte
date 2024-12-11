@@ -8,6 +8,7 @@
 	let tabSet: number = 1;
 </script>
 
+<svelte:fragment slot="header">
 <TabGroup>
 	<Tab bind:group={tabSet} name="about" value={0}>About PACTA</Tab>
 	<Tab bind:group={tabSet} name="portfolio_view" value={1}>Portfolio-level Overview</Tab>
@@ -28,3 +29,4 @@
 		{/if}
 	</svelte:fragment>
 </TabGroup>
+</svelte:fragment>

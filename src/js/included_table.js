@@ -21,7 +21,7 @@ export function tabulateIntoIncludedTable(data, id, opts) {
 	var columns = Object.keys(data[0]);
 	d3.select(id).selectAll('table').remove();
 
-	var idDiv = d3.select(id).attr('class', 'd3chart included_table').style('width', '800px');
+	var idDiv = d3.select(id).attr('class', 'd3chart included_table');
 
 	var table = idDiv.append('table'),
 		thead = table.append('thead'),

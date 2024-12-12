@@ -97,7 +97,8 @@ export class time_line {
 			.style('stroke', (d) => (d.values[0].plan == 'plan' ? line_color : scen_line_color))
 			.style('stroke-width', '2px')
 			.attr('id', (d) => d.key)
-			.attr('d', (d) => line(d.values));
+			.attr('d', (d) => line(d.values))
+			.style('transform', (d) => (d.values[0].plan == 'plan' ? '' : 'translateY(8px)'));
 
 		// Add dots for datapoints
 		svg
@@ -114,6 +115,7 @@ export class time_line {
 			.attr('y_value', (d) => d.value)
 			.attr('cx', (d) => x(parseYear(d.year)))
 			.attr('cy', (d) => y(d.value))
+			.style('transform', (d) => (d.plan == 'plan' ? '' : 'translate(8px, 8px)'))
 			.on('mouseover', mouseover)
 			.on('mousemove', mousemove)
 			.on('mouseout', mouseout);

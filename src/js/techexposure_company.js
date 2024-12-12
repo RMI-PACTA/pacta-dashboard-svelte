@@ -34,7 +34,7 @@ export class techexposure_company {
 		let hover_over_sec = { before_sec: ' of ', after_sec: ' sector' },
 			weights_title = 'Weights',
 			footnote_lab = {
-				befor_scen: '* Aligned to ',
+				befor_scen: '* aligned to ',
 				after_scen: ' scenario in year ',
 				after_year: ''
 			};

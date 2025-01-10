@@ -324,6 +324,11 @@
 				fetchExposureStats();
 				if (checkDataAvailability()) {
 					showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					updateAllocationMethodSelector();
+					updateEquityMarketSelector();
+					updateBenchmarkSelector();
 					fetchTrajectoryAlignmentIfApplicable();
 					fetchTechmix();
 					fetchEmissionIntensityPlot();
@@ -399,16 +404,7 @@
 		setValuesAssetClassSelector();
 		fetchExposureStats();
 		if (checkDataAvailability()) {
-			showAnalysisHideAlert();
-			updateScenarioSourceSelector();
-			updateScenarioSelector();
-			updateAllocationMethodSelector();
-			updateEquityMarketSelector();
-			updateBenchmarkSelector();
 			addEventListeners();
-			fetchTechmix();
-			fetchTrajectoryAlignmentIfApplicable();
-			fetchEmissionIntensityPlot();
 		} else {
 			handleNoDataForAssetSectorCombination();
 		}

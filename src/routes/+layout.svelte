@@ -62,7 +62,7 @@
 			<svelte:fragment slot="trail">
 				<span class="btn-icon variant-filled">
 					<a
-						href="https://github.com/RMI-PACTA/pacta-dashboard-svelte"
+						href="https://github.com/RMI-PACTA/pacta-dashboard-ui"
 						target="_blank"
 						rel="noreferrer"
 						title="GitHub"

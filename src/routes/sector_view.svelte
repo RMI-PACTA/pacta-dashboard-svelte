@@ -212,7 +212,7 @@
 
 			let filteredEmissionsData = emissionsData
 				.filter((d) => d.asset_class == selectedClass)
-				.filter((d) => d.ald_sector == selectedSector);
+				.filter((d) => d.sector == selectedSector);
 			let allocationsEmissions = new Set(
 				d3.map(filteredEmissionsData, (d) => d.allocation_translation).keys()
 			);

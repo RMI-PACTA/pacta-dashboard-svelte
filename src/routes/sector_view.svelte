@@ -117,7 +117,7 @@
 
 			let filteredEmissionsData = emissionsData
 				.filter((d) => d.asset_class == selectedClass)
-				.filter((d) => d.ald_sector == selectedSector);
+				.filter((d) => d.sector == selectedSector);
 
 			let check = [filteredTechmixData, filteredVolTrajData, filteredEmissionsData].some(
 				(x) => x.length != 0

@@ -35,8 +35,7 @@ export class techexposure_company {
 			weights_title = 'Weights',
 			footnote_lab = {
 				befor_scen: '* aligned to ',
-				after_scen: ' scenario in year ',
-				after_year: ''
+				after_scen: ' scenario in year '
 			};
 
 		// Create the svg container
@@ -295,8 +294,7 @@ export class techexposure_company {
 			' ' +
 			scenario +
 			footnote_lab.after_scen +
-			data_up.map((d) => d.year)[0] +
-			footnote_lab.after_year;
+			data_up.map((d) => d.year)[0];
 
 		footnote
 			.selectAll('text')

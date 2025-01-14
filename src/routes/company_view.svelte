@@ -281,6 +281,9 @@
 				fetchExposureStats();
 				if (checkDataAvailability()) {
 					showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					updateAllocationMethodSelector();
 					fetchCompanyBubble();
 					fetchCompanyTechmix();
 				} else {
@@ -334,13 +337,7 @@
 
 		setValuesSectorSelectors();
 		setValuesAssetClassSelector();
-		updateScenarioSourceSelector();
-		updateScenarioSelector();
-		updateAllocationMethodSelector();
 		addEventListeners();
-		fetchExposureStats();
-		fetchCompanyBubble();
-		fetchCompanyTechmix();
 	});
 </script>
 

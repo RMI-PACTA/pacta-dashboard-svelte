@@ -117,7 +117,7 @@
 
 			let filteredEmissionsData = emissionsData
 				.filter((d) => d.asset_class == selectedClass)
-				.filter((d) => d.ald_sector == selectedSector);
+				.filter((d) => d.sector == selectedSector);
 
 			let check = [filteredTechmixData, filteredVolTrajData, filteredEmissionsData].some(
 				(x) => x.length != 0
@@ -212,7 +212,7 @@
 
 			let filteredEmissionsData = emissionsData
 				.filter((d) => d.asset_class == selectedClass)
-				.filter((d) => d.ald_sector == selectedSector);
+				.filter((d) => d.sector == selectedSector);
 			let allocationsEmissions = new Set(
 				d3.map(filteredEmissionsData, (d) => d.allocation_translation).keys()
 			);
@@ -324,6 +324,11 @@
 				fetchExposureStats();
 				if (checkDataAvailability()) {
 					showAnalysisHideAlert();
+					updateScenarioSourceSelector();
+					updateScenarioSelector();
+					updateAllocationMethodSelector();
+					updateEquityMarketSelector();
+					updateBenchmarkSelector();
 					fetchTrajectoryAlignmentIfApplicable();
 					fetchTechmix();
 					fetchEmissionIntensityPlot();
@@ -399,16 +404,7 @@
 		setValuesAssetClassSelector();
 		fetchExposureStats();
 		if (checkDataAvailability()) {
-			showAnalysisHideAlert();
-			updateScenarioSourceSelector();
-			updateScenarioSelector();
-			updateAllocationMethodSelector();
-			updateEquityMarketSelector();
-			updateBenchmarkSelector();
 			addEventListeners();
-			fetchTechmix();
-			fetchTrajectoryAlignmentIfApplicable();
-			fetchEmissionIntensityPlot();
 		} else {
 			handleNoDataForAssetSectorCombination();
 		}

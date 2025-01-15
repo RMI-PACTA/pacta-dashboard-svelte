@@ -1,7 +1,7 @@
 /* src/css/plot_styles.css */
 
 strong {
-    font-weight: 700;
+	font-weight: 700;
 }
 
 .d3chart > style {
@@ -180,11 +180,11 @@ div.d3chart .axis {
 
 /* axis color */
 div.d3chart path.domain {
-	stroke: #93AEC6;
+	stroke: #93aec6;
 }
 
 div.d3chart .tick line {
-	stroke: #93AEC6;
+	stroke: #93aec6;
 }
 
 /* d3 data_table styling */
@@ -194,7 +194,7 @@ div.d3chart.data_table th,
 div.d3chart.data_table td {
 	border-collapse: collapse;
 	padding: 8px;
-	border-bottom: 1px solid #93AEC6;
+	border-bottom: 1px solid #93aec6;
 	border-bottom: none !important;
 	text-align: center;
 	font-size: 1em;
@@ -214,7 +214,7 @@ div.d3chart.included_table {
 
 div.d3chart.included_table table thead tr {
 	border-top: none !important;
-	border-bottom: 1px solid #93AEC6 !important;
+	border-bottom: 1px solid #93aec6 !important;
 }
 
 div.d3chart.included_table table,
@@ -229,13 +229,13 @@ div.d3chart.included_table tr {
 }
 
 div.d3chart.included_table table tr.summary_row {
-	border-top: 1px solid #93AEC6 !important;
+	border-top: 1px solid #93aec6 !important;
 	border-bottom: none !important;
 }
 
 div.d3chart.included_table table td.column_left_border,
 div.d3chart.included_table table th.column_left_border {
-	border-left: 1px solid #93AEC6 !important;
+	border-left: 1px solid #93aec6 !important;
 }
 
 /* sectors color palette */

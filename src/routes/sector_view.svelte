@@ -580,7 +580,7 @@
 				</div>
 			</div>
 			<div
-				class="alert-message sm:col-span-10 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+				class="alert-message sm:col-span-10 bg-warning-300 border-t border-b border-warning-700 text-warning-900 px-4 py-3 hidden"
 				role="alert"
 				id="alert-message-parameters"
 			>
@@ -646,7 +646,7 @@
 </div>
 
 <div
-	class="alert-message bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+	class="alert-message bg-warning-300 border-t border-b border-warning-700 text-warning-900 px-4 py-3 hidden"
 	role="alert"
 	id="alert-message"
 >

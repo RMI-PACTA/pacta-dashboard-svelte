@@ -139,7 +139,7 @@ export class PieExploded {
 			.attr('class', (d) => (d.data.exploded ? d.data.key : 'non-PACTA'))
 			.attr('d', arc)
 			.attr('fill', (d) => (d.data.exploded ? color(d.data.key) : greys(d.data.key)))
-			.attr('stroke', '#d9e2e8')
+			.attr('stroke', '#ffffff')
 			.style('stroke-width', '2px')
 			.style('opacity', 1)
 			.on('mouseover', mouseover)

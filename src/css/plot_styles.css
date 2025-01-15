@@ -130,7 +130,7 @@ div.d3chart .chart_source {
 
 div.d3chart svg {
 	/*   border: 1px dashed; */
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 }
 
 div.d3chart > * {
@@ -140,7 +140,7 @@ div.d3chart > * {
 
 div.d3chart div.d3tooltip {
 	opacity: 0.9;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 	color: black;
 	border-radius: 4px;
 	padding: 10px;

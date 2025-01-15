@@ -22,6 +22,10 @@
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
+	//fonts
+	import "@fontsource/roboto/400.css";
+	import "@fontsource/roboto/700.css";
+
 	async function downloadArchive() {
 		try {
 			const response = await fetch('data/archive.zip');

@@ -1,5 +1,9 @@
 /* src/css/plot_styles.css */
 
+strong {
+    font-weight: 700;
+}
+
 .d3chart > style {
 	display: none;
 }
@@ -94,7 +98,7 @@
 /* styles for interactive charts ****************/
 
 div.d3chart {
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 0.9em;
 	width: 100%;
 	max-width: 1400px;
@@ -103,26 +107,26 @@ div.d3chart {
 }
 
 div.d3chart .chart_title {
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 1em;
 	text-align: center;
 }
 
 div.d3chart .chart_filters {
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 0.9em;
 	text-align: center;
 	margin: 10px;
 }
 
 div.d3chart .chart_caption {
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 0.8em;
 	text-align: center;
 }
 
 div.d3chart .chart_source {
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 0.7em;
 	font-style: italic;
 	padding-top: 5px;
@@ -145,13 +149,13 @@ div.d3chart div.d3tooltip {
 	border-radius: 4px;
 	padding: 10px;
 	border: 1px solid;
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	/* position: absolute; */
 	position: fixed; /* position must be fixed to work in Gitbook */
 }
 
 div.d3chart svg text {
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 div.d3chart.tech_exposure {

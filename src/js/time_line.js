@@ -52,7 +52,8 @@ export class time_line {
 			.filter((d) => d.allocation_translation == allocation_method)
 			.filter((d) => d.equity_market == equity_market)
 			.filter((d) => d.scenario_source == scenario_source)
-			.filter((d) => d.scenario == scenario);
+			.filter((d) => d.scenario == scenario)
+			.sort((a, b) => d3.ascending(a.plan, b.plan));
 
 		const parseYear = d3.timeParse('%Y');
 

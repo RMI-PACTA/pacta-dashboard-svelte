@@ -52,7 +52,8 @@ export class time_line {
 			.filter((d) => d.allocation_translation == allocation_method)
 			.filter((d) => d.equity_market == equity_market)
 			.filter((d) => d.scenario_source == scenario_source)
-			.filter((d) => d.scenario == scenario);
+			.filter((d) => d.scenario == scenario)
+			.sort((a, b) => d3.ascending(a.plan, b.plan));
 
 		const parseYear = d3.timeParse('%Y');
 
@@ -95,10 +96,10 @@ export class time_line {
 			.attr('class', 'line')
 			.style('fill', 'none')
 			.style('stroke', (d) => (d.values[0].plan == 'plan' ? line_color : scen_line_color))
+			.style('stroke-dasharray', (d) => (d.values[0].plan == 'plan' ? '' : '15,10'))
 			.style('stroke-width', '2px')
 			.attr('id', (d) => d.key)
-			.attr('d', (d) => line(d.values))
-			.style('transform', (d) => (d.values[0].plan == 'plan' ? '' : 'translate(8px, -8px)'));
+			.attr('d', (d) => line(d.values));
 
 		// Add dots for datapoints
 		svg
@@ -107,15 +108,13 @@ export class time_line {
 			.enter()
 			.append('circle')
 			.attr('class', 'dot')
-			.attr('r', 5)
-			.style('stroke', '#fff')
+			.attr('r', (d) => (d.plan == 'plan' ? 6 : 4))
 			.style('fill', (d) => (d.plan == 'plan' ? line_color : scen_line_color))
 			.attr('name', (d) => d.key)
 			.attr('x_value', (d) => d.year)
 			.attr('y_value', (d) => d.value)
 			.attr('cx', (d) => x(parseYear(d.year)))
 			.attr('cy', (d) => y(d.value))
-			.style('transform', (d) => (d.plan == 'plan' ? '' : 'translate(8px, -8px)'))
 			.on('mouseover', mouseover)
 			.on('mousemove', mousemove)
 			.on('mouseout', mouseout);
@@ -214,15 +213,15 @@ export class time_line {
 			.attr('y1', 0)
 			.attr('y2', 0)
 			.style('stroke-width', 2)
-			.style('stroke', (d) => (d == port_label ? line_color : scen_line_color));
+			.style('stroke', (d) => (d == port_label ? line_color : scen_line_color))
+			.style('stroke-dasharray', (d) => (d == port_label ? '' : '15,10'));
 
 		legend
 			.enter()
 			.append('circle')
-			.attr('r', 5)
+			.attr('r', (d) => (d == port_label ? 6 : 4))
 			.attr('cx', (d) => (d == port_label ? 30 : 230))
 			.attr('cy', 0)
-			.style('stroke', '#fff')
 			.style('fill', (d) => (d == port_label ? line_color : scen_line_color));
 
 		legend

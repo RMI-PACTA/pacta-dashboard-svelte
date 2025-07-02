@@ -15,6 +15,16 @@
 		To explore more detailed content for each section below, simply click on the titles. A dropdown will
 		appear with further explanations and insights for each topic. This allows you to dig deeper into
 		the information that matters most to you.
+		<br /><br />
+		The development of the PACTA Dashboard has received funding from the European Union’s LIFE program under grant agreement LIFE18IPC/FR/000010 A.F.F.A.P.
+		<br /><br />
+		<div class="flex justify-center my-2">
+			<img
+				src="life_logo.png"
+				alt="European Union's LIFE Program Logo"
+				class="h-[7rem] w-auto"
+			/>
+		</div>
 	</div>
 </div>
 <div class="p-4">

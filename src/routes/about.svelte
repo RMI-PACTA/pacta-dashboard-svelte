@@ -18,7 +18,13 @@
 		<br /><br />
 		The development of the PACTA Dashboard has received funding from the European Union’s LIFE program
 		under grant agreement LIFE18IPC/FR/000010. Visit the project's website here:
-		<a href="https://finance-climact.eu/" target="_blank" rel="noopener">Finance ClimAct</a>
+		<a
+			href="https://finance-climact.eu/"
+			target="_blank"
+			rel="noopener"
+			class="text-primary-500 hover:text-primary-700 underline hover:no-underline"
+			>Finance ClimAct</a
+		>
 		.
 		<br /><br />
 		<div class="flex justify-center my-2">

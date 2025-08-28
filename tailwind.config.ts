@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
-import { rmi_theme } from './src/rmi_theme';
+import { rmi_theme } from './src/rmi_theme.ts';
 
 export default {
 	darkMode: 'class',

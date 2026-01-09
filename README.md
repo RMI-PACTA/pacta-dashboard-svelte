@@ -1,9 +1,9 @@
-# pacta-dashboard-svelte
+# pacta-dashboard-ui
 
-[![ci](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml)
-[![docker build](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml)
-[![version](https://img.shields.io/github/package-json/v/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte)
-[![license](https://img.shields.io/github/license/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/blob/main/LICENSE.md)
+[![ci](https://github.com/RMI-PACTA/pacta-dashboard-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-ui/actions/workflows/ci.yml)
+[![docker build](https://github.com/RMI-PACTA/pacta-dashboard-ui/actions/workflows/docker.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-ui/actions/workflows/docker.yml)
+[![version](https://img.shields.io/github/package-json/v/rmi-pacta/pacta-dashboard-ui)](https://github.com/RMI-PACTA/pacta-dashboard-ui)
+[![license](https://img.shields.io/github/license/rmi-pacta/pacta-dashboard-ui)](https://github.com/RMI-PACTA/pacta-dashboard-ui/blob/main/LICENSE.md)
 
 This Svelte project builds a static site that contains the PACTA dashboard front-end. The project utilizes Svelte, SvelteKit, Vite, TypeScript, Tailwind, and Skeleton UI to deliver a modern and responsive dashboard for the PACTA project.
 

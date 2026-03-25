@@ -1,5 +1,9 @@
 # pacta-dashboard-svelte
 
+[![Project Status: Unsupported](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
+
+**This project is archived for future reference, but no new work is expected in this repository.**
+
 [![ci](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/ci.yml)
 [![docker build](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml/badge.svg)](https://github.com/RMI-PACTA/pacta-dashboard-svelte/actions/workflows/docker.yml)
 [![version](https://img.shields.io/github/package-json/v/rmi-pacta/pacta-dashboard-svelte)](https://github.com/RMI-PACTA/pacta-dashboard-svelte)
